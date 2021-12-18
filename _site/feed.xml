@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-18T13:22:47+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">우주우물</title><subtitle>Swift, iOS, macOS</subtitle><entry><title type="html">ABI 안정화 그리고 그 이상</title><link href="http://localhost:4000/swift/abi/2019/03/28/abi_stability_and_more.html" rel="alternate" type="text/html" title="ABI 안정화 그리고 그 이상" /><published>2019-03-28T10:23:56+09:00</published><updated>2019-03-28T10:23:56+09:00</updated><id>http://localhost:4000/swift/abi/2019/03/28/abi_stability_and_more</id><content type="html" xml:base="http://localhost:4000/swift/abi/2019/03/28/abi_stability_and_more.html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#모듈-안정화module-stability&quot; id=&quot;markdown-toc-모듈-안정화module-stability&quot;&gt;모듈 안정화(Module Stability)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;원문 &lt;a href=&quot;https://swift.org/blog/abi-stability-and-more/&quot;&gt;ABI Stability and More&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;macOS, iOS, watchOS, 그리고 tvOS에서 스위프트의 ABI를 안정화시키는 것은 오랜 목표였습니다. 안정적인 ABI는 모든 언어에서 중요하지만, 스위프트 생태계에서 그것이 주는 궁극적인 이점은 앱과 라이브러리들의 &lt;a href=&quot;https://en.wikipedia.org/wiki/Binary-code_compatibility&quot;&gt;바이너리(-코드) 호환성(Binary-code compatibility)&lt;/a&gt;을 가능하게 한다는 것입니다. 이 글에서는 스위프트 5에서 바이너리 호환성이 어떤 의미인지, 그리고 앞으로의 스위프트 배포에 어떤 혁신을 가져올지 기술합니다.&lt;/p&gt;
+
+&lt;p&gt;다른 플랫폼에서는요? 라는 질문을 하실 수 있을거 같네요. ABI 안정화는 스위프트를 컴파일하고 실행할 수 있는 모든 운영체제에 적용되었습니다. 애플 플랫폼 상에서 스위프트 5의ABI는 안정화 되었다고 공표되었습니다. Linux, Windows, 그 외의 성숙한 플랫폼의 개발자라면, 스위프트 Core Team이 안정화 작업을 진행중에 있습니다.&lt;/p&gt;
+
+&lt;p&gt;스위프트 5는 앱을 위한 바이너리 호환성을 제공합니다. 앞으로는 한 버전의 스위프트 컴파일러로 빌드한 앱이 다른 버전으로 빌드한 라이브러리와의 소통을 보장합니다. 이는 이전 버전(&lt;em&gt;-swift-version 4.2&lt;/em&gt;)과의 호환 모드에서도 마찬가지입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://swift.org/assets/images/abi-stability-blog/abi-stability.png&quot; alt=&quot;Image of abi stability&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 예제를 보면, 스위프트 5.0으로 빌드한 앱이 스위프트 5 표준 라이브리가 설치된 시스템에서 돌아가는 것과 마찬가지로 스위프트 5.1 혹은 스위프트 6으로 가정한 시스템에서도 잘 돌아가는 것을 보여줍니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;(이 글에서 스위프트 5.0 이상의 버전은 물론 모두 가정입니다.)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Apple OS들에서의 ABI 안정화는 다음 업데이트되는 모든 OS에 더 이상 Swift standard library 와 &lt;strong&gt;overlay&lt;/strong&gt; 라이브러리를 포함할 필요가 없어 앱의 다운로드 사이즈가 줄어든다는 뜻입니다. 스위프트 런타임은 Objective C 런타임과 마찬가지로 OS에 포함되게 됩니다.&lt;/p&gt;
+
+&lt;p&gt;이런 변화가 앱 스토어에 앱을 배포하는데 어떻게 영양을 미치는지는 &lt;a href=&quot;https://developer.apple.com/documentation/xcode_release_notes/xcode_10_2_beta_release_notes/swift_5_release_notes_for_xcode_10_2_beta&quot;&gt;Xcode 10.2 release notes&lt;/a&gt;에서 상세한 정보를 확인할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;모듈-안정화module-stability&quot;&gt;모듈 안정화(Module Stability)&lt;/h2&gt;
+
+&lt;p&gt;ABI 안정화는 앱 실행시에 스위프트의 여러 버전을 사용할 수 있는 것에 대한 내용입니다. 컴파일 타임에는 어떨까요?&lt;/p&gt;</content><author><name></name></author><category term="swift" /><category term="abi" /></entry><entry><title type="html">유니코드(Unicode)</title><link href="http://localhost:4000/unicode/history/2018/04/13/unicode.html" rel="alternate" type="text/html" title="유니코드(Unicode)" /><published>2018-04-13T22:13:26+09:00</published><updated>2018-04-13T22:13:26+09:00</updated><id>http://localhost:4000/unicode/history/2018/04/13/unicode</id><content type="html" xml:base="http://localhost:4000/unicode/history/2018/04/13/unicode.html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#유니코드의-역사&quot; id=&quot;markdown-toc-유니코드의-역사&quot;&gt;유니코드의 역사&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#유니코드-협회unicode-consortium&quot; id=&quot;markdown-toc-유니코드-협회unicode-consortium&quot;&gt;유니코드 협회(Unicode Consortium)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#짧게-보는-유니코드&quot; id=&quot;markdown-toc-짧게-보는-유니코드&quot;&gt;짧게 보는 유니코드&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#유니코드의-주요-목표&quot; id=&quot;markdown-toc-유니코드의-주요-목표&quot;&gt;유니코드의 주요 목표&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#기원&quot; id=&quot;markdown-toc-기원&quot;&gt;기원&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;더 이상 유니코드 때문에 이것저것 찾아보며 열받기 싫어서 머리에 넣어놓기로 했다.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;참고: &lt;a href=&quot;https://unicode.org&quot;&gt;unicode.org&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;유니코드의-역사&quot;&gt;유니코드의 역사&lt;/h1&gt;
+
+&lt;h2 id=&quot;유니코드-협회unicode-consortium&quot;&gt;유니코드 협회(Unicode Consortium)&lt;/h2&gt;
+&lt;p&gt;제록스(Xerox)의 조 베커(Joe Becker)와 애플의 리 콜린스(Lee Collins), 마크 데이비스(Mark Davis)에 의해 ‘Unicode’라고 불린 새로운 캐릭터 인코딩이 논의되기 시작했고, 4년 후인 1991년 1월, 캘리포니아 주에서 유니코드 협회가 발족되었다. (아주 잘 했다.)&lt;/p&gt;
+
+&lt;h2 id=&quot;짧게-보는-유니코드&quot;&gt;짧게 보는 유니코드&lt;/h2&gt;
+
+&lt;h3 id=&quot;유니코드의-주요-목표&quot;&gt;유니코드의 주요 목표&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;범용성(universal) - 모든 언어에 대응.&lt;/li&gt;
+  &lt;li&gt;일관성(uniform) - 효율적인 접근을 위한 고정폭을 가진 코드.&lt;/li&gt;
+  &lt;li&gt;유일성(unique) - 비트 배열은 하나의 캐릭터를 위한 하나의 해석만을 가짐.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;16비트 범용 코드는 새로운 개념은 아니며, ISO 멀티 바이트 문자 인코딩의 원래 원칙에서도 그래픽 문자를 위한 ISO 표준 개발과 2 바이트 그래픽 문자셋을 위한 코딩에서 프로그래밍 언어는 각 문자열에 동일한 양의 저장소를 가질 것을 고려해야 한다고 명시했다. [ISO/TC97/SC2 N1436, 1984]&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;원본 문서를 못찾겠다. 살려줘. (TC97의 TC는 technical commitee의 약자이다(from. johngrib))&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;기원&quot;&gt;기원&lt;/h3&gt;
+&lt;p&gt;애플과 제록스의 엔지니어 세 명이 무슨일로 토론을 했을까? 어쨌거나 1987년 말에 프로젝트를 시작했고, 1988년에 세 가지 조사가 완료되었단다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;고정폭, 가변폭(여기서 폭(width)는 바이트 길이를 의미하는듯)을 가진 텍스트의 접근성 비교&lt;/li&gt;
+  &lt;li&gt;2 바이트 텍스트에 대한 시스템 저장소의 요구사항 조사&lt;/li&gt;
+  &lt;li&gt;세계의 모든 철자에 대한 예비 문자의 갯수&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;요런 것들로 저 세 명의 혁명가 혹은 범죄자들이 유니코드를 위한 기본 아키텍처를 끌어냈다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1988년
+    &lt;ul&gt;
+      &lt;li&gt;콜린스가 유니코드 문자 데이터베이스 구축을 시작
+원래 디자인은 복합 문자를 제외하고, 스크립트 내에서 알파벳순으로 정렬했다. 제록스는 폰트 구축을 위해 이미 &lt;a href=&quot;https://en.wikipedia.org/wiki/Han_unification&quot;&gt;Unified Han&lt;/a&gt;(한자 집합)이라는 데이터베이스를 구축했다. 애플의 콜린스는 &lt;a href=&quot;https://en.wikipedia.org/wiki/Han_unification&quot;&gt;Han Unification&lt;/a&gt; 데이터베이스 구축을 위해 RLG(The Research Libraries Group)로부터 EACC 문자열의 데이터베이스를 사용했다. 베커와 콜린스는 후에 두 데이터베이스를 연계했고, 콜린스는 다른 국제 표준을 위해 다른 문자열들을 취합하며 해당 데이터베이스를 확장했다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;1989년
+    &lt;ul&gt;
+      &lt;li&gt;초반, 다른 회사들이 참여. 당시, &lt;a href=&quot;https://en.wikipedia.org/wiki/Metaphor_Computer_Systems&quot;&gt;Metaphor&lt;/a&gt;의 켄 휘슬러(Ken Whistler)와 마이크 커나한(Mike Kernaghan), &lt;a href=&quot;https://en.wikipedia.org/wiki/Research_Libraries_Group&quot;&gt;RLG&lt;/a&gt;의 카렌 스미스 요시무라(Karen Smith-Yoshimura)와 조앤 앨리프랜드(Joan Aliprand), Sun의 글렌 라이트(Glen Wright)가 작업 그룹에 합류하여 디자인에 큰 기여를 시작했다.&lt;/li&gt;
+      &lt;li&gt;중반, 유니코드를 기존 표준에 가깝게 하기 위한 여러 변경이 있었다. 존재하던 모든 ISO 복합 문자(composite character)가 유니코드에 추가되었고, &lt;strong&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Round-trip_format_conversion&quot;&gt;round trips&lt;/a&gt;&lt;/strong&gt;(국제 표준에서 두 문자로 이루어진 모든 문자는 유니코드로 분류)가 추가되었고, 가능한 경우 &lt;a href=&quot;https://ko.wikipedia.org/wiki/ISO/IEC_8859&quot;&gt;ISO 8859&lt;/a&gt;의 순서를 따르도록 변경되었다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;1990년
+    &lt;ul&gt;
+      &lt;li&gt;초반, 마이크로소프트를 대표하여 Michel Suignard와 Asmus Freytag가 합류. 그들은 Whistler와 함께 다른 문자 인코딩 표준에 대한 매핑 테이블을 만들기 위해 광범위한 작업을 지속했다. 1990년 봄에 유니코드 알파벳과 기호는 완성되었지만, 교차 매핑 작업은 계속되었다. ISO 10646(유니코드 표준안 및 워킹 그룹), IBM, Mac과 국제 표준에 대한 이 광범위한 매핑 작업은 완전하고 효과적인 인코딩을 제작하는데 매우 가치있는 도움이 되었다.&lt;/li&gt;
+      &lt;li&gt;Joan Winters가 Unicode 회의에서 SHARE를 대표해서 등장했다. IBM의 Isai Scheinberg와 J.G. Van Stee가 90년 중반에 합류했다. 토론토 대학(Tronto University)에서는 IBM과 함께 광범위한 검토와 연구가 계획되었다. 이 검토의 결과로 반각문자와 아랍어 문자의 호환 영역이 포함되었다. &lt;a href=&quot;http://www.pacrim50.com&quot;&gt;Pacific Rim Connection&lt;/a&gt;의 James Caldwell이 편집자로 참여해 산만한 문서들을 일관성 있는 표준 문서로 통합했다. 대부분의 문자 서술이 이 시점에서 완성되었다.&lt;/li&gt;
+      &lt;li&gt;90년 10월, 한자 작업 또한, 최종안이 완성되었다. 유니코드에 대한 최종 검토안을 널리 배포하여 작업 그룹이 다양한 경로로 얻은 의견을 평가하고 반영할 수 있는 기회를 제공하기로 결정했다. 마이크로소프트와 &lt;a href=&quot;https://en.wikipedia.org/wiki/Aldus&quot;&gt;Aldus&lt;/a&gt;는 자진해서 배포 비용을 부담하기로 했다.(올 마소 멋진데.) &lt;a href=&quot;https://en.wikipedia.org/wiki/NeXT&quot;&gt;NeXT&lt;/a&gt;의 Rick McGowan은 유니코드 표준의 차기 버전을 위한 추가적인 문자 데이터베이스 작업을 시작했다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;1991년 1월 3일, 캘리포니아 주에서 Mike Kernaghan, Bill English, Mark Davis 그리고, Asmus Freytag는 Unicode, Inc를 조직했다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;유니코드 협회의 원 목적은 ‘60000개가 넘는 도형 문자들을 위한 16비트 고정폭의 유니코드 문자 인코딩을 표준화, 확장 및 촉진’이었다. 유니코드 표준이 16비트 이상으로 성장한 부분을 반영하여 설명이 갱신되었다.&lt;/p&gt;
+
+&lt;p&gt;Unicode, Inc의 원년 멤버는 다음과 같다:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Larry Tesler, Advanced Products 부사장, Apple Computer, Inc.&lt;/li&gt;
+  &lt;li&gt;Robert Carr, 소프트웨어 개발부문 부사장, GO Corporation&lt;/li&gt;
+  &lt;li&gt;Richard Holleman, Telecommunications 이사, IBM Corporation&lt;/li&gt;
+  &lt;li&gt;Charles Irby, 개발 부문 부사장, Metaphor Computer Systems&lt;/li&gt;
+  &lt;li&gt;Paul Maritz, Advanced Operation Systems 부사장, Microsoft Corporation&lt;/li&gt;
+  &lt;li&gt;Bud Tribble, 소프트웨어 공학 부사장, NeXT Computer Inc.&lt;/li&gt;
+  &lt;li&gt;Jay Israel, Advanced Technology 부사장, Novell, Inc.&lt;/li&gt;
+  &lt;li&gt;David Richards, 개발 부문 이사, The Research Libraries Group.&lt;/li&gt;
+  &lt;li&gt;John Gage, 데스크탑 개발 부문 부사장, Sun Microsystems Inc.
+(맞다, 나 Advanced 번역 못해서 이러고 있다.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Unicode, Inc의 초기 임원진은 다음과 같다:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Mark Davis, 대표&lt;/li&gt;
+  &lt;li&gt;Mike Kernaghan,  부대표&lt;/li&gt;
+  &lt;li&gt;Joe Becker, 기술 부문 부대표&lt;/li&gt;
+  &lt;li&gt;Ken Whistler, 사무관&lt;/li&gt;
+  &lt;li&gt;Bill English, 재무관&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;다음은 [[chronology_unicode]]{유니코드 1.0 연대기}로 넘어간다.&lt;/p&gt;</content><author><name></name></author><category term="unicode" /><category term="history" /></entry><entry><title type="html">Bool</title><link href="http://localhost:4000/swift/2018/04/10/bool.html" rel="alternate" type="text/html" title="Bool" /><published>2018-04-10T12:00:00+09:00</published><updated>2018-04-10T12:00:00+09:00</updated><id>http://localhost:4000/swift/2018/04/10/bool</id><content type="html" xml:base="http://localhost:4000/swift/2018/04/10/bool.html">&lt;h1 id=&quot;bool은&quot;&gt;Bool은?&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;놀랍게도 구조체다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="swift" /><summary type="html">Bool은? 놀랍게도 구조체다.</summary></entry></feed>
