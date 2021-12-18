@@ -2,7 +2,7 @@
 layout  : post 
 title   : 유니코드 1.0 연대기
 summary : 유니코드의 초창기부터 연대별 정리
-date    : 2018-04-14 23:47:46 +0900
+date    : 2019-03-20 23:59:48 +0900
 updated : 2019-03-20 23:59:48 +0900
 categories : unicode chronology
 ---
