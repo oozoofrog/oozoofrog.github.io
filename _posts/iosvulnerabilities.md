@@ -1,17 +1,11 @@
 ---
-layout  : wiki
+layout  : post
 title   : iOS 취약점 정리
 summary : 
-date    : 2018-04-05 15:10:27 +0900
+date    : 2018-04-10 22:14:19 +0900
 updated : 2018-04-10 22:14:19 +0900
-tags    : 
-toc     : true
-public  : true
-parent  : iOS
-latex   : false
+tags    : security, iOS
 ---
-* TOC
-{:toc}
 
 [cve](https://www.cvedetails.com/product/15556/Apple-Iphone-Os.html?vendor_id=49 )
 

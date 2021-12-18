@@ -1,19 +1,11 @@
 ---
-layout  : wiki
-title   : 프로그래밍 언어별 문자열 세기(feat. e
+layout  : post
+title   : 프로그래밍 언어별 문자열 세기
 summary : 
 date    : 2018-04-19 23:06:57 +0900
 updated : 2018-04-19 23:30:15 +0900
-tags    : 
-toc     : true
-public  : true
-parent  : study
-parenttitle : 공부, 그리고 공부
-latex   : false
+tags    : study 
 ---
-* TOC
-{:toc}
-
 # Swift 4.1
 ~~~swift
 "👩‍👩‍👧‍👦".count // 1, 그래핌 갯수
