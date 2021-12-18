@@ -1,5 +1,5 @@
 ---
-layout  : wiki
+layout  : post 
 title   : 유니코드 1.0 연대기
 summary : 유니코드의 초창기부터 연대별 정리
 date    : 2018-04-14 23:47:46 +0900
