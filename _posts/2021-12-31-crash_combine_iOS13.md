@@ -10,12 +10,17 @@ categories : swift combine crash
 사용하는 경우 크래시가 발생하게 되어 가볍게 글을 남깁니다.
 
 ## 조건
+iOS 13.1
+
 두 DispatchQueue.SchedulerTimeType의 값이 다를때 Comparable 연산자 사용
+
 DispatchQueue.SchedulerTimeType을 그대로 사용하면 문제가 없고, Generic으로
 사용할 때 이슈 발생
 
 ## 현상
-iOS 13.0 에서는 throttling등에서 SchedulerTimeType에 대한 비교코드가 누락되어있어서 이슈가발생하지 않음
+iOS 13.0 에서는 throttling등에서 SchedulerTimeType에 대한 비교를 Comparable을 사용하지 않고, 직접 SchedulerTimeType.Stride
+로 비교하고 있어 이슈가 발생하지 않음
+
 iOS 13.1 에서는 Scheduler로 DispatchQueue를 사용시 SchedulerTimeType을 비교에 사용하는데 크래시 발생
 
 ## 추정
