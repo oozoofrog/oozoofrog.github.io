@@ -27,8 +27,20 @@ Swift 컴파일러 개발을 시작해보고 싶은 분들을 위해, 컴파일�
 
 tools/driver/driver.cpp에 main 함수가 있어, 여기서부터 [lib 디렉토리](https://github.com/apple/swift/tree/master/lib) 에서 구현하고 있는 각종 라이브러리를 호출하도록 되어있습니다.
 
-드라이버에는 커맨드라인 argument에 따른 몇개의 모드가 존재합니다.
+드라이버에는 명령어 argument에 따른 몇개의 모드가 존재합니다.
 
 
 
-### 서브커맨드 런처 (subcommand launcher)
+### 서브-커맨드 런처 (sub-command launcher)
+
+`swift package`로 호출되면 `swift`실행파일과 동일한 디렉토리에 있는 `swift-package`를 기동할 뿐인 런처입니다. `swift`명령어의 가장 첫 번째 argument가 아래의 조건에 모두 일치할 때 실행됩니다.
+
+- -로 시작하지 않는다
+- .을 포함하지 않는다 (파일명이 아니다)
+- repl이 아니다 <sup>[1](#1)</sup>
+
+시험삼아 `swift oozoofrog` 같은 느낌으로 명령어를 실행하면 swift-oozoofrog 를 찾지 못하는 느낌의 에러를 표시하게 됩니다.
+
+
+<a name="1">1</a> 최근(여기선 2017년)까지는 run도 대상이었습니다만, 내장하고 있는 swift run은 [SE-0179](https://github.com/apple/swift-evolution/blob/master/proposals/0179-swift-run-command.md)의 swiftpm의 기능을 덮어쓰기 때문에 폐기되었습니다. [SR-5332](https://bugs.swift.org/browse/SR-5332)
+
