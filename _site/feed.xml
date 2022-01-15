@@ -1,4 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-18T13:22:47+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">우주우물</title><subtitle>Swift, iOS, macOS</subtitle><entry><title type="html">ABI 안정화 그리고 그 이상</title><link href="http://localhost:4000/swift/abi/2019/03/28/abi_stability_and_more.html" rel="alternate" type="text/html" title="ABI 안정화 그리고 그 이상" /><published>2019-03-28T10:23:56+09:00</published><updated>2019-03-28T10:23:56+09:00</updated><id>http://localhost:4000/swift/abi/2019/03/28/abi_stability_and_more</id><content type="html" xml:base="http://localhost:4000/swift/abi/2019/03/28/abi_stability_and_more.html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-15T15:57:20+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">우물안 우주</title><subtitle>Swift, iOS, macOS</subtitle><entry><title type="html">Swift Compiler Architecture</title><link href="http://localhost:4000/swift/compiler/architecture/2022/01/15/swift_compiler_architecture.html" rel="alternate" type="text/html" title="Swift Compiler Architecture" /><published>2022-01-15T15:50:00+09:00</published><updated>2022-01-15T15:50:00+09:00</updated><id>http://localhost:4000/swift/compiler/architecture/2022/01/15/swift_compiler_architecture</id><content type="html" xml:base="http://localhost:4000/swift/compiler/architecture/2022/01/15/swift_compiler_architecture.html">&lt;h1 id=&quot;swift-compiler-architecture&quot;&gt;Swift Compiler Architecture&lt;/h1&gt;
+
+&lt;p&gt;Swift 컴파일러 개발을 시작해보고 싶은 분에게, 컴파일러의 전체 구성이 어떻게 되어있는지 대략적으로 설명해보겠습니다. 코드를 읽을 때 참고가 되면 좋겠네요.&lt;/p&gt;</content><author><name></name></author><category term="swift" /><category term="compiler" /><category term="architecture" /><summary type="html">Swift Compiler Architecture</summary></entry><entry><title type="html">Combine(Scheduler) + iOS 13.1 = Crash</title><link href="http://localhost:4000/swift/combine/crash/2021/12/31/crash_combine_iOS13.html" rel="alternate" type="text/html" title="Combine(Scheduler) + iOS 13.1 = Crash" /><published>2021-12-31T10:23:56+09:00</published><updated>2021-12-31T10:23:56+09:00</updated><id>http://localhost:4000/swift/combine/crash/2021/12/31/crash_combine_iOS13</id><content type="html" xml:base="http://localhost:4000/swift/combine/crash/2021/12/31/crash_combine_iOS13.html">&lt;h1 id=&quot;omg&quot;&gt;OMG&lt;/h1&gt;
+&lt;p&gt;거두절미하고 Combine에서 Scheduler Type중 DispatchQueue를
+사용하는 경우 크래시가 발생하게 되어 가볍게 글을 남깁니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;조건&quot;&gt;조건&lt;/h2&gt;
+&lt;p&gt;iOS 13.1&lt;/p&gt;
+
+&lt;p&gt;두 DispatchQueue.SchedulerTimeType의 값이 다를때 Comparable 연산자 사용&lt;/p&gt;
+
+&lt;p&gt;DispatchQueue.SchedulerTimeType을 그대로 사용하면 문제가 없고, Generic으로
+사용할 때 이슈 발생&lt;/p&gt;
+
+&lt;h2 id=&quot;현상&quot;&gt;현상&lt;/h2&gt;
+&lt;p&gt;iOS 13.0 에서는 throttling등에서 SchedulerTimeType에 대한 비교를 Comparable을 사용하지 않고, 직접 SchedulerTimeType.Stride
+로 비교하고 있어 이슈가 발생하지 않음&lt;/p&gt;
+
+&lt;p&gt;iOS 13.1 에서는 Scheduler로 DispatchQueue를 사용시 SchedulerTimeType을 비교에 사용하는데 크래시 발생&lt;/p&gt;
+
+&lt;h2 id=&quot;추정&quot;&gt;추정&lt;/h2&gt;
+&lt;p&gt;iOS 13.1에 포함된 libswiftDispatch.dylib의  DispatchQueue.SchedulerTimeType에 대한 Comparable 연산자의 코드에 오류가 존재&lt;/p&gt;
+
+&lt;h3 id=&quot;예&quot;&gt;예&lt;/h3&gt;
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;DispatchQueue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;SchedulerTimeType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 이보다 좀더 복잡하지만 대충할께요&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;DispatchQueue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;SchedulerTimeType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// crash&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// crash&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// crash&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// OK&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// crash&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// OK&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;재현코드&quot;&gt;재현코드&lt;/h3&gt;
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;ViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIViewController&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;viewDidLoad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;viewDidLoad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        
+        &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;button&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIButton&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;custom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;setTitle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;CLICK&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;setTitleColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;darkText&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addTarget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;#selector(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;touchUpInside&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        
+        &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addSubview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        
+        &lt;span class=&quot;n&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;translatesAutoresizingMaskIntoConstraints&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
+        
+        &lt;span class=&quot;kt&quot;&gt;NSLayoutConstraint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;activate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centerXAnchor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;constraint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;equalTo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centerXAnchor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centerYAnchor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;constraint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;equalTo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centerYAnchor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;kd&quot;&gt;@objc&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;DispatchQueue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;SchedulerTimeType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;uptimeNanoseconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;DispatchQueue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;SchedulerTimeType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;uptimeNanoseconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//        print(a &amp;lt; b)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;DispatchQueue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;SchedulerTimeType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;SchedulerTimeType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Combine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Scheduler&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;OK&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;NOT&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;결론&quot;&gt;결론&lt;/h2&gt;
+&lt;p&gt;iOS 13.1 에서 Combine을 사용할 때 Scheduler가 필요한 경우에는 RunLoop를 사용하자&lt;/p&gt;</content><author><name></name></author><category term="swift" /><category term="combine" /><category term="crash" /><summary type="html">OMG 거두절미하고 Combine에서 Scheduler Type중 DispatchQueue를 사용하는 경우 크래시가 발생하게 되어 가볍게 글을 남깁니다.</summary></entry><entry><title type="html">ABI 안정화 그리고 그 이상</title><link href="http://localhost:4000/swift/abi/2019/03/28/abi_stability_and_more.html" rel="alternate" type="text/html" title="ABI 안정화 그리고 그 이상" /><published>2019-03-28T10:23:56+09:00</published><updated>2019-03-28T10:23:56+09:00</updated><id>http://localhost:4000/swift/abi/2019/03/28/abi_stability_and_more</id><content type="html" xml:base="http://localhost:4000/swift/abi/2019/03/28/abi_stability_and_more.html">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#모듈-안정화module-stability&quot; id=&quot;markdown-toc-모듈-안정화module-stability&quot;&gt;모듈 안정화(Module Stability)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -23,7 +98,142 @@
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h2 id=&quot;모듈-안정화module-stability&quot;&gt;모듈 안정화(Module Stability)&lt;/h2&gt;
 
-&lt;p&gt;ABI 안정화는 앱 실행시에 스위프트의 여러 버전을 사용할 수 있는 것에 대한 내용입니다. 컴파일 타임에는 어떨까요?&lt;/p&gt;</content><author><name></name></author><category term="swift" /><category term="abi" /></entry><entry><title type="html">유니코드(Unicode)</title><link href="http://localhost:4000/unicode/history/2018/04/13/unicode.html" rel="alternate" type="text/html" title="유니코드(Unicode)" /><published>2018-04-13T22:13:26+09:00</published><updated>2018-04-13T22:13:26+09:00</updated><id>http://localhost:4000/unicode/history/2018/04/13/unicode</id><content type="html" xml:base="http://localhost:4000/unicode/history/2018/04/13/unicode.html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+&lt;p&gt;ABI 안정화는 앱 실행시에 스위프트의 여러 버전을 사용할 수 있는 것에 대한 내용입니다. 컴파일 타임에는 어떨까요?&lt;/p&gt;</content><author><name></name></author><category term="swift" /><category term="abi" /></entry><entry><title type="html">유니코드 1.0 연대기</title><link href="http://localhost:4000/unicode/chronology/2019/03/20/chronology_unicode.html" rel="alternate" type="text/html" title="유니코드 1.0 연대기" /><published>2019-03-20T23:59:48+09:00</published><updated>2019-03-20T23:59:48+09:00</updated><id>http://localhost:4000/unicode/chronology/2019/03/20/chronology_unicode</id><content type="html" xml:base="http://localhost:4000/unicode/chronology/2019/03/20/chronology_unicode.html">&lt;h1 id=&quot;유니코드-10-연대기&quot;&gt;유니코드 1.0 연대기&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;이 글은 unicode.org에 수록되어있는 &lt;a href=&quot;https://www.unicode.org/history/versionone.html&quot;&gt;unicode version 1.0&lt;/a&gt;가 나오기 까지의 연대별 히스토리입니다.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;19861987&quot;&gt;1986~1987&lt;/h2&gt;
+
+&lt;p&gt;제록스(Xerox)에서, Huan-mei Liao, Nelson Ng, Dave Opstad,  그리고 Lee Collins는 중국어 문자들을 확장하기 위한 폰트 작업을 빠르게 진행하기 위해 일본어(JIS)와 중국어(간체와 번체) 문자들 사이에서 공통문자들의 맵을 데이터베이스화하는 작업을 시작했다. 실제로도 토론토의 나카지마와 같은 제록스의 사용자들은 부족한 중국어 문자를 확장하기 위해 JIS를 이용하기도 했다. 이는 Eric Mader에 의해 작성된 Han Unification에 대한 찬반 논의로 이어졌다.&lt;/p&gt;
+
+&lt;p&gt;한편, 애플에서는(아 나 이런거 정말 좋아), &lt;a href=&quot;https://en.wikipedia.org/wiki/Apple_File_Exchange&quot;&gt;Apple File Exchange&lt;/a&gt;의 개발이 범용 문자셋에 대한 논의로 이어졌다. 애플의 Mark Davis가 &lt;a href=&quot;http://sova.si.edu/record/NMAH.AC.0311&quot;&gt;ANSI X3L2&lt;/a&gt;(무료 스미스소니언 온라인 아카이브에 정보가 있군요. 컴퓨터 문자셋과 코드에 대한 논의였나봅니다.)에 참여를 시작했다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1987년-4월&quot;&gt;1987년 4월&lt;/h2&gt;
+
+&lt;p&gt;Peter Fenwick(신경심리학자가 여기서 왜 나와?냐면 Joe[seph D.] Becker가 바로 제록스에서 인공지능 신경망 연구자였거든요.)가 제록스를 방문하며 “0에서 시작하여 다음 문자를 추가”라는 Unicode의 원래 아키텍처에 영감을 줬단다. 또한, RLG(The Research Libraries Group)의 Alan Tucker와 Karen Smith-Yoshimura와 토론토 대학의 Nakajima도 참석했다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1987년-가을&quot;&gt;1987년 가을&lt;/h2&gt;
+
+&lt;p&gt;Joe Becker의 제록스 그룹은 Davis와 다국어에 대한 문제를 논의하기 시작했다. 새 캐릭터 인코딩이 주요 주제였다.&lt;/p&gt;
+
+&lt;p&gt;7년간의 Xeros &lt;a href=&quot;https://ipfs.io/ipfs/QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco/wiki/Xerox_Character_Code_Standard.html&quot;&gt;XCCS&lt;/a&gt;(Xerox Character Code Standard) 체계에 대한 Opstad에서의 경험에 의한 평가는 고정폭을 가진 디자인이 바람직하게 보였다. (어렵네, 네 그냥 고정폭이 좋은거 같어 라고 읽으세요.)&lt;/p&gt;
+
+&lt;h2 id=&quot;1987년-12월&quot;&gt;1987년 12월&lt;/h2&gt;
+
+&lt;p&gt;Becker가 작성한 문서에서 유일하고(unique), 범용적이고(universal) 그리고, 일관성(uniform)있는 문자 인코딩이라는 의미에서 “Unicode”라는 용어가 처음 사용되었다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1988년-2월&quot;&gt;1988년 2월&lt;/h2&gt;
+
+&lt;p&gt;애플에서는 Collins가 작업을 시작했다. 첫 번째 작업들 중 하나는 “High Text(Ascii는 Low Text)”라고 부르는 Davis의 고정폭을 가진 16비트 문자 인코딩을 애플의 차기 시스템에 고려하는 것이었다. 조사는 다음 세 가지로 모아졌다:
+    a. 고정, 가변 폭 텍스트의 접근성 비교
+    b. 2바이트 문자열에 대한 모든 시스텀 저장소의 요구사항 조사
+    c. 세계의 모든 알파벳에 대해 준비한 문자 수
+여러 문자열 인코딩에 대한 경험과 이런 조사 결과를 기반으로 유니코드의 기본 아키텍처를 만들어졌다. 이것은 Collins의 &lt;strong&gt;유니코드 원칙&lt;/strong&gt; 문서에 더해졌다.&lt;/p&gt;
+
+&lt;p&gt;Becker는 달라스에서 열린 Uniforum(유닉스 컨퍼런스)에서 /usr/group 국제 소위원회에 유니코드 원칙들을 소개했다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1988년-4월&quot;&gt;1988년 4월&lt;/h2&gt;
+
+&lt;p&gt;애플에서 첫 유니코드 문자 인코딩의 프로토타입을 시작했다. 유니코드 지원을 &lt;a href=&quot;https://ko.wikipedia.org/wiki/트루타입&quot;&gt;TrueType&lt;/a&gt;에 포함하기로 결정했다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1988년-여름&quot;&gt;1988년 여름&lt;/h2&gt;
+
+&lt;p&gt;Becker와 Collins는 한자 통합을 위한 표준을 논의하기 위해 팔로알토 다운타운의 RLG별관에서 RLG의 Tucker와 Smith-Yoshimura와의 만남을 가졌다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1988년-7월&quot;&gt;1988년 7월&lt;/h2&gt;
+
+&lt;p&gt;애플은 &lt;strong&gt;Han Unification&lt;/strong&gt;의 연구를 위해 RLG의 CJK 문자 데이터베이스를 구입했다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1988년-9월&quot;&gt;1988년 9월&lt;/h2&gt;
+
+&lt;p&gt;Becker와 Collins는 &lt;strong&gt;Han Unification&lt;/strong&gt;과 ISO DP 10646에서 &lt;a href=&quot;https://en.wikipedia.org/wiki/C0_and_C1_control_codes&quot;&gt;C0 C1&lt;/a&gt; 제어 문자의 사용을 제안하기 위해 ANSI X3L2를 방문했다. 후에, Becker는 ISO WG2에서 &lt;strong&gt;Unicode ‘88’&lt;/strong&gt;(에 에어리어 88…)을 소개했다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1988년-10월&quot;&gt;1988년 10월&lt;/h2&gt;
+
+&lt;p&gt;Collins와 Becker는 Association of Font Information(이하 AFII)의 Ed Smura의 권고로 한자에 대한 논의를 위해 도쿄에서 열린 AFII 회합에 참여했다. Han Unification과 관련한 Xerox Han 상호 참조 도구에 대한 Fuji Xerox에서의 데모가 포함되었다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1988년-11월&quot;&gt;1988년 11월&lt;/h2&gt;
+
+&lt;p&gt;Collins가 Unicode Non-Han 데이터베이스를 만들고, Unicode의 명칭과 매핑을 위한 첫 데이터베이스의 초기 범위를 정의하기 시작했다. 계속된 회의를 통해 핵심 내용과 문제가 개선되었다. 원 디자인은 복합 문자를 제외하고 텍스트 크기와 텍스트 형태의 구분에 기초했다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1989년-1월&quot;&gt;1989년 1월&lt;/h2&gt;
+
+&lt;p&gt;Collins는 제록스의 표준을 구현하는 Ed Smura, Abhay Busha, Becker와 만나 Han Unification을 위해 데이터베이스를 공유하는 문제에 대해 논의했다. 제록스는 &lt;a href=&quot;https://ko.wikipedia.org/wiki/국제_문자_세트&quot;&gt;ISO 10646&lt;/a&gt;에 대한 다양한 기업의 대안을 지원한다. 양 사의 데이터베이스의 조화를 목표로 데이터 교환에 동의한다.&lt;/p&gt;
+
+&lt;p&gt;Metaphor는 자사의 소프트웨어의 국제화를 지원하기 위해 16비트 문자 인코딩을 포함하기로 결정한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1989년-2월&quot;&gt;1989년 2월&lt;/h2&gt;
+
+&lt;p&gt;유니코드 회합에 Metaphor (Mike Kernaghan과 Ken Whistler), RLG(Karen Smith-Yoshimura와 Joan Aliprand)가 참여했다.&lt;/p&gt;
+
+&lt;p&gt;Sun Microsystems의 Glenn Wright와 Adobe의 John Renner, Claris의 Joe Bosurgi, HP의 Mike Ksar, NeXT의 James Higa, 그리고 Pacific Rim Connections의 James Caldwell이 참여하며 유니코드 회합은 격월로 열리게 되었다.&lt;/p&gt;
+
+&lt;p&gt;1991년 유니코드 협회 발족과 함께 유니코드 기술 위원회로 바뀌게 되는 모임에 번호를 매기기 시작한 것은 1989년 2월 회합에서 시작되었다.&lt;/p&gt;
+
+&lt;p&gt;초창기에 Xerox, Metaphor, Appple, 그리고 HP에서 열리던 회의를 거쳐 RLG가 공식적인 회합장소를 제공했다.&lt;/p&gt;
+
+&lt;p&gt;Glenn Wright는 유니코드에 대한 넷상의 토론을 위해 Unicode@sun.com을 만들고 관리하기 시작했다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1989년-3월&quot;&gt;1989년 3월&lt;/h2&gt;
+
+&lt;p&gt;Collins는 RLG와 CCCII의 데이터를 사용해서 &lt;a href=&quot;https://ko.wikipedia.org/wiki/하이퍼카드&quot;&gt;Hypercard&lt;/a&gt;로 유니코드 Han Database 만들기 시작했다. &lt;a href=&quot;https://ko.wikipedia.org/wiki/Big5&quot;&gt;Big Five/CNS&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/GB_18030&quot;&gt;GB&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/JIS_encoding&quot;&gt;JIS&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/KS_X_1001&quot;&gt;KS&lt;/a&gt;, 그리고 EACC로 이루어진 Han 표준은 5월에 완성되었다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1989년-4월&quot;&gt;1989년 4월&lt;/h2&gt;
+
+&lt;p&gt;당시까지의 ISO 등록 표준에 모든 복합 문자를 포함하고, 현존하는 모든 표준에 round trip 변환을 보장한다는 결정을 내렸다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1989년-5월&quot;&gt;1989년 5월&lt;/h2&gt;
+
+&lt;p&gt;Becker와 Collins는 일반적인 Han 문자에 대해 논의하기 위해 홍콩에서 열린 AFII 모임에 참석했다. AFII는 ISO DP 10646을 통해 Han Unification의 지원을 결정한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1989년-8월&quot;&gt;1989년 8월&lt;/h2&gt;
+
+&lt;p&gt;Becker와 Collins는 Apple과 Xerox의 Han 데이터베이스의 차이점을 해결하여 통합한다. 기존의 표준에서 모든 특징을 유지하고 변형을 해결하기 위해 JIS와 Chinese 가이드라인을 따르기로 결정한다.&lt;/p&gt;
+
+&lt;p&gt;양방향 (중동) 그리고 인도어 텍스트를 위해 논리적 순번을 사용하기로 결정한다. 다중 임베딩(역주: 화면에 표시하는 문자가 아닌 문자열의 좌우 순서 등을 지시하는 특수한 유니코드등을 삽입하는 것에 대한 지칭입니다. 아마도..)에 대한 문제가 처음 논의된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1989년-9월&quot;&gt;1989년 9월&lt;/h2&gt;
+
+&lt;p&gt;Becker와 Collins는 (Becker가 인쇄한) Unicode의 첫 초안을 ANSI X3L2에 제안한다. 그 결과로 ANSI측에서 Han Unification과 C0, C1의 사용의 절충안을 ISO에 제시한다. Apple, Claris, Metaphor, NeXT 그리고 Sun이 Unicode를 대변하여 참여했다. 이 첫번째 초안은 Han의 정렬을 위해 Davis의 Gray code 체계를 사용한다.
+이 절충안으로 유니코드 작업그룹은 스크립트 하위 집합을 위해 기존의 ISO 정렬과 ISO 명명 체계를 사용하기로 결정한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1989년-10월&quot;&gt;1989년 10월&lt;/h2&gt;
+
+&lt;p&gt;Collins는 TrueType에 대한 Apple과 Microsoft간의 협조를 통해 Microsoft와IBM에 Unicode를 제공한다.
+Collins는 ANSI와 Unicode를 대표하여 베이징에서 열린 Han Unification에 대한 ISO Ad Hoc에 참석한다. 이 회합을 통해 Han 문자에 대한 인간 친화적 문자 순서를 권고한다. Unicode는 Han 통합을 위해 중국과 협력하기로 결의한다.
+Collins는 Apple의 일본인 기술자와 Unicode에 대해 논의하고 지원을 얻는다.
+Davis는 요르단의 암만에서 열린 ISO SC2/WG2에서 Unicode를 대표하여 참석한다. WG2는 &lt;a href=&quot;https://support.microsoft.com/ko-kr/help/4033601/diacritical-marks-described&quot;&gt;분음 기호&lt;/a&gt;(역주: ü등의 문자위에 붙는 발음 기호)를 허용하기로 한다.
+도쿄에서 AT&amp;amp;T Unix Pacific의 Rick McGowan은 unicode@sun.com을 통해 Unicode의 지원을 위한 활발한 토론을 시작한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1989년-11월&quot;&gt;1989년 11월&lt;/h2&gt;
+
+&lt;p&gt;Unicode Han Set에 JIS X 0212-1990과 GB1을 포함하기 위한 맵핑을 식별하기 위해 Cora Zhang를 고용한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1989년-12월&quot;&gt;1989년 12월&lt;/h2&gt;
+
+&lt;p&gt;Collins는 TrueType 폰트인 Jamboree에서 애플의 다음 문자열 셋으로 Unicode을 제시한다.
+Becker는 Unix 국제화 회의에서 Unicode를 발표한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1990년-1월&quot;&gt;1990년 1월&lt;/h2&gt;
+
+&lt;p&gt;True Type에 대한 Apple과 Microsoft의 협력으로 Microsoft는 Unicode에 흥미를 보이기 시작한다. Microsoft의 Michel Suignard와 Asmus Freytag는 Unicode 회의에 참여하기 시작한다.
+McGowan 나중에 도쿄에서 처음 열린 Unicode회의에 Apple Japan, Microsoft KK 등과 함께 참가한다.
+JIS 위원회가 Unicode에 대해 논의하기 위한 만난다. Collins는 이 회의의 결과로 나온 Pro Tajima의 논의를 번역한다. Becker와 Collins는 답변서를 작성한다.
+Sebold Report on Desktop Publishing은 폰트에 대한 논의의 부분으로 Unicode 프로젝트를 하일라이트로 싣는다. Becker, Collins 그리고 Davis는 4월 이슈에 두 가지에 대한 긴 정정문으로 응답한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1990년-3월&quot;&gt;1990년 3월&lt;/h2&gt;
+
+&lt;p&gt;Collins와 Becker는 대한민국에서 열린 ISO WG2 Ad Hoc on Han Unification에 참가한다. 유니코드의 새로운 구성은 강희자전식 부수 획 순서에 근거해서 배포되었다.&lt;/p&gt;
+
+&lt;p&gt;Han을 제외한 유니코드는 이 시점에서 기본적으로는 완료되었다. 크로스 맵핑(아직 정확한 의미를 모르겠다.)과 명명 작업이 시작된다.&lt;/p&gt;
+
+&lt;p&gt;호환성을 위해서 0x0080-0x009F C1 영역에서 문자를 제거했다. &lt;strong&gt;Roundtrip&lt;/strong&gt;이 ISO 8859 와 ISO 6937을 통해 보증되었다.&lt;/p&gt;
+
+&lt;p&gt;Sun Microsystems의 Glenn Wright와 Metaphor의 Mike Kernaghan은 유니코드 협회의 법인체를 설립하는 작업에 들어간다.&lt;/p&gt;
+
+&lt;p&gt;Joan Winters는 유니코드 모임에서 SHARE(1955년에 결성된 최초의 IT 사용자 그룹)를 대표해 참석하기 시작한다. (SHARE는 신문지상이나 컨퍼런스에서 Unicode가 주목 받을 수 있도록 활동한다.)&lt;/p&gt;
+
+&lt;p&gt;Microsoft Japan의 키타노, Apple Japan의 야마무라 그리고 McGowan 세 명은 일본 유니코드 스터디 그룹을 발족한다. 후에 Apple Japan의 타카하시, 야마다, IBM 재팬의 키도, 스즈키, Syn Microsystems Japan의 쿠로사카, Fujitsu의 세키구치가 참여한다.&lt;/p&gt;</content><author><name></name></author><category term="unicode" /><category term="chronology" /><summary type="html">유니코드 1.0 연대기</summary></entry><entry><title type="html">유니코드(Unicode)</title><link href="http://localhost:4000/unicode/history/2018/04/13/unicode.html" rel="alternate" type="text/html" title="유니코드(Unicode)" /><published>2018-04-13T22:13:26+09:00</published><updated>2018-04-13T22:13:26+09:00</updated><id>http://localhost:4000/unicode/history/2018/04/13/unicode</id><content type="html" xml:base="http://localhost:4000/unicode/history/2018/04/13/unicode.html">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#유니코드의-역사&quot; id=&quot;markdown-toc-유니코드의-역사&quot;&gt;유니코드의 역사&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#유니코드-협회unicode-consortium&quot; id=&quot;markdown-toc-유니코드-협회unicode-consortium&quot;&gt;유니코드 협회(Unicode Consortium)&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#짧게-보는-유니코드&quot; id=&quot;markdown-toc-짧게-보는-유니코드&quot;&gt;짧게 보는 유니코드&lt;/a&gt;        &lt;ul&gt;
@@ -118,7 +328,50 @@
   &lt;li&gt;Bill English, 재무관&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;다음은 [[chronology_unicode]]{유니코드 1.0 연대기}로 넘어간다.&lt;/p&gt;</content><author><name></name></author><category term="unicode" /><category term="history" /></entry><entry><title type="html">Bool</title><link href="http://localhost:4000/swift/2018/04/10/bool.html" rel="alternate" type="text/html" title="Bool" /><published>2018-04-10T12:00:00+09:00</published><updated>2018-04-10T12:00:00+09:00</updated><id>http://localhost:4000/swift/2018/04/10/bool</id><content type="html" xml:base="http://localhost:4000/swift/2018/04/10/bool.html">&lt;h1 id=&quot;bool은&quot;&gt;Bool은?&lt;/h1&gt;
+&lt;p&gt;다음은 [[chronology_unicode]]{유니코드 1.0 연대기}로 넘어간다.&lt;/p&gt;</content><author><name></name></author><category term="unicode" /><category term="history" /></entry><entry><title type="html">iOS 취약점 정리</title><link href="http://localhost:4000/2018/04/10/iosvulnerabilities.html" rel="alternate" type="text/html" title="iOS 취약점 정리" /><published>2018-04-10T22:14:19+09:00</published><updated>2018-04-10T22:14:19+09:00</updated><id>http://localhost:4000/2018/04/10/iosvulnerabilities</id><content type="html" xml:base="http://localhost:4000/2018/04/10/iosvulnerabilities.html">&lt;p&gt;&lt;a href=&quot;https://www.cvedetails.com/product/15556/Apple-Iphone-Os.html?vendor_id=49&quot;&gt;cve&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;현재까지 보고된 iOS 취약점 리스트&lt;/p&gt;
+
+&lt;h1 id=&quot;2007&quot;&gt;2007&lt;/h1&gt;
+&lt;h3 id=&quot;code-of-execution-or-overflow&quot;&gt;code of execution or overflow&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;iOS에서 WebKit의 javascript 엔진의 perl compatible regular expressions(줄여서 PCRE) 라이브러리에서 다중 힙 기반 버퍼 오버플로우를 통해 원격으로 특정 javascript를 통해 임의의 코드를 실행할 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;iOS 1.0.1 미만&lt;/li&gt;
+      &lt;li&gt;유형: code execution, overflow&lt;/li&gt;
+      &lt;li&gt;다만, 힙 메모리는 동적으로 지정되기 때문에, 이런 방식의 공격자체는 효과적이지는 않다고 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;2008&quot;&gt;2008&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;공격자가 HTML문서를 통해 임의로 전화를 걸 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;iPhone 1.0 ~ 2.1, iPod touch 1.1 ~ 2.1&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;safari에서 HTML TABLE element를 제대로 처리하지 못하여 조작된 HTML을 통해 임의의 코드 실행이나 서비스 거부(메모리 오염 및 어플리케이션 크래시)를 발생시킬 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;iPhone 1.0 ~ 2.1, iPod touch 1.1 ~ 2.1&lt;/li&gt;
+      &lt;li&gt;유형: DoS, code execution, memory corruption&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;iFrame의 컨텐츠가 iFrame의 영역을 넘을 수 있음을 이용, 조작된 HTML을 통해 사용자 인터페이스를 &lt;a href=&quot;https://ko.wikipedia.org/wiki/스푸핑&quot;&gt;스푸핑&lt;/a&gt;할 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;iPhone 2.0 ~ 2.1, iPod touch 2.1&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;암호 잠금 기능은 긴급 통화 화면에서 SMS 메시지를 표시하기 때문에, 중요한 메시지의 정보가 타인에게 노출될 수 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;iOS 1.0 ~ 2.1, iPod touch 1.1 ~ 2.1&lt;/li&gt;
+      &lt;li&gt;유형: Gain Information&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Race condition in the Passcode Lock feature in Apple iPhone OS 2.0 through 2.1 and iPhone OS for iPod touch 2.0 through 2.1 allows physically proximate attackers to remove the lock and launch arbitrary applications by restoring the device from a backup.&lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="security," /><category term="iOS" /><summary type="html">cve</summary></entry><entry><title type="html">Bool</title><link href="http://localhost:4000/swift/2018/04/10/bool.html" rel="alternate" type="text/html" title="Bool" /><published>2018-04-10T12:00:00+09:00</published><updated>2018-04-10T12:00:00+09:00</updated><id>http://localhost:4000/swift/2018/04/10/bool</id><content type="html" xml:base="http://localhost:4000/swift/2018/04/10/bool.html">&lt;h1 id=&quot;bool은&quot;&gt;Bool은?&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;놀랍게도 구조체다.&lt;/li&gt;
 &lt;/ul&gt;
