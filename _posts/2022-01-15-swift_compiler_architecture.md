@@ -85,6 +85,25 @@ Target: x86_64-apple-macosx10.9
 $ swiftc -driver-print-jobs -o hello main.swift hello.swift 
 ```
 
+### frontend mode
+
+Swift 컴파일러의 핵심입니다. `swift -frontend <action> [options...] <inputs...>` 로 호출할 수 있습니다. Clang 에서의 `-cc1`과 비슷하고, 거두절미하고 말하자면 `.swift`파일을 읽어들여 `.o`파일로 변환까지를 담당합니다. 컴파일러의 본체가 되네요. 위에서 말했던 batch mode(`swiftc`)에서의 컴파일러도, 실제로는 frontend mode를 sub-command로써 실행하고 있습니다. frontend에도 여러가지 모드(action)이 있습니다만, 통으로 실행하는건 `-c`(`-emit-object`)입니다.
+
+```shell
+# emit-object
+$ swift -frontend -emit-object -o test.o test.swift
+```
+
+다음으로는, 이 action을 실행할 때 처리의 흐름을 설명해 보겠습니다.
+
+주의: frontend mode는 driver mode를 통해서 실행하는 것이 일반적이고, 보통의 Swift 개발자가 직접 `-frontend`를 지정해서 기동하는것을 상정하고 있지는 않습니다. 명령어 옵션도 자주 바뀝니다.
+
+frontend(혹은 서브시스템)은 컴파일러외에도 SourceKit에서 사용하는 코드를 보완하거나, syntax coloring등에서도 이용합니다.
+
+
+
+
+
 
 
 <a name="1">1</a> 최근(여기선 2017년)까지는 run도 대상이었습니다만, 내장하고 있는 swift run은 [SE-0179](https://github.com/apple/swift-evolution/blob/master/proposals/0179-swift-run-command.md)의 swiftpm의 기능을 덮어쓰기 때문에 폐기되었습니다. [SR-5332](https://bugs.swift.org/browse/SR-5332)
