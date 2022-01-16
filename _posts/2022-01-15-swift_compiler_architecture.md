@@ -3,9 +3,11 @@ layout  : post
 title   : Swift compiler architecture
 summary : Swift Compiler 의 구조 정리
 date    : 2022-01-15 15:50:00 +0900
-updated : 2022-01-15 15:50:00 +0900
+updated : 2022-01-16 11:30:00 +0900
 categories : swift compiler architecture
 ---
+
+[TOC]
 
 # Swift compiler architecture
 
@@ -44,6 +46,45 @@ tools/driver/driver.cpp에 main 함수가 있어, 여기서부터 [lib 디렉토
 $ swift oozoofrog
 error: unable to invoke subcommand: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-oozoofrog (No such file or directory) 
 ```
+
+### batch mode
+
+`swiftc`명령어 입니다. `swiftc`는 `swift`의 심볼릭 링크로 되어있습니다. `argv[0]`가 `"swiftc"`인 경우 batch mode가 됩니다. 소스파일을 실행가능한 파일로 만드는데는, 컴파일러나 링크등 여러가지 단계를 거쳐야할 필요가 있고, 이 모드는 그러한 작업들을 일괄 처리 가능한 상태로 실행합니다.
+
+```swift
+// hello.swift
+func hello() {
+	print("Hello Swift!")
+}
+```
+
+```swift
+// main.swift
+hello()
+```
+
+-v 옵션을 붙이면 서브프로세스를 호출하는 모습을 확인할 수 있습니다.
+
+```shell
+# 실행하는 서브프로세스를 표시하면서 컴파일
+$ swiftc -v -o hello main.swift hello.swift
+Apple Swift version 3.1 (swiftlang-802.0.53 clang-802.0.42)
+Target: x86_64-apple-macosx10.9
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift -frontend -c -primary-file main.swift hello.swift -target x86_64-apple-macosx10.9 -enable-objc-interop -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -color-diagnostics -module-name hello -o /var/folders/y0/845byh512k53x98tw3ch5j2w0000gn/T/main-4e5977.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift -frontend -c main.swift -primary-file hello.swift -target x86_64-apple-macosx10.9 -enable-objc-interop -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -color-diagnostics -module-name hello -o /var/folders/y0/845byh512k53x98tw3ch5j2w0000gn/T/hello-6eeba6.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld /var/folders/y0/845byh512k53x98tw3ch5j2w0000gn/T/main-4e5977.o /var/folders/y0/845byh512k53x98tw3ch5j2w0000gn/T/hello-6eeba6.o -force_load /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/arc/libarclite_macosx.a -framework CoreFoundation -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -lobjc -lSystem -arch x86_64 -L /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -rpath /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -macosx_version_min 10.9.0 -no_objc_category_merging -o hello
+```
+
+1. 소스 파일마다 `swift -frontend -c` 를 호출해서 `.o`파일을 작성
+2. 링커인 `ld`로 `.o`를 링크해서 실행파일을 작성
+
+라는 느낌입니다. `-frontend`는 다음에 이야기할 frontend mode입니다.
+
+```shell
+# 실행하는 명령어 작업 표시하기(macOS)
+$ swiftc -driver-print-jobs -o hello main.swift hello.swift 
+```
+
 
 
 <a name="1">1</a> 최근(여기선 2017년)까지는 run도 대상이었습니다만, 내장하고 있는 swift run은 [SE-0179](https://github.com/apple/swift-evolution/blob/master/proposals/0179-swift-run-command.md)의 swiftpm의 기능을 덮어쓰기 때문에 폐기되었습니다. [SR-5332](https://bugs.swift.org/browse/SR-5332)
