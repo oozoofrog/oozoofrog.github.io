@@ -118,11 +118,34 @@ $ echo 'print("Hello Swift!")' | swift -
 Hello Swift!
 ```
 
+### REPL mode
 
+input file의 이름을 지정하지 않고 `swift`명령어를 실행하면 REPL mode가 됩니다.
 
+```shell
+# REPL
+$ swift
+Welcome to Swift version 5.5.2-dev.
+Type :help for assistance.
+  1>  
+```
 
+`lldb`명령어가 특정 디렉토리에 존재하는 경우 `lldb`를 Swift의 REPL mode로 실행, 그렇지 않으면 Frontend에 내장되어 있는 REPL을 실행합니다. <sup>[2](#2)</sup>
+
+```shell
+# STDIN(standard input)을 REPL 실행
+$ echo 'print("Hello Swift!")' | swift
+Welcome to Swift version 5.5.2-dev.
+Type :help for assistance.
+Hello Swift!
+```
+
+어째서 immediate mode와 다른지 잘 모르겠습니다만, STDIN은 REPL로의 입력이 되기 때문에, REPL 명령어도 유효합니다.
+
+[^역자 주]: - 가 파일명 표시인데 이걸 빼서 그런같네요. 한번 디버깅을 해봐야겠습니다.
 
 
 
 <a name="1">1</a> 최근(여기선 2017년)까지는 run도 대상이었습니다만, 내장하고 있는 swift run은 [SE-0179](https://github.com/apple/swift-evolution/blob/master/proposals/0179-swift-run-command.md)의 swiftpm의 기능을 덮어쓰기 때문에 폐기되었습니다. [SR-5332](https://bugs.swift.org/browse/SR-5332)
 
+<a name="2">2</a> Swift3까지 Linux에는 내장 REPL을 지원하고 있지 않았기 때문에, `lldb`가 없는 경우 에러가 났습니다만, 이제는 포함되어 있는듯합니다. [PR-7709](https://github.com/apple/swift/pull/7709)
