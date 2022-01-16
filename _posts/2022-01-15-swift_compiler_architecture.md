@@ -3,11 +3,11 @@ layout  : post
 title   : Swift compiler architecture
 summary : Swift Compiler 의 구조 정리
 date    : 2022-01-15 15:50:00 +0900
-updated : 2022-01-16 11:30:00 +0900
+updated : 2022-01-16 22:50:00 +0900
 categories : swift compiler architecture
 ---
-
-[TOC]
+* TOC
+{:toc}
 
 # Swift compiler architecture
 
