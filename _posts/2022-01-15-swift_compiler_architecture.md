@@ -13,7 +13,7 @@ categories : swift compiler architecture
 
 *[Qiita](https://qiita.com)에 [@rintaro](https://qiita.com/rintaro)님이 포스팅한 포스팅한 일본어 [원문](https://l.facebook.com/l.php?u=https%3A%2F%2Fqiita.com%2Frintaro%2Fitems%2F3ad640e3938207218c20%3Ffbclid%3DIwAR1NiW77-FJuHqHYi5PJjIS6BFtEKP3H2s4UIAI-GvTfEjcbwNlL3Gp58jQ&h=AT059KvKJPmm7UMHygfBeYAj3bDVF7nrvZ5M0aOgTG2uZdUzxGMEZYcoJ4XVPwh1Fb5eVqy5wIw3iephiwzYfwWgWBw4axeQ_6GXYUUupLs3Ph9e1XLOm-S6rhkbuX87qTjrzOPbMw&__tn__=-UK-y-R&c[0]=AT02ywht0jPSBe90GR_6d-r83cssAeMPYzSKAgAORNhCERtlk9-l5KuScz-N6ArSlTo3uObBA9ViZpc74uzdAWGgKFTKaGcQu73IjmGhPGKrOpGgQ6rPed8THV2fQUjPkBX7f6A_Rl70V86t8ZOf0PDdfIfD-DwedwHk36e43B6CuUiAJbeJ3xLwI_OEprXl8oNG2kDZmuRIqOHE)을 번역한 글입니다.*
 
-*글 자체는 2017년도의 글이라 업데이트를 글 작성 후에 개인적으로 진행해야겠네요*
+*글 자체는 2017년도의 글이라 업데이트되어있는 변경점을 반영하면서 번역하고 있습니다.*
 
 Swift 컴파일러 개발을 시작해보고 싶은 분들을 위해, 컴파일러의 전체 구성이 어떻게 되어있는지 대략적으로 설명해보겠습니다. 코드를 읽을 때 참고가 되면 좋겠네요.
 
