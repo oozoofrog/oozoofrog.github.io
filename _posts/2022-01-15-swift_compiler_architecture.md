@@ -162,9 +162,21 @@ Debugger commands:
                   
 ```
 
+### 그 외의 mode
 
+이 외에도 몇 개의 모드가 더 있습니다. 어떤게 있는지 살펴보자면, (원문의 모드는 더 이상 존재하지 않거나 바뀌거나 해서 새로 작성했습니다. ***swift 5.5기준**)
 
+|실행방법|      |
+| ---- | ---- |
+| swift api-digester | ABI 검사기로 서로 다른 버전의 라이브러리 간에 안전하지 않는 변경점을 도출합니다. |
+| swift api-extract | 조사중 |
+| swift demangle | 맹글링된 코드를 디맹글링합니다. |
+| swift package | swift package 생성 등 관련한 작업을 합니다. |
+| swift package-collection | swift package collection 추가 등 관련한 작업을 합니다. |
+| swift stdlib-tool | |
+| swift symbolgraph-extract | 라이브러리로부터 심볼 그래프를 json의 형태로 추출합니다. |
 
+각 모드가 명령어 옵션을 지정하거나, 심볼릭 링크에 의한 명령어의 이름의 별칭이거나 한것은 무슨 기준일까요.
 
 <a name="1">1</a> 최근(여기선 2017년)까지는 run도 대상이었습니다만, 내장하고 있는 swift run은 [SE-0179](https://github.com/apple/swift-evolution/blob/master/proposals/0179-swift-run-command.md)의 swiftpm의 기능을 덮어쓰기 때문에 폐기되었습니다. [SR-5332](https://bugs.swift.org/browse/SR-5332)
 
