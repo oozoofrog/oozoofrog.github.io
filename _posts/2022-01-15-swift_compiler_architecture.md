@@ -100,6 +100,24 @@ $ swift -frontend -emit-object -o test.o test.swift
 
 frontend(혹은 서브시스템)은 컴파일러외에도 SourceKit에서 사용하는 코드를 보완하거나, syntax coloring등에서도 이용합니다.
 
+### interpret mode
+
+Swift의 소스파일을 그대로 실행하는 모드입니다. immediate mode라고 부르고 있습니다.
+
+실제로는 `swift -frontend -interpret <options...> <input file>`로 기동합니다.
+
+```shell
+# Swift 스크립트 실행
+$ swift hello.swift
+```
+
+혹은 standard input(STDIN)으로 소스를 전달해서 실행하는것도 가능합니다. 그 경우는 input file의 이름을 -로 합니다.
+
+```shell
+$ echo 'print("Hello Swift!")' | swift -
+Hello Swift!
+```
+
 
 
 
