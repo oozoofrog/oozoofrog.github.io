@@ -140,9 +140,29 @@ Type :help for assistance.
 Hello Swift!
 ```
 
-어째서 immediate mode와 다른지 잘 모르겠습니다만, STDIN은 REPL로의 입력이 되기 때문에, REPL 명령어도 유효합니다.
+어째서 immediate mode와 별도로 되어있는지 잘 모르겠습니다만, STDIN은 REPL로의 입력이 되기 때문에, REPL 명령어도 유효합니다.
 
-[^역자 주]: - 가 파일명 표시인데 이걸 빼서 그런같네요. 한번 디버깅을 해봐야겠습니다.
+```shell
+$ echo ':help' | swift
+Welcome to Swift version 5.5.2-dev.
+Type :help for assistance.
+
+The REPL (Read-Eval-Print-Loop) acts like an interpreter.  Valid statements,
+expressions, and declarations are immediately compiled and executed.
+The complete set of LLDB debugging commands are also available as described
+below.
+Commands must be prefixed with a colon at the REPL prompt (:quit for example.) 
+Typing just a colon followed by return will switch to the LLDB prompt.
+Type “< path” to read in code from a text file “path”.
+Debugger commands:
+  apropos           -- List debugger commands related to a word or subject.
+  breakpoint        -- Commands for operating on breakpoints (see 'help b' for
+                       shorthand.)
+# 이하 생략
+                  
+```
+
+
 
 
 
