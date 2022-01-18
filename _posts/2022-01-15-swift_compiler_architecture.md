@@ -178,6 +178,10 @@ Debugger commands:
 
 각 모드가 명령어 옵션을 지정하거나, 심볼릭 링크에 의한 명령어의 이름의 별칭이거나 한것은 무슨 기준일까요.
 
+## Fontend의 구성
+
+`lib/FrontendTool/FrontendToo.cpp`에 있는 `swift::performFrontend`가 진입부가 됩니다. 대략의 흐름은 아래와 같습니다.
+
 <a name="1">1</a> 최근(여기선 2017년)까지는 run도 대상이었습니다만, 내장하고 있는 swift run은 [SE-0179](https://github.com/apple/swift-evolution/blob/master/proposals/0179-swift-run-command.md)의 swiftpm의 기능을 덮어쓰기 때문에 폐기되었습니다. [SR-5332](https://bugs.swift.org/browse/SR-5332)
 
 <a name="2">2</a> Swift3까지 Linux에는 내장 REPL을 지원하고 있지 않았기 때문에, `lldb`가 없는 경우 에러가 났습니다만, 이제는 포함되어 있는듯합니다. [PR-7709](https://github.com/apple/swift/pull/7709)
