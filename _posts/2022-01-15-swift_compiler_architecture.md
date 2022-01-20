@@ -180,7 +180,29 @@ Debugger commands:
 
 ## Fontend의 구성
 
-`lib/FrontendTool/FrontendToo.cpp`에 있는 `swift::performFrontend`가 진입부가 됩니다. 대략의 흐름은 아래와 같습니다.
+`lib/FrontendTool/FrontendTool.cpp`에 있는 `swift::performFrontend`가 진입부가 됩니다. 대략의 흐름은 아래와 같습니다.
+
+1. frontend의 실행 설정을 들고 있는 객체인 `CompilerInvocation`을 명령어 옵션등으로부터 생성합니다.
+2. `CompilerInstance`을 생성, `CompilerInvocation`의 정보로 설정을 합니다.
+3.  `FrontendTool.cpp` 의 `performCompile`함수에서 컴파일을 실행합니다.  여기서부터 아래의 그림대로의 파이프라인이 동작하기 시작합니다. 각 컴포넌트에서 에러를 감지했을 때는 여기서 처리를 종료합니다.
+
+![pipeline](https://camo.qiitausercontent.com/711c1c2b02c81340ec5a22d391262d2860d53617/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35353837342f38343261616332362d336332392d626436322d616130352d3164373965376131363830342e706e67)
+
+## CompilerInstance
+
+`include/swift/Frontend/Frontend.h`에 정의되어 있습니다.
+
+위의 그림에는 나타나지 않습니다만, 컴파일러 전체의 상태나 실행을 관리합니다. Frontend에 있어서 중요한 부분입니다.
+
+CompilerInstance는 아래와 같은, 컴파일러의 중요한 싱글턴을 가지고 있습니다.
+
+- `SourceManager`: 소스의 관리
+- `DiagnosticEngine`: 진단 엔진
+- `ASTContext`: AST의 메모리 관리, 외부 모듈의 로딩
+- `ModuleDecl`:컴파일러의 AST모듈
+- `SILModule`: SIL모듈
+
+파이프라인안의 Parse 및 Sema은 이 객체의 `CompilerInstance::performSema`메소드를 통해서 실행됩니다. 입력파일이 하나 이상인 경우, performSema를 한 번 수행하는것으로, 모든 입력 파일의 Parse와 Sema를 완료한 다음, 다음 단계로 넘어갑니다.
 
 <a name="1">1</a> 최근(여기선 2017년)까지는 run도 대상이었습니다만, 내장하고 있는 swift run은 [SE-0179](https://github.com/apple/swift-evolution/blob/master/proposals/0179-swift-run-command.md)의 swiftpm의 기능을 덮어쓰기 때문에 폐기되었습니다. [SR-5332](https://bugs.swift.org/browse/SR-5332)
 
