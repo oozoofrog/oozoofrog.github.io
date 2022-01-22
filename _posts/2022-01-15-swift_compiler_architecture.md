@@ -11,7 +11,7 @@ categories : swift compiler architecture
 
 # Swift compiler architecture
 
-*[Qiita](https://qiita.com)에 [@rintaro](https://qiita.com/rintaro)님이 포스팅한 포스팅한 일본어 [원문](https://qiita.com/rintaro/items/3ad640e3938207218c20?fbclid=IwAR1NiW77-FJuHqHYi5PJjIS6BFtEKP3H2s4UIAI-GvTfEjcbwNlL3Gp58jQ)을 번역한 글입니다.*
+*[Qiita](https://qiita.com)에 [@rintaro](https://qiita.com/rintaro)님이 포스팅한 일본어 [원문](https://qiita.com/rintaro/items/3ad640e3938207218c20?fbclid=IwAR1NiW77-FJuHqHYi5PJjIS6BFtEKP3H2s4UIAI-GvTfEjcbwNlL3Gp58jQ)을 번역한 글입니다.*
 
 *글 자체는 2017년도의 글이라 업데이트되어있는 변경점을 반영하면서 번역하고 있습니다.*
 
@@ -180,7 +180,7 @@ Debugger commands:
 
 ## Fontend의 구성
 
-`lib/FrontendTool/FrontendTool.cpp`에 있는 `swift::performFrontend`가 진입부가 됩니다. 대략의 흐름은 아래와 같습니다.
+`lib/FrontendTool/FrontendTool.cpp`에 있는 `swift::performFrontend`가 진입부가 됩니다. 큰 흐름은 아래와 같습니다.
 
 1. frontend의 실행 설정을 들고 있는 객체인 `CompilerInvocation`을 명령어 옵션등으로부터 생성합니다.
 2. `CompilerInstance`을 생성, `CompilerInvocation`의 정보로 설정을 합니다.
@@ -188,7 +188,7 @@ Debugger commands:
 
 ![pipeline](https://camo.qiitausercontent.com/711c1c2b02c81340ec5a22d391262d2860d53617/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35353837342f38343261616332362d336332392d626436322d616130352d3164373965376131363830342e706e67)
 
-## CompilerInstance
+### CompilerInstance
 
 `include/swift/Frontend/Frontend.h`에 정의되어 있습니다.
 
@@ -203,6 +203,31 @@ CompilerInstance는 아래와 같은, 컴파일러의 중요한 싱글턴을 가
 - `SILModule`: SIL모듈
 
 파이프라인안의 Parse 및 Sema은 이 객체의 `CompilerInstance::performSema`메소드를 통해서 실행됩니다. 입력파일이 하나 이상인 경우, performSema를 한 번 수행하는것으로, 모든 입력 파일의 Parse와 Sema를 완료한 다음, 다음 단계로 넘어갑니다.
+
+### ASTContext
+
+또 하나의 중요한 요소는 `ASTContext`입니다.
+
+[`include/swift/AST/ASTContext.h`](https://github.com/apple/swift/blob/master/include/swift/AST/ASTContext.h) 에 정의되어있습니다.
+
+`CompilerInstance` 에 의해 인스턴스가 만들어져, LLVM IR의 생성이 완료되기까지 계속 살아있는, 사용시간이 상당히 긴 오브젝트입니다. AST노드의 메모리 관리가 주요한 역할 입니다만, 그 외에도 
+
+- stdlib를 포함, 외부 모듈을 불러오고 소유
+- 컴파일러의 stdlib API의 관리
+
+등의 역할을 가지고 있고, 또, Frontend의 각 서브시스템은 실행중에 `FrontendTool`이나 `CompilerInstance`를 접근하진 않지만, `ASTContext`는 `Frontend`의 거의 모든 부분에서 참조합니다.
+
+또한 `SourceManager` 나 `DiagnosticEngine` 를 참조하고 있어, 각 서브시스템으로부터 이를 참조해야할 필요가 생기는 경우의 창구역할을 하고 있습니다. 여러군데서 찾아보고 싶은 경우는 일단 여기에 넣어두자 라는 친구죠.
+
+## 서브시스템
+
+컴파일러의 파이프라인상에 나타나는, 주요한 프로세스입니다. [swift.org](https://swift.org/compiler-stdlib/) 에도 설명되어있습니다.
+
+알맞은 용어인지 잘 모르겠습니다만, 소스 상에서는 ["subsystems"](https://github.com/apple/swift/blob/master/include/swift/Subsystems.h)에서 참조하고 있는 것들을 여기서는 서브시스템이라고 부릅니다. swift.org에서는 [Compiler Architecture](https://www.swift.org/swift-compiler/#compiler-architecture)로 표기하고 있습니다.
+
+
+
+
 
 <a name="1">1</a> 최근(여기선 2017년)까지는 run도 대상이었습니다만, 내장하고 있는 swift run은 [SE-0179](https://github.com/apple/swift-evolution/blob/master/proposals/0179-swift-run-command.md)의 swiftpm의 기능을 덮어쓰기 때문에 폐기되었습니다. [SR-5332](https://bugs.swift.org/browse/SR-5332)
 
