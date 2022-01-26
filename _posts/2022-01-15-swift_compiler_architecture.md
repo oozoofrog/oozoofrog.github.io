@@ -11,7 +11,7 @@ categories : swift compiler architecture
 
 # Swift compiler architecture
 
-*[Qiita](https://qiita.com)에 [@rintaro](https://qiita.com/rintaro)님이 포스팅한 일본어 [원문](https://qiita.com/rintaro/items/3ad640e3938207218c20?fbclid=IwAR1NiW77-FJuHqHYi5PJjIS6BFtEKP3H2s4UIAI-GvTfEjcbwNlL3Gp58jQ)을 번역한 글입니다.*
+*[@rintaro](https://qiita.com/rintaro)님이 [Qiita](https://qiita.com)에 포스팅한 일본어 [원문](https://qiita.com/rintaro/items/3ad640e3938207218c20?fbclid=IwAR1NiW77-FJuHqHYi5PJjIS6BFtEKP3H2s4UIAI-GvTfEjcbwNlL3Gp58jQ)을 번역한 글입니다.*
 
 *글 자체는 2017년도의 글이라 업데이트되어있는 변경점을 반영하면서 번역하고 있습니다.*
 
@@ -171,6 +171,7 @@ Debugger commands:
 | swift api-digester | ABI 검사기로 서로 다른 버전의 라이브러리 간에 안전하지 않는 변경점을 도출합니다. |
 | swift api-extract | 조사중 |
 | swift demangle | 맹글링된 코드를 디맹글링합니다. |
+| swift -modulewrap | .swiftmodule의 데이터를 그대로 .o로<sup>[3](#3)</sup> |
 | swift package | swift package 생성 등 관련한 작업을 합니다. |
 | swift package-collection | swift package collection 추가 등 관련한 작업을 합니다. |
 | swift stdlib-tool | |
@@ -225,10 +226,18 @@ CompilerInstance는 아래와 같은, 컴파일러의 중요한 싱글턴을 가
 
 알맞은 용어인지 잘 모르겠습니다만, 소스 상에서는 ["subsystems"](https://github.com/apple/swift/blob/master/include/swift/Subsystems.h)에서 참조하고 있는 것들을 여기서는 서브시스템이라고 부릅니다. swift.org에서는 [Compiler Architecture](https://www.swift.org/swift-compiler/#compiler-architecture)로 표기하고 있습니다.
 
+### Parse
 
+소스를 [AST(추상구문트리)](https://ko.wikipedia.org/wiki/추상_구문_트리)로 변환합니다. 비교적 간단한 [재귀 하향 파서](https://ko.wikipedia.org/wiki/재귀_하향_파서)로, `lib/Parse/Lexer.cpp`에 의해  [낱말 분석](https://ko.wikipedia.org/wiki/낱말_분석)을 수행하며, Lexer로부터 얻은 토큰의 나열을 판단해서 AST를 만들어갑니다. 타입 정보나, 의미 해석에는 관여하지 않습니다.<sup>[4](#4)</sup> 예외적으로 로컬변수의 사용 등, 문맥상 명확한 경우 해당 시점에 [Name Binding](https://ko.wikipedia.org/wiki/언어_바인딩)을 수행합니다. 또 문법 에러나, 문법과 관련한 워닝을 출력하는 것도 Parse가 하는 일입니다.
+
+생성은 `lib/Parse/Parser.cpp`의 [ParserUnit::PaserUnit](https://github.com/apple/swift/blob/60c78afb13051823b98f103dee05e4544e5019c9/lib/Parse/Parser.cpp#L1220)이고, 여기에서 `lib/Parse`에 있는 `Parser`의 인스턴스가 만들어집니다. [ParserUnit::parse](https://github.com/apple/swift/blob/60c78afb13051823b98f103dee05e4544e5019c9/lib/Parse/Parser.cpp#L1298) 함수에서 분석을 시작하며 `lib/Parse/ParseDecl.cpp`의 [Parser::parseTopLevel](https://github.com/apple/swift/blob/07e2dfda56661bd9f1a335d0164a38aee2208a84/lib/Parse/ParseDecl.cpp#L169) 함수를 호출합니다.
 
 
 
 <a name="1">1</a> 최근(여기선 2017년)까지는 run도 대상이었습니다만, 내장하고 있는 swift run은 [SE-0179](https://github.com/apple/swift-evolution/blob/master/proposals/0179-swift-run-command.md)의 swiftpm의 기능을 덮어쓰기 때문에 폐기되었습니다. [SR-5332](https://bugs.swift.org/browse/SR-5332)
 
 <a name="2">2</a> Swift3까지 Linux에는 내장 REPL을 지원하고 있지 않았기 때문에, `lldb`가 없는 경우 에러가 났습니다만, 이제는 포함되어 있는듯합니다. [PR-7709](https://github.com/apple/swift/pull/7709)
+
+<a name="3">3</a> `swiftc -g`로 컴파일할 때 사용하며, 바이너리에 포함되어 디버거가 사용합니다.
+
+<a name="4">4</a> 타입 정보에는 관여하지는 않지만, 타입명의 분석은 수행합니다. 다만, 분석한 타입명이 실제로는 무엇인지는 Parse의 시점에서는 알 수 없습니다.
