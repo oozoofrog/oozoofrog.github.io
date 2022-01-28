@@ -230,7 +230,7 @@ CompilerInstance는 아래와 같은, 컴파일러의 중요한 싱글턴을 가
 
 소스를 [AST(추상구문트리)](https://ko.wikipedia.org/wiki/추상_구문_트리)로 변환합니다. 비교적 간단한 [재귀 하향 파서](https://ko.wikipedia.org/wiki/재귀_하향_파서)로, `lib/Parse/Lexer.cpp`에 의해  [낱말 분석](https://ko.wikipedia.org/wiki/낱말_분석)을 수행하며, Lexer로부터 얻은 토큰의 나열을 판단해서 AST를 만들어갑니다. 타입 정보나, 의미 해석에는 관여하지 않습니다.<sup>[4](#4)</sup> 예외적으로 로컬변수의 사용 등, 문맥상 명확한 경우 해당 시점에 [Name Binding](https://ko.wikipedia.org/wiki/언어_바인딩)을 수행합니다. 또 문법 에러나, 문법과 관련한 워닝을 출력하는 것도 Parse가 하는 일입니다.
 
-빌드과정에서의 진입부는 [`lib/Parse/ParseRequests.cpp`](https://github.com/apple/swift/blob/main/lib/Parse/ParseRequests.cpp) 에서 `ParseSourceFileRequest::evaluate`함수이며  `lib/Parse`에 있는 `Parser`의 인스턴스가 만들어집니다. 여기에서 `lib/Parse/ParseDecl.cpp`의 [Parser::parseTopLevel](https://github.com/apple/swift/blob/07e2dfda56661bd9f1a335d0164a38aee2208a84/lib/Parse/ParseDecl.cpp#L169) 함수를 호출합니다. `parseTopLevel`함수는 `lib/Parse/Parser.cpp`의 `ParserUnit::parse()` 함수에서도 호출되는데 이 경우 소스의 syntax highlighting이나 formatting 등에서 사용되는듯 합니다.
+빌드 과정에서의 진입부는 [`lib/Parse/ParseRequests.cpp`](https://github.com/apple/swift/blob/main/lib/Parse/ParseRequests.cpp) 에서 `ParseSourceFileRequest::evaluate`함수이며  `lib/Parse`에 있는 `Parser`의 인스턴스가 만들어집니다. 여기에서 `lib/Parse/ParseDecl.cpp`의 [Parser::parseTopLevel](https://github.com/apple/swift/blob/07e2dfda56661bd9f1a335d0164a38aee2208a84/lib/Parse/ParseDecl.cpp#L169) 함수를 호출합니다. `parseTopLevel`함수는 `lib/Parse/Parser.cpp`의 `ParserUnit::parse()` 함수에서도 호출되는데 이 경우 소스의 syntax highlighting이나 formatting 등에서 사용되는듯 합니다.
 
 
 
