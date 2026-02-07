@@ -52,19 +52,22 @@ const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
 <style>
   .project-card {
     position: relative;
-    background: #fff;
-    border: 1.5px solid #e0ebe6;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 12px;
     padding: 24px;
     padding-top: 28px;
     overflow: hidden;
-    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
   }
 
   .project-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--frog-green);
-    box-shadow: 0 8px 24px rgba(45, 80, 22, 0.15);
+    transform: translateY(-2px) scale(1.01);
+    background: rgba(255, 255, 255, 0.65);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
   }
 
   /* Status color bar at top */
@@ -74,6 +77,7 @@ const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
     left: 0;
     right: 0;
     height: 4px;
+    opacity: 0.8;
   }
 
   .status-bar-released {
@@ -155,17 +159,21 @@ const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
   }
 
   .tag {
-    background: var(--sky-blue-light);
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     color: var(--frog-green-dark);
     padding: 3px 10px;
     border-radius: 12px;
     font-size: 0.78em;
     font-weight: 500;
-    transition: background 0.15s;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: background 0.15s, border-color 0.15s;
   }
 
   .tag:hover {
-    background: var(--sky-blue);
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(255, 255, 255, 0.8);
   }
 
   /* Links */
@@ -182,7 +190,9 @@ const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
     text-decoration: none;
     font-size: 0.9em;
     font-weight: 600;
-    transition: transform 0.15s, box-shadow 0.15s;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
   }
 
   .project-links .btn:hover {
@@ -196,8 +206,12 @@ const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
   }
 
   .project-links .btn-secondary {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.6);
     color: var(--dark-green);
-    border: 1.5px solid #d0d8d4;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+
+  .project-links .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.8);
   }
 </style>
