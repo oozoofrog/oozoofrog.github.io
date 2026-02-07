@@ -9,25 +9,27 @@ export interface Project {
   tags: string[];
   appstore?: string;
   github?: string;
+  page?: string;
 }
 
 export const projects: Project[] = [
   {
     name: "Runner's Heart",
     slug: "runners-heart",
-    tagline: "심박수 기반 러닝 가이드",
-    description: "Apple Watch와 연동하여 실시간 심박수를 모니터링하고, 최적의 러닝 페이스를 안내하는 앱",
+    tagline: "Heart Rate Based Running Guide",
+    description: "Monitor your real-time heart rate with Apple Watch and get guided to your optimal running pace.",
     status: "released",
     featured: true,
     icon: "/assets/images/projects/runners-heart-icon.png",
     tags: ["SwiftUI", "HealthKit", "WatchOS", "CoreData"],
     appstore: "https://apps.apple.com/us/app/runners-heart/id6758222219",
+    page: "/runners-heart/",
   },
   {
     name: "Tesella",
     slug: "tesella",
-    tagline: "포토 모자이크 생성기",
-    description: "사진 라이브러리의 이미지들로 타겟 사진을 타일 모자이크로 재구성하는 iOS 앱. Swift 6 Strict Concurrency, TDD 기반",
+    tagline: "Photo Mosaic Generator",
+    description: "Reconstruct target photos as tile mosaics using images from your photo library. Built with Swift 6 Strict Concurrency and TDD.",
     status: "development",
     featured: true,
     icon: "/assets/images/projects/tesella-icon.png",
@@ -36,8 +38,8 @@ export const projects: Project[] = [
   {
     name: "PhotoCleaner",
     slug: "photocleaner",
-    tagline: "사진첩 정리 도우미",
-    description: "iCloud 다운로드 실패, 손상된 사진, 중복 사진, 대용량 파일을 감지하고 정리하는 iOS 앱",
+    tagline: "Photo Library Cleaner",
+    description: "Detect and clean up failed iCloud downloads, corrupted photos, duplicates, and large files in your photo library.",
     status: "development",
     featured: true,
     icon: "/assets/images/projects/photocleaner-icon.png",
@@ -46,8 +48,8 @@ export const projects: Project[] = [
   {
     name: "Textify",
     slug: "textify",
-    tagline: "이미지를 텍스트 아트로",
-    description: "이미지를 ASCII/유니코드 텍스트 아트로 변환하는 iOS 앱. Metal 기반 이미지 처리, 모듈러 아키텍처",
+    tagline: "Image to Text Art",
+    description: "Convert images to ASCII/Unicode text art. Metal-based image processing with modular architecture.",
     status: "development",
     featured: true,
     tags: ["SwiftUI", "Metal", "Swift 6", "MVVM"],
@@ -55,8 +57,8 @@ export const projects: Project[] = [
   {
     name: "Unicody",
     slug: "unicody",
-    tagline: "유니코드 텍스트 데코레이션",
-    description: "Zalgo 텍스트, 폰트 스타일 변환 등 유니코드 텍스트 장식을 제공하는 iOS 앱과 커스텀 키보드",
+    tagline: "Unicode Text Decoration",
+    description: "Zalgo text, font style conversion, and Unicode text decorations with a custom keyboard extension.",
     status: "development",
     featured: true,
     tags: ["SwiftUI", "UIKit", "Keyboard Extension", "Swift 6"],
