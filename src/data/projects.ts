@@ -21,7 +21,7 @@ export const projects: Project[] = [
     featured: true,
     icon: "/assets/images/projects/runners-heart-icon.png",
     tags: ["SwiftUI", "HealthKit", "WatchOS", "CoreData"],
-    appstore: "https://apps.apple.com/app/runners-heart/id6740614583",
+    appstore: "https://apps.apple.com/us/app/runners-heart/id6758222219",
   },
   {
     name: "Tesella",
