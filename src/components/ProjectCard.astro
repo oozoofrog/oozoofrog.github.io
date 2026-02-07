@@ -9,8 +9,9 @@ interface Props {
   tags: string[];
   appstore?: string;
   github?: string;
+  page?: string;
 }
-const { name, slug, tagline, description, status, icon, tags, appstore, github } = Astro.props;
+const { name, slug, tagline, description, status, icon, tags, appstore, github, page } = Astro.props;
 
 const statusIcon = status === 'released' ? '🍎' : status === 'development' ? '🔧' : '📦';
 const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
@@ -36,6 +37,9 @@ const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
     ))}
   </div>
   <div class="project-links">
+    {page && (
+      <a class="btn btn-primary" href={page}>Details</a>
+    )}
     {appstore && (
       <a class="btn btn-primary" href={appstore} target="_blank" rel="noopener noreferrer">App Store ↗</a>
     )}

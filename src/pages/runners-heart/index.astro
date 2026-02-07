@@ -1,0 +1,242 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Runner's Heart - Heart Rate Based Running Guide"
+  description="Monitor your real-time heart rate with Apple Watch and get guided to your optimal running pace."
+>
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="/assets/images/projects/runners-heart-icon.png" alt="Runner's Heart Icon" class="app-icon" />
+    <h1>Runner's Heart</h1>
+    <p class="tagline">Heart Rate Based Running Guide</p>
+    <a href="https://apps.apple.com/us/app/runners-heart/id6758222219" class="btn-download">Download on the App Store</a>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">❤️</div>
+        <h3>Real-Time Heart Rate</h3>
+        <p>Monitor your heart rate in real time with Apple Watch integration</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏃</div>
+        <h3>Optimal Pace Guidance</h3>
+        <p>Get guided to your optimal running pace based on heart rate zones</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⌚</div>
+        <h3>Apple Watch</h3>
+        <p>Check everything right from your wrist with the watchOS app</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Running Stats</h3>
+        <p>Analyze your running history with HealthKit data</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <h2>Get Started Now</h2>
+    <a href="https://apps.apple.com/us/app/runners-heart/id6758222219" class="btn-download">Download Now</a>
+  </section>
+
+  <!-- Footer Links -->
+  <section class="footer-links">
+    <a href="/runners-heart/support/">Support</a>
+    <span class="separator">·</span>
+    <a href="/runners-heart/privacy/">Privacy Policy</a>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #d0e8f5, var(--sky-blue), #a8cce0);
+    color: var(--dark-green);
+    border-radius: 12px;
+    margin-bottom: 60px;
+  }
+
+  .app-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 26px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 12px;
+    color: var(--dark-green);
+    font-weight: 700;
+  }
+
+  .tagline {
+    font-size: 1.3em;
+    color: var(--frog-green-dark);
+    margin-bottom: 32px;
+    font-weight: 500;
+  }
+
+  .btn-download {
+    display: inline-block;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, var(--dark-green), #1a3d0e);
+    color: #fff;
+    border-radius: 24px;
+    font-size: 1em;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(45, 80, 22, 0.25);
+    border-bottom: none;
+  }
+
+  /* Features Section */
+  .features {
+    margin-bottom: 60px;
+  }
+
+  .features h2 {
+    font-size: 2em;
+    color: var(--dark-green);
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .feature-card {
+    background: #fff;
+    border: 1.5px solid #e0ebe6;
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(45, 80, 22, 0.1);
+  }
+
+  .feature-icon {
+    font-size: 3em;
+    margin-bottom: 16px;
+  }
+
+  .feature-card h3 {
+    font-size: 1.2em;
+    color: var(--dark-green);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .feature-card p {
+    color: #556;
+    font-size: 0.95em;
+    line-height: 1.6;
+  }
+
+  /* CTA Section */
+  .cta {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, var(--frog-green), var(--frog-green-dark));
+    border-radius: 16px;
+    margin-bottom: 40px;
+  }
+
+  .cta h2 {
+    font-size: 2em;
+    color: #fff;
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+
+  .cta .btn-download {
+    background: #fff;
+    color: var(--dark-green);
+  }
+
+  .cta .btn-download:hover {
+    background: #f0f8f0;
+  }
+
+  /* Footer Links */
+  .footer-links {
+    text-align: center;
+    padding: 20px;
+    color: #8a9a92;
+    font-size: 0.9em;
+  }
+
+  .footer-links a {
+    color: var(--frog-green);
+    text-decoration: none;
+  }
+
+  .footer-links a:hover {
+    color: var(--planet-orange);
+  }
+
+  .separator {
+    margin: 0 12px;
+    color: #ccc;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .hero {
+      padding: 60px 20px;
+    }
+
+    .app-icon {
+      width: 100px;
+      height: 100px;
+    }
+
+    .hero h1 {
+      font-size: 2em;
+    }
+
+    .tagline {
+      font-size: 1.1em;
+    }
+
+    .feature-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .feature-card {
+      padding: 24px;
+    }
+
+    .cta {
+      padding: 40px 20px;
+    }
+
+    .cta h2 {
+      font-size: 1.6em;
+    }
+  }
+</style>

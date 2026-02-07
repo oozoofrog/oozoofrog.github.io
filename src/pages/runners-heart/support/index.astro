@@ -1,0 +1,352 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Runner's Heart Support"
+  description="Have questions or issues with Runner's Heart? Check our FAQ and contact information."
+>
+  <div class="support-page">
+    <header class="page-header">
+      <h1>Runner's Heart Support</h1>
+      <p class="intro">Have questions or running into issues? Check the FAQ below or contact us directly.</p>
+    </header>
+
+    <section class="faq-section">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <details>
+          <summary>
+            <span class="icon">▶</span>
+            <span class="question">Which Apple Watch models are supported?</span>
+          </summary>
+          <div class="answer">
+            <p>Runner's Heart supports all <strong>Apple Watch Series 3 and later</strong> models. Requires watchOS 9.0 or later.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="icon">▶</span>
+            <span class="question">Where is my heart rate data stored?</span>
+          </summary>
+          <div class="answer">
+            <p>All data is stored <strong>only in HealthKit on your device</strong> and is never transmitted to external servers. Your privacy is fully protected.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="icon">▶</span>
+            <span class="question">Do I need an internet connection?</span>
+          </summary>
+          <div class="answer">
+            <p><strong>No internet connection is required</strong> during your run. All features work fully offline.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="icon">▶</span>
+            <span class="question">Does it drain my battery?</span>
+          </summary>
+          <div class="answer">
+            <p>Optimized heart rate sensor access <strong>minimizes battery consumption</strong>. Battery usage is comparable to other running apps.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="icon">▶</span>
+            <span class="question">Can I back up my data?</span>
+          </summary>
+          <div class="answer">
+            <p>HealthKit data is <strong>automatically backed up via iCloud</strong>. Your data is preserved when switching or restoring devices.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <h2>Contact Us</h2>
+      <p class="contact-intro">If you encounter any issues or have suggestions, please let us know via email.</p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span class="label">Email</span>
+          <a href="mailto:oozoofrog@gmail.com" class="email-link">oozoofrog@gmail.com</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <nav class="footer-links">
+        <a href="/runners-heart/">Home</a>
+        <span class="separator">•</span>
+        <a href="/runners-heart/privacy/">Privacy Policy</a>
+      </nav>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .support-page {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #d0e8f5, var(--sky-blue), #a8cce0);
+    border-radius: 12px;
+  }
+
+  .page-header h1 {
+    font-size: 2.2em;
+    color: var(--dark-green);
+    margin-bottom: 12px;
+  }
+
+  .intro {
+    font-size: 1.1em;
+    color: var(--frog-green-dark);
+    line-height: 1.6;
+  }
+
+  /* FAQ Section */
+  .faq-section {
+    margin-bottom: 48px;
+  }
+
+  .faq-section h2 {
+    font-size: 1.8em;
+    color: var(--dark-green);
+    margin-bottom: 24px;
+    position: relative;
+    padding-left: 16px;
+  }
+
+  .faq-section h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--frog-green);
+    border-radius: 2px;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  details {
+    background: #fff;
+    border: 1.5px solid #e0ebe6;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.2s ease;
+  }
+
+  details:hover {
+    border-color: var(--frog-green);
+    box-shadow: 0 2px 8px rgba(45, 80, 22, 0.08);
+  }
+
+  details[open] {
+    border-color: var(--frog-green);
+    box-shadow: 0 4px 12px rgba(45, 80, 22, 0.12);
+  }
+
+  summary {
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    color: var(--dark-green);
+    font-size: 1.05em;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--frog-green);
+    transition: transform 0.2s ease;
+    font-size: 0.8em;
+  }
+
+  details[open] .icon {
+    transform: rotate(90deg);
+  }
+
+  .question {
+    flex: 1;
+  }
+
+  .answer {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e8f0ec;
+    color: #556;
+    line-height: 1.7;
+    animation: fadeIn 0.2s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .answer p {
+    margin: 0;
+  }
+
+  .answer strong {
+    color: var(--dark-green);
+  }
+
+  /* Contact Section */
+  .contact-section {
+    margin-bottom: 48px;
+    padding: 32px;
+    background: #fff;
+    border: 1.5px solid #e0ebe6;
+    border-radius: 12px;
+  }
+
+  .contact-section h2 {
+    font-size: 1.8em;
+    color: var(--dark-green);
+    margin-bottom: 16px;
+    position: relative;
+    padding-left: 16px;
+  }
+
+  .contact-section h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--frog-green);
+    border-radius: 2px;
+  }
+
+  .contact-intro {
+    color: #556;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .label {
+    font-weight: 600;
+    color: var(--dark-green);
+    min-width: 60px;
+  }
+
+  .email-link {
+    color: var(--frog-green);
+    font-weight: 500;
+    padding: 8px 16px;
+    background: var(--sky-blue-light);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    border-bottom: none;
+  }
+
+  .email-link:hover {
+    background: var(--sky-blue);
+    color: var(--dark-green);
+    transform: translateY(-1px);
+    border-bottom: none;
+  }
+
+  /* Page Footer */
+  .page-footer {
+    text-align: center;
+    padding: 32px 20px;
+    border-top: 1px solid #e8f0ec;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .separator {
+    color: #ccc;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .page-header {
+      padding: 32px 16px;
+    }
+
+    .page-header h1 {
+      font-size: 1.7em;
+    }
+
+    .intro {
+      font-size: 1em;
+    }
+
+    .faq-section h2,
+    .contact-section h2 {
+      font-size: 1.5em;
+    }
+
+    details {
+      padding: 16px;
+    }
+
+    summary {
+      font-size: 1em;
+    }
+
+    .contact-section {
+      padding: 24px 20px;
+    }
+
+    .contact-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  }
+</style>
