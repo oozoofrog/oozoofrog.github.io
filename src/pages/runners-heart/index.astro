@@ -60,10 +60,31 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .hero {
     text-align: center;
     padding: 80px 20px;
-    background: linear-gradient(135deg, #d0e8f5, var(--sky-blue), #a8cce0);
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(24px) saturate(150%);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
     color: var(--dark-green);
-    border-radius: 12px;
+    border-radius: 16px;
     margin-bottom: 60px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #d0e8f5, var(--sky-blue), #a8cce0);
+    border-radius: 16px;
+    z-index: -1;
+    opacity: 0.3;
+  }
+
+  @supports not (backdrop-filter: blur(24px)) {
+    .hero {
+      background: rgba(255, 255, 255, 0.75);
+    }
   }
 
   .app-icon {
@@ -91,19 +112,30 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .btn-download {
     display: inline-block;
     padding: 14px 32px;
-    background: linear-gradient(135deg, var(--dark-green), #1a3d0e);
+    background: rgba(45, 80, 22, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 24px;
     font-size: 1em;
     font-weight: 600;
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(45, 80, 22, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
   .btn-download:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(45, 80, 22, 0.25);
+    background: rgba(45, 80, 22, 0.85);
+    box-shadow: 0 8px 24px rgba(45, 80, 22, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
     border-bottom: none;
+  }
+
+  @supports not (backdrop-filter: blur(12px)) {
+    .btn-download {
+      background: rgba(45, 80, 22, 0.9);
+    }
   }
 
   /* Features Section */
@@ -125,17 +157,30 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   }
 
   .feature-card {
-    background: #fff;
-    border: 1.5px solid #e0ebe6;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 16px;
     padding: 32px;
     text-align: center;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 
   .feature-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(45, 80, 22, 0.1);
+    background: rgba(255, 255, 255, 0.65);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  }
+
+  @supports not (backdrop-filter: blur(20px)) {
+    .feature-card {
+      background: rgba(255, 255, 255, 0.85);
+    }
+    .feature-card:hover {
+      background: rgba(255, 255, 255, 0.95);
+    }
   }
 
   .feature-icon {
@@ -160,9 +205,24 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .cta {
     text-align: center;
     padding: 60px 20px;
-    background: linear-gradient(135deg, var(--frog-green), var(--frog-green-dark));
+    position: relative;
     border-radius: 16px;
     margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--frog-green), var(--frog-green-dark));
+    border-radius: 16px;
+    z-index: -1;
+    opacity: 0.6;
   }
 
   .cta h2 {
@@ -170,15 +230,29 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     color: #fff;
     margin-bottom: 24px;
     font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   .cta .btn-download {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     color: var(--dark-green);
+    border: 1px solid rgba(255, 255, 255, 0.6);
   }
 
   .cta .btn-download:hover {
-    background: #f0f8f0;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+
+  @supports not (backdrop-filter: blur(24px)) {
+    .cta {
+      background: rgba(255, 255, 255, 0.7);
+    }
+    .cta .btn-download {
+      background: rgba(255, 255, 255, 0.95);
+    }
   }
 
   /* Footer Links */
@@ -192,10 +266,26 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .footer-links a {
     color: var(--frog-green);
     text-decoration: none;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    transition: all 0.2s;
+    display: inline-block;
   }
 
   .footer-links a:hover {
     color: var(--planet-orange);
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  @supports not (backdrop-filter: blur(12px)) {
+    .footer-links a {
+      background: rgba(255, 255, 255, 0.75);
+    }
   }
 
   .separator {

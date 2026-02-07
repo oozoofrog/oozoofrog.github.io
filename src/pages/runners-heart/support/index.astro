@@ -98,8 +98,29 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     text-align: center;
     margin-bottom: 48px;
     padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(24px) saturate(150%);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    position: relative;
+  }
+
+  .page-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
     background: linear-gradient(135deg, #d0e8f5, var(--sky-blue), #a8cce0);
-    border-radius: 12px;
+    border-radius: 16px;
+    z-index: -1;
+    opacity: 0.3;
+  }
+
+  @supports not (backdrop-filter: blur(24px)) {
+    .page-header {
+      background: rgba(255, 255, 255, 0.75);
+    }
   }
 
   .page-header h1 {
@@ -145,21 +166,38 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   }
 
   details {
-    background: #fff;
-    border: 1.5px solid #e0ebe6;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 12px;
     padding: 20px;
     transition: all 0.2s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 
   details:hover {
-    border-color: var(--frog-green);
-    box-shadow: 0 2px 8px rgba(45, 80, 22, 0.08);
+    background: rgba(255, 255, 255, 0.55);
+    border-color: rgba(112, 168, 80, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
   }
 
   details[open] {
-    border-color: var(--frog-green);
-    box-shadow: 0 4px 12px rgba(45, 80, 22, 0.12);
+    background: rgba(255, 255, 255, 0.65);
+    border-color: rgba(112, 168, 80, 0.6);
+    box-shadow: 0 8px 24px rgba(45, 80, 22, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 0 20px rgba(112, 168, 80, 0.15);
+  }
+
+  @supports not (backdrop-filter: blur(20px)) {
+    details {
+      background: rgba(255, 255, 255, 0.85);
+    }
+    details:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+    details[open] {
+      background: rgba(255, 255, 255, 0.95);
+    }
   }
 
   summary {
@@ -228,9 +266,18 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   .contact-section {
     margin-bottom: 48px;
     padding: 32px;
-    background: #fff;
-    border: 1.5px solid #e0ebe6;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  @supports not (backdrop-filter: blur(20px)) {
+    .contact-section {
+      background: rgba(255, 255, 255, 0.85);
+    }
   }
 
   .contact-section h2 {
@@ -280,17 +327,31 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     color: var(--frog-green);
     font-weight: 500;
     padding: 8px 16px;
-    background: var(--sky-blue-light);
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
     transition: all 0.2s ease;
     border-bottom: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
 
   .email-link:hover {
-    background: var(--sky-blue);
+    background: rgba(255, 255, 255, 0.65);
     color: var(--dark-green);
     transform: translateY(-1px);
     border-bottom: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  @supports not (backdrop-filter: blur(12px)) {
+    .email-link {
+      background: rgba(255, 255, 255, 0.8);
+    }
+    .email-link:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
   }
 
   /* Page Footer */
@@ -306,6 +367,29 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .footer-links a:hover {
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+  }
+
+  @supports not (backdrop-filter: blur(12px)) {
+    .footer-links a {
+      background: rgba(255, 255, 255, 0.75);
+    }
   }
 
   .separator {

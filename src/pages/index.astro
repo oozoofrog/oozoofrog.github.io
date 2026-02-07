@@ -66,13 +66,17 @@ const recentPosts = allPosts
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--frog-green);
-    background: var(--sky-blue-light);
-    transition: background 0.15s, color 0.15s;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
   }
 
   .see-all-pill:hover {
     background: var(--frog-green);
     color: #fff;
+    border-color: var(--frog-green);
   }
 
   .featured-projects,
@@ -99,14 +103,18 @@ const recentPosts = allPosts
     gap: 1rem;
     padding: 12px 16px;
     border-radius: 8px;
-    border: 1px solid #e0ebe6;
-    background: #fff;
-    transition: background 0.15s, transform 0.15s;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
   }
 
   .post-card:hover {
-    background: var(--sky-blue-light);
+    background: rgba(255, 255, 255, 0.6);
     transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
   }
 
   .post-card time {

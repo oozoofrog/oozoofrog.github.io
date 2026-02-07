@@ -28,10 +28,45 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <style>
   .about {
     max-width: 640px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  @supports not (backdrop-filter: blur(20px)) {
+    .about {
+      background: rgba(255, 255, 255, 0.85);
+    }
   }
 
   .avatar {
     border-radius: 50%;
     margin-bottom: 1.5rem;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6), 0 0 20px rgba(112, 168, 80, 0.2), 0 4px 16px rgba(0, 0, 0, 0.12);
+    position: relative;
+  }
+
+  .about ul li {
+    transition: all 0.2s;
+  }
+
+  .about ul li:hover {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 4px 12px;
+    margin-left: -12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  @supports not (backdrop-filter: blur(8px)) {
+    .about ul li:hover {
+      background: rgba(255, 255, 255, 0.6);
+    }
   }
 </style>
