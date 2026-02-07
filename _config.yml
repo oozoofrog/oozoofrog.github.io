@@ -8,7 +8,7 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 #
-# If you need help with YAML syntax, here are some quick references for you: 
+# If you need help with YAML syntax, here are some quick references for you:
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 #
@@ -18,10 +18,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: 우물안 우주
+title: 우주개구리 | oozoofrog
 email: oozoofrog@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Swift, iOS, macOS
+description: >-
+  iOS & macOS 앱 개발, 오픈소스 개발 도구를 만드는 우주개구리입니다.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://oozoofrog.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: oozoofrog
@@ -29,6 +29,14 @@ github_username: oozoofrog
 
 author: oozoofrog
 avatar: "/assets/images/avatar.png"
+
+company:
+  tagline: "더 나은 개발 경험을 위해"
+
+header_pages:
+  - projects.markdown
+  - blog.markdown
+  - about.markdown
 
 # Build settings
 theme: minima

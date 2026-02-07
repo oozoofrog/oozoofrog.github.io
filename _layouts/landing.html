@@ -1,0 +1,61 @@
+---
+layout: default
+---
+
+<section class="hero">
+  <img src="{{ site.avatar }}" alt="{{ site.title }}" class="hero-avatar">
+  <h1>{{ site.title }}</h1>
+  <p class="hero-tagline">{{ site.company.tagline }}</p>
+  <p class="hero-desc">{{ site.description }}</p>
+  <a href="/projects/" class="btn btn-primary">프로젝트 보기</a>
+</section>
+
+<section class="featured-projects">
+  <h2>Featured Projects</h2>
+  <div class="project-grid">
+    {% assign featured = site.data.projects | where: "featured", true %}
+    {% for project in featured %}
+      <div class="project-card">
+        {% if project.icon %}
+          <img src="{{ project.icon }}" alt="{{ project.name }}" class="project-icon">
+        {% else %}
+          <div class="project-icon-placeholder">{{ project.name | slice: 0 }}</div>
+        {% endif %}
+        <h3>{{ project.name }}</h3>
+        <p class="project-tagline">{{ project.tagline }}</p>
+        <p>{{ project.description }}</p>
+        <div class="project-tags">
+          {% for tag in project.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        <div class="project-links">
+          {% if project.appstore %}
+            <a href="{{ project.appstore }}" class="btn btn-primary">App Store</a>
+          {% endif %}
+          {% if project.github %}
+            <a href="{{ project.github }}" class="btn btn-secondary">GitHub</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="section-more">
+    <a href="/projects/">모든 프로젝트 보기 →</a>
+  </div>
+</section>
+
+<section class="latest-posts">
+  <h2>Latest Posts</h2>
+  <ul class="post-list">
+    {% for post in site.posts limit:3 %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>
+        <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <div class="section-more">
+    <a href="/blog/">모든 글 보기 →</a>
+  </div>
+</section>
