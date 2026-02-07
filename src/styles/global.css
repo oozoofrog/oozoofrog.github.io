@@ -1,0 +1,291 @@
+/* Color palette from favicon (frog on planet) */
+:root {
+  --sky-blue: #B0D4E8;
+  --sky-blue-light: #E3F0F7;
+  --frog-green: #5BA847;
+  --frog-green-dark: #4A8E3A;
+  --planet-orange: #E07D3A;
+  --ring-gold: #D4963A;
+  --dark-green: #2D5016;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #fafcfa;
+}
+
+a {
+  color: var(--frog-green);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--frog-green-dark);
+}
+
+a:hover {
+  color: var(--planet-orange);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Wrapper */
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--sky-blue);
+  color: var(--dark-green);
+  border-radius: 12px;
+  margin-bottom: 40px;
+}
+
+.hero .hero-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hero h1 {
+  font-size: 2.2em;
+  margin-bottom: 8px;
+  color: var(--dark-green);
+}
+
+.hero .hero-tagline {
+  font-size: 1.2em;
+  color: var(--frog-green-dark);
+  margin-bottom: 6px;
+}
+
+.hero .hero-desc {
+  font-size: 1em;
+  color: #3a6a5c;
+  margin-bottom: 24px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.9em;
+  font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--frog-green);
+  color: #fff;
+}
+
+.hero .btn-primary {
+  background: var(--dark-green);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: var(--dark-green);
+  border: 1.5px solid #d0d8d4;
+}
+
+/* Sections */
+.featured-projects,
+.latest-posts {
+  margin-bottom: 40px;
+}
+
+.featured-projects h2,
+.latest-posts h2 {
+  margin-bottom: 20px;
+  color: var(--dark-green);
+}
+
+.section-more {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.section-more a {
+  font-weight: 600;
+  color: var(--frog-green);
+}
+
+/* Project Grid */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Project Card */
+.project-card {
+  background: #fff;
+  border: 1.5px solid #e0ebe6;
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(45, 80, 22, 0.08);
+}
+
+.project-card h3 {
+  margin: 12px 0 4px;
+  color: var(--dark-green);
+}
+
+.project-card p {
+  color: #556;
+  font-size: 0.95em;
+}
+
+.project-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+}
+
+.project-icon-placeholder {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  background: var(--sky-blue);
+  color: var(--dark-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.project-tagline {
+  color: #7a8a82;
+  font-size: 0.9em;
+  margin-bottom: 4px;
+}
+
+/* Tags */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0;
+}
+
+.tag {
+  background: var(--sky-blue-light);
+  color: var(--frog-green-dark);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.78em;
+  font-weight: 500;
+}
+
+/* Project Links */
+.project-links {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* Status Badge */
+.project-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.status-released {
+  background: #d9f0d4;
+  color: var(--dark-green);
+}
+
+.status-opensource {
+  background: #d4e8f0;
+  color: #1a5276;
+}
+
+.status-development {
+  background: #fce8d4;
+  color: #8a5a2a;
+}
+
+/* Post List */
+.post-list {
+  list-style: none;
+  padding: 0;
+}
+
+.post-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid #e8f0ec;
+}
+
+.post-list .post-meta {
+  color: #8a9a92;
+  font-size: 0.85em;
+  margin-right: 12px;
+}
+
+.post-list a {
+  color: var(--dark-green);
+}
+
+.post-list a:hover {
+  color: var(--frog-green);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero {
+    padding: 40px 16px;
+  }
+
+  .hero .hero-avatar {
+    width: 88px;
+    height: 88px;
+  }
+
+  .hero h1 {
+    font-size: 1.7em;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import { projects } from '../data/projects';
+
+const featuredProjects = projects.filter(p => p.featured);
+
+const allPosts = await getCollection('blog');
+const recentPosts = allPosts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+
+<BaseLayout>
+  <Hero />
+
+  <section class="featured-projects">
+    <div class="section-header">
+      <h2>Featured Projects</h2>
+      <a href="/projects/" class="see-all">모든 프로젝트 보기 &rarr;</a>
+    </div>
+    <div class="project-grid">
+      {featuredProjects.map(project => (
+        <ProjectCard {...project} />
+      ))}
+    </div>
+  </section>
+
+  <section class="latest-posts">
+    <div class="section-header">
+      <h2>Latest Posts</h2>
+      <a href="/blog/" class="see-all">모든 글 보기 &rarr;</a>
+    </div>
+    <ul class="post-list">
+      {recentPosts.map(post => (
+        <li>
+          <time datetime={post.data.date.toISOString()}>
+            {post.data.date.toISOString().slice(0, 10)}
+          </time>
+          <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-header h2 {
+    margin: 0;
+  }
+
+  .see-all {
+    font-size: 0.9rem;
+  }
+
+  .featured-projects,
+  .latest-posts {
+    margin-bottom: 3rem;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .post-list li {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .post-list time {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+</style>

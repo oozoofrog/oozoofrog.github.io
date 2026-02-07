@@ -1,0 +1,32 @@
+---
+title   : 공부, 그리고 공부
+summary : 
+date    : 2018-04-12 21:49:06 +0900
+updated : 2019-03-20 23:40:03 +0900
+tags    : 
+toc     : true
+public  : true
+parent  : 
+latex   : false
+---
+
+[구체수학](concrete_mathematics)
+
+[To Do](todos)
+
+[Coding the Matrix](coding_the_matrix)
+
+[유니코드](unicode)
+
+[유니코드 1.0 연대기](chronology_unicode)
+
+[프로그래밍 언어별 문자열 세기(feat. unicode)](counts_by_language)
+
+[빔 공부](vim)
+
+[이산수학](discrete_mathematics)
+
+[예제로 배우는 테스트 주도 개발](test_drive_development_by_example)
+
+[애플 개발 문서 읽기](reading_apple_development_documentation)
+

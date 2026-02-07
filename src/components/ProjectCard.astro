@@ -1,0 +1,40 @@
+---
+interface Props {
+  name: string;
+  slug: string;
+  tagline: string;
+  description: string;
+  status: string;
+  icon?: string;
+  tags: string[];
+  appstore?: string;
+  github?: string;
+}
+const { name, slug, tagline, description, status, icon, tags, appstore, github } = Astro.props;
+
+const statusClass = `status-${status.toLowerCase().replace(/\s+/g, '')}`;
+---
+<div class="project-card">
+  {icon ? (
+    <img class="project-icon" src={icon} alt={`${name} icon`} />
+  ) : (
+    <div class="project-icon-placeholder">{name.charAt(0)}</div>
+  )}
+  <h3>{name}</h3>
+  <p class="project-tagline">{tagline}</p>
+  <p>{description}</p>
+  <div class="project-tags">
+    {tags.map((tag) => (
+      <span class="tag">{tag}</span>
+    ))}
+  </div>
+  <div class="project-links">
+    {appstore && (
+      <a class="btn btn-primary" href={appstore} target="_blank" rel="noopener noreferrer">App Store</a>
+    )}
+    {github && (
+      <a class="btn btn-secondary" href={github} target="_blank" rel="noopener noreferrer">GitHub</a>
+    )}
+  </div>
+  <span class={`project-status ${statusClass}`}>{status}</span>
+</div>

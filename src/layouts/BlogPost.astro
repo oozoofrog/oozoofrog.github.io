@@ -1,0 +1,58 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  date: string;
+  categories?: string | string[];
+}
+const { title, date, categories: rawCategories } = Astro.props;
+const categories = Array.isArray(rawCategories)
+  ? rawCategories
+  : typeof rawCategories === 'string'
+    ? rawCategories.split(/\s+/).filter(Boolean)
+    : [];
+---
+<BaseLayout title={`${title} | 우주개구리`}>
+  <article>
+    <h1>{title}</h1>
+    <p class="post-meta">
+      <time datetime={date}>{new Date(date).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+      {categories.length > 0 && (
+        <span class="post-categories">
+          {categories.map((cat) => (
+            <span class="tag">{cat}</span>
+          ))}
+        </span>
+      )}
+    </p>
+    <slot />
+  </article>
+</BaseLayout>
+
+<style>
+  article {
+    max-width: 720px;
+  }
+
+  h1 {
+    color: var(--dark-green);
+    margin-bottom: 8px;
+    font-size: 1.8em;
+  }
+
+  .post-meta {
+    color: #8a9a92;
+    font-size: 0.9em;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .post-categories {
+    display: flex;
+    gap: 6px;
+  }
+</style>

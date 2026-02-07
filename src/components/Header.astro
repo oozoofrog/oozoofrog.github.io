@@ -1,0 +1,141 @@
+---
+const pathname = Astro.url.pathname;
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Projects', href: '/projects/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'About', href: '/about/' },
+];
+---
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="/">우주개구리 | oozoofrog</a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <nav>
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[{ active: pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href)) }]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-top: 3px solid var(--frog-green);
+    background: #fff;
+    padding: 0 20px;
+  }
+
+  .header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .site-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--dark-green) !important;
+    text-decoration: none;
+  }
+
+  .site-title:visited {
+    color: var(--dark-green) !important;
+  }
+
+  nav {
+    display: flex;
+    gap: 20px;
+  }
+
+  nav a {
+    color: #555;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  nav a:hover {
+    color: var(--frog-green);
+  }
+
+  nav a.active {
+    color: var(--dark-green);
+    border-bottom-color: var(--frog-green);
+  }
+
+  /* Hamburger menu */
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-toggle-label {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .nav-toggle-label span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--dark-green);
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  @media (max-width: 600px) {
+    .header-inner {
+      flex-wrap: wrap;
+    }
+
+    .nav-toggle-label {
+      display: flex;
+    }
+
+    nav {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      gap: 0;
+      padding: 8px 0;
+    }
+
+    nav a {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .nav-toggle:checked ~ nav {
+      display: flex;
+    }
+
+    .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+  }
+</style>

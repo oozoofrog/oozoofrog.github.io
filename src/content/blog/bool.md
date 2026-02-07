@@ -1,0 +1,12 @@
+---
+title   : Bool
+date    : 2018-04-10 12:00:00 +0900
+categories : swift
+---
+
+# Bool은?
+- 놀랍게도 구조체다.
+
+~~~swift
+
+~~~
