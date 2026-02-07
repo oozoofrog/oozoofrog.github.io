@@ -6,4 +6,34 @@
   <p class="hero-tagline">더 나은 개발 경험을 위해</p>
   <p class="hero-desc">iOS & macOS 앱 개발, 오픈소스 개발 도구를 만드는 우주개구리입니다.</p>
   <a class="btn btn-primary" href="/projects/">프로젝트 보기</a>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" fill="#fafcfa"/>
+    </svg>
+  </div>
 </section>
+
+<style>
+  .hero-avatar {
+    animation: float 3s infinite ease-in-out;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .hero-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+  }
+
+  .hero-wave svg {
+    width: 100%;
+    height: 60px;
+    display: block;
+  }
+</style>

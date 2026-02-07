@@ -26,6 +26,8 @@ body {
 a {
   color: var(--frog-green);
   text-decoration: none;
+  border-bottom: 1.5px solid transparent;
+  transition: color 0.2s ease, border-bottom 0.2s ease;
 }
 
 a:visited {
@@ -34,6 +36,8 @@ a:visited {
 
 a:hover {
   color: var(--planet-orange);
+  border-bottom: 1.5px solid var(--planet-orange);
+  transition: border-bottom 0.2s ease;
 }
 
 img {
@@ -43,7 +47,7 @@ img {
 
 /* Wrapper */
 .wrapper {
-  max-width: 800px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 24px 20px;
 }
@@ -51,11 +55,13 @@ img {
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 60px 20px;
-  background: var(--sky-blue);
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #d0e8f5, var(--sky-blue), #a8cce0);
   color: var(--dark-green);
   border-radius: 12px;
   margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero .hero-avatar {
@@ -97,8 +103,8 @@ img {
 }
 
 .btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
   text-decoration: none;
 }
 
@@ -108,7 +114,7 @@ img {
 }
 
 .hero .btn-primary {
-  background: var(--dark-green);
+  background: linear-gradient(135deg, var(--dark-green), #1a3d0e);
   color: #fff;
 }
 
@@ -128,6 +134,18 @@ img {
 .latest-posts h2 {
   margin-bottom: 20px;
   color: var(--dark-green);
+}
+
+.featured-projects h2::before,
+.latest-posts h2::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 1em;
+  background: var(--frog-green);
+  margin-right: 10px;
+  vertical-align: middle;
+  border-radius: 2px;
 }
 
 .section-more {
@@ -277,8 +295,8 @@ img {
   }
 
   .hero .hero-avatar {
-    width: 88px;
-    height: 88px;
+    width: 110px;
+    height: auto;
   }
 
   .hero h1 {

@@ -12,17 +12,24 @@ interface Props {
 }
 const { name, slug, tagline, description, status, icon, tags, appstore, github } = Astro.props;
 
-const statusClass = `status-${status.toLowerCase().replace(/\s+/g, '')}`;
+const statusIcon = status === 'released' ? '🍎' : status === 'development' ? '🔧' : '📦';
+const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
 ---
 <div class="project-card">
-  {icon ? (
-    <img class="project-icon" src={icon} alt={`${name} icon`} />
-  ) : (
-    <div class="project-icon-placeholder">{name.charAt(0)}</div>
-  )}
-  <h3>{name}</h3>
-  <p class="project-tagline">{tagline}</p>
-  <p>{description}</p>
+  <div class={`status-bar ${statusBarClass}`}></div>
+  <span class="project-status" title={status}>{statusIcon}</span>
+  <div class="card-header">
+    {icon ? (
+      <img class="project-icon" src={icon} alt={`${name} icon`} />
+    ) : (
+      <div class="project-icon-placeholder">{name.charAt(0)}</div>
+    )}
+    <div class="card-header-text">
+      <h3>{name}</h3>
+      <p class="project-tagline">{tagline}</p>
+    </div>
+  </div>
+  <p class="project-description">{description}</p>
   <div class="project-tags">
     {tags.map((tag) => (
       <span class="tag">{tag}</span>
@@ -30,11 +37,163 @@ const statusClass = `status-${status.toLowerCase().replace(/\s+/g, '')}`;
   </div>
   <div class="project-links">
     {appstore && (
-      <a class="btn btn-primary" href={appstore} target="_blank" rel="noopener noreferrer">App Store</a>
+      <a class="btn btn-primary" href={appstore} target="_blank" rel="noopener noreferrer">App Store ↗</a>
     )}
     {github && (
-      <a class="btn btn-secondary" href={github} target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="btn btn-secondary" href={github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
     )}
   </div>
-  <span class={`project-status ${statusClass}`}>{status}</span>
 </div>
+
+<style>
+  .project-card {
+    position: relative;
+    background: #fff;
+    border: 1.5px solid #e0ebe6;
+    border-radius: 12px;
+    padding: 24px;
+    padding-top: 28px;
+    overflow: hidden;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  }
+
+  .project-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--frog-green);
+    box-shadow: 0 8px 24px rgba(45, 80, 22, 0.15);
+  }
+
+  /* Status color bar at top */
+  .status-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+
+  .status-bar-released {
+    background: var(--frog-green);
+  }
+
+  .status-bar-development {
+    background: var(--planet-orange);
+  }
+
+  .status-bar-opensource {
+    background: var(--sky-blue);
+  }
+
+  /* Status icon - top right */
+  .project-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.1em;
+    line-height: 1;
+    cursor: default;
+  }
+
+  /* Card header: icon + text side by side */
+  .card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding-right: 32px;
+  }
+
+  .project-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    flex-shrink: 0;
+  }
+
+  .project-icon-placeholder {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    background: var(--sky-blue);
+    color: var(--dark-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .card-header-text h3 {
+    margin: 0 0 2px;
+    color: var(--dark-green);
+  }
+
+  .project-tagline {
+    color: #7a8a82;
+    font-size: 0.9em;
+    margin: 0;
+  }
+
+  .project-description {
+    color: #556;
+    font-size: 0.95em;
+    margin-bottom: 12px;
+  }
+
+  /* Tags */
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .tag {
+    background: var(--sky-blue-light);
+    color: var(--frog-green-dark);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.78em;
+    font-weight: 500;
+    transition: background 0.15s;
+  }
+
+  .tag:hover {
+    background: var(--sky-blue);
+  }
+
+  /* Links */
+  .project-links {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .project-links .btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .project-links .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  .project-links .btn-primary {
+    background: var(--frog-green);
+    color: #fff;
+  }
+
+  .project-links .btn-secondary {
+    background: #fff;
+    color: var(--dark-green);
+    border: 1.5px solid #d0d8d4;
+  }
+</style>
