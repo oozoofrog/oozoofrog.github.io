@@ -1,16 +1,35 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { categories, getCategory } from '../../data/categories';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const categoryCounts: Record<string, number> = { all: posts.length };
+for (const post of posts) {
+  const cat = getCategory(post.id);
+  categoryCounts[cat] = (categoryCounts[cat] ?? 0) + 1;
+}
 ---
 
 <BaseLayout title="Blog">
   <h1>Blog</h1>
+
+  <div class="filter-bar">
+    {categories.map(cat => (
+      <button
+        class={`filter-pill${cat.key === 'all' ? ' active' : ''}`}
+        data-filter={cat.key}
+      >
+        {cat.label} <span class="pill-count">{categoryCounts[cat.key] ?? 0}</span>
+      </button>
+    ))}
+  </div>
+
   <ul class="post-list">
     {posts.map(post => (
-      <li>
+      <li data-category={getCategory(post.id)}>
         <time datetime={post.data.date.toISOString()}>
           {post.data.date.toISOString().slice(0, 10)}
         </time>
@@ -23,6 +42,59 @@ const posts = (await getCollection('blog'))
 <style>
   h1 {
     margin-bottom: 1.5rem;
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .filter-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.45);
+    color: var(--dark-green);
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+
+  @supports (backdrop-filter: blur(8px)) {
+    .filter-pill {
+      backdrop-filter: blur(8px);
+    }
+  }
+
+  .filter-pill:hover {
+    background: rgba(91, 168, 71, 0.15);
+    border-color: var(--frog-green);
+  }
+
+  .filter-pill.active {
+    background: var(--frog-green);
+    color: #fff;
+    border-color: var(--frog-green);
+  }
+
+  .pill-count {
+    font-weight: 400;
+    opacity: 0.8;
+    font-size: 0.8rem;
   }
 
   .post-list {
@@ -38,9 +110,47 @@ const posts = (await getCollection('blog'))
     border-bottom: 1px solid var(--border);
   }
 
+  .post-list li[hidden] {
+    display: none;
+  }
+
   .post-list time {
     font-size: 0.85rem;
     color: var(--text-secondary);
     white-space: nowrap;
   }
 </style>
+
+<script>
+  function initFilter() {
+    const pills = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
+    const items = document.querySelectorAll<HTMLLIElement>('.post-list li');
+
+    function applyFilter(key: string) {
+      pills.forEach(p => p.classList.toggle('active', p.dataset.filter === key));
+      items.forEach(li => {
+        li.hidden = key !== 'all' && li.dataset.category !== key;
+      });
+    }
+
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const key = pill.dataset.filter!;
+        window.location.hash = key === 'all' ? '' : key;
+        applyFilter(key);
+      });
+    });
+
+    // hash에서 초기 필터 적용
+    const hash = window.location.hash.slice(1);
+    if (hash) applyFilter(hash);
+
+    window.addEventListener('hashchange', () => {
+      const h = window.location.hash.slice(1);
+      applyFilter(h || 'all');
+    });
+  }
+
+  initFilter();
+  document.addEventListener('astro:after-swap', initFilter);
+</script>
