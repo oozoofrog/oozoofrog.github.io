@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Comments from '../components/Comments.astro';
 
 interface Props {
   title: string;
@@ -27,6 +28,7 @@ const categories = Array.isArray(rawCategories)
       )}
     </p>
     <slot />
+    <Comments />
   </article>
 </BaseLayout>
 
