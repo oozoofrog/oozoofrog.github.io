@@ -24,7 +24,7 @@ const blog = defineCollection({
 });
 
 const news = defineCollection({
-  loader: glob({ pattern: "**/*.html", base: "./src/content/news" }),
+  loader: glob({ pattern: "**/*.md", base: "./src/content/news" }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
