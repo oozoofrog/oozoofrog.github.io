@@ -23,15 +23,4 @@ const blog = defineCollection({
   }),
 });
 
-const news = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/news" }),
-  schema: z.object({
-    title: z.string(),
-    date: z.coerce.date(),
-    subtitle: z.string().optional(),
-    categories: z.array(z.string()).optional(),
-    summary: z.string().optional(),
-  }),
-});
-
-export const collections = { blog, news };
+export const collections = { blog };

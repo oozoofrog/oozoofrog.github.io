@@ -1,9 +1,24 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { readdir } from 'fs/promises';
+import { join } from 'path';
 
-const newsItems = (await getCollection('news'))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+// src/pages/news/ 폴더의 .astro 파일 목록
+const newsDir = join(process.cwd(), 'src/pages/news');
+const files = await readdir(newsDir);
+const newsFiles = files
+  .filter(f => f.endsWith('.astro') && f !== 'index.astro')
+  .map(f => f.replace('.astro', ''))
+  .sort((a, b) => b.localeCompare(a)); // 날짜 역순 정렬
+
+// 수동으로 뉴스 메타데이터 정의 (나중에 자동화 가능)
+const newsItems = newsFiles.map(slug => ({
+  slug,
+  title: '지난 24시간 세상의 모든 소식',
+  date: new Date(slug), // 파일명이 날짜 형식이라고 가정
+  subtitle: '증시, 정치, 국제, 기술, 과학, 스포츠 종합',
+  categories: ['증시', 'AI', '정치', '국제', '과학', '스포츠'],
+}));
 ---
 
 <BaseLayout title="News">
@@ -15,30 +30,27 @@ const newsItems = (await getCollection('news'))
   <ul class="news-list">
     {newsItems.map(item => (
       <li>
-        <a href={`/news/${item.id}/`} class="news-card">
+        <a href={`/news/${item.slug}/`} class="news-card">
           <div class="news-header">
-            <time datetime={item.data.date.toISOString()}>
-              {item.data.date.toLocaleDateString('ko-KR', { 
+            <time datetime={item.date.toISOString()}>
+              {item.date.toLocaleDateString('ko-KR', { 
                 year: 'numeric', 
                 month: 'long', 
                 day: 'numeric',
                 weekday: 'short'
               })}
             </time>
-            {item.data.categories && (
+            {item.categories && (
               <div class="categories">
-                {item.data.categories.map(cat => (
+                {item.categories.map(cat => (
                   <span class="category-tag">{cat}</span>
                 ))}
               </div>
             )}
           </div>
-          <h2>{item.data.title}</h2>
-          {item.data.subtitle && (
-            <p class="subtitle">{item.data.subtitle}</p>
-          )}
-          {item.data.summary && (
-            <p class="summary">{item.data.summary}</p>
+          <h2>{item.title}</h2>
+          {item.subtitle && (
+            <p class="subtitle">{item.subtitle}</p>
           )}
         </a>
       </li>
@@ -134,13 +146,6 @@ const newsItems = (await getCollection('news'))
     color: var(--text-secondary);
     font-style: italic;
     margin-bottom: 0.75rem;
-  }
-
-  .summary {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin: 0;
   }
 
   .empty-state {
