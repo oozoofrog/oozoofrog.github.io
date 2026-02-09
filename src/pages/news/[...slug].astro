@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const newsItems = await getCollection('news');
+  return newsItems.map(item => ({
+    params: { slug: item.id },
+    props: { item },
+  }));
+}
+
+interface Props {
+  item: CollectionEntry<'news'>;
+}
+
+const { item } = Astro.props;
+const { Content } = await item.render();
+---
+
+<BaseLayout title={item.data.title}>
+  <article class="news-article">
+    <header class="news-header">
+      <div class="breadcrumb">
+        <a href="/news">← 뉴스 목록</a>
+      </div>
+      
+      <time datetime={item.data.date.toISOString()}>
+        {item.data.date.toLocaleDateString('ko-KR', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric',
+          weekday: 'long'
+        })}
+      </time>
+
+      <h1>{item.data.title}</h1>
+      
+      {item.data.subtitle && (
+        <p class="subtitle">{item.data.subtitle}</p>
+      )}
+
+      {item.data.categories && (
+        <div class="categories">
+          {item.data.categories.map(cat => (
+            <span class="category-tag">{cat}</span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="news-content">
+      <Content />
+    </div>
+
+    <footer class="news-footer">
+      <a href="/news" class="back-link">← 뉴스 목록으로 돌아가기</a>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .news-article {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1rem;
+  }
+
+  .breadcrumb a {
+    color: var(--frog-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .news-header {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--border);
+  }
+
+  time {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--dark-green);
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  .categories {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .category-tag {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--frog-green);
+    color: white;
+    font-weight: 600;
+  }
+
+  .news-content {
+    margin: 2rem 0;
+    line-height: 1.8;
+  }
+
+  .news-content :global(h2) {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .news-content :global(p) {
+    margin-bottom: 1rem;
+  }
+
+  .news-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border);
+  }
+
+  .back-link {
+    color: var(--frog-green);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+    }
+  }
+</style>

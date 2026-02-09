@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const newsItems = (await getCollection('news'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout title="News">
+  <h1>📰 Daily News</h1>
+  <p class="description">
+    지난 24시간 세상의 모든 소식 · 카라얀이 선별한 데일리 브리핑
+  </p>
+
+  <ul class="news-list">
+    {newsItems.map(item => (
+      <li>
+        <a href={`/news/${item.id}/`} class="news-card">
+          <div class="news-header">
+            <time datetime={item.data.date.toISOString()}>
+              {item.data.date.toLocaleDateString('ko-KR', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                weekday: 'short'
+              })}
+            </time>
+            {item.data.categories && (
+              <div class="categories">
+                {item.data.categories.map(cat => (
+                  <span class="category-tag">{cat}</span>
+                ))}
+              </div>
+            )}
+          </div>
+          <h2>{item.data.title}</h2>
+          {item.data.subtitle && (
+            <p class="subtitle">{item.data.subtitle}</p>
+          )}
+          {item.data.summary && (
+            <p class="summary">{item.data.summary}</p>
+          )}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  {newsItems.length === 0 && (
+    <div class="empty-state">
+      <p>아직 뉴스가 없습니다. 첫 번째 데일리 브리핑을 기다려주세요! 🎵</p>
+    </div>
+  )}
+</BaseLayout>
+
+<style>
+  h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .news-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .news-card {
+    display: block;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.6);
+    transition: all 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  @supports (backdrop-filter: blur(8px)) {
+    .news-card {
+      backdrop-filter: blur(8px);
+    }
+  }
+
+  .news-card:hover {
+    border-color: var(--frog-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(91, 168, 71, 0.15);
+  }
+
+  .news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  time {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .categories {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .category-tag {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--frog-green);
+    color: white;
+    font-weight: 600;
+  }
+
+  .news-card h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--dark-green);
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 0.75rem;
+  }
+
+  .summary {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 640px) {
+    .news-card {
+      padding: 1rem;
+    }
+
+    .news-card h2 {
+      font-size: 1.25rem;
+    }
+  }
+</style>
