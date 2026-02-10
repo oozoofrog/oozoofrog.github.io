@@ -1,438 +1,492 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>종합 데일리 브리핑 | 2026년 2월 10일</title>
-    <meta name="description" content="지난 24시간 세상의 모든 소식">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #faf8f3;
-            --bg-secondary: #f5f2eb;
-            --bg-card: #ffffff;
-            --text-primary: #1a1a1a;
-            --text-secondary: #4a4a4a;
-            --text-muted: #888888;
-            --accent-up: #16a34a;
-            --accent-down: #dc2626;
-            --accent-neutral: #2563eb;
-            --border-color: #e0dcd4;
-            --border-dark: #1a1a1a;
-        }
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<BaseLayout title="종합 데일리 브리핑 | 2026년 2월 10일">
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" slot="head-extra">
 
-        body {
-            font-family: 'Noto Serif KR', Georgia, serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.7;
-            min-height: 100vh;
-        }
-
-        .container { max-width: 900px; margin: 0 auto; padding: 0 24px 40px; }
-
-        header {
-            padding: 40px 0 30px;
-            text-align: center;
-            border-bottom: 3px double var(--border-dark);
-            margin-bottom: 30px;
-        }
-
-        .edition {
-            font-family: 'Inter', sans-serif;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
-
-        h1 {
-            font-size: clamp(2.2rem, 5vw, 3.2rem);
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            margin-bottom: 12px;
-            line-height: 1.1;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
-        .dateline {
-            font-family: 'Inter', sans-serif;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .market-ticker {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 30px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-        }
-
-        .ticker-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .ticker-label { color: var(--text-muted); }
-        .ticker-value.up { color: var(--accent-up); font-weight: 600; }
-        .ticker-value.down { color: var(--accent-down); font-weight: 600; }
-
-        section { margin-bottom: 40px; }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--border-dark);
-        }
-
-        h2 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .lead-story {
-            padding: 30px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            margin-bottom: 30px;
-        }
-
-        .lead-story h3 {
-            font-size: 1.6rem;
-            font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 16px;
-        }
-
-        .lead-story p {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            margin-bottom: 12px;
-        }
-
-        .breaking-banner {
-            background: #1a1a1a;
-            color: #ffffff;
-            padding: 16px 24px;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-        }
-
-        .highlights-box {
-            background: var(--bg-secondary);
-            border-left: 4px solid var(--border-dark);
-            padding: 20px 24px;
-            margin: 30px 0;
-        }
-
-        .highlights-box h4 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 14px;
-            font-weight: 700;
-        }
-
-        .highlights-box ul {
-            list-style: none;
-        }
-
-        .highlights-box li {
-            padding: 8px 0;
-            border-bottom: 1px dashed var(--border-color);
-            font-size: 0.95rem;
-        }
-
-        .highlights-box li:last-child { border-bottom: none; }
-
-        .news-article {
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .news-article:last-child { border-bottom: none; }
-
-        .news-article h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 10px;
-        }
-
-        .news-article p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 8px;
-        }
-
-        .tag {
-            display: inline-block;
-            font-family: 'Inter', sans-serif;
-            font-size: 10px;
-            font-weight: 600;
-            padding: 3px 8px;
-            border-radius: 2px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-right: 6px;
-        }
-
-        .tag.markets { background: #fef3c7; color: #b45309; }
-        .tag.ai { background: #f3e8ff; color: #7c3aed; }
-        .tag.politics { background: #dbeafe; color: #1e40af; }
-        .tag.world { background: #fce7f3; color: #be185d; }
-        .tag.science { background: #d1fae5; color: #065f46; }
-        .tag.sports { background: #ffedd5; color: #c2410c; }
-        .tag.breaking { background: #1a1a1a; color: #ffffff; }
-
-        footer {
-            margin-top: 50px;
-            padding: 24px 0;
-            border-top: 3px double var(--border-dark);
-            text-align: center;
-        }
-
-        .footer-credit {
-            font-family: 'Inter', sans-serif;
-            font-size: 11px;
-            color: var(--text-muted);
-            letter-spacing: 0.05em;
-        }
-
-        @media (max-width: 700px) {
-            .market-ticker { gap: 16px; }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <div class="edition">Comprehensive Daily Briefing</div>
-            <h1>지난 24시간 세상의 모든 소식</h1>
-            <p class="subtitle">증시, 정치, 국제, 기술, 과학, 스포츠 종합</p>
-            <div class="dateline">2026년 2월 10일 월요일 오전 7시 · 카라얀 에디션</div>
-        </header>
-
-        <div class="breaking-banner">
-            🏆 DOW JONES 50,000 역사적 돌파 · 🤖 AI 업계 광고 전쟁 격화
-        </div>
-
-        <div class="market-ticker">
-            <div class="ticker-item">
-                <span class="ticker-label">Dow</span>
-                <span class="ticker-value up">▲ 2.47% (50,115)</span>
-            </div>
-            <div class="ticker-item">
-                <span class="ticker-label">S&P 500</span>
-                <span class="ticker-value up">▲ 1.97% (6,932)</span>
-            </div>
-            <div class="ticker-item">
-                <span class="ticker-label">Nasdaq</span>
-                <span class="ticker-value up">▲ 2.18% (23,031)</span>
-            </div>
-        </div>
-
-        <!-- 증시 -->
-        <section>
-            <div class="section-header">
-                <h2>💹 증시/경제</h2>
-            </div>
-
-            <div class="lead-story">
-                <h3>다우존스, 사상 첫 50,000 돌파</h3>
-                <p>지난 금요일(2/7) 다우존스 산업평균지수가 역사상 처음으로 50,000선을 돌파하며 50,115.67에 마감했습니다. 전일 대비 1,206.95포인트(2.47%) 급등한 기록입니다.</p>
-                <p>주 초반 3일 연속 600포인트 이상 급락한 후 목요일과 금요일 강력한 반등으로 이룬 성과입니다. 기술주 밸류에이션 상승, 견고한 기업 실적, 금리 인하 기대감이 랠리를 견인했습니다. S&P 500은 1.97% 상승, 나스닥은 2.18% 올라 기술주와 전통 산업 모두 강세를 보였습니다.</p>
-            </div>
-        </section>
-
-        <!-- AI/기술 -->
-        <section>
-            <div class="section-header">
-                <h2>🤖 AI & 기술</h2>
-            </div>
-
-            <div class="news-article">
-                <span class="tag breaking">BREAKING</span>
-                <span class="tag ai">AI</span>
-                <h3>Anthropic vs OpenAI: 슈퍼볼 광고로 격돌</h3>
-                <p>Anthropic이 슈퍼볼 LX 기간 수백만 달러 규모의 광고를 집행하며 OpenAI를 정면 공격했습니다. "Ads are coming to AI. But not to Claude." 라는 메시지로 ChatGPT의 광고 정책을 조롱했고, Sam Altman은 이를 "부정직하다"며 강하게 반발했습니다. AI 업계 최대 라이벌 간의 공개 전쟁으로 번지고 있습니다.</p>
-            </div>
-
-            <div class="news-article">
-                <span class="tag ai">AI</span>
-                <h3>유럽, AI 플랫폼 기본값에 대한 규제 강화</h3>
-                <p>유럽 규제 당국이 지배적 플랫폼 내 AI 기본 설정에 대해 더욱 강경한 입장을 취하고 있습니다. 정부와 투자자들은 칩, 연결성, 차세대 데이터센터 기술에 수십억 달러를 쏟아붓고 있습니다.</p>
-            </div>
-        </section>
-
-        <!-- 정치 -->
-        <section>
-            <div class="section-header">
-                <h2>🏛️ 정치</h2>
-            </div>
-
-            <div class="news-article">
-                <span class="tag politics">DIPLOMACY</span>
-                <h3>미국-이란 핵 협상, 오만 회담 후 지속</h3>
-                <p>미국과 이란 간의 핵 협상이 오만에서의 회담을 마치고 계속 진행되고 있습니다. 양측은 추가 회담 일정을 조율 중이며, 외교적 해법 모색에 신중한 낙관론이 나오고 있습니다.</p>
-            </div>
-
-            <div class="news-article">
-                <span class="tag politics">US</span>
-                <h3>미국, UN 분담금 $2.19B 체납</h3>
-                <p>UN 관계자에 따르면 UN 정규 예산 체납액의 95% 이상이 미국이 빚진 금액으로, 2월 초 기준 21억 9천만 달러에 달합니다. 국가안보보좌관 Waltz는 "연회비에 대한 상당한 선불"을 언급했으나 최종 금액은 미정입니다.</p>
-            </div>
-
-            <div class="news-article">
-                <span class="tag politics">CONTROVERSY</span>
-                <h3>Trump, 미국 올림픽 스키 선수를 "loser" 호칭</h3>
-                <p>Trump 대통령이 미국 정치적 혼란에 대한 우려를 표명한 올림픽 스키 선수 Hunter Hess를 "loser"라고 불러 논란이 일고 있습니다.</p>
-            </div>
-
-            <div class="news-article">
-                <span class="tag politics">PENTAGON</span>
-                <h3>국방부, Harvard 군사교육 프로그램 종료</h3>
-                <p>Pete Hegseth 국방장관이 금요일 국방부가 2026-2027학년도부터 Harvard에서의 대학원급 군사교육, 펠로우십 및 자격증 프로그램을 종료할 것이라고 발표했습니다.</p>
-            </div>
-        </section>
-
-        <!-- 국제 -->
-        <section>
-            <div class="section-header">
-                <h2>🌍 국제</h2>
-            </div>
-
-            <div class="news-article">
-                <span class="tag world">LATIN AMERICA</span>
-                <h3>쿠바, 경제 위기 심화</h3>
-                <p>쿠바가 심각한 경제 위기에 직면해 있습니다. 하바나의 주유소에는 긴 줄이 늘어서 있으며, 식량과 필수품 부족이 계속되고 있습니다. 1월 30일 촬영된 사진은 위기의 심각성을 보여줍니다.</p>
-            </div>
-
-            <div class="news-article">
-                <span class="tag world">VENEZUELA</span>
-                <h3>베네수엘라 정부, 야당 인사 석방</h3>
-                <p>베네수엘라 정부가 구금 중이던 야당 인사들을 석방했습니다. 국제사회의 압력과 외교적 노력의 결과로 해석되고 있습니다.</p>
-            </div>
-
-            <div class="news-article">
-                <span class="tag world">INDIA</span>
-                <h3>인도, 세이셸에 $175M 개발 지원</h3>
-                <p>Narendra Modi 인도 총리가 세이셸의 Patrick Herminie 대통령과 광범위한 회담을 가진 후, 인도가 세이셸에 1억 7천5백만 달러의 개발 지원을 발표했습니다.</p>
-            </div>
-        </section>
-
-        <!-- 과학 -->
-        <section>
-            <div class="section-header">
-                <h2>🔬 과학</h2>
-            </div>
-
-            <div class="news-article">
-                <span class="tag science">SPACE</span>
-                <h3>금성에서 거대 빈 용암 터널 발견</h3>
-                <p>과학자들이 금성 지하에 숨겨진 거대한 빈 용암 터널의 증거를 발견했습니다. 이는 금성의 지질학적 역사와 구조에 대한 새로운 통찰을 제공하며, 향후 금성 탐사 계획에 중요한 정보가 될 것으로 기대됩니다.</p>
-            </div>
-
-            <div class="news-article">
-                <span class="tag science">SPACE</span>
-                <h3>NASA/SpaceX ISS 승무원 발사 날씨로 연기</h3>
-                <p>NASA와 SpaceX 임무 관리자들이 국제우주정거장(ISS)으로 향할 다음 승무원의 Falcon 9 발사를 연기했습니다. 더 나은 날씨 조건을 기다리고 있으며, 새로운 발사 일정은 조만간 발표될 예정입니다.</p>
-            </div>
-
-            <div class="news-article">
-                <span class="tag science">HEALTH</span>
-                <h3>D-cysteine, 새로운 치료 가능성 발견</h3>
-                <p>제네바대학교와 Marburg 연구진이 cysteine의 "거울" 형태인 D-cysteine이 새로운 치료적 가능성을 가지고 있음을 밝혀냈습니다.</p>
-            </div>
-        </section>
-
-        <!-- 스포츠 -->
-        <section>
-            <div class="section-header">
-                <h2>⚽ 스포츠</h2>
-            </div>
-
-            <div class="news-article">
-                <span class="tag sports">BADMINTON</span>
-                <h3>BWF, 2027년부터 세계 캘린더 대규모 개편</h3>
-                <p>세계배드민턴연맹(BWF)이 월요일(2/9) 2027년부터 글로벌 캘린더의 대규모 개편을 발표했습니다. 확장된 월드투어, 높아진 상금, 그리고 새로운 경기 형식을 도입하여 배드민턴 스포츠의 성장을 가속화할 계획입니다.</p>
-            </div>
-
-            <div class="news-article">
-                <span class="tag sports">NFL</span>
-                <h3>Super Bowl LX 성공적 개최</h3>
-                <p>제60회 슈퍼볼이 성공적으로 개최되었으며, Anthropic과 OpenAI의 AI 광고 대결이 화제를 모았습니다. 경기 자체도 치열한 접전 끝에 막을 내렸습니다.</p>
-            </div>
-
-            <div class="news-article">
-                <span class="tag sports">WWE</span>
-                <h3>WWE, Royal Rumble 후 Oba Femi 대규모 이동</h3>
-                <p>WWE가 Royal Rumble 2026에서 인상적인 퍼포먼스를 보인 Oba Femi에 대한 주요 결정을 내렸습니다. Brock Lesnar도 회사의 큰 움직임에 포함되었습니다.</p>
-            </div>
-        </section>
-
-        <!-- 엔터테인먼트 -->
-        <section>
-            <div class="section-header">
-                <h2>🎬 엔터테인먼트</h2>
-            </div>
-
-            <div class="news-article">
-                <span class="tag breaking">BREAKING</span>
-                <h3>Kim Kardashian-Lewis Hamilton 열애설</h3>
-                <p>Kim Kardashian이 슈퍼볼에서 F1 드라이버 Lewis Hamilton과 함께 모습을 드러내며 열애설이 불거졌습니다. 두 사람의 관계에 대한 관심이 집중되고 있습니다.</p>
-            </div>
-
-            <div class="news-article">
-                <h3>"Looksmaxxing" 인플루언서 Clavicular 법적 문제</h3>
-                <p>"Looksmaxxing" 인플루언서 Clavicular가 법적 문제에 직면했습니다. Maricopa County에서 구금된 것으로 알려졌습니다.</p>
-            </div>
-        </section>
-
-        <div class="highlights-box">
-            <h4>📌 오늘의 주요 헤드라인</h4>
-            <ul>
-                <li>💹 다우존스 역사상 첫 50,000 돌파, 기술주 강세 지속</li>
-                <li>🤖 Anthropic vs OpenAI 슈퍼볼 광고 전쟁, AI 업계 격돌</li>
-                <li>🏛️ 미-이란 핵 협상 지속, 베네수엘라 야당 인사 석방</li>
-                <li>🌍 쿠바 경제 위기, 인도 세이셸에 $175M 지원</li>
-                <li>🔬 금성 거대 용암 터널 발견, NASA ISS 발사 연기</li>
-                <li>⚽ BWF 2027 대규모 개편, WWE Royal Rumble 후 Oba Femi 이동</li>
-                <li>🎬 Kim Kardashian-Lewis Hamilton 열애설</li>
-            </ul>
-        </div>
-
-        <footer>
-            <p class="footer-credit">🪄 CURATED BY 카라얀 · 2026년 2월 10일 오전 7시</p>
-        </footer>
+  <div class="news-container">
+    <div class="breadcrumb">
+      <a href="/news">← 뉴스 목록</a>
     </div>
-</body>
-</html>
+
+    <header class="news-header">
+      <div class="edition">Comprehensive Daily Briefing</div>
+      <h1>지난 24시간 세상의 모든 소식</h1>
+      <p class="subtitle">증시, 정치, 국제, 기술, 과학, 스포츠 종합</p>
+      <div class="dateline">2026년 2월 10일 월요일 오전 7시 · 카라얀 에디션</div>
+    </header>
+
+    <div class="breaking-banner">
+      🏆 DOW JONES 50,000 역사적 돌파 · 🤖 AI 업계 광고 전쟁 격화
+    </div>
+
+    <div class="market-ticker">
+      <div class="ticker-item">
+        <span class="ticker-label">Dow</span>
+        <span class="ticker-value up">▲ 2.47% (50,115)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">S&P 500</span>
+        <span class="ticker-value up">▲ 1.97% (6,932)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">Nasdaq</span>
+        <span class="ticker-value up">▲ 2.18% (23,031)</span>
+      </div>
+    </div>
+
+    <!-- 증시 -->
+    <section>
+      <div class="section-header">
+        <h2>💹 증시/경제</h2>
+      </div>
+
+      <div class="lead-story">
+        <h3>다우존스, 사상 첫 50,000 돌파</h3>
+        <p>지난 금요일(2/7) 다우존스 산업평균지수가 역사상 처음으로 50,000선을 돌파하며 50,115.67에 마감했습니다. 전일 대비 1,206.95포인트(2.47%) 급등한 기록입니다.</p>
+        <p>주 초반 3일 연속 600포인트 이상 급락한 후 목요일과 금요일 강력한 반등으로 이룬 성과입니다. 기술주 밸류에이션 상승, 견고한 기업 실적, 금리 인하 기대감이 랠리를 견인했습니다. S&P 500은 1.97% 상승, 나스닥은 2.18% 올라 기술주와 전통 산업 모두 강세를 보였습니다.</p>
+      </div>
+    </section>
+
+    <!-- AI/기술 -->
+    <section>
+      <div class="section-header">
+        <h2>🤖 AI & 기술</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag ai">AI</span>
+        <h3>Anthropic vs OpenAI: 슈퍼볼 광고로 격돌</h3>
+        <p>Anthropic이 슈퍼볼 LX 기간 수백만 달러 규모의 광고를 집행하며 OpenAI를 정면 공격했습니다. "Ads are coming to AI. But not to Claude." 라는 메시지로 ChatGPT의 광고 정책을 조롱했고, Sam Altman은 이를 "부정직하다"며 강하게 반발했습니다. AI 업계 최대 라이벌 간의 공개 전쟁으로 번지고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">AI</span>
+        <h3>유럽, AI 플랫폼 기본값에 대한 규제 강화</h3>
+        <p>유럽 규제 당국이 지배적 플랫폼 내 AI 기본 설정에 대해 더욱 강경한 입장을 취하고 있습니다. 정부와 투자자들은 칩, 연결성, 차세대 데이터센터 기술에 수십억 달러를 쏟아붓고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 정치 -->
+    <section>
+      <div class="section-header">
+        <h2>🏛️ 정치</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">DIPLOMACY</span>
+        <h3>미국-이란 핵 협상, 오만 회담 후 지속</h3>
+        <p>미국과 이란 간의 핵 협상이 오만에서의 회담을 마치고 계속 진행되고 있습니다. 양측은 추가 회담 일정을 조율 중이며, 외교적 해법 모색에 신중한 낙관론이 나오고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">US</span>
+        <h3>미국, UN 분담금 $2.19B 체납</h3>
+        <p>UN 관계자에 따르면 UN 정규 예산 체납액의 95% 이상이 미국이 빚진 금액으로, 2월 초 기준 21억 9천만 달러에 달합니다. 국가안보보좌관 Waltz는 "연회비에 대한 상당한 선불"을 언급했으나 최종 금액은 미정입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">CONTROVERSY</span>
+        <h3>Trump, 미국 올림픽 스키 선수를 "loser" 호칭</h3>
+        <p>Trump 대통령이 미국 정치적 혼란에 대한 우려를 표명한 올림픽 스키 선수 Hunter Hess를 "loser"라고 불러 논란이 일고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">PENTAGON</span>
+        <h3>국방부, Harvard 군사교육 프로그램 종료</h3>
+        <p>Pete Hegseth 국방장관이 금요일 국방부가 2026-2027학년도부터 Harvard에서의 대학원급 군사교육, 펠로우십 및 자격증 프로그램을 종료할 것이라고 발표했습니다.</p>
+      </div>
+    </section>
+
+    <!-- 국제 -->
+    <section>
+      <div class="section-header">
+        <h2>🌍 국제</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">LATIN AMERICA</span>
+        <h3>쿠바, 경제 위기 심화</h3>
+        <p>쿠바가 심각한 경제 위기에 직면해 있습니다. 하바나의 주유소에는 긴 줄이 늘어서 있으며, 식량과 필수품 부족이 계속되고 있습니다. 1월 30일 촬영된 사진은 위기의 심각성을 보여줍니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">VENEZUELA</span>
+        <h3>베네수엘라 정부, 야당 인사 석방</h3>
+        <p>베네수엘라 정부가 구금 중이던 야당 인사들을 석방했습니다. 국제사회의 압력과 외교적 노력의 결과로 해석되고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">INDIA</span>
+        <h3>인도, 세이셸에 $175M 개발 지원</h3>
+        <p>Narendra Modi 인도 총리가 세이셸의 Patrick Herminie 대통령과 광범위한 회담을 가진 후, 인도가 세이셸에 1억 7천5백만 달러의 개발 지원을 발표했습니다.</p>
+      </div>
+    </section>
+
+    <!-- 과학 -->
+    <section>
+      <div class="section-header">
+        <h2>🔬 과학</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">SPACE</span>
+        <h3>금성에서 거대 빈 용암 터널 발견</h3>
+        <p>과학자들이 금성 지하에 숨겨진 거대한 빈 용암 터널의 증거를 발견했습니다. 이는 금성의 지질학적 역사와 구조에 대한 새로운 통찰을 제공하며, 향후 금성 탐사 계획에 중요한 정보가 될 것으로 기대됩니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">SPACE</span>
+        <h3>NASA/SpaceX ISS 승무원 발사 날씨로 연기</h3>
+        <p>NASA와 SpaceX 임무 관리자들이 국제우주정거장(ISS)으로 향할 다음 승무원의 Falcon 9 발사를 연기했습니다. 더 나은 날씨 조건을 기다리고 있으며, 새로운 발사 일정은 조만간 발표될 예정입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">HEALTH</span>
+        <h3>D-cysteine, 새로운 치료 가능성 발견</h3>
+        <p>제네바대학교와 Marburg 연구진이 cysteine의 "거울" 형태인 D-cysteine이 새로운 치료적 가능성을 가지고 있음을 밝혀냈습니다.</p>
+      </div>
+    </section>
+
+    <!-- 스포츠 -->
+    <section>
+      <div class="section-header">
+        <h2>⚽ 스포츠</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">BADMINTON</span>
+        <h3>BWF, 2027년부터 세계 캘린더 대규모 개편</h3>
+        <p>세계배드민턴연맹(BWF)이 월요일(2/9) 2027년부터 글로벌 캘린더의 대규모 개편을 발표했습니다. 확장된 월드투어, 높아진 상금, 그리고 새로운 경기 형식을 도입하여 배드민턴 스포츠의 성장을 가속화할 계획입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">NFL</span>
+        <h3>Super Bowl LX 성공적 개최</h3>
+        <p>제60회 슈퍼볼이 성공적으로 개최되었으며, Anthropic과 OpenAI의 AI 광고 대결이 화제를 모았습니다. 경기 자체도 치열한 접전 끝에 막을 내렸습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">WWE</span>
+        <h3>WWE, Royal Rumble 후 Oba Femi 대규모 이동</h3>
+        <p>WWE가 Royal Rumble 2026에서 인상적인 퍼포먼스를 보인 Oba Femi에 대한 주요 결정을 내렸습니다. Brock Lesnar도 회사의 큰 움직임에 포함되었습니다.</p>
+      </div>
+    </section>
+
+    <!-- 엔터테인먼트 -->
+    <section>
+      <div class="section-header">
+        <h2>🎬 엔터테인먼트</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <h3>Kim Kardashian-Lewis Hamilton 열애설</h3>
+        <p>Kim Kardashian이 슈퍼볼에서 F1 드라이버 Lewis Hamilton과 함께 모습을 드러내며 열애설이 불거졌습니다. 두 사람의 관계에 대한 관심이 집중되고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <h3>"Looksmaxxing" 인플루언서 Clavicular 법적 문제</h3>
+        <p>"Looksmaxxing" 인플루언서 Clavicular가 법적 문제에 직면했습니다. Maricopa County에서 구금된 것으로 알려졌습니다.</p>
+      </div>
+    </section>
+
+    <div class="highlights-box">
+      <h4>📌 오늘의 주요 헤드라인</h4>
+      <ul>
+        <li>💹 다우존스 역사상 첫 50,000 돌파, 기술주 강세 지속</li>
+        <li>🤖 Anthropic vs OpenAI 슈퍼볼 광고 전쟁, AI 업계 격돌</li>
+        <li>🏛️ 미-이란 핵 협상 지속, 베네수엘라 야당 인사 석방</li>
+        <li>🌍 쿠바 경제 위기, 인도 세이셸에 $175M 지원</li>
+        <li>🔬 금성 거대 용암 터널 발견, NASA ISS 발사 연기</li>
+        <li>⚽ BWF 2027 대규모 개편, WWE Royal Rumble 후 Oba Femi 이동</li>
+        <li>🎬 Kim Kardashian-Lewis Hamilton 열애설</li>
+      </ul>
+    </div>
+
+    <footer class="news-footer">
+      <p class="footer-credit">🪄 CURATED BY 카라얀 · 2026년 2월 10일 오전 7시</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .news-container {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Noto Serif KR', Georgia, serif;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--frog-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .news-header {
+    padding: 20px 0 30px;
+    text-align: center;
+    border-bottom: 3px double #1a1a1a;
+    margin-bottom: 30px;
+  }
+
+  .edition {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888888;
+    margin-bottom: 12px;
+  }
+
+  .news-header h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: #4a4a4a;
+    font-style: italic;
+  }
+
+  .dateline {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888888;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0dcd4;
+  }
+
+  .breaking-banner {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 16px 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 8px;
+  }
+
+  .market-ticker {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 16px 0;
+    border-bottom: 1px solid #e0dcd4;
+    margin-bottom: 30px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ticker-label {
+    color: #888888;
+  }
+
+  .ticker-value.up {
+    color: #16a34a;
+    font-weight: 600;
+  }
+
+  .ticker-value.down {
+    color: #dc2626;
+    font-weight: 600;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lead-story {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #e0dcd4;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+
+  .lead-story h3 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .lead-story p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .news-article {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0dcd4;
+  }
+
+  .news-article:last-child {
+    border-bottom: none;
+  }
+
+  .news-article h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .news-article p {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 6px;
+    margin-bottom: 8px;
+  }
+
+  .tag.markets {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  .tag.ai {
+    background: #f3e8ff;
+    color: #7c3aed;
+  }
+
+  .tag.politics {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+
+  .tag.world {
+    background: #fce7f3;
+    color: #be185d;
+  }
+
+  .tag.science {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .tag.sports {
+    background: #ffedd5;
+    color: #c2410c;
+  }
+
+  .tag.breaking {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  .highlights-box {
+    background: #f5f2eb;
+    border-left: 4px solid #1a1a1a;
+    padding: 20px 24px;
+    margin: 30px 0;
+    border-radius: 8px;
+  }
+
+  .highlights-box h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .highlights-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .highlights-box li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0dcd4;
+    font-size: 0.95rem;
+  }
+
+  .highlights-box li:last-child {
+    border-bottom: none;
+  }
+
+  .news-footer {
+    margin-top: 50px;
+    padding: 24px 0;
+    border-top: 3px double #1a1a1a;
+    text-align: center;
+  }
+
+  .footer-credit {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #888888;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 640px) {
+    .market-ticker {
+      gap: 16px;
+    }
+
+    .news-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .lead-story {
+      padding: 20px;
+    }
+  }
+</style>
