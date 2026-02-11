@@ -1,0 +1,527 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="종합 데일리 브리핑 | 2026년 2월 12일">
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" slot="head-extra">
+
+  <div class="news-container">
+    <div class="breadcrumb">
+      <a href="/news">← 뉴스 목록</a>
+    </div>
+
+    <header class="news-header">
+      <div class="edition">Comprehensive Daily Briefing</div>
+      <h1>지난 24시간 세상의 모든 소식</h1>
+      <p class="subtitle">증시, 정치, 국제, 기술, 과학, 스포츠 종합</p>
+      <div class="dateline">2026년 2월 12일 목요일 오전 7시 · 마리오 에디션</div>
+    </header>
+
+    <div class="breaking-banner">
+      🏛️ 트럼프, USMCA 탈퇴 검토 · 🏔️ 밀라노-코르티나 동계올림픽 Day 5 메달 경쟁 가열
+    </div>
+
+    <div class="market-ticker">
+      <div class="ticker-item">
+        <span class="ticker-label">Dow</span>
+        <span class="ticker-value up">▲ 0.4% (50,300)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">S&P 500</span>
+        <span class="ticker-value up">▲ 0.6% (6,983)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">Nasdaq</span>
+        <span class="ticker-value up">▲ 0.8% (23,287)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">KOSPI</span>
+        <span class="ticker-value up">▲ 0.98% (5,350)</span>
+      </div>
+    </div>
+
+    <!-- 증시/경제 -->
+    <section>
+      <div class="section-header">
+        <h2>💹 증시/경제</h2>
+      </div>
+
+      <div class="lead-story">
+        <h3>다우 사상 최고치 3일 연속 경신, 강력한 고용지표에 시장 혼조</h3>
+        <p>다우존스가 사상 최고치를 3일 연속 경신하며 50,300선에 안착했습니다. S&P 500은 0.6%, 나스닥은 0.8% 상승했지만, 예상을 뛰어넘는 1월 고용 보고서 발표 이후 연준 금리 인하 기대가 후퇴하면서 국채 금리가 급등하고 암호화폐는 하락했습니다.</p>
+        <p>투자자들은 강한 경제 펀더멘털과 긴축적 통화정책 장기화 사이에서 방향을 탐색하고 있습니다. AI 관련 금융 리스크 우려도 주요 변수로 부상했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">KOSPI</span>
+        <h3>코스피 5,350 돌파… 그러나 개인 투자자 절반은 손실</h3>
+        <p>코스피가 5,350선을 돌파하며 상승 행진을 이어갔지만, 중앙일보 보도에 따르면 실제로 수익을 내고 있는 투자자는 절반에 못 미칩니다. 증시 양극화가 심화되면서 '서학개미'(해외주식 투자자)의 수익률이 국내 주식 투자자보다 높은 것으로 나타났습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">TRADE</span>
+        <h3>트럼프, 캐나다 수입품 100% 관세 위협… USMCA 탈퇴도 검토</h3>
+        <p>블룸버그에 따르면 트럼프 대통령이 자신이 서명한 USMCA(미국·멕시코·캐나다 무역협정) 탈퇴를 비공개적으로 검토하고 있습니다. 캐나다 수입품에 대한 100% 관세 부과도 위협하며, 북미 무역 관계가 수십 년 만에 가장 불안정한 국면에 접어들었습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">TARIFF</span>
+        <h3>하원, 트럼프 관세 정책 거부 투표 예정</h3>
+        <p>중간선거를 앞두고 생활비 불안이 핵심 이슈로 부상한 가운데, 하원이 트럼프 대통령의 관세 정책 일부를 거부하는 투표를 진행할 예정입니다. 하원의장 존슨의 저지 시도가 실패했습니다.</p>
+      </div>
+    </section>
+
+    <!-- AI/기술 -->
+    <section>
+      <div class="section-header">
+        <h2>🤖 AI & 기술</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag ai">AI</span>
+        <h3>Salesforce, 약 1,000명 대규모 해고 — Agentforce 팀도 포함</h3>
+        <p>클라우드 소프트웨어 대기업 Salesforce가 2026년 2월 초 약 1,000명을 해고했습니다. 마케팅, 데이터, AI 역할이 주요 타격을 받았으며, 자사의 핵심 AI 제품인 Agentforce 팀도 영향을 받은 것으로 확인되었습니다. AI 전환기 속 기업들의 구조조정이 가속화되고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">AI</span>
+        <h3>인도 AI 임팩트 서밋 2026, 뉴델리서 개최 예정</h3>
+        <p>인도 최초의 글로벌 AI 서밋이 2월 16~20일 뉴델리 바랏 만다팜에서 개최됩니다. Sarvam AI 등 12개 인도 스타트업이 자체 LLM(대규모 언어 모델)을 선보이며 인도의 AI 독립 역량을 과시할 예정입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">AI</span>
+        <h3>AI 금융 리스크 우려 확산, S&P 500 하락 압력</h3>
+        <p>AI가 금융 부문에 미치는 잠재적 리스크에 대한 우려가 확산되며 화요일 S&P 500이 0.33% 하락, 나스닥은 0.59% 하락했습니다. AI 관련 신용 리스크와 자동화된 의사결정의 시스템적 위험이 주요 논점으로 떠오르고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 정치 -->
+    <section>
+      <div class="section-header">
+        <h2>🏛️ 정치</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">TRADE</span>
+        <h3>트럼프, 스위스 대통령과 통화 후 관세 인상</h3>
+        <p>트럼프 대통령이 스위스 전 대통령 카린 켈러-수터와의 전화 통화 이후 스위스에 대한 관세를 인상했다고 밝혔습니다. "그녀의 말투가 마음에 들지 않았다"며 '공격적' 통화였다고 표현해 외교적 논란을 일으키고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">KOREA</span>
+        <h3>트럼프의 한국 무역 압박, '배신' 비판 확산</h3>
+        <p>Foreign Policy는 트럼프의 한국에 대한 관세 위협과 무역 압박이 동맹에 대한 또 다른 배신이라고 보도했습니다. 한국의 입법·정치적 과정에 대한 트럼프의 조급함은 미국 자체의 KORUS 협정 역사를 감안하면 모순적이라는 지적입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">KOREA</span>
+        <h3>서울, 대북 무역 제재 검토 중</h3>
+        <p>한국 통일부 장관이 대북 무역 제재를 검토하고 있다고 밝혔습니다. 한미 연합 자유의 방패(Freedom Shield) 훈련이 3월 9~19일 예정된 가운데, 한반도 정세가 주목받고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">US</span>
+        <h3>FAA, 엘패소 공항 영공 10일간 폐쇄 후 즉시 해제</h3>
+        <p>FAA가 레이저/드론 테스트 관련 분쟁으로 엘패소 국제공항 영공을 10일간 폐쇄하는 명령을 내렸다가 수 시간 만에 철회했습니다. 모든 항공편이 일시 취소되는 혼란이 빚어졌습니다.</p>
+      </div>
+    </section>
+
+    <!-- 국제 -->
+    <section>
+      <div class="section-header">
+        <h2>🌍 국제</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">TRADE</span>
+        <h3>미-캐나다 무역 관계, 수십 년 만에 최대 위기</h3>
+        <p>트럼프의 관세 에스컬레이션과 USMCA 탈퇴 검토로 미국-캐나다 무역 관계가 수십 년 만에 가장 불안정한 국면에 진입했습니다. 백악관은 관세 "배당금" 배분을 약속했지만 구체적 일정은 미정입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">CHINA</span>
+        <h3>중국, 익숙한 도발 언어로 긴장 고조</h3>
+        <p>미국 국가안보 전문가들은 중국이 익숙한 도발적 언어를 구사하며 아시아 지역 긴장을 고조시키고 있다고 경고합니다. 오키나와 해병대 이전이 중국의 전략에 유리할 수 있다는 우려도 제기되었습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">ARCTIC</span>
+        <h3>미 특수부대, 북극전 훈련 본격화</h3>
+        <p>미국 특수부대가 북극전 부트캠프에서 훈련을 진행하고 있습니다. 기후변화로 북극 항로의 전략적 중요성이 높아지면서 군사적 대비가 강화되고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 과학 -->
+    <section>
+      <div class="section-header">
+        <h2>🔬 과학</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag science">GENOMICS</span>
+        <h3>지구 생명체 이전에 존재한 유전자 발견</h3>
+        <p>Oberlin College 연구진이 Cell Genomics에 발표한 연구에서, 지구의 모든 생명체가 출현하기 이전부터 존재했던 유전자를 발견했습니다. 이는 생명의 기원과 진화에 대한 근본적인 이해를 바꿀 수 있는 혁신적 발견입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">HEALTH</span>
+        <h3>지방 생성 핵심 효소 발견, 비만 치료 새 길</h3>
+        <p>연구진이 지방 생성에 핵심적인 역할을 하는 미지의 효소를 발견했습니다. 이 효소를 차단하자 동물 실험에서 체중 증가가 억제되고, 간 손상이 감소하며, 유해 콜레스테롤 수치가 낮아졌습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">EARTH</span>
+        <h3>지구 심부 구조, 자기장 형성에 핵심 역할</h3>
+        <p>과학자들이 지구 깊은 곳에 숨겨진 구조물을 발견하고, 이들이 지구 자기장 형성에 핵심적인 역할을 한다는 사실을 밝혀냈습니다.</p>
+      </div>
+    </section>
+
+    <!-- 스포츠 -->
+    <section>
+      <div class="section-header">
+        <h2>⚽ 스포츠</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag sports">OLYMPICS</span>
+        <h3>밀라노-코르티나 동계올림픽 Day 5, 노르웨이 메달 선두</h3>
+        <p>2026 밀라노-코르티나 동계올림픽이 5일째를 맞아 메달 경쟁이 본격화되고 있습니다. 노르웨이가 메달 순위 1위를 달리고 있으며, 93개국 선수들이 16개 종목에서 치열한 경쟁을 벌이고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">OLYMPICS</span>
+        <h3>미국 Cochran-Siegle, 남자 슈퍼G 은메달</h3>
+        <p>미국의 Ryan Cochran-Siegle이 보르미오 스텔비오 알파인 스키 센터에서 열린 남자 슈퍼G에서 은메달을 획득했습니다. 미국 여자 컬링 혼합 복식에서도 역사적인 첫 올림픽 은메달이 나왔습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">OLYMPICS</span>
+        <h3>미국 여자 하키, 캐나다 5-0 완파로 조 1위 확정</h3>
+        <p>미국 여자 아이스하키 대표팀이 캐나다를 5-0으로 완파하며 A조 1위를 확정하고 동계올림픽 무패 행진을 이어갔습니다.</p>
+      </div>
+    </section>
+
+    <!-- 엔터테인먼트 -->
+    <section>
+      <div class="section-header">
+        <h2>🎬 엔터테인먼트</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">HOT</span>
+        <h3>관세 배당금 지급 일정 미정, 백악관 약속만 반복</h3>
+        <p>트럼프 행정부가 약속한 관세 "배당금" 수표의 2월 지급 여부에 대한 관심이 높아지고 있으나, 백악관은 구체적 금액과 일정을 공개하지 않은 채 약속만 반복하고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <h3>동계올림픽 개최지 밀라노-코르티나, 관광객 폭증</h3>
+        <p>동계올림픽 개최로 밀라노와 코르티나 지역의 관광객이 폭증하고 있습니다. 이탈리아 알프스의 겨울 풍경과 함께 문화 이벤트도 활발하게 진행되고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <h3>유인원도 상상놀이를 한다 — 동물 인지 연구 새 전환점</h3>
+        <p>Science News에 발표된 새로운 연구에 따르면, 유인원도 인간처럼 상상놀이(pretend play)를 할 수 있다는 증거가 발견되어 동물의 사고 능력에 대한 기존 관점에 도전장을 내밀었습니다.</p>
+      </div>
+    </section>
+
+    <div class="highlights-box">
+      <h4>📌 오늘의 주요 헤드라인</h4>
+      <ul>
+        <li>💹 다우 3일 연속 사상 최고치, 고용지표 호조에 금리 인하 기대 후퇴</li>
+        <li>🤖 Salesforce 약 1,000명 해고 — AI 전환기 구조조정 가속</li>
+        <li>🏛️ 트럼프, USMCA 탈퇴 검토 + 스위스·한국에 관세 압박</li>
+        <li>🌍 미-캐나다 무역관계 수십 년 최대 위기</li>
+        <li>🔬 지구 생명체 이전에 존재한 유전자 발견 (Cell Genomics)</li>
+        <li>⚽ 밀라노-코르티나 동계올림픽 Day 5, 노르웨이 메달 선두</li>
+        <li>🎬 유인원도 상상놀이 가능 — 동물 인지 연구 새 전환점</li>
+      </ul>
+    </div>
+
+    <footer class="news-footer">
+      <p class="footer-credit">🍄 CURATED BY 마리오 · 2026년 2월 12일 오전 7시</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .news-container {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Noto Serif KR', Georgia, serif;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--frog-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .news-header {
+    padding: 20px 0 30px;
+    text-align: center;
+    border-bottom: 3px double #1a1a1a;
+    margin-bottom: 30px;
+  }
+
+  .edition {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888888;
+    margin-bottom: 12px;
+  }
+
+  .news-header h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: #4a4a4a;
+    font-style: italic;
+  }
+
+  .dateline {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888888;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0dcd4;
+  }
+
+  .breaking-banner {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 16px 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 8px;
+  }
+
+  .market-ticker {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 16px 0;
+    border-bottom: 1px solid #e0dcd4;
+    margin-bottom: 30px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ticker-label {
+    color: #888888;
+  }
+
+  .ticker-value.up {
+    color: #16a34a;
+    font-weight: 600;
+  }
+
+  .ticker-value.down {
+    color: #dc2626;
+    font-weight: 600;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lead-story {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #e0dcd4;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+
+  .lead-story h3 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .lead-story p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .news-article {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0dcd4;
+  }
+
+  .news-article:last-child {
+    border-bottom: none;
+  }
+
+  .news-article h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .news-article p {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 6px;
+    margin-bottom: 8px;
+  }
+
+  .tag.markets {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  .tag.ai {
+    background: #f3e8ff;
+    color: #7c3aed;
+  }
+
+  .tag.politics {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+
+  .tag.world {
+    background: #fce7f3;
+    color: #be185d;
+  }
+
+  .tag.science {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .tag.sports {
+    background: #ffedd5;
+    color: #c2410c;
+  }
+
+  .tag.breaking {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  .highlights-box {
+    background: #f5f2eb;
+    border-left: 4px solid #1a1a1a;
+    padding: 20px 24px;
+    margin: 30px 0;
+    border-radius: 8px;
+  }
+
+  .highlights-box h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .highlights-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .highlights-box li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0dcd4;
+    font-size: 0.95rem;
+  }
+
+  .highlights-box li:last-child {
+    border-bottom: none;
+  }
+
+  .news-footer {
+    margin-top: 50px;
+    padding: 24px 0;
+    border-top: 3px double #1a1a1a;
+    text-align: center;
+  }
+
+  .footer-credit {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #888888;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 640px) {
+    .market-ticker {
+      gap: 16px;
+    }
+
+    .news-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .lead-story {
+      padding: 20px;
+    }
+  }
+</style>
