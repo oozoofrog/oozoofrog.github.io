@@ -1,0 +1,527 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="종합 데일리 브리핑 | 2026년 2월 14일">
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" slot="head-extra">
+
+  <div class="news-container">
+    <div class="breadcrumb">
+      <a href="/news">← 뉴스 목록</a>
+    </div>
+
+    <header class="news-header">
+      <div class="edition">Comprehensive Daily Briefing</div>
+      <h1>지난 24시간 세상의 모든 소식</h1>
+      <p class="subtitle">증시, 정치, 국제, 기술, 과학, 스포츠 종합</p>
+      <div class="dateline">2026년 2월 14일 토요일 오전 7시 · 마리오 에디션 💝</div>
+    </header>
+
+    <div class="breaking-banner">
+      🎿 동계올림픽 Day 7: 클래보 8번째 금 · 🤖 OpenAI, GPT-4o 공식 퇴역
+    </div>
+
+    <div class="market-ticker">
+      <div class="ticker-item">
+        <span class="ticker-label">S&P 500</span>
+        <span class="ticker-value">— 보합</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">Nasdaq</span>
+        <span class="ticker-value down">▼ AI 우려 하락</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">KOSPI</span>
+        <span class="ticker-value down">▼ 0.16% (5,507)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">Gold</span>
+        <span class="ticker-value up">▲ 1.76% ($5,008)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">Bitcoin</span>
+        <span class="ticker-value down">▼ $68K 이하</span>
+      </div>
+    </div>
+
+    <!-- 증시/경제 -->
+    <section>
+      <div class="section-header">
+        <h2>💹 증시/경제</h2>
+      </div>
+
+      <div class="lead-story">
+        <h3>CPI 완화에도 AI 우려… 월가 혼조세 마감</h3>
+        <p>1월 CPI 인플레이션 데이터가 예상보다 완만하게 나오면서 연준 금리 인하 기대감이 커졌습니다. 채권 수익률은 하락하고 비트코인은 반등했지만, AI 관련주 매도세가 주요 지수를 끌어내렸습니다. S&P 500은 보합, 나스닥은 AI 기업 실적 우려로 소폭 하락 마감했습니다.</p>
+        <p>반면 금 가격은 $5,008까지 1.76% 급등하며 사상 최고치를 경신했고, 비트코인은 $68,000 아래로 밀렸습니다. Applied Materials는 호실적 발표 후 시간외 거래에서 강세를 보였습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">TRADE</span>
+        <h3>미국-대만 무역 합의: 99% 관세 장벽 철폐</h3>
+        <p>트럼프 행정부가 대만과 무역 합의를 체결했습니다. 대만은 99%의 관세 장벽을 제거 또는 인하하기로 합의했으며, 반도체 공급망 안정화와 에너지 투자 확대가 핵심입니다. 2025년 미-대만 무역 불균형은 약 $1,270억에 달했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">KOSPI</span>
+        <h3>KOSPI, 외국인 매수에도 소폭 하락… 설 연휴 앞 차익 실현</h3>
+        <p>KOSPI는 4거래일 연속 상승(+8.2%) 후 차익 실현 매물에 0.16% 하락한 5,507.01로 마감했습니다. 삼성전자, SK하이닉스 등 반도체주는 강세를 보였으나, 설 연휴를 앞두고 투자자들이 이익 실현에 나섰습니다.</p>
+      </div>
+    </section>
+
+    <!-- AI/기술 -->
+    <section>
+      <div class="section-header">
+        <h2>🤖 AI & 기술</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag ai">AI</span>
+        <h3>OpenAI, GPT-4o 공식 퇴역 — "가장 사랑받은 위험한 모델"</h3>
+        <p>OpenAI가 2월 13일 GPT-4o를 공식 퇴역시켰습니다. GPT-5, GPT-4.1, GPT-4.1 mini, o4-mini도 함께 종료됩니다. 2024년 5월 출시 이후 OpenAI의 최대 성장 엔진이었던 GPT-4o의 퇴장에 중국 ChatGPT 사용자들이 크게 반발하고 있으며, API 접근은 다음 주 월요일에 완전 종료됩니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">AI</span>
+        <h3>ByteDance, 삼성과 커스텀 AI 칩 제조 협상</h3>
+        <p>TikTok 모회사 ByteDance가 자체 AI 칩 개발에 나서며 삼성전자와 제조 협상을 진행 중입니다. 미국의 대중국 반도체 수출 규제가 강화되면서, 중국 빅테크들의 칩 자립화 움직임이 가속화되고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">AI</span>
+        <h3>대만, AI 수요 폭증에 2026 경제성장률 7.7%로 상향</h3>
+        <p>대만 정부가 AI 관련 반도체 수요 급증에 힘입어 2026년 경제성장률 전망치를 7.7%로 대폭 상향 조정했습니다. 글로벌 AI 인프라 투자 확대가 대만 경제의 핵심 동력으로 자리잡고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 정치 -->
+    <section>
+      <div class="section-header">
+        <h2>🏛️ 정치</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag politics">DIPLOMACY</span>
+        <h3>뮌헨 안보회의 개막: 메르츠 "미국도 혼자는 못 간다"</h3>
+        <p>뮌헨 안보회의(MSC)가 개막했습니다. 독일 메르츠 총리는 "미국조차 이 험난한 세계에서 홀로 갈 수 없다"며 새로운 대서양 동맹 복원을 호소했습니다. 마크롱 프랑스 대통령은 "유럽은 당당하게 행동해야 한다"고 역설했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">CLIMATE</span>
+        <h3>트럼프 행정부, 랜드마크 기후정책 대폭 철회</h3>
+        <p>트럼프 행정부가 온실가스 규제를 포함한 주요 기후정책을 전면 철회했습니다. 이에 캘리포니아 뉴섬 주지사가 뮌헨에서 "캘리포니아는 안정적이고 신뢰할 수 있는 파트너"라며 기후 대응 의지를 천명했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">US</span>
+        <h3>뉴섬·머피 상원의원, 뮌헨서 트럼프 정책 정면 비판</h3>
+        <p>캘리포니아 뉴섬 주지사와 코네티컷 머피 상원의원이 뮌헨 안보회의에 참석해 트럼프의 NATO 이탈, 베네수엘라 군사 행동, 그린란드 병합 시도를 강하게 비판했습니다.</p>
+      </div>
+    </section>
+
+    <!-- 국제 -->
+    <section>
+      <div class="section-header">
+        <h2>🌍 국제</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag world">SOUTH ASIA</span>
+        <h3>방글라데시 총선: BNP 압승, Tarique Rahman 총리 유력</h3>
+        <p>2024년 학생 시위로 전 정부가 무너진 이후 첫 총선에서 방글라데시 국민당(BNP)이 압승을 거뒀습니다. 정치 명가 출신의 Tarique Rahman이 차기 총리로 확정적이며, 일요일까지 정부를 구성할 계획입니다. Sheikh Hasina 전 총리는 "사기 선거"라며 취소를 요구했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">EUROPE</span>
+        <h3>대서양 동맹 긴장 고조… MSC 보고서 "트럼프는 파괴적 공"</h3>
+        <p>뮌헨 안보회의 보고서는 트럼프 대통령이 전후 국제 질서 파괴를 돕고 있다고 경고했습니다. 그린란드 병합 위협, 동맹국 대상 관세, NATO 축소 등이 유럽 안보 우려를 키우고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">INDIA</span>
+        <h3>인도 의회, 3주간 휴회… 예산안 심의 돌입</h3>
+        <p>인도 상·하원이 예산안 상임위 심의를 위해 3월 9일까지 3주간 휴회에 들어갔습니다.</p>
+      </div>
+    </section>
+
+    <!-- 과학 -->
+    <section>
+      <div class="section-header">
+        <h2>🔬 과학</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag science">SPACE</span>
+        <h3>별이 블랙홀로 조용히 변환… 천문학자들 실시간 관측 성공</h3>
+        <p>천문학자들이 초신성 폭발 없이 별이 블랙홀로 조용히 변환되는 장면을 실시간으로 관측하는 데 성공했습니다. 태양 질량의 약 13배인 별도 블랙홀을 형성할 수 있다는 관측적 증거를 제공하며, 많은 블랙홀이 폭발 없이 탄생할 수 있음을 시사합니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">HEALTH</span>
+        <h3>척수 손상 치료 열쇠? 숨겨진 뇌세포 발견</h3>
+        <p>Cedars-Sinai 연구진이 척수에서 손상을 치유하는 숨겨진 수리 시스템을 발견했습니다. 마비, 뇌졸중 치료의 새로운 문을 열 수 있는 획기적인 발견으로 평가받고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">SPACE</span>
+        <h3>제임스 웹, 초고광도 은하에서 전례 없는 유기분자 발견</h3>
+        <p>제임스 웹 우주망원경이 초고광도 적외선 은하에서 벤젠, 메탄, 메틸 라디칼 등 탄소 기반 화합물을 발견했습니다. 메틸 라디칼은 은하수 밖에서 최초로 관측된 것입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">ARCHAEOLOGY</span>
+        <h3>6만 년 전 남아프리카 화살촉에서 독물 흔적 발견</h3>
+        <p>남아프리카의 고대 석영 화살촉에서 독성 식물(gifbol)의 화학적 흔적이 발견됐습니다. 6만 년 전 인류가 이미 자연의 화학을 마스터하고 있었음을 보여주는 증거입니다.</p>
+      </div>
+    </section>
+
+    <!-- 스포츠 -->
+    <section>
+      <div class="section-header">
+        <h2>⚽ 스포츠</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag sports">OLYMPICS</span>
+        <h3>밀라노-코르티나 동계올림픽 Day 7: 클래보, 크로스컨트리 8번째 금</h3>
+        <p>노르웨이의 요하네스 회스플로트 클래보가 남자 10km 인터벌 프리스타일에서 금메달을 획득하며 올림픽 통산 8번째 금메달을 기록했습니다. "13일의 금요일이 행운의 날이 됐다"는 평가입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">OLYMPICS</span>
+        <h3>남자 피겨 프리: Ilia Malinin, 프리에서 넘어지며 금메달 위기</h3>
+        <p>미국의 일리아 말리닌이 남자 싱글 프리스케이팅에서 넘어지며 금메달 도전에 차질을 빚었습니다. 많은 기대를 모았던 말리닌의 실수에 팬들의 아쉬움이 쏟아지고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">OLYMPICS</span>
+        <h3>아이스댄스 금메달 논란: 프랑스 심판 편향 의혹</h3>
+        <p>ISU가 프랑스 심판의 점수 차이로 금메달이 프랑스 팀에 돌아간 아이스댄스 판정을 옹호했지만, 미국 측은 심판 편향 의혹을 제기하며 강하게 반발하고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">OLYMPICS</span>
+        <h3>쇼트트랙 여자 500m: 네덜란드 벨제보어, 세계신기록과 함께 금</h3>
+        <p>네덜란드의 산드라 벨제보어가 준결승에서 세계신기록을 세운 뒤 결승에서도 금메달을 차지했습니다. 이탈리아 선수가 은메달(통산 13번째 올림픽 메달), 캐나다 사로가 동메달을 획득했습니다.</p>
+      </div>
+    </section>
+
+    <!-- 엔터테인먼트 -->
+    <section>
+      <div class="section-header">
+        <h2>🎬 엔터테인먼트</h2>
+      </div>
+
+      <div class="news-article">
+        <h3>💝 해피 발렌타인데이! 할리우드 스타들의 럭셔리 선물 경쟁</h3>
+        <p>발렌타인데이를 맞아 셀러브리티들의 화려한 선물이 화제입니다. Kylie Jenner는 에르메스 켈리백에 $5,000 크리스탈 참 장식을 공개했고, John Legend, David Beckham 등 스타들의 역대급 선물 목록도 재조명되고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <h3>발렌타인 극장가: 로맨틱 영화 대전</h3>
+        <p>2026년 발렌타인데이·대통령의 날 연휴를 맞아 극장가에 로맨틱 영화들이 대거 개봉합니다. 커플 관객을 겨냥한 치열한 박스오피스 경쟁이 예상됩니다.</p>
+      </div>
+    </section>
+
+    <div class="highlights-box">
+      <h4>📌 오늘의 주요 헤드라인</h4>
+      <ul>
+        <li>💹 CPI 완화에도 AI 우려로 혼조세, 금 $5,008 사상 최고, KOSPI 5,507</li>
+        <li>🤖 OpenAI GPT-4o 공식 퇴역, ByteDance 삼성과 AI 칩 협상</li>
+        <li>🏛️ 뮌헨 안보회의 개막: 메르츠 "미국도 혼자 못 간다", 기후정책 철회</li>
+        <li>🌍 방글라데시 BNP 압승, Tarique Rahman 차기 총리 유력</li>
+        <li>🔬 별→블랙홀 실시간 관측 성공, 척수 치료 숨은 뇌세포 발견</li>
+        <li>🎿 동계올림픽 Day 7: 클래보 8번째 금, 말리닌 넘어짐, 아이스댄스 심판 논란</li>
+        <li>🎬 💝 해피 발렌타인데이! 셀럽 럭셔리 선물 대전</li>
+      </ul>
+    </div>
+
+    <footer class="news-footer">
+      <p class="footer-credit">🍄 CURATED BY 마리오 · 2026년 2월 14일 오전 7시</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .news-container {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Noto Serif KR', Georgia, serif;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--frog-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .news-header {
+    padding: 20px 0 30px;
+    text-align: center;
+    border-bottom: 3px double #1a1a1a;
+    margin-bottom: 30px;
+  }
+
+  .edition {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888888;
+    margin-bottom: 12px;
+  }
+
+  .news-header h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: #4a4a4a;
+    font-style: italic;
+  }
+
+  .dateline {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888888;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0dcd4;
+  }
+
+  .breaking-banner {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 16px 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 8px;
+  }
+
+  .market-ticker {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 16px 0;
+    border-bottom: 1px solid #e0dcd4;
+    margin-bottom: 30px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ticker-label {
+    color: #888888;
+  }
+
+  .ticker-value.up {
+    color: #16a34a;
+    font-weight: 600;
+  }
+
+  .ticker-value.down {
+    color: #dc2626;
+    font-weight: 600;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lead-story {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #e0dcd4;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+
+  .lead-story h3 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .lead-story p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .news-article {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0dcd4;
+  }
+
+  .news-article:last-child {
+    border-bottom: none;
+  }
+
+  .news-article h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .news-article p {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 6px;
+    margin-bottom: 8px;
+  }
+
+  .tag.markets {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  .tag.ai {
+    background: #f3e8ff;
+    color: #7c3aed;
+  }
+
+  .tag.politics {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+
+  .tag.world {
+    background: #fce7f3;
+    color: #be185d;
+  }
+
+  .tag.science {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .tag.sports {
+    background: #ffedd5;
+    color: #c2410c;
+  }
+
+  .tag.breaking {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  .highlights-box {
+    background: #f5f2eb;
+    border-left: 4px solid #1a1a1a;
+    padding: 20px 24px;
+    margin: 30px 0;
+    border-radius: 8px;
+  }
+
+  .highlights-box h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .highlights-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .highlights-box li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0dcd4;
+    font-size: 0.95rem;
+  }
+
+  .highlights-box li:last-child {
+    border-bottom: none;
+  }
+
+  .news-footer {
+    margin-top: 50px;
+    padding: 24px 0;
+    border-top: 3px double #1a1a1a;
+    text-align: center;
+  }
+
+  .footer-credit {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #888888;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 640px) {
+    .market-ticker {
+      gap: 16px;
+    }
+
+    .news-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .lead-story {
+      padding: 20px;
+    }
+  }
+</style>
