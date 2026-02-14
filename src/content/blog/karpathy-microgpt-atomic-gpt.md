@@ -1,233 +1,324 @@
 ---
 title: Karpathy의 microgpt.py 읽기
-summary: GPT 학습/추론의 핵심을 의존성 없는 단일 파이썬 파일로 구현한 microgpt.py 정리
+summary: 원문 코드를 같이 보면서 GPT 학습/추론 핵심을 단계별로 따라가는 스터디 가이드
 date: 2026-02-14 18:40:00 +0900
 categories: [AI, LLM, Python]
 tags: [karpathy, microgpt, gpt, transformer, autograd, adam]
 ---
 
-Karpathy의 `microgpt.py`를 읽어봤다.
+Karpathy의 `microgpt.py`를 코드와 같이 보면서 정리한 노트.
 
 - 원문: [https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95](https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95)
 
-이 코드는 성능 최적화보다는 **원리 설명**에 집중한 코드다.
-파일 하나에 GPT 학습과 추론의 핵심 흐름이 다 들어있다.
-
-## 이 파일 하나에 들어있는 것
-
-- 문자 단위 토크나이저
-- 스칼라 오토그라드(`Value`)
-- Transformer 블록(Attention + MLP)
-- 손실 계산과 역전파
-- Adam 최적화
-- temperature 기반 샘플링
-
-즉, 학습부터 추론까지 한 바퀴를 최소 단위로 보여준다.
-
-## 1) 데이터와 토크나이저
-
-기본 데이터는 `names.txt`를 받아서 사용한다.
-토크나이저는 BPE가 아니라 문자 단위다.
-
-- 고유 문자 집합으로 vocab 구성
-- `BOS` 토큰 추가
-- `[BOS] ... [BOS]` 형태로 시퀀스 학습
-
-단순하지만 next-token prediction을 이해하기엔 충분하다.
-
-## 2) `Value` 클래스 (핵심)
-
-가장 중요한 부분은 오토그라드 구현이다.
-
-- 각 노드는 `data`, `grad`를 가진다.
-- 연산 시 자식 노드와 local grad를 저장한다.
-- `backward()`에서 토폴로지 순회로 gradient를 전파한다.
-
-프레임워크 뒤에 숨겨진 자동미분 과정을 코드 수준에서 직접 볼 수 있다.
-
-## 3) 모델 구조
-
-GPT-2 계열 구조를 단순화해서 구현했다.
-
-- LayerNorm → RMSNorm
-- GeLU → ReLU
-- bias 제거
-
-흐름은 동일하다.
-
-1. Attention + residual
-2. MLP + residual
-
-모델 크기(`n_embd=16`, `n_layer=1`)는 매우 작아서 개념 파악에 유리하다.
-
-## 4) Attention 구현
-
-시점별로 `q, k, v`를 만들고,
-과거 `keys/values`를 캐시해서 가중합을 구한다.
-
-- `q·k / sqrt(d)`
-- softmax
-- weighted sum
-
-자동회귀 구조가 직관적으로 드러난다.
-현재 토큰은 과거 정보만 본다.
-
-## 5) 학습 루프
-
-학습 루프는 정석 그대로다.
-
-- 다음 토큰 확률 계산
-- `-log p(target)` 누적
-- 평균 loss 계산
-- `loss.backward()`
-- Adam 업데이트
-- linear lr decay
-
-실전 코드와 다른 점은 규모와 최적화 레이어뿐이다.
-
-## 6) 추론
-
-`BOS`에서 시작해 토큰을 하나씩 샘플링한다.
-`temperature`로 분포를 조정하고,
-다시 `BOS`가 나오면 종료한다.
-
-데모 데이터가 이름 목록이라 결과 확인도 쉽다.
-
-## 이 코드가 좋은 이유
-
-1. **본질이 분리되어 보임**
-   - 알고리즘과 최적화를 구분해서 이해할 수 있다.
-
-2. **디버깅 감각에 도움됨**
-   - 수식이 코드로 내려오는 과정이 명확하다.
-
-3. **교육용 기준점으로 좋음**
-   - 큰 프레임워크로 가기 전에 최소 완성본을 볼 수 있다.
-
-## 한계
-
-- 스칼라 연산이라 느림
-- 배치/벡터화 없음
-- 대규모 학습용으로는 부적합
-
-즉, production 코드가 아니라 개념 학습용 코드다.
-
-## 다음 단계
-
-이 코드를 본 다음에는 보통 다음 순서가 좋다.
-
-1. NumPy 벡터화 버전 구현
-2. PyTorch로 1:1 대응 구현
-3. 배치/평가/체크포인트 추가
-4. subword 토크나이저로 확장
+이 글의 목적은 요약이 아니라, **코드를 실제로 따라 읽는 순서**를 만드는 것이다.
 
 ---
 
-정리하면, `microgpt.py`는 GPT를 신비하게 포장하지 않고 핵심만 보여준다.
+## 0) 읽는 방법 (추천)
 
-- 예측은 확률 계산
-- 학습은 미분 + 최적화
-- 모델은 반복 블록 구조
+아래 순서로 보면 이해가 가장 빠르다.
 
-짧은 코드인데도 배울 수 있는 밀도가 높다.
+1. 이 글의 섹션 제목을 먼저 훑는다.
+2. 각 섹션에서 제시한 코드 블록을 원문에서 찾는다.
+3. “무엇을 계산하는지”만 먼저 이해한다.
+4. 마지막에 용어 해설집으로 모르는 단어를 정리한다.
+
+---
+
+## 1) 데이터 준비 + 토크나이저
+
+먼저 데이터셋을 만들고, 문자 단위 vocab을 구성한다.
+
+```python
+if not os.path.exists('input.txt'):
+    import urllib.request
+    names_url = 'https://raw.githubusercontent.com/karpathy/makemore/refs/heads/master/names.txt'
+    urllib.request.urlretrieve(names_url, 'input.txt')
+docs = [l.strip() for l in open('input.txt').read().strip().split('\n') if l.strip()]
+
+uchars = sorted(set(''.join(docs)))
+BOS = len(uchars)
+vocab_size = len(uchars) + 1
+```
+
+핵심:
+
+- 토크나이저는 BPE가 아니라 **문자 단위**
+- `BOS` 특수 토큰을 추가해서 시퀀스 경계를 표현
+- 원리 학습용이라 단순한 구성
+
+---
+
+## 2) 자동미분 엔진 (`Value`)
+
+이 파일에서 가장 중요한 부분.
+스칼라 기반 계산 그래프 + 역전파를 직접 구현한다.
+
+```python
+class Value:
+    __slots__ = ('data', 'grad', '_children', '_local_grads')
+
+    def __init__(self, data, children=(), local_grads=()):
+        self.data = data
+        self.grad = 0
+        self._children = children
+        self._local_grads = local_grads
+
+    def __add__(self, other): ...
+    def __mul__(self, other): ...
+    def log(self): ...
+    def exp(self): ...
+
+    def backward(self):
+        # topo 정렬 후 reverse 순회로 gradient 전파
+        ...
+```
+
+핵심:
+
+- 연산 시 local gradient를 저장
+- `backward()`에서 체인룰 적용
+- 프레임워크 내부 동작을 직접 볼 수 있음
+
+---
+
+## 3) 파라미터 초기화
+
+작은 GPT를 만들기 위한 행렬들을 정의한다.
+
+```python
+n_embd = 16
+n_head = 4
+n_layer = 1
+block_size = 16
+head_dim = n_embd // n_head
+
+matrix = lambda nout, nin, std=0.08: [[Value(random.gauss(0, std)) for _ in range(nin)] for _ in range(nout)]
+state_dict = {
+    'wte': matrix(vocab_size, n_embd),
+    'wpe': matrix(block_size, n_embd),
+    'lm_head': matrix(vocab_size, n_embd),
+}
+```
+
+핵심:
+
+- `wte`: token embedding
+- `wpe`: position embedding
+- 레이어별 `q/k/v`, `wo`, `mlp` 가중치 추가
+- 전체 파라미터를 1차원 리스트로 flatten
+
+---
+
+## 4) 유틸 함수 (linear, softmax, rmsnorm)
+
+Transformer 계산에 필요한 최소 함수들.
+
+```python
+def linear(x, w):
+    return [sum(wi * xi for wi, xi in zip(wo, x)) for wo in w]
+
+def softmax(logits):
+    max_val = max(val.data for val in logits)
+    exps = [(val - max_val).exp() for val in logits]
+    total = sum(exps)
+    return [e / total for e in exps]
+
+def rmsnorm(x):
+    ms = sum(xi * xi for xi in x) / len(x)
+    scale = (ms + 1e-5) ** -0.5
+    return [xi * scale for xi in x]
+```
+
+핵심:
+
+- 수치 안정성을 위한 `max` 보정 softmax
+- LayerNorm 대신 RMSNorm 사용
+
+---
+
+## 5) `gpt()` — 모델 본체
+
+토큰 하나를 받아 다음 토큰 logits를 만드는 함수.
+
+```python
+def gpt(token_id, pos_id, keys, values):
+    tok_emb = state_dict['wte'][token_id]
+    pos_emb = state_dict['wpe'][pos_id]
+    x = [t + p for t, p in zip(tok_emb, pos_emb)]
+    x = rmsnorm(x)
+
+    for li in range(n_layer):
+        # attention block
+        ...
+        # mlp block
+        ...
+
+    logits = linear(x, state_dict['lm_head'])
+    return logits
+```
+
+핵심:
+
+- 입력: `(token_id, position)`
+- 내부: attention + MLP + residual
+- 출력: vocab 크기의 logits
+
+---
+
+## 6) Attention 블록만 따로 보기
+
+이 부분이 가장 자주 막히는 구간이라 분리해서 보면 좋다.
+
+```python
+q = linear(x, state_dict[f'layer{li}.attn_wq'])
+k = linear(x, state_dict[f'layer{li}.attn_wk'])
+v = linear(x, state_dict[f'layer{li}.attn_wv'])
+keys[li].append(k)
+values[li].append(v)
+
+attn_logits = [sum(q_h[j] * k_h[t][j] for j in range(head_dim)) / head_dim**0.5 for t in range(len(k_h))]
+attn_weights = softmax(attn_logits)
+head_out = [sum(attn_weights[t] * v_h[t][j] for t in range(len(v_h))) for j in range(head_dim)]
+```
+
+체크포인트:
+
+- `keys/values` 누적 = 과거 문맥 기억
+- `q·k/sqrt(d)` → softmax → `v` 가중합
+- head별 계산 후 concat
+
+---
+
+## 7) 학습 루프
+
+문서 하나를 시퀀스로 돌면서 loss를 만들고 업데이트한다.
+
+```python
+doc = docs[step % len(docs)]
+tokens = [BOS] + [uchars.index(ch) for ch in doc] + [BOS]
+
+losses = []
+for pos_id in range(n):
+    token_id, target_id = tokens[pos_id], tokens[pos_id + 1]
+    logits = gpt(token_id, pos_id, keys, values)
+    probs = softmax(logits)
+    loss_t = -probs[target_id].log()
+    losses.append(loss_t)
+loss = (1 / n) * sum(losses)
+
+loss.backward()
+```
+
+핵심:
+
+- 목표: 다음 토큰 확률 최대화
+- loss: 평균 NLL (cross-entropy 형태)
+- 역전파로 모든 파라미터 gradient 계산
+
+---
+
+## 8) Adam 업데이트
+
+```python
+m[i] = beta1 * m[i] + (1 - beta1) * p.grad
+v[i] = beta2 * v[i] + (1 - beta2) * p.grad ** 2
+m_hat = m[i] / (1 - beta1 ** (step + 1))
+v_hat = v[i] / (1 - beta2 ** (step + 1))
+p.data -= lr_t * m_hat / (v_hat ** 0.5 + eps_adam)
+```
+
+핵심:
+
+- 1차/2차 모멘트 사용
+- 편향 보정(`m_hat`, `v_hat`)
+- 학습률 선형 감소(`lr_t`)
+
+---
+
+## 9) 추론 루프
+
+학습이 끝나면 `BOS`에서 시작해 토큰을 하나씩 샘플링한다.
+
+```python
+token_id = BOS
+for pos_id in range(block_size):
+    logits = gpt(token_id, pos_id, keys, values)
+    probs = softmax([l / temperature for l in logits])
+    token_id = random.choices(range(vocab_size), weights=[p.data for p in probs])[0]
+    if token_id == BOS:
+        break
+```
+
+핵심:
+
+- temperature로 다양성 조절
+- `BOS`가 나오면 샘플 종료
+
+---
+
+## 10) 이 코드를 볼 때 중요한 포인트
+
+1. 이 코드는 **원리용 코드**다. (속도 목적 아님)
+2. 실전과 차이는 대부분 **벡터화/배치/최적화** 영역이다.
+3. 알고리즘 흐름 자체는 현대 LLM과 동일한 골격이다.
+
+---
+
+## 같이 공부할 때 추천 미션
+
+### 미션 A
+`n_embd`, `n_head`, `n_layer`를 바꿔보고 loss 곡선 변화를 비교.
+
+### 미션 B
+`temperature`를 `0.2 / 0.5 / 1.0`으로 바꿔 샘플 품질 비교.
+
+### 미션 C
+`relu`를 `gelu`(직접 구현)로 바꿔 결과 비교.
+
+### 미션 D
+문자셋 대신 다른 작은 데이터셋으로 바꿔보기.
 
 ---
 
 ## 용어 해설집
 
 ### Next-token prediction
-현재까지의 토큰(문맥)을 보고 다음에 올 토큰의 확률 분포를 예측하는 방식.
-대부분의 LLM 학습 목표는 이 문제를 반복해서 푸는 것이다.
+현재까지의 토큰을 보고 다음 토큰의 확률 분포를 예측하는 학습 목표.
 
-### Token / 토큰
-모델이 다루는 최소 단위 기호.
-이 글의 예제는 **문자 단위 토큰화**를 사용한다.
+### Token / Vocabulary
+토큰은 모델의 최소 단위, vocab은 가능한 전체 토큰 집합.
 
-### Vocabulary (vocab)
-모델이 인식 가능한 토큰의 전체 집합.
-문자 집합 + 특수 토큰(BOS 등)으로 구성된다.
+### BOS
+시퀀스 시작을 의미하는 특수 토큰.
 
-### BOS (Beginning of Sequence)
-시퀀스 시작을 나타내는 특수 토큰.
-학습과 생성에서 문장 경계를 표시하는 역할을 한다.
-
-### Logits
-softmax를 통과하기 전의 점수 벡터.
-값 자체는 확률이 아니고, 상대적인 크기가 중요하다.
-
-### Softmax
-logits를 확률 분포로 바꾸는 함수.
-모든 토큰 확률의 합이 1이 되도록 정규화한다.
+### Logits / Softmax
+logits는 확률화 전 점수, softmax는 이를 확률 분포로 변환.
 
 ### Temperature
-샘플링 시 분포의 날카로움을 조절하는 값.
-- 낮을수록: 보수적/반복적
-- 높을수록: 다양/창의적
+샘플링 분포의 sharpness를 조절하는 값.
 
-### Autoregressive(자동회귀)
-토큰을 한 번에 하나씩 생성하고,
-이미 생성한 과거 토큰만 다음 예측에 사용하는 방식.
+### Attention / QKV
+문맥에서 중요한 위치를 가중합으로 읽어오는 메커니즘.
 
-### Attention
-현재 토큰이 과거 토큰 중 어디에 주목할지 가중치를 계산하는 메커니즘.
-문맥 의존성을 학습하는 핵심 구성요소다.
-
-### Query / Key / Value (QKV)
-Attention 계산의 기본 요소.
-- Query: 지금 무엇을 찾는가
-- Key: 각 토큰이 가진 인덱스/식별 힌트
-- Value: 실제로 가져올 정보
-
-### Multi-head Attention
-Attention을 여러 하위 공간(head)에서 병렬로 수행하는 구조.
-서로 다른 관계 패턴을 동시에 학습할 수 있다.
-
-### Residual connection
-블록 입력을 블록 출력에 더해 정보 손실을 줄이는 연결.
-깊은 네트워크에서 학습 안정성과 표현력을 높인다.
-
-### MLP (Feed-forward network)
-Attention 뒤에 오는 비선형 변환 블록.
-토큰별 표현을 확장/압축하며 특성 변환을 수행한다.
+### Residual
+입력을 출력에 더해 정보 손실을 줄이고 학습 안정성을 높임.
 
 ### RMSNorm
-벡터의 평균 제곱 크기 기반으로 스케일을 정규화하는 방식.
-LayerNorm 대비 단순한 형태로 자주 쓰인다.
+벡터 크기 기반 정규화 방식.
 
-### ReLU / GeLU
-신경망의 비선형 활성화 함수.
-이 코드에서는 단순화를 위해 ReLU를 사용한다.
+### Loss (NLL)
+정답 토큰 확률이 낮을수록 커지는 손실 값.
 
-### Loss (교차엔트로피)
-예측 분포와 정답 토큰 사이의 오차를 수치화한 값.
-학습은 이 값을 줄이는 방향으로 진행된다.
+### Backpropagation
+손실로부터 각 파라미터의 gradient를 계산하는 과정.
 
-### Negative Log-Likelihood (NLL)
-정답 토큰 확률의 음의 로그.
-정답 확률이 낮을수록 큰 패널티를 준다.
+### Adam
+gradient의 1차/2차 모멘트를 이용해 파라미터를 갱신하는 optimizer.
 
-### Backpropagation (역전파)
-loss를 기준으로 각 파라미터의 기울기(gradient)를 계산하는 과정.
-연쇄법칙(chain rule)을 계산 그래프 전체에 적용한다.
+---
 
-### Gradient
-파라미터를 조금 바꿨을 때 loss가 얼마나 변하는지 나타내는 미분값.
-업데이트 방향/크기를 결정한다.
+짧게 정리하면,
+`microgpt.py`는 “GPT가 어떻게 학습되고 생성되는가”를 숨김없이 보여주는 파일이다.
 
-### Optimizer (Adam)
-gradient를 이용해 파라미터를 갱신하는 알고리즘.
-Adam은 1차/2차 모멘트를 사용해 학습을 안정화한다.
-
-### Learning rate decay
-학습이 진행될수록 learning rate를 점진적으로 줄이는 전략.
-초기에는 빠르게, 후반에는 안정적으로 수렴시키기 위함이다.
-
-### Inference
-학습된 모델로 실제 출력을 생성하는 단계.
-훈련과 달리 파라미터는 고정하고 forward 계산만 수행한다.
-
-### Production vs Educational code
-- Educational code: 원리 이해가 목적(단순/명료)
-- Production code: 속도/메모리/안정성/운영성이 목적(복잡/최적화)
-
-`microgpt.py`는 전자의 훌륭한 예시다.
+큰 프레임워크로 넘어가기 전에 한 번은 꼭 직접 따라가 볼 만하다.
