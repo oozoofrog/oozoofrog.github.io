@@ -1,174 +1,141 @@
 ---
-title: Karpathy의 microgpt.py, GPT의 원자적 구현 읽기
+title: Karpathy의 microgpt.py 읽기 — GPT를 가장 작은 단위로 보기
 date: 2026-02-14 18:40:00 +0900
 categories: [AI, LLM, Python]
-summary: 의존성 없는 단일 파이썬 파일로 GPT 학습과 추론의 본질을 구현한 karpathy의 microgpt.py를 구조적으로 해설합니다.
+summary: Karpathy의 microgpt.py를 기준으로 GPT 학습/추론의 핵심을 가볍게 정리한 노트.
 tags: [karpathy, microgpt, gpt, transformer, autograd, adam]
 ---
 
-Andrej Karpathy의 gist([microgpt.py](https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95))는 아주 선명한 선언으로 시작합니다.
+요즘 화제인 Andrej Karpathy의 gist를 읽어봤다.
 
-> “The most atomic way to train and inference a GPT in pure, dependency-free Python.
-> This file is the complete algorithm. Everything else is just efficiency.”
+- 링크: [microgpt.py](https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95)
 
-이 문장은 이 코드의 목적을 정확히 말해줍니다. 
-**실용적 성능**이 아니라 **알고리즘의 본질**을 가장 작은 단위로 보여주는 것.
+처음 문구부터 아주 명확하다.
 
----
+> This file is the complete algorithm. Everything else is just efficiency.
 
-## 한 줄 요약
+이게 핵심인 것 같다. 
+이 코드는 “실무용으로 빠른 GPT”가 아니라, **GPT가 돌아가는 본체를 최대한 작게 드러내는 코드**다.
 
-`microgpt.py`는 다음을 **파일 하나**에 담습니다.
+## 이 파일 하나에 뭐가 들어있나
+
+대충 아래가 다 들어있다.
 
 - 문자 단위 토크나이저
-- 스칼라 기반 오토그라드(`Value`)
-- GPT 블록(멀티헤드 어텐션 + MLP)
-- cross-entropy loss 계산
-- Adam 최적화
-- temperature 샘플링 추론
+- 스칼라 오토그라드(`Value`)
+- GPT 블록(어텐션 + MLP)
+- loss 계산
+- Adam 업데이트
+- temperature 샘플링
 
-즉, “GPT가 어떻게 학습되고 말(토큰)을 뽑아내는가”의 전체 루프를 압축한 교과서입니다.
+그러니까 학습부터 추론까지 한 바퀴가 파일 하나에서 끝난다.
 
----
+## 데이터/토크나이저
 
-## 1) 데이터와 토크나이저: 가장 작은 언어 단위
+기본 데이터는 `makemore`의 names.txt를 받아서 쓴다.
+토크나이저는 BPE 같은 거 없이 문자 단위.
 
-코드는 기본적으로 `names.txt`를 받아와 학습합니다. 토크나이저는 BPE가 아니라 **문자 단위**입니다.
+- 고유 문자 집합으로 vocab 구성
+- `BOS` 토큰 하나 추가
+- `[BOS] ... [BOS]` 형태로 시퀀스 학습
 
-- 데이터셋의 고유 문자 집합을 vocab으로 사용
-- `BOS`(Beginning of Sequence)를 특수 토큰으로 추가
-- 문서(이름)를 `[BOS] ... [BOS]` 형태로 감싸 시퀀스 학습
+단순한데, next-token prediction 원리 보기에는 오히려 이쪽이 더 직관적이다.
 
-이 설계는 단순하지만, 다음 토큰 예측(next-token prediction)의 핵심 개념을 보기에 충분합니다.
+## `Value` 클래스가 진짜 포인트
 
----
+개인적으로는 여기서 감탄했다.
 
-## 2) `Value` 클래스: 스칼라 오토그라드의 정수(精髓)
+텐서 프레임워크 없이 스칼라 연산 그래프를 직접 만들고,
+`backward()`에서 토폴로지 순회로 gradient를 전파한다.
 
-핵심 미학은 여기 있습니다. 텐서 라이브러리 없이 스칼라 연산 그래프를 직접 만듭니다.
+- 각 노드가 `data`, `grad`를 가짐
+- 연산할 때 자식 노드와 local grad를 저장
+- 마지막 loss에서 역전파
 
-- 각 `Value`는 `data`, `grad`를 가짐
-- `+`, `*`, `pow`, `log`, `exp`, `relu` 같은 연산에서
-  - 자식 노드(`_children`)
-  - 로컬 미분값(`_local_grads`)
-  을 저장
-- `backward()`에서 토폴로지 정렬 후 역전파
+PyTorch를 쓰면 당연하게 넘어가던 부분을, 이 코드는 눈으로 확인하게 해준다.
 
-이 방식은 PyTorch가 내부적으로 하는 일을 아주 작은 조각으로 드러냅니다.
+## 모델 구조는 GPT-2 축약판 느낌
 
----
+코드 주석에도 나오지만 대략 이런 차이가 있다.
 
-## 3) 모델 구조: GPT-2의 축약판
+- LayerNorm → RMSNorm
+- GeLU → ReLU
+- bias 없음
 
-코멘트대로 “GPT-2를 따르되 약간 단순화”했습니다.
+그래도 큰 흐름은 익숙한 GPT 그대로다.
 
-- LayerNorm 대신 `rmsnorm`
-- bias 제거
-- GeLU 대신 ReLU
-- 블록 구성은 동일한 흐름
-  1. Attention sub-layer + residual
-  2. MLP sub-layer + residual
+1. Attention + residual
+2. MLP + residual
 
-`n_embd=16`, `n_head=4`, `n_layer=1`, `block_size=16`으로 매우 작게 잡아, 개념 전달에 집중합니다.
+사이즈는 아주 작게 고정 (`n_embd=16`, `n_layer=1`, `block_size=16`)해서,
+성능보다 구조 이해에 집중한다.
 
----
+## 어텐션도 교과서처럼 보임
 
-## 4) 어텐션 구현 포인트
+시점별로 `q/k/v` 만들고,
+과거 `keys/values`를 누적해서 softmax 가중합하는 전형적인 형태다.
 
-어텐션 계산은 textbook 형태로 읽힙니다.
+여기서 좋은 점은 “자동회귀가 뭔지”가 코드로 바로 보인다는 것.
+현재 토큰은 과거 캐시만 본다.
 
-1. 현재 토큰에서 `q, k, v` 생성
-2. 과거 시점의 `keys/values`를 캐시해 누적
-3. 헤드별로
-   - `q·k / sqrt(d)`
-   - softmax
-   - 가중합으로 head output
-4. 헤드 결합 후 output projection
+## 학습 루프도 딱 정석
 
-중요한 점은 **자동회귀(autoregressive)** 맥락이 코드 레벨에서 눈에 보인다는 것입니다. 
-현재 시점은 과거의 `k,v`만 볼 수 있습니다.
-
----
-
-## 5) 학습 루프: 손실 → 역전파 → Adam
-
-각 step에서 문서 하나를 꺼내 시퀀스를 훑으며 손실을 누적합니다.
-
-- 시점별 확률 `probs = softmax(logits)`
-- 정답 토큰의 음의 로그 우도 `-log p(target)`
-- 평균 loss 계산
+- 토큰 시퀀스 순회
+- 각 위치에서 다음 토큰 확률 계산
+- `-log p(target)` 누적
+- 평균 loss
 - `loss.backward()`
-- Adam으로 파라미터 업데이트
-- 학습률 선형 감쇠(`lr_t = lr * (1 - step / num_steps)`)
+- Adam step
+- linear lr decay
 
-이 구조는 현대 딥러닝 코드의 골격과 완전히 동일합니다. 
-단지 “고성능 텐서 연산” 레이어를 걷어냈을 뿐입니다.
+결국 실전 코드랑 다른 건 규모랑 효율이지, 본질은 거의 동일하다는 걸 확인하게 된다.
 
----
+## 추론
 
-## 6) 추론: temperature 샘플링
+`BOS`에서 시작해서 토큰 하나씩 샘플링하고,
+다시 `BOS`가 나오면 종료.
 
-학습 후에는 `BOS`에서 시작해 토큰을 하나씩 생성합니다.
+데이터가 이름 목록이라 결과도 “새 이름 생성”으로 바로 보인다.
+교육용 예제로 깔끔하다.
 
-- logits를 `temperature`로 스케일링
-- softmax 후 확률 샘플링
-- `BOS`가 나오면 종료
+## 왜 이 코드가 좋았냐면
 
-데모는 “새로운 이름 생성”이라 결과가 직관적입니다.
+1. **핵심이 분리돼서 보임**  
+   프레임워크 API를 걷어내니 알고리즘이 전면에 나온다.
 
----
+2. **디버깅 감각이 생김**  
+   수식이 코드로 어떻게 내려오는지 연결이 잘 된다.
 
-## 왜 이 코드가 중요한가
+3. **본질/최적화 구분이 쉬움**  
+   “무엇이 모델이고, 무엇이 엔지니어링인가”가 분명해진다.
 
-### 1. 지식 압축
-수천 줄 프레임워크 코드를 보기 전에, 핵심을 200줄대 코드로 먼저 grasp할 수 있습니다.
+## 한계도 명확함
 
-### 2. 디버깅 감각
-수식이 코드로 어떻게 번역되는지 보이기 때문에, 모델 디버깅 감각이 빨리 생깁니다.
+당연히 느리다. 아주 느리다.
 
-### 3. 교육용 기준점
-“무엇이 본질이고 무엇이 최적화인가”를 구분하는 기준점을 만들어 줍니다.
+- 스칼라 오토그라드
+- 배치/벡터화 없음
+- 대규모 학습 불가
 
-Karpathy의 말처럼, 나머지는 대부분 효율의 문제입니다.
+그래서 이건 production 코드가 아니라, 개념을 뚫는 코드다.
 
----
+## 다음에 해볼만한 것
 
-## 한계도 분명하다
+이 gist를 본 다음 단계로는 이런 순서가 자연스럽다.
 
-- 스칼라 오토그라드라 매우 느림
-- 배치 처리/벡터화 없음
-- 실제 대규모 데이터·모델에는 부적합
-- 안정화 기법/엔지니어링 요소 최소화
-
-그래서 이 코드는 **프로덕션용**이 아니라 **개념용**입니다.
-
----
-
-## 실전으로 연결하려면
-
-이 gist를 본 뒤 다음 순서로 넘어가면 좋습니다.
-
-1. 동일 구조를 NumPy 벡터화로 재구현
-2. PyTorch 모듈(`nn.Embedding`, `nn.MultiheadAttention` 유사 구조)로 매핑
-3. 미니배치/마스킹/체크포인트/평가 루프 추가
-4. 토크나이저를 문자 단위에서 subword(BPE/SentencePiece)로 교체
-
-이렇게 가면 “원리 → 실전” 다리가 깔끔하게 이어집니다.
+1. NumPy로 벡터화 버전 만들기
+2. PyTorch 모듈로 1:1 대응 구현
+3. 배치/평가/체크포인트 붙이기
+4. 토크나이저를 subword로 교체
 
 ---
 
-## 마무리
+정리하면,
+`microgpt.py`는 GPT를 신비하게 만들지 않고 그냥 해부해서 보여준다.
 
-`microgpt.py`는 GPT를 신비화하지 않습니다. 
-오히려 아주 담백하게 말합니다.
+- 예측은 확률 문제
+- 학습은 미분 + 최적화 문제
+- 모델은 반복되는 블록 구조
 
-- 예측은 확률이다.
-- 학습은 미분과 최적화다.
-- 모델은 반복되는 블록이다.
-
-그리고 우리에게 남는 질문은 이것입니다.
-
-> 복잡함의 본질은 알고리즘에 있는가,
-> 아니면 규모(scale)와 효율(engineering)에 있는가?
-
-이 작은 파일은 그 질문에 대해, 꽤 설득력 있는 답을 줍니다.
+코드가 작아서 더 강력한 사례였다. 
+가끔은 큰 프레임워크 문서보다 이런 파일 하나가 훨씬 잘 이해된다.
