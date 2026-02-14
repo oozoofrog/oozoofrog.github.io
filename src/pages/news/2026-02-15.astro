@@ -1,0 +1,522 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="종합 데일리 브리핑 | 2026년 2월 15일">
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" slot="head-extra">
+
+  <div class="news-container">
+    <div class="breadcrumb">
+      <a href="/news">← 뉴스 목록</a>
+    </div>
+
+    <header class="news-header">
+      <div class="edition">Comprehensive Daily Briefing</div>
+      <h1>지난 24시간 세상의 모든 소식</h1>
+      <p class="subtitle">증시, 정치, 국제, 기술, 과학, 스포츠 종합</p>
+      <div class="dateline">2026년 2월 15일 일요일 오전 7시 · 마리오 에디션</div>
+    </header>
+
+    <div class="breaking-banner">
+      🏛️ 미국 DHS 셧다운 돌입, 이민·재난 대응 차질 우려 · 🏔️ 뮌헨안보회의: 루비오, 유럽에 "변화 필요" 촉구
+    </div>
+
+    <div class="market-ticker">
+      <div class="ticker-item">
+        <span class="ticker-label">Dow</span>
+        <span class="ticker-value up">▲ 0.10% (49,501)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">S&P 500</span>
+        <span class="ticker-value up">▲ 0.05% (6,836)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">Nasdaq</span>
+        <span class="ticker-value down">▼ 0.22% (22,547)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">KOSPI</span>
+        <span class="ticker-value down">▼ 0.28% (5,507)</span>
+      </div>
+    </div>
+
+    <!-- 증시/경제 -->
+    <section>
+      <div class="section-header">
+        <h2>💹 증시/경제</h2>
+      </div>
+
+      <div class="lead-story">
+        <h3>인플레이션 둔화 신호에 금리 인하 기대감 부활</h3>
+        <p>2월 13일(금) 미국 증시는 예상보다 부드러운 인플레이션 지표 발표에 소폭 상승 마감했습니다. S&P 500은 0.05% 올라 6,836.17에, 다우는 48.95포인트(0.10%) 상승한 49,500.93에 마감했습니다.</p>
+        <p>다만 나스닥은 AI 설비투자(capex) 우려가 지속되며 0.22% 하락했습니다. 시장은 연준의 금리 인하 시점에 대해 신중한 낙관론을 유지하고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">CAPEX</span>
+        <h3>AI 인프라 투자 60% 급증, 하이퍼스케일러 정당성 논란</h3>
+        <p>2026년 주요 클라우드 기업들의 AI 데이터센터 설비투자가 전년 대비 60% 증가할 전망입니다. Amazon의 인디애나주 뉴칼라일 데이터센터는 1,200에이커에 30개 건물을 계획하는 등 대규모 확장이 진행 중이지만, 수익성에 대한 의문도 커지고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">KOREA</span>
+        <h3>KOSPI 5,507선, 보합세 유지</h3>
+        <p>코스피는 2월 13일 5,507.01로 마감하며 소폭 하락했습니다. 글로벌 증시의 혼조세와 AI 관련 기술주 변동성이 투자 심리에 영향을 미쳤습니다.</p>
+      </div>
+    </section>
+
+    <!-- AI/기술 -->
+    <section>
+      <div class="section-header">
+        <h2>🤖 AI & 기술</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">AI</span>
+        <h3>Nvidia CEO 젠슨 황, 인도 AI 임팩트 서밋 불참 발표</h3>
+        <p>Nvidia CEO 젠슨 황이 다음 주 인도에서 열리는 India AI Impact Summit에 참석하지 않을 것이라고 밝혔습니다. 글로벌 기술·정치 리더들이 대거 참석할 예정인 이 행사에서 Nvidia의 부재는 주목을 받고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">AI</span>
+        <h3>AI, 뇌 MRI 수초 만에 판독 — 미시간대 연구</h3>
+        <p>미시간대학교 연구진이 뇌 MRI 스캔을 단 수초 만에 해석할 수 있는 AI 시스템을 개발했습니다. 다양한 신경학적 질환을 정확히 식별하고 긴급 치료가 필요한 케이스를 판별할 수 있어, 의료 현장에 혁신적 변화가 기대됩니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">STARTUP</span>
+        <h3>Cohere, 매출 목표 초과 달성 — IPO 탄력</h3>
+        <p>엔터프라이즈 AI 스타트업 Cohere가 매출 목표를 초과 달성하며 IPO에 탄력을 받고 있습니다. 유럽 확장과 AI 에이전트 플랫폼 'North' 개발을 2026년 핵심 전략으로 내세웠습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">LAYOFFS</span>
+        <h3>2026년 첫 6주, 글로벌 테크 업계 3만 명 이상 감원</h3>
+        <p>2026년 초 6주 동안 전 세계 테크 기업에서 3만 명 이상이 해고되었습니다. AI 전환에 따른 구조조정이 가속화되며 업계 전반에 걸친 인력 재편이 이어지고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 정치 -->
+    <section>
+      <div class="section-header">
+        <h2>🏛️ 정치</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag politics">US</span>
+        <h3>미국 국토안보부(DHS) 셧다운 돌입</h3>
+        <p>미 의회가 국토안보부 예산안 합의에 실패하면서 DHS가 셧다운에 돌입했습니다. 이민 단속, 재난 대응, 공항 보안 등 핵심 기능에 차질이 예상됩니다. 다른 연방 기관은 정상 운영되지만, DHS의 광범위한 업무 범위를 고려하면 영향이 상당할 전망입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">DIPLOMACY</span>
+        <h3>뮌헨안보회의: 루비오 "유럽은 변해야 한다"</h3>
+        <p>마르코 루비오 미 국무장관이 뮌헨안보회의에서 유럽에 "우방이지만 변화가 필요하다"고 촉구했습니다. 일부 유럽 관계자는 루비오의 주장이 극우적 논리를 반영한다고 비판했습니다. 젤렌스키 대통령은 우크라이나의 2027년 EU 가입을 목표로 하겠다고 밝혔습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">GREENLAND</span>
+        <h3>덴마크 총리 "그린란드 압박은 완전히 용납 불가"</h3>
+        <p>메테 프레데릭센 덴마크 총리가 뮌헨안보회의에서 미국의 그린란드 압박에 대해 "절대로 타협할 수 없는 문제"라며 강력히 반발했습니다. 미국과 협력 의지는 있지만 영토 주권은 양보할 수 없다는 입장을 분명히 했습니다.</p>
+      </div>
+    </section>
+
+    <!-- 국제 -->
+    <section>
+      <div class="section-header">
+        <h2>🌍 국제</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag world">RUSSIA</span>
+        <h3>나발니, 개구리 독소로 독살 — 유럽 5개국 과학적 확인</h3>
+        <p>유럽 5개국 정부가 러시아 반체제 인사 알렉세이 나발니의 시신에서 개구리 독소(frog toxin)가 발견되었다고 공동 발표했습니다. 2년 전 옥중 사망한 나발니에 대한 러시아의 공식 설명에 정면으로 도전하는 결과입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">IRAN</span>
+        <h3>이란, 1월 시위 대규모 체포 — 사법부 고위 인사 발언 파문</h3>
+        <p>이란 사법부 부수장이 2026년 1월 봉기 당시 대규모 체포에 대해 언급하며 파문이 일고 있습니다. 체포된 대다수가 일반 시민이었다는 점에서 이란 내부 정치 상황의 심각성을 드러냈습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">UKRAINE</span>
+        <h3>젤렌스키, 미국과 협상 "최종 합의 세부사항 갈등 중"</h3>
+        <p>뮌헨안보회의 현장에서 젤렌스키 대통령이 미국과의 협상에서 여전히 많은 최종 세부사항에 대해 갈등이 있다고 전해졌습니다. 우크라이나 전쟁 종식을 위한 외교적 노력이 복잡한 양상을 보이고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 과학 -->
+    <section>
+      <div class="section-header">
+        <h2>🔬 과학</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">SPACE</span>
+        <h3>외곽 궤도 암석 행성 발견 — 행성 형성 이론 뒤흔들어</h3>
+        <p>천문학자들이 먼 행성계에서 외곽 궤도에 암석 행성을 발견했습니다. 기존 행성 형성 이론의 핵심 규칙을 뒤집는 발견으로, 행성계 형성 과정에 대한 재검토가 필요해졌습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">HEALTH</span>
+        <h3>삶의 경험이 면역체계를 재프로그래밍한다 — 새 연구</h3>
+        <p>같은 바이러스에 누군가는 가볍게, 누군가는 입원하는 이유가 밝혀졌습니다. 새로운 연구에 따르면 개인의 삶의 경험이 면역체계를 근본적으로 재작성하여 질병 반응에 차이를 만든다고 합니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">SPACE</span>
+        <h3>제임스 웹, 은하 밖 최초 유기 분자 감지</h3>
+        <p>제임스 웹 우주망원경이 초고광도 적외선 은하에서 벤젠, 메탄, 메틸 라디칼 등 탄소 기반 화합물을 감지했습니다. 은하수 밖에서 고반응성 메틸 라디칼이 발견된 것은 역사상 처음입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">HEALTH</span>
+        <h3>척수 손상 치유하는 숨겨진 뇌세포 발견</h3>
+        <p>Cedars-Sinai 과학자들이 척수에서 놀라운 자가 수복 시스템을 발견했습니다. 마비, 뇌졸중 등의 치료에 새로운 문을 열 수 있는 획기적 연구 결과입니다.</p>
+      </div>
+    </section>
+
+    <!-- 스포츠 -->
+    <section>
+      <div class="section-header">
+        <h2>⚽ 스포츠</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag sports">OLYMPICS</span>
+        <h3>밀라노-코르티나 동계올림픽 8일차 — 말리닌 메달 실패 '역대급 이변'</h3>
+        <p>남자 피겨 싱글 프리스케이팅에서 미국의 일리아 말리닌(21)이 메달 획득에 실패하며 올림픽 역사상 최대 이변 중 하나로 기록되었습니다. 카자흐스탄의 미하일 샤이도로프가 역사적인 금메달을 차지했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">OLYMPICS</span>
+        <h3>체코 이를렉, 스피드스케이팅 10,000m 금메달</h3>
+        <p>체코의 메토데이 이를렉이 스피드스케이팅 남자 10,000m에서 금메달을 획득하며 이번 대회 두 번째 메달(5,000m 은메달)을 추가했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">NBA</span>
+        <h3>K-pop 그룹 Cortis, NBA 올스타 이벤트 최초 K-pop 헤드라이너</h3>
+        <p>K-pop 보이밴드 Cortis가 미국 잉글우드 키아 포럼에서 열린 NBA 올스타 셀러브리티 게임 하프타임에 공연하며 K-pop 아티스트 최초로 NBA 올스타 이벤트 헤드라이너를 장식했습니다.</p>
+      </div>
+    </section>
+
+    <!-- 엔터테인먼트 -->
+    <section>
+      <div class="section-header">
+        <h2>🎬 엔터테인먼트</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <h3>배우 김동욱, 첫 딸 출산 축하</h3>
+        <p>한국 배우 김동욱과 아내 스텔라 김이 결혼 2년 만에 첫 아이인 딸 로완 그레이스 김을 맞이했습니다. 팬들의 따뜻한 축하가 이어지고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <h3>이승기·이다인 부부, 둘째 임신 소식</h3>
+        <p>한류스타 이승기와 이다인 부부가 둘째 아이를 임신한 소식이 전해졌습니다. 2월 5일 첫째 딸의 두 번째 생일 파티 사진을 공유하며 가족의 행복을 나눴습니다.</p>
+      </div>
+    </section>
+
+    <div class="highlights-box">
+      <h4>📌 오늘의 주요 헤드라인</h4>
+      <ul>
+        <li>💹 인플레이션 둔화 신호, S&P 소폭 상승 — AI capex 60% 급증 논란</li>
+        <li>🤖 Nvidia 젠슨 황 인도 서밋 불참, Cohere IPO 탄력, 테크 3만 명 감원</li>
+        <li>🏛️ DHS 셧다운 돌입, 뮌헨안보회의 루비오 "유럽 변화" 촉구</li>
+        <li>🌍 나발니 개구리 독소 독살 확인, 이란 시위 대량 체포 파문</li>
+        <li>🔬 외곽 궤도 암석 행성 발견, 제임스 웹 은하 밖 유기 분자 최초 감지</li>
+        <li>⚽ 동계올림픽 말리닌 메달 실패 '역대급 이변', Cortis NBA 올스타 K-pop 최초</li>
+        <li>🎬 김동욱 첫 딸 출산, 이승기·이다인 둘째 임신</li>
+      </ul>
+    </div>
+
+    <footer class="news-footer">
+      <p class="footer-credit">🍄 CURATED BY 마리오 · 2026년 2월 15일 오전 7시</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .news-container {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Noto Serif KR', Georgia, serif;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--frog-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .news-header {
+    padding: 20px 0 30px;
+    text-align: center;
+    border-bottom: 3px double #1a1a1a;
+    margin-bottom: 30px;
+  }
+
+  .edition {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888888;
+    margin-bottom: 12px;
+  }
+
+  .news-header h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: #4a4a4a;
+    font-style: italic;
+  }
+
+  .dateline {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888888;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0dcd4;
+  }
+
+  .breaking-banner {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 16px 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 8px;
+  }
+
+  .market-ticker {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 16px 0;
+    border-bottom: 1px solid #e0dcd4;
+    margin-bottom: 30px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ticker-label {
+    color: #888888;
+  }
+
+  .ticker-value.up {
+    color: #16a34a;
+    font-weight: 600;
+  }
+
+  .ticker-value.down {
+    color: #dc2626;
+    font-weight: 600;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lead-story {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #e0dcd4;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+
+  .lead-story h3 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .lead-story p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .news-article {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0dcd4;
+  }
+
+  .news-article:last-child {
+    border-bottom: none;
+  }
+
+  .news-article h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .news-article p {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 6px;
+    margin-bottom: 8px;
+  }
+
+  .tag.markets {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  .tag.ai {
+    background: #f3e8ff;
+    color: #7c3aed;
+  }
+
+  .tag.politics {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+
+  .tag.world {
+    background: #fce7f3;
+    color: #be185d;
+  }
+
+  .tag.science {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .tag.sports {
+    background: #ffedd5;
+    color: #c2410c;
+  }
+
+  .tag.breaking {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  .highlights-box {
+    background: #f5f2eb;
+    border-left: 4px solid #1a1a1a;
+    padding: 20px 24px;
+    margin: 30px 0;
+    border-radius: 8px;
+  }
+
+  .highlights-box h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .highlights-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .highlights-box li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0dcd4;
+    font-size: 0.95rem;
+  }
+
+  .highlights-box li:last-child {
+    border-bottom: none;
+  }
+
+  .news-footer {
+    margin-top: 50px;
+    padding: 24px 0;
+    border-top: 3px double #1a1a1a;
+    text-align: center;
+  }
+
+  .footer-credit {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #888888;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 640px) {
+    .market-ticker {
+      gap: 16px;
+    }
+
+    .news-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .lead-story {
+      padding: 20px;
+    }
+  }
+</style>
