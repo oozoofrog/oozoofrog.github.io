@@ -27,7 +27,9 @@ const categories = Array.isArray(rawCategories)
         </span>
       )}
     </p>
-    <slot />
+    <div class="post-content">
+      <slot />
+    </div>
     <Comments />
   </article>
 </BaseLayout>
@@ -56,5 +58,82 @@ const categories = Array.isArray(rawCategories)
   .post-categories {
     display: flex;
     gap: 6px;
+  }
+
+  :global(.post-content > * + *) {
+    margin-top: 1rem;
+  }
+
+  :global(.post-content h1),
+  :global(.post-content h2),
+  :global(.post-content h3),
+  :global(.post-content h4) {
+    color: var(--dark-green);
+    line-height: 1.35;
+    margin-top: 2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  :global(.post-content h1) { font-size: 1.9rem; }
+  :global(.post-content h2) { font-size: 1.5rem; }
+  :global(.post-content h3) { font-size: 1.2rem; }
+
+  :global(.post-content p),
+  :global(.post-content li),
+  :global(.post-content blockquote) {
+    line-height: 1.85;
+  }
+
+  :global(.post-content ul),
+  :global(.post-content ol) {
+    margin: 1rem 0 1rem 1.25rem;
+    padding-left: 1rem;
+  }
+
+  :global(.post-content li + li) {
+    margin-top: 0.4rem;
+  }
+
+  :global(.post-content code) {
+    background: #f1f5f3;
+    padding: 0.15rem 0.4rem;
+    border-radius: 6px;
+    font-size: 0.92em;
+  }
+
+  :global(.post-content pre) {
+    background: #0f1720;
+    color: #eaf2ef;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 1.2rem 0;
+  }
+
+  :global(.post-content pre code) {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    color: inherit;
+  }
+
+  :global(.post-content blockquote) {
+    border-left: 4px solid var(--frog-green);
+    padding: 0.4rem 0 0.4rem 0.9rem;
+    color: #4d5c56;
+    background: rgba(255, 255, 255, 0.45);
+    border-radius: 0 8px 8px 0;
+    margin: 1.2rem 0;
+  }
+
+  :global(.post-content hr) {
+    border: 0;
+    border-top: 1px solid #dbe6e1;
+    margin: 1.5rem 0;
+  }
+
+  :global(.post-content img) {
+    border-radius: 10px;
+    margin: 1rem 0;
   }
 </style>
