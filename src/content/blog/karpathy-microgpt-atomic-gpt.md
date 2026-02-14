@@ -281,6 +281,117 @@ for pos_id in range(block_size):
 
 ---
 
+## Python 코드를 Swift로 옮기려면
+
+완전 동일 구현(교육용)을 목표로 하면 아래 순서가 가장 안전하다.
+
+## 1) 구현 전략 먼저 고르기
+
+### 전략 A: 스칼라 오토그라드 그대로 이식 (학습용)
+- `Value` 클래스를 Swift `final class`로 구현
+- 연산자 오버로딩(`+`, `*`, `/`, prefix `-`) 적용
+- `backward()` 토폴로지 순회 구현
+- 장점: 원문 구조와 1:1 대응, 공부에 좋음
+- 단점: 매우 느림
+
+### 전략 B: Swift Numerics/Accelerate 기반 벡터화 (실용용)
+- `Float`/`Double` 배열 기반 연산
+- 행렬 연산은 Accelerate(BLAS/vDSP) 사용
+- 장점: 속도 개선
+- 단점: 원문과 구조 차이가 커져 학습용 비교가 어려움
+
+처음엔 **전략 A**로 옮긴 뒤, 다음 단계에서 B로 넘어가는 걸 추천.
+
+## 2) 핵심 타입 대응표
+
+- Python `Value` → Swift `final class Value`
+- `list[Value]` → `[Value]`
+- `list[list[Value]]` → `[[Value]]`
+- `dict[str, matrix]` → `[String: [[Value]]]`
+- lambda 초기화 → `func matrix(_ nout:Int, _ nin:Int, std:Double) -> [[Value]]`
+
+## 3) `Value` 최소 골격 (Swift)
+
+```swift
+final class Value: Hashable {
+    var data: Double
+    var grad: Double = 0
+    var children: [Value]
+    var localGrads: [Double]
+
+    init(_ data: Double, children: [Value] = [], localGrads: [Double] = []) {
+        self.data = data
+        self.children = children
+        self.localGrads = localGrads
+    }
+
+    static func == (lhs: Value, rhs: Value) -> Bool { lhs === rhs }
+    func hash(into hasher: inout Hasher) { hasher.combine(ObjectIdentifier(self)) }
+}
+```
+
+포인트:
+- 역전파 토폴로지 정렬을 위해 **참조 동일성(===)** 기반 Hashable이 필요.
+
+## 4) 연산자 오버로딩
+
+Swift에서 Python처럼 쓰려면 연산자 오버로딩을 미리 만들어야 한다.
+
+```swift
+func + (lhs: Value, rhs: Value) -> Value {
+    Value(lhs.data + rhs.data, children: [lhs, rhs], localGrads: [1, 1])
+}
+
+func * (lhs: Value, rhs: Value) -> Value {
+    Value(lhs.data * rhs.data, children: [lhs, rhs], localGrads: [rhs.data, lhs.data])
+}
+```
+
+추가로 구현할 것:
+- `pow`, `log`, `exp`, `relu`
+- `-`, `/`, `radd/rmul`에 해당하는 편의 오버로드
+
+## 5) 역전파 구현 포인트
+
+원문 로직 그대로 구현하면 된다.
+
+1. DFS로 topo 정렬
+2. loss.grad = 1 세팅
+3. reverse topo 순회하며 child.grad 누적
+
+주의:
+- Swift는 재귀 깊이/성능 이슈가 있을 수 있으니, 필요하면 iterative DFS로 변경.
+
+## 6) 모델/학습 루프 이식 순서
+
+한 번에 다 옮기지 말고 아래 순서로 테스트하며 진행.
+
+1. `Value` 단위 테스트 (`(a*b + c).backward()`)
+2. `linear`, `softmax`, `rmsnorm` 이식
+3. `gpt()` forward만 먼저 성공
+4. loss 계산 + backward 연결
+5. Adam 업데이트 연결
+6. 추론 샘플링
+
+## 7) Swift 이식 시 자주 걸리는 지점
+
+- 참조 타입/값 타입 혼동 (`class` vs `struct`)
+- `Value` 객체 공유로 인한 gradient 누적 중복 버그
+- `exp/log`에서 수치 불안정
+- 랜덤 시드 재현성 차이(Python과 bit-level 불일치)
+- 느린 중첩 루프 성능
+
+## 8) 현실적인 목표
+
+- 1단계: Python과 **같은 개념 동작** 확인
+- 2단계: 작은 데이터셋에서 loss 감소 확인
+- 3단계: Swift 벡터화/가속으로 리팩터링
+
+즉, 처음부터 빠른 코드를 만들기보다,
+**정확히 같은 알고리즘을 옮기는 것**을 우선으로 두는 편이 좋다.
+
+---
+
 ## 용어 해설집
 
 ### Next-token prediction
