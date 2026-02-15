@@ -1,0 +1,526 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="종합 데일리 브리핑 | 2026년 2월 16일">
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" slot="head-extra">
+
+  <div class="news-container">
+    <div class="breadcrumb">
+      <a href="/news">← 뉴스 목록</a>
+    </div>
+
+    <header class="news-header">
+      <div class="edition">Comprehensive Daily Briefing</div>
+      <h1>지난 24시간 세상의 모든 소식</h1>
+      <p class="subtitle">증시, 정치, 국제, 기술, 과학, 스포츠 종합</p>
+      <div class="dateline">2026년 2월 16일 월요일 오전 7시 · 마리오 에디션</div>
+    </header>
+
+    <div class="breaking-banner">
+      🏔️ 뮌헨안보회의: 젤렌스키 "2개월 휴전 후 선거" 선언 · 🏅 밀라노 동계올림픽 한국 메달 사냥 가속
+    </div>
+
+    <div class="market-ticker">
+      <div class="ticker-item">
+        <span class="ticker-label">Dow</span>
+        <span class="ticker-value up">▲ 0.10% (49,501)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">S&P 500</span>
+        <span class="ticker-value up">▲ 0.05% (6,836)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">Nasdaq</span>
+        <span class="ticker-value down">▼ 0.22% (22,547)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">KOSPI</span>
+        <span class="ticker-value down">▼ 0.28% (5,507)</span>
+      </div>
+    </div>
+
+    <!-- 증시 -->
+    <section>
+      <div class="section-header">
+        <h2>💹 증시/경제</h2>
+      </div>
+
+      <div class="lead-story">
+        <h3>미국 증시, 인플레이션 둔화에도 AI 우려로 혼조 마감 — 프레지던트 데이 휴장</h3>
+        <p>13일(금) S&P 500은 소비자물가지수(CPI) 둔화에 힘입어 소폭 상승(6,836.17)했으나, AI 경쟁 격화에 따른 기술주 불확실성으로 나스닥은 0.22% 하락했습니다. 다우는 49,500.93으로 보합 마감. 주간 기준 3대 지수 모두 하락세를 보였습니다.</p>
+        <p>오늘(2/16)은 미국 프레지던트 데이로 뉴욕증시가 휴장합니다. 한편 KOSPI는 지난주 5,522 사상 최고치를 기록한 뒤 5,507로 조정받았으며, 금융당국은 KOSDAQ 부실기업 상장폐지 기준 강화를 발표했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">MARKETS</span>
+        <h3>중국 증시 랠리, 기업 실적 전망 악화로 동력 상실</h3>
+        <p>중국 주식시장의 상승 랠리가 기업 실적 둔화 전망에 제동이 걸렸습니다. 투자자들의 신중한 태도가 확산되고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">KOREA</span>
+        <h3>반도체 초호황, KOSPI 사상 최고치 경신 후 조정</h3>
+        <p>SK하이닉스와 삼성전자를 중심으로 반도체 대표주가 3.59% 상승하는 등 초호황 랠리가 이어지고 있습니다. YTN은 "주가 아직 갈 길 멀다"며 반도체 업황에 대한 낙관론을 전했습니다.</p>
+      </div>
+    </section>
+
+    <!-- AI/기술 -->
+    <section>
+      <div class="section-header">
+        <h2>🤖 AI & 기술</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag ai">AI</span>
+        <h3>인도 AI 임팩트 서밋 2026 오늘 개막 — 모디 총리 개회, 알트만·피차이 참석</h3>
+        <p>뉴델리 바라트 만다팜에서 2월 16~20일간 글로벌 사우스 최초의 국제 AI 서밋이 열립니다. 100개국 이상의 대표단, 15~20명의 국가수반, 50명 이상의 장관이 참석합니다. OpenAI CEO 샘 알트만은 "인도가 글로벌 AI 경쟁을 주도할 잠재력이 있다"고 밝혔습니다. 다만 엔비디아 CEO 젠슨 황은 불참을 확인했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">AI</span>
+        <h3>SaaS 업계 대전환 — "우리는 이제 AI 회사입니다"</h3>
+        <p>NYT 보도에 따르면 SaaStr가 'SaaStr AI'로 명칭을 변경하는 등 기존 소프트웨어 기업들이 대거 AI 기업으로 전환하고 있습니다. 직함도 Chief AI Officer로 바뀌는 추세입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">AI</span>
+        <h3>AI 리스크 경고 — 2026 국제 AI 안전 보고서 발표</h3>
+        <p>알자지라에 따르면 요슈아 벤지오 교수가 주도한 2026 국제 AI 안전 보고서가 발표되었습니다. AI 시스템에 대한 감정적 의존 등 심리적 문제가 급증하고 있으며, 전문가들이 강력한 규제 필요성을 경고하고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">AI</span>
+        <h3>뇌 모방 뉴로모픽 컴퓨터, 물리 시뮬레이션 방정식 풀이 성공</h3>
+        <p>인간 뇌를 모델로 한 뉴로모픽 컴퓨터가 기존 슈퍼컴퓨터만 가능했던 복잡한 물리 시뮬레이션 방정식을 해결하는 데 성공했습니다. 에너지 효율 혁명의 가능성을 열었습니다.</p>
+      </div>
+    </section>
+
+    <!-- 정치 -->
+    <section>
+      <div class="section-header">
+        <h2>🏛️ 정치</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">KOREA</span>
+        <h3>이재명 대통령 국정지지율 64% — 부동산 정책 논란 계속</h3>
+        <p>MBC 설 연휴 여론조사에서 이재명 대통령의 국정운영 지지율이 64%를 기록했습니다. 부동산 정책에 대해서는 주거부담 완화 효과가 있을 것이라는 응답이 절반을 넘었습니다. 한편 분당 자택 처분 여부를 둘러싼 야당과의 공방이 이어지고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">KOREA</span>
+        <h3>6월 지방선거 여당 후보 지지도 54%</h3>
+        <p>같은 여론조사에서 다가오는 지방선거의 여당 후보 지지도가 54%로 나타나 현 정부의 정치적 동력이 유지되고 있는 것으로 분석됩니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">US</span>
+        <h3>루비오 국무장관, 뮌헨안보회의에서 유럽에 "변화" 요구</h3>
+        <p>마르코 루비오 미 국무장관이 뮌헨안보회의에서 유럽은 미국의 친구이지만 변화가 필요하다고 강조했습니다. 트럼프 대통령이 러-우 전쟁의 확실한 종결을 추구하고 있다고 밝혔습니다.</p>
+      </div>
+    </section>
+
+    <!-- 국제 -->
+    <section>
+      <div class="section-header">
+        <h2>🌍 국제</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag world">UKRAINE</span>
+        <h3>젤렌스키, 뮌헨안보회의서 "2개월 휴전 후 선거 가능" 선언</h3>
+        <p>우크라이나 젤렌스키 대통령이 뮌헨안보회의에서 미국이 2개월 휴전을 보장해준다면 민주적 선거를 치를 준비가 되어 있다고 밝혔습니다. 프랑스와 영국은 휴전 시 우크라이나 국경에 다국적군 배치 의향을 시사했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">SOUTH ASIA</span>
+        <h3>방글라데시 BNP 타리크 라흐만, 내일 총리 취임</h3>
+        <p>방글라데시 국민당(BNP) 의장 타리크 라흐만이 2월 17일 총리로 취임합니다. 인도는 옴 비를라 하원의장을 대표로 파견하며, 라흐만은 인도 관계에서 "방글라데시 우선" 원칙을 강조했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">EUROPE</span>
+        <h3>나발니 독살 의혹: 5개국 "희귀 독화살개구리 독소 사용" 발표</h3>
+        <p>영국을 포함한 5개 유럽 국가가 러시아 야당 지도자 알렉세이 나발니가 감옥에서 희귀 독화살개구리 독소에 의해 독살되었다며 크렘린의 책임을 주장했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">CRICKET</span>
+        <h3>인도-파키스탄, T20 월드컵 긴장 속 격돌</h3>
+        <p>콜롬보에서 열리는 T20 월드컵 조별리그에서 인도와 파키스탄이 맞붙습니다. 인도 대표팀은 관례적인 악수를 거부하기로 결정해 정치적 긴장이 스포츠 무대까지 이어지고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 과학 -->
+    <section>
+      <div class="section-header">
+        <h2>🔬 과학</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">HEALTH</span>
+        <h3>남성 피임약의 열쇠 — 정자 "분자 스위치" 발견</h3>
+        <p>미시간주립대 연구진이 정자가 난자를 향해 최종 전력질주하는 데 필요한 분자 스위치를 규명했습니다. 정자의 포도당 연료 사용 메커니즘을 추적한 이 발견은 남성 피임약 개발의 돌파구가 될 전망입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">NEURO</span>
+        <h3>척수 손상 치유하는 '숨겨진 뇌세포' 발견</h3>
+        <p>시더스-시나이 연구진이 척수에서 놀라운 자가 수복 시스템을 발견했습니다. 마비, 뇌졸중 등의 새로운 치료법 개발에 기여할 것으로 기대됩니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">COMPUTING</span>
+        <h3>뉴로모픽 컴퓨터, 물리 시뮬레이션 방정식 풀이 성공</h3>
+        <p>인간 뇌를 모방한 뉴로모픽 컴퓨터가 슈퍼컴퓨터 전유물이었던 복잡한 물리 시뮬레이션 방정식 풀이에 성공, 에너지 효율적 컴퓨팅의 새 장을 열었습니다.</p>
+      </div>
+    </section>
+
+    <!-- 스포츠 -->
+    <section>
+      <div class="section-header">
+        <h2>⚽ 스포츠</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag sports">OLYMPICS</span>
+        <h3>밀라노 동계올림픽: 한국 금1·은2, 스피드스케이팅 500m 출격</h3>
+        <p>최가온이 금메달을 획득하고, 황대헌이 쇼트트랙 남자 1500m 은메달을 따내며 한국 선수단이 메달 사냥에 가속도를 내고 있습니다. 오늘 새벽에는 스피드스케이팅 500m에 김민선·이나현이 출전했으며, 스노보드 유승은이 여자 슬로프스타일 예선 3위로 결선에 진출했습니다. 메달 순위: 1위 노르웨이(금10), 2위 이탈리아(금6), 3위 미국(금5), 한국 12위(금1·은2·동2).</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">NBA</span>
+        <h3>NBA 올스타 위크엔드 LA — 슬램덩크 콘테스트 케샤드 존슨 우승</h3>
+        <p>LA에서 열린 NBA 올스타 위크엔드에서 케샤드 존슨이 슬램덩크 콘테스트 우승을 차지했습니다. 라이징 스타전에서는 팀 빈스가 팀 멜로를 꺾었으며, 오늘 밤 USA vs World 올스타 본경기가 펼쳐집니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">CRICKET</span>
+        <h3>인도 vs 파키스탄, T20 월드컵 빅매치</h3>
+        <p>콜롬보에서 인도와 파키스탄의 T20 월드컵 조별리그 빅매치가 열립니다. 인도 대표팀의 악수 거부 결정이 화제입니다.</p>
+      </div>
+    </section>
+
+    <!-- 엔터테인먼트 -->
+    <section>
+      <div class="section-header">
+        <h2>🎬 엔터테인먼트</h2>
+      </div>
+
+      <div class="news-article">
+        <h3>제니퍼 애니스턴, 남자친구 짐 커티스와 첫 발렌타인 공개</h3>
+        <p>제니퍼 애니스턴이 교제 약 1년째인 남자친구 짐 커티스와의 첫 발렌타인 데이를 SNS에 공개하며 화제를 모았습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <h3>오바마 전 대통령 "외계 생명체는 실재" 발언 화제</h3>
+        <p>버락 오바마 전 미국 대통령이 팟캐스트 인터뷰에서 "외계 생명체는 실재한다"고 밝히면서도 에어리어 51 은폐론은 단호히 부정해 화제를 모으고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <h3>설 연휴 넷플릭스 인기작 경쟁 치열</h3>
+        <p>설 연휴를 맞아 넷플릭스 한국 및 글로벌 차트에서 영화·시리즈 순위 경쟁이 치열하게 펼쳐지고 있습니다.</p>
+      </div>
+    </section>
+
+    <div class="highlights-box">
+      <h4>📌 오늘의 주요 헤드라인</h4>
+      <ul>
+        <li>💹 미국 증시 혼조 마감, 오늘 프레지던트 데이 휴장 · KOSPI 5,507 조정</li>
+        <li>🤖 인도 AI 임팩트 서밋 2026 오늘 개막, 알트만·피차이 참석</li>
+        <li>🏛️ 이재명 대통령 지지율 64%, 부동산 정책 공방 지속</li>
+        <li>🌍 젤렌스키 "2개월 휴전 후 선거" 선언 · 나발니 독살 의혹 새 증거</li>
+        <li>🔬 남성 피임약 핵심 '분자 스위치' 발견 · 뉴로모픽 컴퓨터 물리 방정식 풀이 성공</li>
+        <li>🏅 밀라노 동계올림픽 한국 금1·은2 · 스피드스케이팅 500m 출격</li>
+        <li>🎬 오바마 "외계 생명체 실재" 발언 · 애니스턴 첫 발렌타인 공개</li>
+      </ul>
+    </div>
+
+    <footer class="news-footer">
+      <p class="footer-credit">🍄 CURATED BY 마리오 · 2026년 2월 16일 오전 7시</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .news-container {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Noto Serif KR', Georgia, serif;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--frog-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .news-header {
+    padding: 20px 0 30px;
+    text-align: center;
+    border-bottom: 3px double #1a1a1a;
+    margin-bottom: 30px;
+  }
+
+  .edition {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888888;
+    margin-bottom: 12px;
+  }
+
+  .news-header h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: #4a4a4a;
+    font-style: italic;
+  }
+
+  .dateline {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888888;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0dcd4;
+  }
+
+  .breaking-banner {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 16px 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 8px;
+  }
+
+  .market-ticker {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 16px 0;
+    border-bottom: 1px solid #e0dcd4;
+    margin-bottom: 30px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ticker-label {
+    color: #888888;
+  }
+
+  .ticker-value.up {
+    color: #16a34a;
+    font-weight: 600;
+  }
+
+  .ticker-value.down {
+    color: #dc2626;
+    font-weight: 600;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lead-story {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #e0dcd4;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+
+  .lead-story h3 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .lead-story p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .news-article {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0dcd4;
+  }
+
+  .news-article:last-child {
+    border-bottom: none;
+  }
+
+  .news-article h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .news-article p {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 6px;
+    margin-bottom: 8px;
+  }
+
+  .tag.markets {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  .tag.ai {
+    background: #f3e8ff;
+    color: #7c3aed;
+  }
+
+  .tag.politics {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+
+  .tag.world {
+    background: #fce7f3;
+    color: #be185d;
+  }
+
+  .tag.science {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .tag.sports {
+    background: #ffedd5;
+    color: #c2410c;
+  }
+
+  .tag.breaking {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  .highlights-box {
+    background: #f5f2eb;
+    border-left: 4px solid #1a1a1a;
+    padding: 20px 24px;
+    margin: 30px 0;
+    border-radius: 8px;
+  }
+
+  .highlights-box h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .highlights-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .highlights-box li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0dcd4;
+    font-size: 0.95rem;
+  }
+
+  .highlights-box li:last-child {
+    border-bottom: none;
+  }
+
+  .news-footer {
+    margin-top: 50px;
+    padding: 24px 0;
+    border-top: 3px double #1a1a1a;
+    text-align: center;
+  }
+
+  .footer-credit {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #888888;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 640px) {
+    .market-ticker {
+      gap: 16px;
+    }
+
+    .news-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .lead-story {
+      padding: 20px;
+    }
+  }
+</style>
