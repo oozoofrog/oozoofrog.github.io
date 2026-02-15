@@ -2,8 +2,10 @@
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
 }
-const { title = 'oozoofrog', description = 'Building iOS & macOS apps and open-source developer tools.' } = Astro.props;
+const { title = 'oozoofrog', description = 'Building iOS & macOS apps and open-source developer tools.', canonical } = Astro.props;
+const canonicalUrl = canonical ?? Astro.url?.toString();
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -16,11 +18,16 @@ import Analytics from '../components/Analytics.astro';
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
   <link rel="icon" href="/favicon.ico" />
   <Analytics />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
+  {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
 </head>
 <body>
   <Header />
