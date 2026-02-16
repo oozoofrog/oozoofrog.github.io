@@ -1,0 +1,523 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdUnit from '../../components/AdUnit.astro';
+---
+
+<BaseLayout title="종합 데일리 브리핑 | 2026년 2월 17일">
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" slot="head-extra">
+
+  <div class="news-container">
+    <div class="breadcrumb">
+      <a href="/news">← 뉴스 목록</a>
+    </div>
+
+    <!-- 뉴스 상단 광고 -->
+    <AdUnit slot="7941837952" format="auto" />
+
+    <header class="news-header">
+      <div class="edition">Comprehensive Daily Briefing</div>
+      <h1>지난 24시간 세상의 모든 소식</h1>
+      <p class="subtitle">증시, 정치, 국제, 기술, 과학, 스포츠 종합</p>
+      <div class="dateline">2026년 2월 17일 화요일 오전 7시 · 마리오 에디션</div>
+    </header>
+
+    <div class="breaking-banner">
+      🏛️ DHS 셧다운 지속, 의회 합의 불발 · 🏒 밀라노-코르티나 동계올림픽 Day 10 · 🧧 설날(음력 새해) 맞이
+    </div>
+
+    <div class="market-ticker">
+      <div class="ticker-item">
+        <span class="ticker-label">Dow</span>
+        <span class="ticker-value up">▲ 0.10% (49,501)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">S&P 500</span>
+        <span class="ticker-value up">▲ 0.05% (6,836)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">Nasdaq</span>
+        <span class="ticker-value down">▼ 0.22% (22,547)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">KOSPI</span>
+        <span class="ticker-value">— 설 연휴 휴장</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">KOSDAQ</span>
+        <span class="ticker-value">— 설 연휴 휴장</span>
+      </div>
+    </div>
+
+    <!-- 증시/경제 -->
+    <section>
+      <div class="section-header">
+        <h2>💹 증시/경제</h2>
+      </div>
+
+      <div class="lead-story">
+        <h3>미국 증시, Presidents' Day 휴장 — 주간 하락 마감</h3>
+        <p>오늘(2/17) 미국 증시는 프레지던츠 데이(Presidents' Day) 연방 공휴일로 NYSE와 나스닥 모두 휴장합니다. 지난 금요일(2/13) 최종 거래에서 다우존스는 48.95포인트(0.10%) 상승한 49,500.93, S&P 500은 0.05% 오른 6,836.17에 마감했으나, 나스닥은 0.22% 하락한 22,546.67을 기록했습니다.</p>
+        <p>주간 기준으로는 S&P 500이 1.39%, 나스닥이 2.1%, 다우가 1.23% 하락하며 약세로 마감했습니다. 중순 급락 후 금요일 소폭 반등했으나 완전한 회복에는 실패했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">KOREA</span>
+        <h3>한국 증시, 설 연휴 휴장 (2/16~2/19)</h3>
+        <p>KOSPI와 KOSDAQ은 설날 연휴로 2월 16일부터 19일까지 휴장합니다. 중국 상해·심천 증시도 춘절(음력 새해)로 이번 주 전체 휴장 중입니다. 연기금과 공제회의 코스닥 투자 비중 확대 소식이 연휴 전 화제였습니다.</p>
+      </div>
+    </section>
+
+    <!-- AI/기술 -->
+    <section>
+      <div class="section-header">
+        <h2>🤖 AI & 기술</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag ai">AI</span>
+        <h3>인도 AI Impact Summit 2026 개막, 모디 총리 직접 개회</h3>
+        <p>나렌드라 모디 인도 총리가 뉴델리 바라트 만다팜에서 열린 India AI Impact Summit 2026을 직접 개회했습니다. 500개 이상의 세션이 진행되는 이번 서밋은 안전한 AI, 사회적 혜택, 공공서비스에서의 AI 역할을 강조합니다. 인도 AI 시장은 2027년까지 170억 달러를 넘어설 전망이며, 25만 명 이상의 방문객이 예상됩니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">AI</span>
+        <h3>인도 보건부, AI 헬스케어 전략 'SAHI' 발표</h3>
+        <p>인도 보건복지부 장관 자갓 프라카시 나다가 AI Impact Summit에서 인도 헬스케어 AI 전략(SAHI)과 건강 AI 벤치마킹 오픈 데이터 플랫폼(BODH)을 공식 출범시켰습니다. 국가 차원에서 AI를 의료 시스템에 통합하려는 야심찬 계획입니다.</p>
+      </div>
+    </section>
+
+    <!-- 정치 -->
+    <section>
+      <div class="section-header">
+        <h2>🏛️ 정치</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag politics">US</span>
+        <h3>DHS 셧다운 계속 — 의회, 이번 주도 합의 전망 불투명</h3>
+        <p>미국 국토안보부(DHS) 부분 셧다운이 계속되고 있습니다. 상원은 예산 합의 없이 휴회에 들어갔으며, 하원과 상원 모두 이번 주 내내 자리를 비울 예정입니다. 이민 단속, 재난 대응, 공항 보안을 담당하는 DHS의 기능이 축소된 상태입니다. 이달에만 두 번째 부분 셧다운입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">DIPLOMACY</span>
+        <h3>뮌헨 안보회의, 그린란드 이슈 지배</h3>
+        <p>뮌헨 안보회의에서 미 의원들은 동맹국과의 대화가 트럼프 대통령의 그린란드 인수 발언으로 압도되었다고 전했습니다. 루비오 국무장관 연설 후 회의장에서 "안도의 한숨"이 나왔다는 보도도 있었습니다. DHS 셧다운으로 하원 대표단의 뮌헨 방문도 취소되었습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">DIPLOMACY</span>
+        <h3>이란, 핵 협상 타협 의사 표명 — 제네바 2차 회담 예고</h3>
+        <p>이란 외교관이 BBC와의 인터뷰에서 핵 합의 도달을 위해 타협을 고려할 준비가 되어 있다고 밝혔습니다. 2월 초 오만에서 열린 미-이란 간접 회담에 이어 화요일 제네바에서 2차 회담이 예정되어 있으며, 협상이 "대체로 긍정적 방향"이라고 평가했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">MILITARY</span>
+        <h3>미군, 트럼프 명령 시 이란 공습 준비 중 — 로이터</h3>
+        <p>로이터 보도에 따르면 미군이 트럼프 대통령이 공격을 명령할 경우를 대비해 이란에 대한 군사 작전을 준비 중인 것으로 알려졌습니다. 핵 협상과 군사적 압박이 동시에 진행되는 이중 전략으로 해석됩니다.</p>
+      </div>
+    </section>
+
+    <!-- 국제 -->
+    <section>
+      <div class="section-header">
+        <h2>🌍 국제</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">UKRAINE</span>
+        <h3>우크라이나 전쟁, 4주년 임박 — 평화 협상 재개 움직임</h3>
+        <p>우크라이나 전쟁이 4주년을 앞두고 있는 가운데, 관계자들이 추가 대화를 위해 만날 예정입니다. NPR에 따르면 아직 합의에 근접하지 못한 상황이나, 외교적 노력은 계속되고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">CULTURE</span>
+        <h3>독일 쾰른 '로젠몬탁' 카니발 — 트럼프·푸틴 풍자</h3>
+        <p>독일 쾰른에서 장미의 월요일(Rosenmontag) 카니발 퍼레이드가 열렸습니다. 트럼프, 푸틴, 이란 종교 지도자 등 세계 지도자들을 풍자하는 대형 수레가 거리를 행진했습니다. 축제 속에서도 독일인들이 국제 뉴스를 함께 소화하는 전통이 이어졌습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">FRANCE</span>
+        <h3>프랑스 검찰, 엡스타인 수사 확대 — 잭 랑 연구소 압수수색</h3>
+        <p>프랑스 검찰이 제프리 엡스타인 관련 수사를 확대하며, 잭 랑 전 문화부 장관의 연구소에 대한 압수수색을 단행했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">ASIA</span>
+        <h3>🧧 설날·춘절 — 아시아 전역 음력 새해 맞이</h3>
+        <p>오늘 2월 17일은 음력 1월 1일, 병오년(말띠의 해) 설날입니다. 한국, 중국, 베트남 등 아시아 전역에서 15일간의 새해 축제가 시작됩니다. 한국 증시와 중국 증시가 연휴 휴장 중이며, 세계 곳곳에서 축하 행사가 이어지고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 과학 -->
+    <section>
+      <div class="section-header">
+        <h2>🔬 과학</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">BIOLOGY</span>
+        <h3>남극 최남단 곤충에서도 미세플라스틱 검출</h3>
+        <p>남극 고유종인 벨기카 안타르크티카(Belgica antarctica) — 지구 최남단의 쌀알 크기 깔따구 — 가 이미 미세플라스틱을 섭취하고 있는 것으로 밝혀졌습니다. 지구상 가장 오염되지 않았을 것으로 여겨졌던 환경에서의 플라스틱 오염을 보여주는 충격적 발견입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">HEALTH</span>
+        <h3>건강한 사람에게 반복 출현하는 미스터리 장내세균 CAG-170 발견</h3>
+        <p>글로벌 연구진이 건강한 사람들에게서 반복적으로 나타나는 미스터리한 장내세균 그룹 CAG-170을 발견했습니다. 만성 질환을 가진 사람들에게서는 이 세균 수치가 낮았으며, 건강 바이오마커로서의 가능성이 주목받고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">SPACE</span>
+        <h3>화성보다 추운 지구형 행성 발견</h3>
+        <p>천문학자들이 화성보다 더 추울 수 있는 지구형 행성을 발견했습니다. 지구와 비슷한 크기이지만 극도로 낮은 온도를 가진 이 행성은 외계 행성 연구에 새로운 단서를 제공합니다.</p>
+      </div>
+    </section>
+
+    <!-- 스포츠 -->
+    <section>
+      <div class="section-header">
+        <h2>⚽ 스포츠</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag sports">NBA</span>
+        <h3>NBA 올스타전 — 앤서니 에드워즈, MVP 수상</h3>
+        <p>미네소타 팀버울브스의 앤서니 에드워즈가 2026 NBA 올스타 게임에서 코비 브라이언트 MVP를 수상했습니다. Team Stars가 Team World를 37-35로 꺾고, 이어 Team Stripes를 47-21로 압도하며 챔피언십을 차지했습니다. 에드워즈는 3경기에서 총 32득점을 기록했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">OLYMPICS</span>
+        <h3>밀라노-코르티나 동계올림픽 Day 10 — 노르웨이 금메달 12개로 독주</h3>
+        <p>2026 밀라노-코르티나 동계올림픽이 마지막 주에 돌입했습니다. 노르웨이가 금 12개, 은 7개, 동 7개 등 총 26개 메달로 압도적 1위를 달리고 있습니다. 오늘의 주요 종목은 피겨스케이팅 페어 프리, 여자 프리스키 빅에어 결승, 여자 모노밥 최종런 등입니다. 영국의 혼성 스켈레톤팀이 금메달을 획득하며 화제를 모았습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">TENNIS</span>
+        <h3>알카라스, 카타르 오픈 출전 — "아직 약점 개선 중"</h3>
+        <p>세계 랭킹 1위 카를로스 알카라스가 이번 주 카타르 오픈에 복귀합니다. 22세에 4대 그랜드슬램을 모두 제패했지만 "아직 약점을 다듬는 중"이라며 겸손한 자세를 보였습니다.</p>
+      </div>
+    </section>
+
+    <!-- 엔터테인먼트 -->
+    <section>
+      <div class="section-header">
+        <h2>🎬 엔터테인먼트</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <h3>"No Other Land" 오스카 수상 팔레스타인 감독, 가족 피습 보고</h3>
+        <p>오스카 수상작 "No Other Land"의 팔레스타인 감독이 자신의 가족이 공격을 받았다고 밝혔습니다. 가자 지구에서 지난 24시간 동안 최소 11명의 팔레스타인인이 사망한 가운데 나온 발언으로, 국제사회의 주목을 받고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <h3>NBA 올스타 위켄드, LA에서 성대하게 마무리</h3>
+        <p>2026 NBA 올스타 위켄드가 로스앤젤레스에서 성대하게 마무리되었습니다. USA vs World 형식으로 진행된 올스타전과 함께 슬램덩크 대회, 3점슛 대회 등 다채로운 이벤트가 팬들을 즐겁게 했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <h3>오바마 전 대통령, 정치적 염증성 발언에 우려 표명</h3>
+        <p>버락 오바마 전 대통령이 대부분의 미국인들이 정치에서의 염증적이고 인종차별적인 수사에 우려하고 있다고 발언했습니다.</p>
+      </div>
+    </section>
+
+    <div class="highlights-box">
+      <h4>📌 오늘의 주요 헤드라인</h4>
+      <ul>
+        <li>💹 미국 증시 Presidents' Day 휴장, 한국·중국 증시도 설 연휴 휴장</li>
+        <li>🤖 인도 AI Impact Summit 2026 개막, 모디 총리 직접 개회</li>
+        <li>🏛️ DHS 셧다운 계속, 뮌헨 안보회의서 그린란드 이슈 지배</li>
+        <li>🌍 이란 핵 타협 의사, 우크라이나 전쟁 4주년 임박</li>
+        <li>🔬 남극 곤충에서 미세플라스틱 검출, 화성보다 추운 지구형 행성 발견</li>
+        <li>⚽ NBA 올스타 에드워즈 MVP, 동계올림픽 노르웨이 금 12개 독주</li>
+        <li>🧧 음력 새해(설날) — 병오년 말띠의 해 시작!</li>
+      </ul>
+    </div>
+
+    <footer class="news-footer">
+      <p class="footer-credit">🍄 CURATED BY 마리오 · 2026년 2월 17일 오전 7시</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .news-container {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Noto Serif KR', Georgia, serif;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--frog-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .news-header {
+    padding: 20px 0 30px;
+    text-align: center;
+    border-bottom: 3px double #1a1a1a;
+    margin-bottom: 30px;
+  }
+
+  .edition {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888888;
+    margin-bottom: 12px;
+  }
+
+  .news-header h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: #4a4a4a;
+    font-style: italic;
+  }
+
+  .dateline {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888888;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0dcd4;
+  }
+
+  .breaking-banner {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 16px 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 8px;
+  }
+
+  .market-ticker {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 16px 0;
+    border-bottom: 1px solid #e0dcd4;
+    margin-bottom: 30px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ticker-label {
+    color: #888888;
+  }
+
+  .ticker-value.up {
+    color: #16a34a;
+    font-weight: 600;
+  }
+
+  .ticker-value.down {
+    color: #dc2626;
+    font-weight: 600;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lead-story {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #e0dcd4;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+
+  .lead-story h3 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .lead-story p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .news-article {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0dcd4;
+  }
+
+  .news-article:last-child {
+    border-bottom: none;
+  }
+
+  .news-article h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .news-article p {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 6px;
+    margin-bottom: 8px;
+  }
+
+  .tag.markets {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  .tag.ai {
+    background: #f3e8ff;
+    color: #7c3aed;
+  }
+
+  .tag.politics {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+
+  .tag.world {
+    background: #fce7f3;
+    color: #be185d;
+  }
+
+  .tag.science {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .tag.sports {
+    background: #ffedd5;
+    color: #c2410c;
+  }
+
+  .tag.breaking {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  .highlights-box {
+    background: #f5f2eb;
+    border-left: 4px solid #1a1a1a;
+    padding: 20px 24px;
+    margin: 30px 0;
+    border-radius: 8px;
+  }
+
+  .highlights-box h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .highlights-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .highlights-box li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0dcd4;
+    font-size: 0.95rem;
+  }
+
+  .highlights-box li:last-child {
+    border-bottom: none;
+  }
+
+  .news-footer {
+    margin-top: 50px;
+    padding: 24px 0;
+    border-top: 3px double #1a1a1a;
+    text-align: center;
+  }
+
+  .footer-credit {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #888888;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 640px) {
+    .market-ticker {
+      gap: 16px;
+    }
+
+    .news-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .lead-story {
+      padding: 20px;
+    }
+  }
+</style>
