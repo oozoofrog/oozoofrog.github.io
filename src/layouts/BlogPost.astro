@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Comments from '../components/Comments.astro';
+import AdUnit from '../components/AdUnit.astro';
 
 interface Props {
   title: string;
@@ -31,6 +32,8 @@ const categories = Array.isArray(rawCategories)
     <div class="post-content">
       <slot />
     </div>
+    <!-- 글 하단 광고 -->
+    <AdUnit slot="7941837952" format="auto" />
     <Comments />
   </article>
 </BaseLayout>
