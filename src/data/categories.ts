@@ -76,6 +76,9 @@ const categoryMap: Record<string, string> = {
   'unicode': 'unicode',
   'chronology_unicode': 'unicode',
 
+  // 가이드
+  'apple-developer-organization-guide': 'ios',
+
   // 기타 (10)
   '2kotlin-getting-started-basic-syntax': 'etc',
   'diary': 'etc',
