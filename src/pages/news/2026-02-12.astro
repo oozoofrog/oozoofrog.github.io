@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdUnit from '../../components/AdUnit.astro';
 ---
 
 <BaseLayout title="종합 데일리 브리핑 | 2026년 2월 12일">
@@ -11,6 +12,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <div class="breadcrumb">
       <a href="/news">← 뉴스 목록</a>
     </div>
+
+    <!-- 뉴스 상단 광고 -->
+    <AdUnit slot="7941837952" format="auto" />
 
     <header class="news-header">
       <div class="edition">Comprehensive Daily Briefing</div>
