@@ -1,0 +1,524 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdUnit from '../../components/AdUnit.astro';
+---
+
+<BaseLayout title="종합 데일리 브리핑 | 2026년 2월 19일">
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" slot="head-extra">
+
+  <div class="news-container">
+    <div class="breadcrumb">
+      <a href="/news">← 뉴스 목록</a>
+    </div>
+
+    <!-- 뉴스 상단 광고 -->
+    <AdUnit slot="7941837952" format="auto" />
+
+    <header class="news-header">
+      <div class="edition">Comprehensive Daily Briefing</div>
+      <h1>지난 24시간 세상의 모든 소식</h1>
+      <p class="subtitle">증시, 정치, 국제, 기술, 과학, 스포츠 종합</p>
+      <div class="dateline">2026년 2월 19일 목요일 오전 7시 · 마리오 에디션</div>
+    </header>
+
+    <div class="breaking-banner">
+      🏅 쇼트트랙 여자 3000m 계주 금메달! 최민정 역대 최다 타이 · 🤝 러-우크라 제네바 평화협상 2일차 종료
+    </div>
+
+    <div class="market-ticker">
+      <div class="ticker-item">
+        <span class="ticker-label">Dow</span>
+        <span class="ticker-value up">▲ 기술주 반등 랠리</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">S&P 500</span>
+        <span class="ticker-value up">▲ FOMC 의사록 발표</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">Nasdaq</span>
+        <span class="ticker-value up">▲ Nvidia 신고가</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">KOSPI</span>
+        <span class="ticker-value down">▼ 0.28% (5,507)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">Gold</span>
+        <span class="ticker-value down">▼ $100 급락 ($4,900↓)</span>
+      </div>
+    </div>
+
+    <!-- 증시/경제 -->
+    <section>
+      <div class="section-header">
+        <h2>💹 증시/경제</h2>
+      </div>
+
+      <div class="lead-story">
+        <h3>기술주 반등 · Nvidia 신고가 · Fed 의사록 발표</h3>
+        <p>2월 18일(현지시간) 미국 증시가 기술주 반등에 힘입어 강세로 마감했습니다. Nvidia가 Meta와의 대규모 장기 파트너십 발표 후 2.8% 상승하며 신고가를 기록했고, 이것이 시장 전체 랠리를 견인했습니다.</p>
+        <p>같은 날 발표된 연준(Fed) 1월 FOMC 의사록은 AI 관련 우려가 후퇴하는 가운데 투자자들에게 복합적이지만 긍정적인 신호를 제공했습니다. 한편 KOSPI는 0.28% 하락한 5,507.01에 마감했으며, 한국 시가총액 1조원 이상 기업 수는 연초 대비 13% 급증한 것으로 나타났습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">GOLD</span>
+        <h3>금값, 하루 만에 $100 급락… $4,900 하회</h3>
+        <p>국제 금 가격이 2월 18일 약 100달러 폭락하며 한때 온스당 $4,900 아래로 떨어졌습니다. 기술주 랠리와 위험자산 선호 심리가 안전자산인 금에서의 자금 이탈을 촉발한 것으로 분석됩니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">부동산</span>
+        <h3>서울 아파트 매매 87% '15억 이하'… 실수요 중심 시장</h3>
+        <p>국토교통부 실거래가 시스템에 따르면 2월 17일 기준 서울 아파트 매매 975건 중 850건(87.2%)이 15억원 이하로 집계됐습니다. 올해 누적으로도 81.4%가 동일 가격대에 분포하며, 실수요자 중심의 시장 구조가 지속되고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- AI/기술 -->
+    <section>
+      <div class="section-header">
+        <h2>🤖 AI & 기술</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag ai">AI</span>
+        <h3>Meta-Nvidia, 수백만 칩 규모 장기 인프라 파트너십 체결</h3>
+        <p>Meta와 Nvidia가 수백만 개의 최신 AI 칩을 공급하는 대규모 장기 파트너십을 공식 발표했습니다. Meta는 Grace 및 Vera CPU를 포함한 Nvidia 기술을 차세대 AI 최적화 데이터센터에 배치할 예정이며, Jensen Huang CEO는 이를 "AI 추론 워크로드의 전환점"으로 평가했습니다. 한편 Meta는 자체 AI 칩 개발도 병행하고 있어 Google TPU 협의와 함께 멀티소스 전략을 펼치고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">AI</span>
+        <h3>Nvidia-Dassault, 디지털 트윈 × AI 파트너십 발표</h3>
+        <p>Jensen Huang CEO는 3DEXPERIENCE World에서 Dassault Systèmes와의 새로운 파트너십을 발표했습니다. "모든 것이 가상 트윈으로 구현될 것"이라며, Nvidia 가속 컴퓨팅과 AI 라이브러리를 Dassault의 버추얼 트윈 플랫폼에 결합해 엔지니어링 워크플로우를 100~1000배 확장하겠다고 밝혔습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">AI</span>
+        <h3>Nvidia, 인도 AI 스타트업 육성에 본격 투자</h3>
+        <p>Nvidia가 인도의 주요 VC 기업들과 손잡고 차세대 AI 스타트업 발굴에 나섰습니다. Nvidia Nemotron 모델 패밀리를 통해 인도 기업들이 챗봇, AI 에이전트, 음성 시스템을 구축할 수 있도록 지원할 계획입니다.</p>
+      </div>
+    </section>
+
+    <!-- 정치 -->
+    <section>
+      <div class="section-header">
+        <h2>🏛️ 정치</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag politics">US</span>
+        <h3>미국 DHS 부분 셧다운 장기화… 출구 안 보여</h3>
+        <p>CBP 요원의 Alex Pretti 사살 사건 이후 촉발된 미국 연방정부 부분 셧다운(국토안보부)이 계속되고 있습니다. 백악관이 민주당의 최신 제안을 거부하면서 교착 상태가 심화됐으며, 항공·호텔 업계에도 영향이 확산되고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">한국</span>
+        <h3>이재명 정부, R&D 예산 역대 최대 35.5조원 편성</h3>
+        <p>이재명 정부의 2026년도 예산에서 연구개발(R&D) 예산이 역대 최대 규모인 35조 5,000억원으로 편성됐습니다. 정부는 이를 '무너진 연구 생태계의 완전 복원'이라고 의미를 부여했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">북한</span>
+        <h3>조선노동당 제9차 대회 대표자들 평양 도착</h3>
+        <p>북한 조선노동당 제9차 대회 참가 대표자들이 2월 16일 평양에 도착했습니다. 리히용, 김덕훈, 최동명 등 당 중앙 인사들이 포함된 것으로 알려졌습니다.</p>
+      </div>
+    </section>
+
+    <!-- 국제 -->
+    <section>
+      <div class="section-header">
+        <h2>🌍 국제</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag world">DIPLOMACY</span>
+        <h3>러시아-우크라이나 제네바 평화협상, 2일차 종료… "어렵지만 사무적"</h3>
+        <p>미국 중재 하에 제네바 인터컨티넨탈 호텔에서 진행된 러시아-우크라이나 평화 협상이 2월 18일 2일차를 마무리했습니다. 러시아 수석 대표 메딘스키는 "어렵지만 사무적인 회담"이었다며 곧 새로운 라운드가 열릴 것이라고 밝혔습니다. 우크라이나 측은 불만족을 표시한 반면, 미국은 "의미 있는 진전"이 있었다고 평가했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">DIPLOMACY</span>
+        <h3>미 상원의원단, 우크라이나 방문… 대러시아 제재 촉구</h3>
+        <p>미국 상원의원 대표단이 우크라이나 주요 항구 도시를 방문하고 돌아왔습니다. 이들은 모스크바를 경제적으로 압박하고 푸틴에게 핵심 양보를 이끌어낼 새로운 제재 법안을 의회에서 추진할 것을 촉구하고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">IRAN</span>
+        <h3>미국-이란 핵 협상, 제네바서 동시 진행</h3>
+        <p>Trump 대통령이 같은 날 제네바에서 이란 핵 협상과 우크라이나 평화 협상을 동시에 추진하는 이례적인 외교 일정을 진행했습니다. 미국은 최근 이란에 추가 군함을 파견하는 등 압박 수위를 높이고 있어 긴장이 고조되고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 과학 -->
+    <section>
+      <div class="section-header">
+        <h2>🔬 과학</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">CANCER</span>
+        <h3>암세포의 DNA 폭발적 재배열 효소 'N4BP2' 발견</h3>
+        <p>연구진이 4건 중 1건의 암에서 나타나는 염색체 파괴 현상 '크로모쓰립시스(chromothripsis)'의 핵심 효소 N4BP2를 발견했습니다. 이 효소는 미세한 세포 구조물에 갇힌 DNA를 파괴해 폭발적 유전 변이를 일으키며, 새로운 항암 치료 표적이 될 수 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">GENETICS</span>
+        <h3>12,000년 전 빙하기 유골에서 희귀 성장 장애 DNA 확인</h3>
+        <p>이탈리아의 빙하기 시대 이중 매장지에서 발견된 모녀의 고대 DNA 분석 결과, 딸이 희귀 유전성 성장 장애를 가지고 있었음이 확인됐습니다. 뼈 성장 관련 핵심 유전자의 돌연변이가 12,000년 전에도 존재했음을 보여주는 놀라운 발견입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">SPACE</span>
+        <h3>화성보다 추운 지구형 행성 발견</h3>
+        <p>천문학자들이 화성보다 추울 수 있는 지구 크기의 외계행성을 발견했습니다. 이 행성은 기존 행성 형성 이론에 도전하는 외곽 궤도의 암석 행성으로, 행성 형성의 다양성에 대한 새로운 논의를 촉발하고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 스포츠 -->
+    <section>
+      <div class="section-header">
+        <h2>⚽ 스포츠</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag sports">올림픽</span>
+        <h3>🏅 쇼트트랙 여자 3000m 계주 금메달! 최민정 역대 최다 금메달 타이</h3>
+        <p>대한민국 쇼트트랙이 밀라노-코르티나 2026 동계올림픽에서 저력을 발휘했습니다! 여자 3000m 계주 결승에서 극적인 역전 드라마를 펼치며 8년 만에 금메달을 탈환했습니다. 에이스 최민정(28·성남시청)은 이번 금메달로 한국 동계올림픽 역대 최다 금메달(4개) 타이 기록을 달성하며 역사를 썼습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">올림픽</span>
+        <h3>피겨 이해인 9위·신지아 14위, 프리스케이팅 동반 진출</h3>
+        <p>피겨스케이팅 여자 싱글 쇼트프로그램에서 이해인이 9위, 신지아가 14위를 기록하며 모두 프리스케이팅에 진출했습니다. 김연아의 밴쿠버 2010 이후 5대회 연속 한국 선수 전원 프리 진출이라는 전통을 이어갔습니다. 프리스케이팅은 2월 20일(금) 새벽 진행됩니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">올림픽</span>
+        <h3>밀라노-코르티나 2026, 대회 13일차 — 오늘의 주요 일정</h3>
+        <p>대회 13일차인 오늘은 여자 피겨 프리, 쇼트트랙 남자 500m, 프리스타일 스키 하프파이프 예선 등이 진행됩니다. 컬링 여자 라운드로빈 한국-캐나다전은 밤 10시 5분(한국 시간) 예정입니다. 미국 여자 아이스하키는 스웨덴을 꺾고 결승에 진출했습니다.</p>
+      </div>
+    </section>
+
+    <!-- 엔터테인먼트 -->
+    <section>
+      <div class="section-header">
+        <h2>🎬 엔터테인먼트</h2>
+      </div>
+
+      <div class="news-article">
+        <h3>ByteDance Seedance 2.0, 할리우드 아이콘 AI 변환 논란</h3>
+        <p>ByteDance의 AI 영상 생성 도구 Seedance 2.0이 할리우드 유명 배우·캐릭터를 AI "클립아트"로 변환해 저작권 논란이 불거졌습니다. 회사 측은 해당 기능을 일부 철회(backpedal)한 것으로 알려졌습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <h3>Apple 팟캐스트, 오디오↔비디오 '심리스' 전환 지원</h3>
+        <p>Apple이 팟캐스트 앱에 오디오와 비디오 쇼 간 끊김 없는 전환 기능을 도입할 예정입니다. 팟캐스트 크리에이터들의 멀티미디어 콘텐츠 제작을 돕는 방향으로 플랫폼을 진화시키고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <h3>Valve Steam Deck OLED, RAM 위기로 품절 예고</h3>
+        <p>Valve가 Steam Deck OLED가 글로벌 RAM 공급 위기로 인해 '간헐적 품절' 상태가 될 것이라고 밝혔습니다. 반도체 부품 수급 불안이 소비자 전자기기 시장에도 영향을 미치고 있습니다.</p>
+      </div>
+    </section>
+
+    <div class="highlights-box">
+      <h4>📌 오늘의 주요 헤드라인</h4>
+      <ul>
+        <li>🏅 쇼트트랙 여자 3000m 계주 금메달, 최민정 역대 최다 금 타이 달성</li>
+        <li>💹 미 증시 기술주 반등, Nvidia 신고가 — Meta 대규모 AI 칩 거래 발표</li>
+        <li>🌍 러-우크라 제네바 평화협상 2일차 종료, 새 라운드 예고</li>
+        <li>🏛️ 미국 DHS 부분 셧다운 장기화, 한국 R&D 예산 역대 최대</li>
+        <li>🤖 Meta-Nvidia 수백만 칩 장기 파트너십, 디지털 트윈 협업 확대</li>
+        <li>🔬 암세포 DNA 재배열 효소 N4BP2 발견, 12,000년 전 유전 장애 확인</li>
+        <li>⛸️ 피겨 이해인·신지아 프리 동반 진출, 오늘 컬링 한국-캐나다전</li>
+        <li>🎬 ByteDance AI 영상 도구 저작권 논란, Steam Deck OLED 품절 예고</li>
+      </ul>
+    </div>
+
+    <footer class="news-footer">
+      <p class="footer-credit">🍄 CURATED BY 마리오 · 2026년 2월 19일 오전 7시</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .news-container {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Noto Serif KR', Georgia, serif;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--frog-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .news-header {
+    padding: 20px 0 30px;
+    text-align: center;
+    border-bottom: 3px double #1a1a1a;
+    margin-bottom: 30px;
+  }
+
+  .edition {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888888;
+    margin-bottom: 12px;
+  }
+
+  .news-header h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: #4a4a4a;
+    font-style: italic;
+  }
+
+  .dateline {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888888;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0dcd4;
+  }
+
+  .breaking-banner {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 16px 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 8px;
+  }
+
+  .market-ticker {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 16px 0;
+    border-bottom: 1px solid #e0dcd4;
+    margin-bottom: 30px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ticker-label {
+    color: #888888;
+  }
+
+  .ticker-value.up {
+    color: #16a34a;
+    font-weight: 600;
+  }
+
+  .ticker-value.down {
+    color: #dc2626;
+    font-weight: 600;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lead-story {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #e0dcd4;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+
+  .lead-story h3 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .lead-story p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .news-article {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0dcd4;
+  }
+
+  .news-article:last-child {
+    border-bottom: none;
+  }
+
+  .news-article h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .news-article p {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 6px;
+    margin-bottom: 8px;
+  }
+
+  .tag.markets {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  .tag.ai {
+    background: #f3e8ff;
+    color: #7c3aed;
+  }
+
+  .tag.politics {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+
+  .tag.world {
+    background: #fce7f3;
+    color: #be185d;
+  }
+
+  .tag.science {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .tag.sports {
+    background: #ffedd5;
+    color: #c2410c;
+  }
+
+  .tag.breaking {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  .highlights-box {
+    background: #f5f2eb;
+    border-left: 4px solid #1a1a1a;
+    padding: 20px 24px;
+    margin: 30px 0;
+    border-radius: 8px;
+  }
+
+  .highlights-box h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .highlights-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .highlights-box li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0dcd4;
+    font-size: 0.95rem;
+  }
+
+  .highlights-box li:last-child {
+    border-bottom: none;
+  }
+
+  .news-footer {
+    margin-top: 50px;
+    padding: 24px 0;
+    border-top: 3px double #1a1a1a;
+    text-align: center;
+  }
+
+  .footer-credit {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #888888;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 640px) {
+    .market-ticker {
+      gap: 16px;
+    }
+
+    .news-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .lead-story {
+      padding: 20px;
+    }
+  }
+</style>
