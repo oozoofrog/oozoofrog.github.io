@@ -1,0 +1,548 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdUnit from '../../components/AdUnit.astro';
+---
+
+<BaseLayout title="종합 데일리 브리핑 | 2026년 2월 24일">
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" slot="head-extra">
+
+  <div class="news-container">
+    <div class="breadcrumb">
+      <a href="/news">← 뉴스 목록</a>
+    </div>
+
+    <!-- 뉴스 상단 광고 -->
+    <AdUnit slot="7941837952" format="auto" />
+
+    <header class="news-header">
+      <div class="edition">Comprehensive Daily Briefing</div>
+      <h1>지난 24시간 세상의 모든 소식</h1>
+      <p class="subtitle">증시, 정치, 국제, 기술, 과학, 스포츠 종합</p>
+      <div class="dateline">2026년 2월 24일 화요일 오전 7시 · 마리오 에디션</div>
+    </header>
+
+    <div class="breaking-banner">
+      🏆 트럼프 관세 경고에 글로벌 증시 변동성 확대 · 🤖 빅테크 2026년 AI 투자 6,500억달러 전망
+    </div>
+
+    <div class="market-ticker">
+      <div class="ticker-item">
+        <span class="ticker-label">Dow</span>
+        <span class="ticker-value down">▼ 1.66% (48,804.06)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">S&P 500</span>
+        <span class="ticker-value down">▼ 1.04% (6,837.75)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">Nasdaq</span>
+        <span class="ticker-value down">▼ 1.13% (22,627.27)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">KOSPI</span>
+        <span class="ticker-value up">▲ 0.65% (5,846.09)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">KOSDAQ</span>
+        <span class="ticker-value down">▼ 0.17% (1,151.99)</span>
+      </div>
+    </div>
+
+    <!-- 증시 -->
+    <section>
+      <div class="section-header">
+        <h2>💹 증시/경제</h2>
+      </div>
+
+      <div class="lead-story">
+        <h3>트럼프 관세 재가동 경고에 시장 긴장…주식 약세·안전자산 선호</h3>
+        <p>로이터에 따르면 도널드 트럼프 미국 대통령은 무역 협상에서 “장난을 치는” 국가들에 대해 더 높은 관세를 부과할 수 있다고 경고했습니다. 관세 정책의 불확실성이 다시 커지면서 글로벌 금융시장은 즉각 변동성을 키웠습니다.</p>
+        <p>미국 증시는 약세로 마감했고 금 가격은 강세를 보였습니다. 미 국채시장에서도 가격 왜곡과 거래 혼선이 나타나며 투자자들이 정책 리스크를 다시 프라이싱하는 흐름이 확인됐습니다.</p>
+        <p>국제유가 역시 중동 리스크와 관세 변수까지 겹치며 6개월래 고점을 기록해, 인플레이션 경로와 각국 통화정책 전망에 부담 요인으로 작용하고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">TRADE</span>
+        <h3>미국, 대법원 ‘위법’ 판단 관세 징수 중단 예고</h3>
+        <p>로이터는 미국 정부가 연방대법원에서 위법 판정을 받은 일부 관세에 대해 25일(현지시간)부터 징수를 멈출 예정이라고 보도했습니다. 관세 체계의 법적 불확실성이 무역·기업 계획에 추가 부담으로 작용하는 모습입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">ENERGY</span>
+        <h3>국제유가 6개월래 최고…핵협상·관세 이중 변수</h3>
+        <p>로이터 집계에서 유가는 핵협상 경과와 관세 충격을 함께 반영하며 상승 압력을 받았습니다. 에너지 가격 재상승은 운송·제조업 비용을 자극해 전반적인 물가 경로에 변수로 작용할 전망입니다.</p>
+      </div>
+    </section>
+
+    <!-- AI/기술 -->
+    <section>
+      <div class="section-header">
+        <h2>🤖 AI & 기술</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag ai">AI</span>
+        <h3>브리지워터 “빅테크, 2026년 AI에 약 6,500억달러 투자”</h3>
+        <p>로이터에 따르면 브리지워터는 주요 빅테크의 올해 AI 관련 지출이 약 6,500억달러에 이를 것으로 전망했습니다. 인프라·모델·서비스 전 영역에서 대규모 자본 경쟁이 이어질 가능성이 커졌습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">AI</span>
+        <h3>Anthropic “중국 AI 기업들이 Claude 증류해 성능 개선” 주장</h3>
+        <p>로이터 보도에서 Anthropic은 일부 중국 AI 기업이 Claude를 증류(distillation) 방식으로 활용해 자체 모델 성능을 높였다고 밝혔습니다. 모델 학습 데이터·출력 활용을 둘러싼 규범 논쟁이 다시 격화되는 분위기입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">ENTERPRISE</span>
+        <h3>OpenAI, 대형 컨설팅사와 협력 확대…기업형 AI 전환 가속</h3>
+        <p>로이터는 OpenAI가 글로벌 컨설팅 기업들과의 파트너십을 강화하며, 파일럿 수준에 머물던 기업 AI 도입을 본격 운영 단계로 끌어올리려 한다고 전했습니다.</p>
+      </div>
+    </section>
+
+    <!-- 정치 -->
+    <section>
+      <div class="section-header">
+        <h2>🏛️ 정치</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">DIPLOMACY</span>
+        <h3>프랑스 정부, 주프랑스 美대사와의 공식 접촉 제한</h3>
+        <p>로이터는 주프랑스 미국대사가 프랑스 정부와의 면담에서 배제됐다고 보도했습니다. 미·유럽 간 외교 마찰이 통상·안보 이슈와 맞물려 확대될 수 있다는 관측이 나옵니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">EU</span>
+        <h3>네덜란드 새 내각 출범…소수정부 운영 시험대</h3>
+        <p>로이터에 따르면 딜런 예턴 총리가 이끄는 네덜란드 소수정부가 공식 출범했습니다. 의회 협치가 필수인 구조에서 예산·이민·기후정책 조율이 초기 최대 과제가 될 전망입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">TRADE POLICY</span>
+        <h3>EU 의회, 美 무역합의 표결 또 연기</h3>
+        <p>미국 관세 정책의 급변 여파로 EU 의원들이 관련 무역합의 표결을 재차 연기했다고 로이터가 전했습니다. 대서양 무역 질서의 불확실성이 정치 일정까지 지연시키는 양상입니다.</p>
+      </div>
+    </section>
+
+    <!-- 국제 -->
+    <section>
+      <div class="section-header">
+        <h2>🌍 국제</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">UKRAINE</span>
+        <h3>우크라 “드루즈바 송유관 연계 시설 드론 타격” 주장</h3>
+        <p>로이터에 따르면 우크라이나는 러시아 내 드루즈바 송유관 관련 시설을 드론으로 공격했다고 밝혔습니다. 에너지 인프라가 전쟁의 핵심 표적으로 재부상하면서 시장도 민감하게 반응하고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">EU-RUSSIA</span>
+        <h3>헝가리, 對러 제재·우크라 지원 패키지에 제동</h3>
+        <p>우크라이나 전쟁 4년을 앞둔 시점에서 헝가리가 러시아 제재와 키이우 지원 재원 합의에 제동을 걸었다고 로이터가 보도했습니다. EU 내부 대러 공조의 균열이 다시 확인됐습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">MIDDLE EAST</span>
+        <h3>미국, 이란 긴장 고조 속 레바논대사관 비필수 인력 철수</h3>
+        <p>로이터는 미국이 역내 긴장 상승을 이유로 레바논 주재 대사관의 비필수 인력을 철수시키고 있다고 전했습니다. 중동 안보 리스크가 외교·원자재 시장 전반에 영향을 주는 모습입니다.</p>
+      </div>
+    </section>
+
+    <!-- 사회 -->
+    <section>
+      <div class="section-header">
+        <h2>🏙️ 사회</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">HUMAN RIGHTS</span>
+        <h3>UN 사무총장 “전 세계 인권이 광범위한 압박 직면”</h3>
+        <p>로이터 보도에 따르면 유엔은 각 지역 분쟁과 정치적 억압, 시민 자유 후퇴가 동시다발적으로 나타난다며 국제사회 차원의 대응 강화를 촉구했습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">HONG KONG</span>
+        <h3>홍콩 ‘47인 사건’ 활동가 12명 실형 유지</h3>
+        <p>로이터는 홍콩 고등법원이 국가보안법 관련 이른바 ‘홍콩 47인’ 사건에서 활동가 12명의 수감 판결을 유지했다고 전했습니다. 시민사회·사법 독립 논쟁이 이어지고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">EDUCATION</span>
+        <h3>영국, 특수교육 제도 전면 개편 추진</h3>
+        <p>로이터에 따르면 영국 정부는 급증한 비용과 서비스 불균형 문제를 이유로 특수교육 체계 개편안을 내놨습니다. 학부모·교육계와의 조정이 핵심 쟁점이 될 전망입니다.</p>
+      </div>
+    </section>
+
+    <!-- 과학 -->
+    <section>
+      <div class="section-header">
+        <h2>🔬 과학</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">ASTRONOMY</span>
+        <h3>정월대보름 ‘붉은 달’…36년 만의 개기월식 관측 기회</h3>
+        <p>연합뉴스에 따르면 정월대보름 밤 전국에서 붉게 물든 달을 볼 수 있는 개기월식이 관측됩니다. 맑은 지역을 중심으로 맨눈 관측이 가능할 것으로 예보됐습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">SPACE</span>
+        <h3>2월 말 밤하늘 ‘6개 행성 퍼레이드’ 관측 포인트 주목</h3>
+        <p>AP는 2월 말 주요 행성이 한 하늘에 늘어선 듯 보이는 관측 구간이 열린다고 전했습니다. 관측 시간대와 광공해 조건에 따라 가시성이 크게 달라질 전망입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">NASA</span>
+        <h3>NASA 아르테미스 II 유인 달 임무, 헬륨 이슈로 재연기</h3>
+        <p>미국 현지 매체와 NASA 발표를 인용한 보도에 따르면 아르테미스 II 발사가 기술 점검을 위해 다시 연기됐습니다. 유인 달 탐사 일정의 추가 조정 가능성도 거론됩니다.</p>
+      </div>
+    </section>
+
+    <!-- 스포츠 -->
+    <section>
+      <div class="section-header">
+        <h2>⚽ 스포츠</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">OLYMPIC</span>
+        <h3>IPC, 러시아 선수 출전 기조 유지…보이콧 경고에도 입장 고수</h3>
+        <p>로이터에 따르면 국제패럴림픽위원회(IPC)는 일부 국가의 보이콧 경고에도 러시아 선수 출전 허용 기조를 유지했습니다. 국제 스포츠 무대의 정치·규정 충돌이 이어지는 모습입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">UEFA</span>
+        <h3>UEFA, 벤피카 프레스티안니 잠정 징계…차별 행위 조사</h3>
+        <p>로이터는 UEFA가 차별적 행동 의혹과 관련해 벤피카의 프레스티안니에게 잠정 징계를 내렸다고 전했습니다. 유럽 축구계의 인종차별 대응 기준이 다시 주목받고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">KBO</span>
+        <h3>KBO, 도박장 출입 롯데 선수 4명에 30~50경기 출전정지</h3>
+        <p>연합뉴스 보도에 따르면 KBO는 리그 신뢰 훼손 사안으로 판단해 해당 선수들에게 중징계를 확정했습니다. 구단 내부 관리 체계 강화 요구도 함께 커지고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 엔터테인먼트 -->
+    <section>
+      <div class="section-header">
+        <h2>🎬 엔터테인먼트</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <h3>BBC, BAFTA 생중계 중 인종 비하 발언 송출 공식 사과</h3>
+        <p>로이터에 따르면 BBC와 BAFTA 측은 시상식 현장 게스트 발언이 생중계로 나간 데 대해 공식 사과문을 냈습니다. 방송 안전장치와 생중계 검수 체계 개선 요구가 제기되고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <h3>할리우드 감독 롭 라이너 피살 사건, 아들 ‘무죄’ 주장</h3>
+        <p>로이터는 롭 라이너 피살 사건과 관련해 기소된 아들이 법정에서 혐의를 부인했다고 전했습니다. 향후 공판에서 증거 공방이 본격화될 전망입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <h3>영화 ‘왕과 사는 남자’ 600만 관객 돌파</h3>
+        <p>YTN 보도에 따르면 국내 영화 ‘왕과 사는 남자’가 600만 관객을 넘어섰습니다. 침체됐던 극장가에서 흥행 모멘텀을 키우는 작품으로 평가받고 있습니다.</p>
+      </div>
+    </section>
+
+    <div class="highlights-box">
+      <h4>📌 오늘의 주요 헤드라인</h4>
+      <ul>
+        <li>💹 트럼프의 추가 관세 경고로 글로벌 증시 하락, 안전자산 선호 확대</li>
+        <li>🤖 빅테크 AI 투자 6,500억달러 전망…Anthropic·OpenAI 경쟁 격화</li>
+        <li>🏛️ 프랑스-미국 외교 마찰, EU 무역표결 연기 등 정치 리스크 부각</li>
+        <li>🌍 우크라 전선·중동 긴장 동시 확대, 에너지 인프라 리스크 재부상</li>
+        <li>🏙️ UN “인권 후퇴” 경고…홍콩·영국 사회정책 이슈 확산</li>
+        <li>🔬 개기월식·행성 퍼레이드 관측 주간, NASA 아르테미스 일정 재조정</li>
+        <li>⚽ IPC·UEFA 결정으로 국제 스포츠 규정 논쟁 지속, KBO 중징계 발표</li>
+        <li>🎬 BAFTA 생중계 사고 여진 속, 국내 영화 ‘왕과 사는 남자’ 600만 돌파</li>
+      </ul>
+    </div>
+
+    <footer class="news-footer">
+      <p class="footer-credit">🍄 CURATED BY 마리오 · 2026년 2월 24일 오전 7시</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .news-container {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Noto Serif KR', Georgia, serif;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--frog-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .news-header {
+    padding: 20px 0 30px;
+    text-align: center;
+    border-bottom: 3px double #1a1a1a;
+    margin-bottom: 30px;
+  }
+
+  .edition {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888888;
+    margin-bottom: 12px;
+  }
+
+  .news-header h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: #4a4a4a;
+    font-style: italic;
+  }
+
+  .dateline {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888888;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0dcd4;
+  }
+
+  .breaking-banner {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 16px 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 8px;
+  }
+
+  .market-ticker {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 16px 0;
+    border-bottom: 1px solid #e0dcd4;
+    margin-bottom: 30px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ticker-label {
+    color: #888888;
+  }
+
+  .ticker-value.up {
+    color: #16a34a;
+    font-weight: 600;
+  }
+
+  .ticker-value.down {
+    color: #dc2626;
+    font-weight: 600;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lead-story {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #e0dcd4;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+
+  .lead-story h3 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .lead-story p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .news-article {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0dcd4;
+  }
+
+  .news-article:last-child {
+    border-bottom: none;
+  }
+
+  .news-article h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .news-article p {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 6px;
+    margin-bottom: 8px;
+  }
+
+  .tag.markets {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  .tag.ai {
+    background: #f3e8ff;
+    color: #7c3aed;
+  }
+
+  .tag.politics {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+
+  .tag.world {
+    background: #fce7f3;
+    color: #be185d;
+  }
+
+  .tag.science {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .tag.sports {
+    background: #ffedd5;
+    color: #c2410c;
+  }
+
+  .tag.breaking {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  .highlights-box {
+    background: #f5f2eb;
+    border-left: 4px solid #1a1a1a;
+    padding: 20px 24px;
+    margin: 30px 0;
+    border-radius: 8px;
+  }
+
+  .highlights-box h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .highlights-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .highlights-box li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0dcd4;
+    font-size: 0.95rem;
+  }
+
+  .highlights-box li:last-child {
+    border-bottom: none;
+  }
+
+  .news-footer {
+    margin-top: 50px;
+    padding: 24px 0;
+    border-top: 3px double #1a1a1a;
+    text-align: center;
+  }
+
+  .footer-credit {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #888888;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 640px) {
+    .market-ticker {
+      gap: 16px;
+    }
+
+    .news-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .lead-story {
+      padding: 20px;
+    }
+  }
+</style>
