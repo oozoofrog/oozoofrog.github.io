@@ -1,0 +1,547 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdUnit from '../../components/AdUnit.astro';
+---
+
+<BaseLayout title="종합 데일리 브리핑 | 2026년 2월 25일">
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" slot="head-extra">
+
+  <div class="news-container">
+    <div class="breadcrumb">
+      <a href="/news">← 뉴스 목록</a>
+    </div>
+
+    <!-- 뉴스 상단 광고 -->
+    <AdUnit slot="7941837952" format="auto" />
+
+    <header class="news-header">
+      <div class="edition">Comprehensive Daily Briefing</div>
+      <h1>지난 24시간 세상의 모든 소식</h1>
+      <p class="subtitle">증시, 정치, 국제, 사회, 기술, 과학, 스포츠, 엔터테인먼트 종합</p>
+      <div class="dateline">2026년 2월 25일 수요일 오전 7시 · 마리오 에디션</div>
+    </header>
+
+    <div class="breaking-banner">
+      🏆 미 증시, AI 충격 진정되며 급반등 · 🤖 美 국방부-앤트로픽 군사용 AI 가드레일 충돌
+    </div>
+
+    <div class="market-ticker">
+      <div class="ticker-item">
+        <span class="ticker-label">Dow</span>
+        <span class="ticker-value up">▲ 0.76% (49,174.50)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">S&amp;P 500</span>
+        <span class="ticker-value up">▲ 0.77% (6,890.07)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">Nasdaq</span>
+        <span class="ticker-value up">▲ 1.04% (22,863.68)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">KOSPI</span>
+        <span class="ticker-value up">▲ 2.11% (5,969.64)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">KOSDAQ</span>
+        <span class="ticker-value up">▲ 1.13% (1,165.00)</span>
+      </div>
+    </div>
+
+    <!-- 증시 -->
+    <section>
+      <div class="section-header">
+        <h2>💹 증시/경제</h2>
+      </div>
+
+      <div class="lead-story">
+        <h3>AI 충격 하루 만에 진정…뉴욕증시 반등 마감</h3>
+        <p>24일(현지시간) 뉴욕증시는 전일의 AI발 급락 충격을 일부 되돌리며 반등했습니다. CNBC 집계 기준 다우지수는 350포인트 이상 상승 마감했고, 소프트웨어주 중심의 기술주 매수세가 재유입됐습니다.</p>
+        <p>시장은 엔비디아 실적 발표를 앞두고 변동성은 유지했지만, "AI 리스크 재평가"에서 "과도한 공포 완화" 국면으로 빠르게 이동하는 모습이었습니다. 단기적으로는 실적 시즌과 금리 기대, 장기적으로는 AI 투자 효율성 검증이 핵심 변수로 남았습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">CHIPS</span>
+        <h3>메타-AMD 대형 AI 칩 계약 발표…반도체주 강세</h3>
+        <p>Barron’s·CNBC 보도에 따르면 메타가 AMD와 대형 AI 인프라 계약을 체결하면서 AMD 주가가 급등했습니다. 빅테크의 멀티벤더 전략이 강화되며 엔비디아 독주 구도에 변화 가능성이 제기됐습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">AVIATION</span>
+        <h3>스피릿항공, 파산보호 졸업 합의…운항 중단 위기 피했다</h3>
+        <p>CNN 보도에 따르면 스피릿항공이 구조조정 합의로 파산보호 절차 종료에 합의했습니다. 저비용항공 업계 재편 속에서 유동성 리스크가 일단락됐다는 평가가 나옵니다.</p>
+      </div>
+    </section>
+
+    <!-- AI/기술 -->
+    <section>
+      <div class="section-header">
+        <h2>🤖 AI & 기술</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag ai">AI POLICY</span>
+        <h3>美 국방부, 앤트로픽에 "군사용 제한 완화" 압박</h3>
+        <p>CBS·CNN·블룸버그 등은 미 국방부가 앤트로픽(Claude)에 군사용 활용 가드레일 완화를 요구하며 시한을 제시했다고 전했습니다. 생성형 AI의 군사 활용 범위를 둘러싼 윤리·안보 충돌이 본격화하는 흐름입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">FUNDING</span>
+        <h3>삼바노바, 3.5억달러 조달·인텔 협업 발표</h3>
+        <p>뉴욕타임스·블룸버그 보도에 따르면 AI 칩 스타트업 삼바노바가 3억5천만달러 규모 자금을 유치하고 인텔과 협업을 공식화했습니다. 추론(Inference) 중심 AI 반도체 경쟁이 한층 가열되는 신호로 해석됩니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">FINANCE</span>
+        <h3>JP모건 CEO "AI로 인력 대규모 재배치 진행 중"</h3>
+        <p>CNBC 인터뷰에서 제이미 다이먼 CEO는 AI 도입이 이미 JP모건의 업무 구조를 바꾸고 있으며 대규모 인력 재배치가 진행 중이라고 밝혔습니다. 금융권 전반의 생산성·고용 구조 변화 논의가 다시 커지고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 정치 -->
+    <section>
+      <div class="section-header">
+        <h2>🏛️ 정치</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">JUDICIARY</span>
+        <h3>대법, 전국 법원장회의 소집…사법개혁 법안 긴장 고조</h3>
+        <p>국회 사법개혁 관련 입법이 급물살을 타는 가운데 대법원이 전국 법원장회의를 소집했습니다. 사법부 독립성과 제도 개편 속도 사이에서 정치권-사법부 갈등이 확대되는 흐름입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">LOCAL GOV</span>
+        <h3>이 대통령 "충남·대전 통합 일방 강행 어렵다"</h3>
+        <p>대전·충남 행정통합을 둘러싼 찬반이 격화되는 가운데, 대통령이 일방 추진은 어렵다는 입장을 밝혔습니다. 여야와 지방정치권의 재협상 가능성이 커졌습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">ISDS</span>
+        <h3>정부, 엘리엇 ISDS 취소소송 승소…배상 리스크 일부 해소</h3>
+        <p>법무부는 엘리엇 투자분쟁(ISDS) 관련 취소소송에서 정부가 승소했다고 발표했습니다. 시장에서는 대규모 국고 유출 우려를 일부 덜었다는 평가가 나왔습니다.</p>
+      </div>
+    </section>
+
+    <!-- 국제 -->
+    <section>
+      <div class="section-header">
+        <h2>🌍 국제</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">UKRAINE</span>
+        <h3>러시아의 우크라이나 침공 4주년…서방 지원 재확인</h3>
+        <p>우크라이나 전쟁 4주년을 맞아 각국이 추가 지원 의지를 재확인했습니다. 장기전 고착 속에 휴전·안보 보장 프레임을 둘러싼 외교전도 함께 가열되고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">MIDEAST</span>
+        <h3>미국 "이란 문제, 외교 우선…필요 시 군사 옵션"</h3>
+        <p>백악관은 이란 관련 대응에서 외교를 우선하되 군사적 결단 가능성도 배제하지 않는다고 밝혔습니다. 중동 긴장이 다시 확대될 수 있다는 경계감이 커지고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">TRAVEL</span>
+        <h3>멕시코 일부 지역 특별여행주의보…카르텔 폭력 여파</h3>
+        <p>연합뉴스 보도에 따르면 멕시코 일부 지역의 치안 악화로 특별여행주의보가 발령됐습니다. 글로벌 여행·항공 수요가 회복되는 국면에서 치안 리스크가 변수로 부상했습니다.</p>
+      </div>
+    </section>
+
+    <!-- 사회 -->
+    <section>
+      <div class="section-header">
+        <h2>🏙️ 사회</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">WEATHER</span>
+        <h3>중부·호남 대설주의보…출근길 교통사고 잇따라</h3>
+        <p>강원·충청·전북을 중심으로 강설이 이어지며 눈길 교통사고가 연쇄 발생했습니다. 각 지자체는 제설과 대중교통 대응을 강화했지만 오전 출근 시간대 혼잡이 크게 늘었습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">INCIDENT</span>
+        <h3>종각역 인근 교통사고 택시기사 불구속 송치</h3>
+        <p>경찰이 종각역 교통사고와 관련해 70대 택시기사를 불구속 송치했습니다. 도심 고령 운전 안전 대책과 사고 예방 논의가 다시 수면 위로 올라왔습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">CHILDCARE</span>
+        <h3>국회 어린이집 교사 아동학대 의혹 수사 진행</h3>
+        <p>국회 어린이집 교사에 대한 아동학대 혐의 수사가 시작됐습니다. 공공기관 보육시설 관리 체계 전반에 대한 점검 필요성이 제기되고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 과학 -->
+    <section>
+      <div class="section-header">
+        <h2>🔬 과학</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">SPACE</span>
+        <h3>NASA 아르테미스 로켓, 긴급 점검 위해 재이동</h3>
+        <p>NASA가 아르테미스 II 준비 과정에서 로켓을 다시 이동해 긴급 점검을 진행합니다. 달 유인 임무 일정이 또 한 번 조정될 가능성이 제기됐습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">ASTRONOMY</span>
+        <h3>초거성 WOH G64 급격한 변화 관측…초신성 가능성 주목</h3>
+        <p>국제 연구진이 대형 적색초거성 WOH G64의 급격한 상태 변화를 포착했습니다. 천문학계는 후기 진화 단계의 실시간 단서를 제공할 수 있다며 후속 관측을 확대하고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">SKY</span>
+        <h3>3월 초 개기월식 관측 가이드 공개</h3>
+        <p>Space.com 등은 3월 초 예정된 개기월식 관측 시간대와 권역별 가이드를 공개했습니다. 국내에서도 기상 조건만 받쳐주면 관측이 가능할 것으로 전망됩니다.</p>
+      </div>
+    </section>
+
+    <!-- 스포츠 -->
+    <section>
+      <div class="section-header">
+        <h2>⚽ 스포츠</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">WINTER</span>
+        <h3>밀라노·코르티나 동계올림픽 선수단 귀국…목표 달성 평가</h3>
+        <p>한국 선수단이 금메달 3개 목표를 달성하며 귀국했습니다. 빙상 중심 경쟁력을 재확인한 가운데 차기 대회 준비 체계 점검이 이어질 전망입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">HOCKEY</span>
+        <h3>미국 여자 아이스하키팀, 백악관 초청 거절 보도</h3>
+        <p>미국 여자 아이스하키팀이 백악관 초청을 거절했다는 보도가 나오며 현지에서 논쟁이 확산했습니다. 스포츠와 정치의 경계 이슈가 다시 부각되는 분위기입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">FOOTBALL</span>
+        <h3>이강인, 국내 매체 선정 '올해의 선수'…세대교체 상징 부상</h3>
+        <p>이강인이 올해의 선수로 선정되며 한국 축구의 세대교체 흐름을 상징하는 인물로 주목받고 있습니다. 유럽파 핵심 자원 중심의 대표팀 재편 기대도 커졌습니다.</p>
+      </div>
+    </section>
+
+    <!-- 엔터테인먼트 -->
+    <section>
+      <div class="section-header">
+        <h2>🎬 엔터테인먼트</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <h3>아이브 2집 'BLACKHOLE' 반응 확산…컴백 화제 집중</h3>
+        <p>아이브의 신보 'BLACKHOLE' 관련 반응이 급속히 확산하며 주요 연예 지표 상단을 점유했습니다. 팬덤 중심 소비를 넘어 대중 반응으로 확장되는 흐름이 포착됩니다.</p>
+      </div>
+
+      <div class="news-article">
+        <h3>태민, 빅플래닛메이드와 계약 종료</h3>
+        <p>태민이 약 1년 10개월 만에 소속사와의 계약을 종료했습니다. 향후 레이블 선택과 솔로 활동 방향에 업계 관심이 집중되고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <h3>라이즈, 일본 도쿄돔 12만 관객 동원…보이그룹 기록 경신 조명</h3>
+        <p>라이즈가 도쿄돔 공연에서 대규모 관객을 동원하며 일본 시장 영향력을 확대했습니다. K팝 보이그룹의 현지 흥행 속도전이 더 빨라지는 분위기입니다.</p>
+      </div>
+    </section>
+
+    <div class="highlights-box">
+      <h4>📌 오늘의 주요 헤드라인</h4>
+      <ul>
+        <li>💹 뉴욕증시, AI 공포 완화로 반등…다우 350p+ 상승</li>
+        <li>🤖 미 국방부-앤트로픽 충돌로 군사용 AI 가드레일 논쟁 격화</li>
+        <li>🏛️ 대법 전국 법원장회의 소집…사법개혁 정국 긴장 상승</li>
+        <li>🌍 우크라 전쟁 4주년·중동 긴장 재부각으로 지정학 리스크 확대</li>
+        <li>🏙️ 대설주의보 속 전국 눈길 사고 증가…도심 안전 이슈 부상</li>
+        <li>🔬 NASA 아르테미스 일정 재조정 가능성, 우주관측 이슈 동시 부각</li>
+        <li>⚽ 동계올림픽 성과 확인·국내외 스포츠 정치 이슈 병행 확산</li>
+        <li>🎬 아이브·라이즈·태민 중심 K팝 이슈 강세 지속</li>
+      </ul>
+    </div>
+
+    <footer class="news-footer">
+      <p class="footer-credit">🍄 CURATED BY 마리오 · 2026년 2월 25일 오전 7시</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .news-container {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Noto Serif KR', Georgia, serif;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--frog-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .news-header {
+    padding: 20px 0 30px;
+    text-align: center;
+    border-bottom: 3px double #1a1a1a;
+    margin-bottom: 30px;
+  }
+
+  .edition {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888888;
+    margin-bottom: 12px;
+  }
+
+  .news-header h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: #4a4a4a;
+    font-style: italic;
+  }
+
+  .dateline {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888888;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0dcd4;
+  }
+
+  .breaking-banner {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 16px 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 8px;
+  }
+
+  .market-ticker {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 16px 0;
+    border-bottom: 1px solid #e0dcd4;
+    margin-bottom: 30px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ticker-label {
+    color: #888888;
+  }
+
+  .ticker-value.up {
+    color: #16a34a;
+    font-weight: 600;
+  }
+
+  .ticker-value.down {
+    color: #dc2626;
+    font-weight: 600;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lead-story {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #e0dcd4;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+
+  .lead-story h3 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .lead-story p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .news-article {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0dcd4;
+  }
+
+  .news-article:last-child {
+    border-bottom: none;
+  }
+
+  .news-article h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .news-article p {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 6px;
+    margin-bottom: 8px;
+  }
+
+  .tag.markets {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  .tag.ai {
+    background: #f3e8ff;
+    color: #7c3aed;
+  }
+
+  .tag.politics {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+
+  .tag.world {
+    background: #fce7f3;
+    color: #be185d;
+  }
+
+  .tag.science {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .tag.sports {
+    background: #ffedd5;
+    color: #c2410c;
+  }
+
+  .tag.breaking {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  .highlights-box {
+    background: #f5f2eb;
+    border-left: 4px solid #1a1a1a;
+    padding: 20px 24px;
+    margin: 30px 0;
+    border-radius: 8px;
+  }
+
+  .highlights-box h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .highlights-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .highlights-box li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0dcd4;
+    font-size: 0.95rem;
+  }
+
+  .highlights-box li:last-child {
+    border-bottom: none;
+  }
+
+  .news-footer {
+    margin-top: 50px;
+    padding: 24px 0;
+    border-top: 3px double #1a1a1a;
+    text-align: center;
+  }
+
+  .footer-credit {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #888888;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 640px) {
+    .market-ticker {
+      gap: 16px;
+    }
+
+    .news-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .lead-story {
+      padding: 20px;
+    }
+  }
+</style>
