@@ -1,0 +1,537 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdUnit from '../../components/AdUnit.astro';
+---
+
+<BaseLayout title="종합 데일리 브리핑 | 2026년 2월 28일">
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" slot="head-extra">
+
+  <div class="news-container">
+    <div class="breadcrumb">
+      <a href="/news">&larr; 뉴스 목록</a>
+    </div>
+
+    <AdUnit slot="7941837952" format="auto" />
+
+    <header class="news-header">
+      <div class="edition">Comprehensive Daily Briefing</div>
+      <h1>지난 24시간 세상의 모든 소식</h1>
+      <p class="subtitle">증시, 정치, 국제, 사회, 기술, 과학, 스포츠, 엔터테인먼트 종합</p>
+      <div class="dateline">2026년 2월 28일 토요일 오전 7시 · 다빈치 에디션</div>
+    </header>
+
+    <div class="breaking-banner">
+      ⚽ 2026 K리그1 오늘 개막, 인천 vs 서울 경인더비 · 🎤 블랙핑크 미니 3집 'DEADLINE' 전 세계 차트 석권
+    </div>
+
+    <div class="market-ticker">
+      <div class="ticker-item">
+        <span class="ticker-label">Dow</span>
+        <span class="ticker-value down">▼ 1.05% (48,978)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">S&P 500</span>
+        <span class="ticker-value down">▼ 0.43% (6,879)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">Nasdaq</span>
+        <span class="ticker-value down">▼ 0.92% (22,668)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">KOSPI</span>
+        <span class="ticker-value up">▲ 3.67% (6,307)</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-label">KOSDAQ</span>
+        <span class="ticker-value up">▲ 1.63% (1,193)</span>
+      </div>
+    </div>
+
+    <!-- 증시/경제 -->
+    <section>
+      <div class="section-header">
+        <h2>💹 증시/경제</h2>
+      </div>
+
+      <div class="lead-story">
+        <h3>미국 증시, 인플레이션 서프라이즈에 2월 약세 마감…S&P 500 월간 -1.43%</h3>
+        <p>미국 증시가 2월 마지막 거래일인 27일(금) 일제히 하락 마감했습니다. 1월 생산자물가지수(PPI)가 전월 대비 0.5% 상승하며 예상치 0.3%를 크게 웃돌아 인플레이션 우려가 재점화됐습니다. S&P 500은 2월을 -1.43%로 마감하며 11개월 만에 최악의 월간 성적을 기록했습니다.</p>
+        <p>UBS는 미국 주식시장 전망을 '비중확대'에서 '중립'으로 하향 조정했으며, Block의 대규모 해고와 CoreWeave의 실망스러운 가이던스가 심리를 더욱 악화시켰습니다. 다만 자사주 매입 승인 규모는 2월 사상 최대인 2,333억 달러를 기록해 기업들의 자신감은 유지되고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">KOREA</span>
+        <h3>코스피 사상 최고치 경신…6,300선 돌파하며 '육천피' 시대 개막</h3>
+        <p>코스피가 대형 반도체주 매수 모멘텀에 힘입어 6,307까지 상승하며 사상 최고치를 경신했습니다. 엔비디아 실적 호조에 따른 글로벌 낙관론이 한국 증시에도 파급되며 삼성전자, SK하이닉스, 현대차, 기아 등이 동반 강세를 보였습니다. 증권가에선 연내 7,300선까지 전망을 상향하는 목소리도 나오고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag markets">WALL ST</span>
+        <h3>Dell, 성장 전망 긍정 평가에 21.9% 급등…AI 인프라 수혜주 차별화</h3>
+        <p>Dell이 AI 서버 인프라 성장 전망에 대한 시장의 긍정적 평가를 받으며 하루 만에 21.93% 급등했습니다. 엔비디아가 실적 발표 후 추가 하락한 것과 대조적으로, AI 인프라 밸류체인 내 수혜주 차별화가 뚜렷해지고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- AI/기술 -->
+    <section>
+      <div class="section-header">
+        <h2>🤖 AI & 기술</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag ai">NVIDIA</span>
+        <h3>엔비디아, 4분기 매출 681억 달러 기록에도 주가 5.5% 급락</h3>
+        <p>엔비디아가 4분기 매출 681억 달러(전년 대비 73% 증가), 순이익 430억 달러라는 사상 최대 실적을 발표했지만 주가는 오히려 5.5% 급락하며 하루 만에 시가총액 2,600억 달러가 증발했습니다. 시장은 AI 설비투자 지속 가능성과 OpenAI와의 100억 달러 규모 거래 지연에 주목하고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">SEMICONDUCTOR</span>
+        <h3>글로벌 반도체 전쟁 격화…일본 AI칩 설계 거점, 중국 SMIC 생산 확대</h3>
+        <p>일본 경제산업성이 올 가을 도쿄에 AI 반도체 설계 거점 마련을 추진 중이며, 중국 SMIC는 화웨이 등과 협력해 7nm급 반도체 월 생산량을 2만 장에서 10만 장으로 확대하고 있습니다. 초미세 공정 경쟁과 HBM4 메모리 전면전이 본격화되는 양상입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag ai">MARKET</span>
+        <h3>2026 반도체 시장, HBM 수요 폭증으로 구조적 전환 국면 진입</h3>
+        <p>AI 데이터센터 수요 급증에 따라 HBM(고대역폭 메모리) 생산이 집중되면서 범용 DRAM 공급이 감소하고, DRAM·NAND 가격이 동반 상승하는 구조적 변화가 진행 중입니다. 삼성전자와 SK하이닉스 주가가 지난 반년간 각각 110%, 200%대 상승을 기록했습니다.</p>
+      </div>
+    </section>
+
+    <!-- 정치 -->
+    <section>
+      <div class="section-header">
+        <h2>🏛️ 정치</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">LEGAL</span>
+        <h3>내란 연루 전 정보사령관, 국방부 상대 징계 취소 행정소송 제기</h3>
+        <p>12·3 내란 당일 중앙선관위 장악 지시를 내려 파면된 문상호 전 정보사령관이 국방부를 상대로 징계 취소 행정소송을 제기했습니다. 내란 관련 군 관계자들의 법적 대응이 본격화되면서 사법 판단이 주목됩니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">COURT</span>
+        <h3>전광훈 목사, 서울서부지법 폭력·난입 혐의 첫 공판서 전면 부인</h3>
+        <p>서울서부지법 폭력·난입 사태의 배후로 지목된 전광훈 사랑제일교회 목사가 첫 공판에서 혐의를 전면 부인했습니다. 사법부를 둘러싼 정치적 갈등이 법정 안팎에서 계속 이어지고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 국제 -->
+    <section>
+      <div class="section-header">
+        <h2>🌍 국제</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">UKRAINE</span>
+        <h3>트럼프, "한 달 내 종전" 의지 재확인…미·러·우 3자 정상회담 추진</h3>
+        <p>트럼프 미국 대통령이 젤렌스키 우크라이나 대통령과의 통화에서 한 달 내 분쟁 종식 계획을 재확인하고, 3월 초 스위스 제네바에서 미·러·우 3자 종전 협상을 추진하겠다고 밝혔습니다. 동시에 러시아 제재를 2026년 3월 이후로 1년 연장하며 압박과 대화를 병행하는 전략을 취하고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">ZAPORIZHZHIA</span>
+        <h3>자포리자 원전 지역, 장비 수리 위한 지역 휴전 선포</h3>
+        <p>우크라이나 자포리자 원자력 발전소 지역에서 장비 수리를 위한 지역 휴전이 선포됐습니다. 전시 상황 속 원전 안전 확보를 위한 국제적 노력이 이어지고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">MIDEAST</span>
+        <h3>이란 상공 미 드론 실종…러시아 전자전 시스템 피격 의혹</h3>
+        <p>미국 드론 한 대가 이란 상공에서 러시아제 전자전 시스템에 피격돼 실종된 것으로 알려졌습니다. 중동 지역에서 전자전·정보전 경쟁이 새로운 갈등 요소로 부상하고 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 사회 -->
+    <section>
+      <div class="section-header">
+        <h2>🏘️ 사회</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">ASTRONOMY</span>
+        <h3>오늘 밤, 6개 행성 일렬 정렬…육안 관측 가능한 희귀 천문 현상</h3>
+        <p>2월 28일 일몰 후 하늘에 6개의 행성이 일렬로 나타나는 희귀한 행성 정렬 현상이 관측됩니다. 이 중 4개 행성은 맨눈으로 볼 수 있으며, 최근 역사에서 가장 타이트한 정렬 중 하나로 기록될 전망입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag politics">DIPLOMACY</span>
+        <h3>한중 관계 밀착 행보…이재명 대통령 방중 후속 협력 가속</h3>
+        <p>이재명 대통령이 1월 초 중국 국빈 방문을 통해 경제·기후·기술 분야 양해각서(MOU)를 체결한 뒤, 양국 간 후속 협력이 빠르게 진행되고 있습니다. 시진핑 주석의 지난해 방한에 대한 답방 성격으로 이뤄진 이번 외교가 실질 성과로 이어질지 관심이 집중됩니다.</p>
+      </div>
+    </section>
+
+    <!-- 과학 -->
+    <section>
+      <div class="section-header">
+        <h2>🔬 과학</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">SPACE</span>
+        <h3>NASA 아르테미스 2호, 기술 이슈로 일정 재조정…50년 만의 유인 달 탐사 지연</h3>
+        <p>NASA의 아르테미스 2호가 기술적 이슈로 원래 2월 예정이던 발사 일정이 재조정되고 있습니다. 1972년 아폴로 17호 이후 반세기 만에 이루어지는 유인 달 탐사로, 우주비행사 4명이 10일간 달 주위를 탐색할 예정입니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">SPACE</span>
+        <h3>2026년, 인류 우주 탐사의 획기적 전환점</h3>
+        <p>2026년은 유인 달 비행, 수성 궤도 진입, 화성 위성 샘플 채취 등 역대급 우주 탐사 미션이 동시에 진행되는 해입니다. Nature지가 선정한 올해 주목할 과학 이슈에서도 우주 탐사가 최상위에 올랐습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag science">CLIMATE</span>
+        <h3>국제과학위원회 "2026년은 기후 행동의 도전적인 해"</h3>
+        <p>국제과학위원회(ISC)가 복잡한 지정학적 환경과 과학 지원·자금 감소를 배경으로 2026년 기후 행동에 대한 경고를 발했습니다. 과학 기반 기후 정책의 지속성 확보가 핵심 과제로 지목됐습니다.</p>
+      </div>
+    </section>
+
+    <!-- 스포츠 -->
+    <section>
+      <div class="section-header">
+        <h2>⚽ 스포츠</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <span class="tag sports">K LEAGUE</span>
+        <h3>2026 K리그1 오늘 개막…경인더비로 포문, 인천 1년 만에 1부 복귀</h3>
+        <p>2026시즌 K리그1이 오늘 오후 2시 인천축구전용경기장에서 인천 대 서울의 경인더비로 막을 올립니다. 인천은 K리그2 우승으로 1년 만에 복귀했고, 서울은 후이즈·구성윤 등 알짜 영입으로 우승권 도약을 노립니다. 같은 시각 울산 대 강원전도 열립니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">MLB</span>
+        <h3>이정후 vs 김혜성, 오늘 시범경기 맞대결…WBC 합류 앞두고 마지막 테스트</h3>
+        <p>이정후의 샌프란시스코 자이언츠와 김혜성의 LA 다저스가 시범경기에서 맞대결을 펼칩니다. 두 선수 모두 3월 5일 개막하는 2026 WBC 한국 대표팀 합류를 앞두고 있어 시범경기 성적에 관심이 쏠립니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag sports">2026</span>
+        <h3>2026 스포츠 슈퍼이어…올림픽·월드컵·아시안게임 동시 개최</h3>
+        <p>2026년은 동계올림픽(밀라노-코르티나), FIFA 월드컵(미국·캐나다·멕시코), 아시안게임(나고야-아이치) 등 메이저 대회가 한 해에 몰린 스포츠 슈퍼이어입니다. 격동의 스포츠 캘린더가 예고됩니다.</p>
+      </div>
+    </section>
+
+    <!-- 엔터테인먼트 -->
+    <section>
+      <div class="section-header">
+        <h2>🎬 엔터테인먼트</h2>
+      </div>
+
+      <div class="news-article">
+        <span class="tag breaking">BREAKING</span>
+        <h3>블랙핑크, 미니 3집 'DEADLINE'으로 3년 5개월 만에 완전체 컴백</h3>
+        <p>블랙핑크가 어제(27일) 세 번째 미니앨범 'DEADLINE'을 발매하며 2022년 정규 2집 이후 약 3년 5개월 만에 가요계에 복귀했습니다. 타이틀곡 'GO'를 포함한 5곡이 수록됐으며, 데뷔 10주년 기념 프로젝트의 시작을 알렸습니다. 유튜브 채널 구독자 1억 명을 돌파하며 전 세계 가수 최초 기록을 세웠습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">K-POP</span>
+        <h3>2026 K팝 슈퍼 사이클…BTS 완전체 복귀·빅뱅·엑소 컴백 예고</h3>
+        <p>K팝 시장이 가요계 역사상 가장 뜨거운 슈퍼 사이클에 진입했습니다. 군 복무와 개인 활동으로 응축되었던 에너지가 올해 한꺼번에 폭발하며, BTS 완전체 복귀와 빅뱅·엑소 컴백이 예고되어 전 세계 팬덤의 시선이 한국에 집중되고 있습니다.</p>
+      </div>
+
+      <div class="news-article">
+        <span class="tag world">ROOKIE</span>
+        <h3>5세대 아이돌 약진…엔터 빅4 신인 론칭 경쟁 가열</h3>
+        <p>하이브, SM, JYP, YG 등 엔터 빅4가 올해 대거 신인 그룹을 론칭하며 5세대 아이돌 경쟁이 본격화되고 있습니다. 하투하, 올데프, 코르티스 등이 가요 관계자들이 꼽는 2026년 주인공 후보로 떠올랐습니다.</p>
+      </div>
+    </section>
+
+    <div class="highlights-box">
+      <h4>📌 오늘의 주요 헤드라인</h4>
+      <ul>
+        <li>💹 미국 증시 인플레 충격에 2월 약세 마감, 코스피는 사상 최고 6,307</li>
+        <li>🤖 엔비디아 681억 달러 사상 최대 매출에도 주가 5.5% 급락</li>
+        <li>🏛️ 내란 연루 전 정보사령관, 국방부 상대 행정소송 제기</li>
+        <li>🌍 트럼프, 미·러·우 3자 정상회담 추진…"한 달 내 종전" 의지</li>
+        <li>🏘️ 오늘 밤 6개 행성 일렬 정렬, 육안 관측 가능한 희귀 현상</li>
+        <li>🔬 NASA 아르테미스 2호 일정 재조정, 우주 탐사 슈퍼이어 시동</li>
+        <li>⚽ 2026 K리그1 오늘 개막, 경인더비로 시즌 포문</li>
+        <li>🎬 블랙핑크 'DEADLINE' 컴백, K팝 슈퍼 사이클 본격 돌입</li>
+      </ul>
+    </div>
+
+    <footer class="news-footer">
+      <p class="footer-credit">🎨 CURATED BY 다빈치 · 2026년 2월 28일 오전 7시</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .news-container {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Noto Serif KR', Georgia, serif;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--frog-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .news-header {
+    padding: 20px 0 30px;
+    text-align: center;
+    border-bottom: 3px double #1a1a1a;
+    margin-bottom: 30px;
+  }
+
+  .edition {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888888;
+    margin-bottom: 12px;
+  }
+
+  .news-header h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: #4a4a4a;
+    font-style: italic;
+  }
+
+  .dateline {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888888;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0dcd4;
+  }
+
+  .breaking-banner {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 16px 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 8px;
+  }
+
+  .market-ticker {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 16px 0;
+    border-bottom: 1px solid #e0dcd4;
+    margin-bottom: 30px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ticker-label {
+    color: #888888;
+  }
+
+  .ticker-value.up {
+    color: #16a34a;
+    font-weight: 600;
+  }
+
+  .ticker-value.down {
+    color: #dc2626;
+    font-weight: 600;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lead-story {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #e0dcd4;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+
+  .lead-story h3 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .lead-story p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .news-article {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0dcd4;
+  }
+
+  .news-article:last-child {
+    border-bottom: none;
+  }
+
+  .news-article h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .news-article p {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 6px;
+    margin-bottom: 8px;
+  }
+
+  .tag.markets {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  .tag.ai {
+    background: #f3e8ff;
+    color: #7c3aed;
+  }
+
+  .tag.politics {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+
+  .tag.world {
+    background: #fce7f3;
+    color: #be185d;
+  }
+
+  .tag.science {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .tag.sports {
+    background: #ffedd5;
+    color: #c2410c;
+  }
+
+  .tag.breaking {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  .highlights-box {
+    background: #f5f2eb;
+    border-left: 4px solid #1a1a1a;
+    padding: 20px 24px;
+    margin: 30px 0;
+    border-radius: 8px;
+  }
+
+  .highlights-box h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .highlights-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .highlights-box li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0dcd4;
+    font-size: 0.95rem;
+  }
+
+  .highlights-box li:last-child {
+    border-bottom: none;
+  }
+
+  .news-footer {
+    margin-top: 50px;
+    padding: 24px 0;
+    border-top: 3px double #1a1a1a;
+    text-align: center;
+  }
+
+  .footer-credit {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #888888;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 640px) {
+    .market-ticker {
+      gap: 16px;
+    }
+
+    .news-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .lead-story {
+      padding: 20px;
+    }
+  }
+</style>
