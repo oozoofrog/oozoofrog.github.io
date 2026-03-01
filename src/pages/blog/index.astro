@@ -68,20 +68,14 @@ for (const post of posts) {
     font-weight: 600;
     white-space: nowrap;
     cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid var(--surface-border);
+    background: var(--surface-bg);
     color: var(--dark-green);
     transition: background 0.15s, color 0.15s, border-color 0.15s;
   }
 
-  @supports (backdrop-filter: blur(8px)) {
-    .filter-pill {
-      backdrop-filter: blur(8px);
-    }
-  }
-
   .filter-pill:hover {
-    background: rgba(91, 168, 71, 0.15);
+    background: var(--sky-blue-light);
     border-color: var(--frog-green);
   }
 

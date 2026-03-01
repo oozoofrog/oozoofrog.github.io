@@ -47,18 +47,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     max-width: 800px;
     margin: 0 auto;
     padding: 40px 20px;
-    background: rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(20px) saturate(150%);
-    -webkit-backdrop-filter: blur(20px) saturate(150%);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: var(--surface-bg);
+    border: 1px solid var(--surface-border);
     border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  }
-
-  @supports not (backdrop-filter: blur(20px)) {
-    .contact-page {
-      background: rgba(255, 255, 255, 0.75);
-    }
+    box-shadow: none;
   }
 
   h1 {
@@ -112,20 +104,21 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     align-items: center;
     gap: 8px;
     padding: 24px 32px;
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: var(--surface-bg);
+    border: 1px solid var(--surface-border);
     border-radius: 12px;
     text-decoration: none;
     color: #333;
     transition: all 0.2s ease;
     flex: 1;
     min-width: 200px;
+    box-shadow: none;
   }
 
   .contact-card:hover {
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    background: var(--surface-bg);
+    box-shadow: var(--surface-shadow-hover);
     border-color: var(--frog-green);
   }
 
@@ -175,28 +168,20 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .nav-link {
     display: inline-block;
     padding: 10px 20px;
-    background: rgba(112, 168, 80, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: var(--frog-green);
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid transparent;
     border-radius: 20px;
     font-weight: 600;
     transition: all 0.15s;
-    box-shadow: 0 4px 12px rgba(45, 80, 22, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow: var(--surface-shadow);
   }
 
   .nav-link:hover {
     transform: translateY(-2px);
-    background: rgba(112, 168, 80, 0.85);
-    box-shadow: 0 6px 20px rgba(45, 80, 22, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  }
-
-  @supports not (backdrop-filter: blur(12px)) {
-    .nav-link {
-      background: rgba(112, 168, 80, 0.9);
-    }
+    background: var(--frog-green-dark);
+    box-shadow: var(--surface-shadow-hover);
+    border-bottom: 1px solid transparent;
   }
 
   @media (max-width: 600px) {

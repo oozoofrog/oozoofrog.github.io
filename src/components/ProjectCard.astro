@@ -52,22 +52,20 @@ const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
 <style>
   .project-card {
     position: relative;
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(20px) saturate(150%);
-    -webkit-backdrop-filter: blur(20px) saturate(150%);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: var(--surface-bg);
+    border: 1px solid var(--surface-border);
     border-radius: 12px;
     padding: 24px;
     padding-top: 28px;
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    box-shadow: none;
     transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
   }
 
   .project-card:hover {
     transform: translateY(-2px) scale(1.01);
-    background: rgba(255, 255, 255, 0.65);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    background: var(--surface-bg);
+    box-shadow: var(--surface-shadow-hover);
   }
 
   /* Status color bar at top */
@@ -159,21 +157,16 @@ const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
   }
 
   .tag {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: var(--sky-blue-light);
     color: var(--frog-green-dark);
     padding: 3px 10px;
     border-radius: 12px;
     font-size: 0.78em;
     font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    transition: background 0.15s, border-color 0.15s;
   }
 
   .tag:hover {
-    background: rgba(255, 255, 255, 0.7);
-    border-color: rgba(255, 255, 255, 0.8);
+    background: var(--sky-blue);
   }
 
   /* Links */
@@ -190,8 +183,6 @@ const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
     text-decoration: none;
     font-size: 0.9em;
     font-weight: 600;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
   }
 
@@ -206,12 +197,12 @@ const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
   }
 
   .project-links .btn-secondary {
-    background: rgba(255, 255, 255, 0.6);
+    background: var(--surface-bg);
     color: var(--dark-green);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--surface-border);
   }
 
   .project-links .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.8);
+    background: var(--sky-blue-light);
   }
 </style>

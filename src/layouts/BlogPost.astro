@@ -41,11 +41,11 @@ const categories = Array.isArray(rawCategories)
 <style>
   article {
     max-width: 760px;
-    background: rgba(255, 255, 255, 0.55);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: var(--surface-bg);
+    border: 1px solid var(--surface-border);
     border-radius: 16px;
     padding: 28px 26px;
-    box-shadow: var(--glass-shadow), var(--glass-inner-glow);
+    box-shadow: none;
   }
 
   h1 {
@@ -152,7 +152,7 @@ const categories = Array.isArray(rawCategories)
     border-left: 4px solid var(--frog-green);
     padding: 0.45rem 0 0.45rem 0.9rem;
     color: #42544d;
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--surface-bg);
     border-radius: 0 8px 8px 0;
     margin: 1.2rem 0;
   }
@@ -173,7 +173,7 @@ const categories = Array.isArray(rawCategories)
     border-collapse: collapse;
     margin: 1.2rem 0;
     font-size: 0.96em;
-    background: rgba(255, 255, 255, 0.65);
+    background: var(--surface-bg);
     border-radius: 10px;
     overflow: hidden;
     display: block;

@@ -1,42 +1,45 @@
 /* Color palette from favicon (frog on planet) */
 :root {
-  --sky-blue: #B0D4E8;
-  --sky-blue-light: #E3F0F7;
-  --frog-green: #5BA847;
-  --frog-green-dark: #4A8E3A;
-  --planet-orange: #E07D3A;
-  --ring-gold: #D4963A;
-  --dark-green: #2D5016;
+  --sky-blue: #b0d4e8;
+  --sky-blue-light: #e3f0f7;
+  --frog-green: #5ba847;
+  --frog-green-dark: #4a8e3a;
+  --planet-orange: #e07d3a;
+  --ring-gold: #d4963a;
+  --dark-green: #2d5016;
 
-  /* Liquid Glass Design Variables */
-  --glass-bg: rgba(255, 255, 255, 0.45);
-  --glass-bg-heavy: rgba(255, 255, 255, 0.65);
-  --glass-blur: 20px;
-  --glass-border: rgba(255, 255, 255, 0.5);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  --glass-inner-glow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  /* Flat Design Variables */
+  --surface-bg: #ffffff;
+  --surface-border: #e0e0e0;
+  --surface-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  --surface-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 /* Reset & Base */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    sans-serif;
   line-height: 1.6;
   color: #333;
-  background: linear-gradient(135deg, #e8f4ec 0%, #dae8f0 30%, #f0ebe4 60%, #e4eff0 100%);
-  background-attachment: fixed;
+  background: #ffffff;
 }
 
 a {
   color: var(--frog-green);
   text-decoration: none;
   border-bottom: 1.5px solid transparent;
-  transition: color 0.2s ease, border-bottom 0.2s ease;
+  transition:
+    color 0.2s ease,
+    border-bottom 0.2s ease;
 }
 
 a:visited {
@@ -65,20 +68,14 @@ img {
 .hero {
   text-align: center;
   padding: 80px 20px;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--surface-bg);
   color: var(--dark-green);
   border-radius: 16px;
   margin-bottom: 40px;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: var(--glass-shadow), var(--glass-inner-glow);
-}
-
-@supports (backdrop-filter: blur(24px)) {
-  .hero {
-    backdrop-filter: blur(24px) saturate(180%);
-  }
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--surface-shadow);
 }
 
 .hero .hero-avatar {
@@ -86,10 +83,8 @@ img {
   height: auto;
   border-radius: 20px;
   margin-bottom: 16px;
-  border: 3px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1),
-              inset 0 0 0 1px rgba(255, 255, 255, 0.4),
-              0 0 24px rgba(176, 212, 232, 0.2);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--surface-shadow);
 }
 
 .hero h1 {
@@ -118,7 +113,9 @@ img {
   text-decoration: none;
   font-size: 0.9em;
   font-weight: 600;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
 }
 
 .btn:hover {
@@ -133,21 +130,15 @@ img {
 }
 
 .hero .btn-primary {
-  background: rgba(45, 80, 22, 0.75);
+  background: var(--frog-green);
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-@supports (backdrop-filter: blur(12px)) {
-  .hero .btn-primary {
-    backdrop-filter: blur(12px);
-  }
+  border: 1px solid transparent;
+  box-shadow: var(--surface-shadow);
 }
 
 .hero .btn-primary:hover {
-  background: rgba(45, 80, 22, 0.85);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  background: var(--frog-green-dark);
+  box-shadow: var(--surface-shadow-hover);
 }
 
 .btn-secondary {
@@ -170,7 +161,7 @@ img {
 
 .featured-projects h2::before,
 .latest-posts h2::before {
-  content: '';
+  content: "";
   display: inline-block;
   width: 4px;
   height: 1em;
@@ -199,16 +190,19 @@ img {
 
 /* Project Card */
 .project-card {
-  background: #fff;
-  border: 1.5px solid #e0ebe6;
+  background: var(--surface-bg);
+  border: 1px solid var(--surface-border);
   border-radius: 12px;
   padding: 24px;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+  box-shadow: none;
 }
 
 .project-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(45, 80, 22, 0.08);
+  box-shadow: var(--surface-shadow-hover);
 }
 
 .project-card h3 {
