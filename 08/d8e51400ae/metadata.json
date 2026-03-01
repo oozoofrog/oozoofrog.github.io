@@ -1,0 +1,34 @@
+{
+  "cli_version": "0.4.8",
+  "checkpoint_id": "08d8e51400ae",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "src/components/Footer.astro",
+    "src/components/Header.astro",
+    "src/components/ProjectCard.astro",
+    "src/layouts/BlogPost.astro",
+    "src/pages/about.astro",
+    "src/pages/blog/index.astro",
+    "src/pages/contact/index.astro",
+    "src/pages/index.astro",
+    "src/styles/global.css"
+  ],
+  "sessions": [
+    {
+      "metadata": "/08/d8e51400ae/0/metadata.json",
+      "transcript": "/08/d8e51400ae/0/full.jsonl",
+      "context": "/08/d8e51400ae/0/context.md",
+      "content_hash": "/08/d8e51400ae/0/content_hash.txt",
+      "prompt": "/08/d8e51400ae/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 6,
+    "cache_creation_tokens": 52871,
+    "cache_read_tokens": 58254,
+    "output_tokens": 687,
+    "api_call_count": 3
+  }
+}

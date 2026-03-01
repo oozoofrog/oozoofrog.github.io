@@ -1,0 +1,608 @@
+commit
+
+---
+
+## Context
+
+- Current git status: On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   src/components/Footer.astro
+	modified:   src/components/Header.astro
+	modified:   src/components/ProjectCard.astro
+	modified:   src/layouts/BlogPost.astro
+	modified:   src/pages/about.astro
+	modified:   src/pages/blog/index.astro
+	modified:   src/pages/contact/index.astro
+	modified:   src/pages/index.astro
+	modified:   src/styles/global.css
+
+no changes added to commit (use "git add" and/or "git commit -a")
+- Current git diff (staged and unstaged changes): diff --git a/src/components/Footer.astro b/src/components/Footer.astro
+index 1e91246..727353d 100644
+--- a/src/components/Footer.astro
++++ b/src/components/Footer.astro
+@@ -21,17 +21,14 @@
+ 
+ <style>
+   .site-footer {
+-    background: rgba(255, 255, 255, 0.35);
+-    backdrop-filter: blur(16px);
+-    -webkit-backdrop-filter: blur(16px);
++    background: var(--surface-bg);
+     padding: 40px 20px;
+     margin-top: 40px;
+     text-align: center;
+     color: #8a9a92;
+     font-size: 0.85em;
+     position: relative;
+-    border-top: 1px solid rgba(255, 255, 255, 0.4);
+-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
++    border-top: 1px solid var(--surface-border);
+   }
+ 
+   .footer-gradient {
+diff --git a/src/components/Header.astro b/src/components/Header.astro
+index 403b06a..518eda9 100644
+--- a/src/components/Header.astro
++++ b/src/components/Header.astro
+@@ -38,11 +38,9 @@ const navItems = [
+     position: sticky;
+     top: 0;
+     z-index: 100;
+-    background: rgba(255, 255, 255, 0.35);
+-    backdrop-filter: blur(24px) saturate(180%);
+-    -webkit-backdrop-filter: blur(24px) saturate(180%);
+-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 1px 3px rgba(0, 0, 0, 0.05);
++    background: var(--surface-bg);
++    border-bottom: 1px solid var(--surface-border);
++    box-shadow: var(--surface-shadow);
+     padding: 0 20px;
+   }
+ 
+@@ -92,15 +90,12 @@ const navItems = [
+ 
+   nav a:hover {
+     color: var(--frog-green);
+-    background: rgba(255, 255, 255, 0.5);
++    background: var(--sky-blue-light);
+   }
+ 
+   nav a.active {
+     color: var(--dark-green);
+-    background: rgba(255, 255, 255, 0.6);
+-    backdrop-filter: blur(8px);
+-    -webkit-backdrop-filter: blur(8px);
+-    border: 1px solid rgba(255, 255, 255, 0.4);
++    background: var(--sky-blue-light);
+   }
+ 
+   /* Hamburger menu */
+diff --git a/src/components/ProjectCard.astro b/src/components/ProjectCard.astro
+index 5c1d71b..a303578 100644
+--- a/src/components/ProjectCard.astro
++++ b/src/components/ProjectCard.astro
+@@ -52,22 +52,20 @@ const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
+ <style>
+   .project-card {
+     position: relative;
+-    background: rgba(255, 255, 255, 0.45);
+-    backdrop-filter: blur(20px) saturate(150%);
+-    -webkit-backdrop-filter: blur(20px) saturate(150%);
+-    border: 1px solid rgba(255, 255, 255, 0.5);
++    background: var(--surface-bg);
++    border: 1px solid var(--surface-border);
+     border-radius: 12px;
+     padding: 24px;
+     padding-top: 28px;
+     overflow: hidden;
+-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
++    box-shadow: none;
+     transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+   }
+ 
+   .project-card:hover {
+     transform: translateY(-2px) scale(1.01);
+-    background: rgba(255, 255, 255, 0.65);
+-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
++    background: var(--surface-bg);
++    box-shadow: var(--surface-shadow-hover);
+   }
+ 
+   /* Status color bar at top */
+@@ -159,21 +157,16 @@ const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
+   }
+ 
+   .tag {
+-    background: rgba(255, 255, 255, 0.5);
+-    backdrop-filter: blur(8px);
+-    -webkit-backdrop-filter: blur(8px);
++    background: var(--sky-blue-light);
+     color: var(--frog-green-dark);
+     padding: 3px 10px;
+     border-radius: 12px;
+     font-size: 0.78em;
+     font-weight: 500;
+-    border: 1px solid rgba(255, 255, 255, 0.6);
+-    transition: background 0.15s, border-color 0.15s;
+   }
+ 
+   .tag:hover {
+-    background: rgba(255, 255, 255, 0.7);
+-    border-color: rgba(255, 255, 255, 0.8);
++    background: var(--sky-blue);
+   }
+ 
+   /* Links */
+@@ -190,8 +183,6 @@ const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
+     text-decoration: none;
+     font-size: 0.9em;
+     font-weight: 600;
+-    backdrop-filter: blur(8px);
+-    -webkit-backdrop-filter: blur(8px);
+     transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+   }
+ 
+@@ -206,12 +197,12 @@ const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
+   }
+ 
+   .project-links .btn-secondary {
+-    background: rgba(255, 255, 255, 0.6);
++    background: var(--surface-bg);
+     color: var(--dark-green);
+-    border: 1px solid rgba(255, 255, 255, 0.8);
++    border: 1px solid var(--surface-border);
+   }
+ 
+   .project-links .btn-secondary:hover {
+-    background: rgba(255, 255, 255, 0.8);
++    background: var(--sky-blue-light);
+   }
+ </style>
+diff --git a/src/layouts/BlogPost.astro b/src/layouts/BlogPost.astro
+index e830ae1..ca4b77e 100644
+--- a/src/layouts/BlogPost.astro
++++ b/src/layouts/BlogPost.astro
+@@ -41,11 +41,11 @@ const categories = Array.isArray(rawCategories)
+ <style>
+   article {
+     max-width: 760px;
+-    background: rgba(255, 255, 255, 0.55);
+-    border: 1px solid rgba(255, 255, 255, 0.6);
++    background: var(--surface-bg);
++    border: 1px solid var(--surface-border);
+     border-radius: 16px;
+     padding: 28px 26px;
+-    box-shadow: var(--glass-shadow), var(--glass-inner-glow);
++    box-shadow: none;
+   }
+ 
+   h1 {
+@@ -152,7 +152,7 @@ const categories = Array.isArray(rawCategories)
+     border-left: 4px solid var(--frog-green);
+     padding: 0.45rem 0 0.45rem 0.9rem;
+     color: #42544d;
+-    background: rgba(255, 255, 255, 0.5);
++    background: var(--surface-bg);
+     border-radius: 0 8px 8px 0;
+     margin: 1.2rem 0;
+   }
+@@ -173,7 +173,7 @@ const categories = Array.isArray(rawCategories)
+     border-collapse: collapse;
+     margin: 1.2rem 0;
+     font-size: 0.96em;
+-    background: rgba(255, 255, 255, 0.65);
++    background: var(--surface-bg);
+     border-radius: 10px;
+     overflow: hidden;
+     display: block;
+diff --git a/src/pages/about.astro b/src/pages/about.astro
+index db46f08..6f0fa75 100644
+--- a/src/pages/about.astro
++++ b/src/pages/about.astro
+@@ -28,25 +28,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
+ <style>
+   .about {
+     max-width: 640px;
+-    background: rgba(255, 255, 255, 0.45);
+-    backdrop-filter: blur(20px) saturate(150%);
+-    -webkit-backdrop-filter: blur(20px) saturate(150%);
+-    border: 1px solid rgba(255, 255, 255, 0.5);
++    background: var(--surface-bg);
++    border: 1px solid var(--surface-border);
+     border-radius: 16px;
+     padding: 40px;
+-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+-  }
+-
+-  @supports not (backdrop-filter: blur(20px)) {
+-    .about {
+-      background: rgba(255, 255, 255, 0.85);
+-    }
++    box-shadow: none;
+   }
+ 
+   .avatar {
+     border-radius: 50%;
+     margin-bottom: 1.5rem;
+-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6), 0 0 20px rgba(112, 168, 80, 0.2), 0 4px 16px rgba(0, 0, 0, 0.12);
++    box-shadow: var(--surface-shadow);
++    border: 1px solid var(--surface-border);
+     position: relative;
+   }
+ 
+@@ -55,18 +48,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
+   }
+ 
+   .about ul li:hover {
+-    background: rgba(255, 255, 255, 0.3);
+-    backdrop-filter: blur(8px);
+-    -webkit-backdrop-filter: blur(8px);
++    background: var(--sky-blue-light);
+     padding: 4px 12px;
+     margin-left: -12px;
+     border-radius: 8px;
+-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+-  }
+-
+-  @supports not (backdrop-filter: blur(8px)) {
+-    .about ul li:hover {
+-      background: rgba(255, 255, 255, 0.6);
+-    }
+   }
+ </style>
+diff --git a/src/pages/blog/index.astro b/src/pages/blog/index.astro
+index be80afa..4632e90 100644
+--- a/src/pages/blog/index.astro
++++ b/src/pages/blog/index.astro
+@@ -68,20 +68,14 @@ for (const post of posts) {
+     font-weight: 600;
+     white-space: nowrap;
+     cursor: pointer;
+-    border: 1px solid rgba(255, 255, 255, 0.6);
+-    background: rgba(255, 255, 255, 0.45);
++    border: 1px solid var(--surface-border);
++    background: var(--surface-bg);
+     color: var(--dark-green);
+     transition: background 0.15s, color 0.15s, border-color 0.15s;
+   }
+ 
+-  @supports (backdrop-filter: blur(8px)) {
+-    .filter-pill {
+-      backdrop-filter: blur(8px);
+-    }
+-  }
+-
+   .filter-pill:hover {
+-    background: rgba(91, 168, 71, 0.15);
++    background: var(--sky-blue-light);
+     border-color: var(--frog-green);
+   }
+ 
+diff --git a/src/pages/contact/index.astro b/src/pages/contact/index.astro
+index 4d2d7a2..93e70e1 100644
+--- a/src/pages/contact/index.astro
++++ b/src/pages/contact/index.astro
+@@ -47,18 +47,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
+     max-width: 800px;
+     margin: 0 auto;
+     padding: 40px 20px;
+-    background: rgba(255, 255, 255, 0.35);
+-    backdrop-filter: blur(20px) saturate(150%);
+-    -webkit-backdrop-filter: blur(20px) saturate(150%);
+-    border: 1px solid rgba(255, 255, 255, 0.5);
++    background: var(--surface-bg);
++    border: 1px solid var(--surface-border);
+     border-radius: 16px;
+-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+-  }
+-
+-  @supports not (backdrop-filter: blur(20px)) {
+-    .contact-page {
+-      background: rgba(255, 255, 255, 0.75);
+-    }
++    box-shadow: none;
+   }
+ 
+   h1 {
+@@ -112,20 +104,21 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
+     align-items: center;
+     gap: 8px;
+     padding: 24px 32px;
+-    background: rgba(255, 255, 255, 0.5);
+-    border: 1px solid rgba(255, 255, 255, 0.6);
++    background: var(--surface-bg);
++    border: 1px solid var(--surface-border);
+     border-radius: 12px;
+     text-decoration: none;
+     color: #333;
+     transition: all 0.2s ease;
+     flex: 1;
+     min-width: 200px;
++    box-shadow: none;
+   }
+ 
+   .contact-card:hover {
+     transform: translateY(-2px);
+-    background: rgba(255, 255, 255, 0.7);
+-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
++    background: var(--surface-bg);
++    box-shadow: var(--surface-shadow-hover);
+     border-color: var(--frog-green);
+   }
+ 
+@@ -175,28 +168,20 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
+   .nav-link {
+     display: inline-block;
+     padding: 10px 20px;
+-    background: rgba(112, 168, 80, 0.75);
+-    backdrop-filter: blur(12px);
+-    -webkit-backdrop-filter: blur(12px);
++    background: var(--frog-green);
+     color: #fff;
+-    border: 1px solid rgba(255, 255, 255, 0.3);
++    border: 1px solid transparent;
+     border-radius: 20px;
+     font-weight: 600;
+     transition: all 0.15s;
+-    box-shadow: 0 4px 12px rgba(45, 80, 22, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
++    box-shadow: var(--surface-shadow);
+   }
+ 
+   .nav-link:hover {
+     transform: translateY(-2px);
+-    background: rgba(112, 168, 80, 0.85);
+-    box-shadow: 0 6px 20px rgba(45, 80, 22, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+-  }
+-
+-  @supports not (backdrop-filter: blur(12px)) {
+-    .nav-link {
+-      background: rgba(112, 168, 80, 0.9);
+-    }
++    background: var(--frog-green-dark);
++    box-shadow: var(--surface-shadow-hover);
++    border-bottom: 1px solid transparent;
+   }
+ 
+   @media (max-width: 600px) {
+diff --git a/src/pages/index.astro b/src/pages/index.astro
+index d1098ea..a49814e 100644
+--- a/src/pages/index.astro
++++ b/src/pages/index.astro
+@@ -66,10 +66,8 @@ const recentPosts = allPosts
+     font-size: 0.85rem;
+     font-weight: 600;
+     color: var(--frog-green);
+-    background: rgba(255, 255, 255, 0.5);
+-    backdrop-filter: blur(8px);
+-    -webkit-backdrop-filter: blur(8px);
+-    border: 1px solid rgba(255, 255, 255, 0.6);
++    background: var(--surface-bg);
++    border: 1px solid var(--surface-border);
+     transition: background 0.15s, color 0.15s, border-color 0.15s;
+   }
+ 
+@@ -103,18 +101,16 @@ const recentPosts = allPosts
+     gap: 1rem;
+     padding: 12px 16px;
+     border-radius: 8px;
+-    border: 1px solid rgba(255, 255, 255, 0.4);
+-    background: rgba(255, 255, 255, 0.4);
+-    backdrop-filter: blur(12px);
+-    -webkit-backdrop-filter: blur(12px);
+-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.5);
++    border: 1px solid var(--surface-border);
++    background: var(--surface-bg);
++    box-shadow: none;
+     transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+   }
+ 
+   .post-card:hover {
+-    background: rgba(255, 255, 255, 0.6);
++    background: var(--surface-bg);
+     transform: translateX(4px);
+-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
++    box-shadow: var(--surface-shadow-hover);
+   }
+ 
+   .post-card time {
+diff --git a/src/styles/global.css b/src/styles/global.css
+index b605f6e..c094ec6 100644
+--- a/src/styles/global.css
++++ b/src/styles/global.css
+@@ -1,42 +1,45 @@
+ /* Color palette from favicon (frog on planet) */
+ :root {
+-  --sky-blue: #B0D4E8;
+-  --sky-blue-light: #E3F0F7;
+-  --frog-green: #5BA847;
+-  --frog-green-dark: #4A8E3A;
+-  --planet-orange: #E07D3A;
+-  --ring-gold: #D4963A;
+-  --dark-green: #2D5016;
+-
+-  /* Liquid Glass Design Variables */
+-  --glass-bg: rgba(255, 255, 255, 0.45);
+-  --glass-bg-heavy: rgba(255, 255, 255, 0.65);
+-  --glass-blur: 20px;
+-  --glass-border: rgba(255, 255, 255, 0.5);
+-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+-  --glass-inner-glow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
++  --sky-blue: #b0d4e8;
++  --sky-blue-light: #e3f0f7;
++  --frog-green: #5ba847;
++  --frog-green-dark: #4a8e3a;
++  --planet-orange: #e07d3a;
++  --ring-gold: #d4963a;
++  --dark-green: #2d5016;
++
++  /* Flat Design Variables */
++  --surface-bg: #ffffff;
++  --surface-border: #e0e0e0;
++  --surface-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
++  --surface-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.08);
+ }
+ 
+ /* Reset & Base */
+-*, *::before, *::after {
++*,
++*::before,
++*::after {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+ }
+ 
+ body {
+-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
++  font-family:
++    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
++    sans-serif;
+   line-height: 1.6;
+   color: #333;
+-  background: linear-gradient(135deg, #e8f4ec 0%, #dae8f0 30%, #f0ebe4 60%, #e4eff0 100%);
+-  background-attachment: fixed;
++  background: #ffffff;
+ }
+ 
+ a {
+   color: var(--frog-green);
+   text-decoration: none;
+   border-bottom: 1.5px solid transparent;
+-  transition: color 0.2s ease, border-bottom 0.2s ease;
++  transition:
++    color 0.2s ease,
++    border-bottom 0.2s ease;
+ }
+ 
+ a:visited {
+@@ -65,20 +68,14 @@ img {
+ .hero {
+   text-align: center;
+   padding: 80px 20px;
+-  background: rgba(255, 255, 255, 0.5);
++  background: var(--surface-bg);
+   color: var(--dark-green);
+   border-radius: 16px;
+   margin-bottom: 40px;
+   position: relative;
+   overflow: hidden;
+-  border: 1px solid rgba(255, 255, 255, 0.4);
+-  box-shadow: var(--glass-shadow), var(--glass-inner-glow);
+-}
+-
+-@supports (backdrop-filter: blur(24px)) {
+-  .hero {
+-    backdrop-filter: blur(24px) saturate(180%);
+-  }
++  border: 1px solid var(--surface-border);
++  box-shadow: var(--surface-shadow);
+ }
+ 
+ .hero .hero-avatar {
+@@ -86,10 +83,8 @@ img {
+   height: auto;
+   border-radius: 20px;
+   margin-bottom: 16px;
+-  border: 3px solid rgba(255, 255, 255, 0.6);
+-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1),
+-              inset 0 0 0 1px rgba(255, 255, 255, 0.4),
+-              0 0 24px rgba(176, 212, 232, 0.2);
++  border: 1px solid var(--surface-border);
++  box-shadow: var(--surface-shadow);
+ }
+ 
+ .hero h1 {
+@@ -118,7 +113,9 @@ img {
+   text-decoration: none;
+   font-size: 0.9em;
+   font-weight: 600;
+-  transition: transform 0.15s, box-shadow 0.15s;
++  transition:
++    transform 0.15s,
++    box-shadow 0.15s;
+ }
+ 
+ .btn:hover {
+@@ -133,21 +130,15 @@ img {
+ }
+ 
+ .hero .btn-primary {
+-  background: rgba(45, 80, 22, 0.75);
++  background: var(--frog-green);
+   color: #fff;
+-  border: 1px solid rgba(255, 255, 255, 0.3);
+-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+-}
+-
+-@supports (backdrop-filter: blur(12px)) {
+-  .hero .btn-primary {
+-    backdrop-filter: blur(12px);
+-  }
++  border: 1px solid transparent;
++  box-shadow: var(--surface-shadow);
+ }
+ 
+ .hero .btn-primary:hover {
+-  background: rgba(45, 80, 22, 0.85);
+-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.25);
++  background: var(--frog-green-dark);
++  box-shadow: var(--surface-shadow-hover);
+ }
+ 
+ .btn-secondary {
+@@ -170,7 +161,7 @@ img {
+ 
+ .featured-projects h2::before,
+ .latest-posts h2::before {
+-  content: '';
++  content: "";
+   display: inline-block;
+   width: 4px;
+   height: 1em;
+@@ -199,16 +190,19 @@ img {
+ 
+ /* Project Card */
+ .project-card {
+-  background: #fff;
+-  border: 1.5px solid #e0ebe6;
++  background: var(--surface-bg);
++  border: 1px solid var(--surface-border);
+   border-radius: 12px;
+   padding: 24px;
+-  transition: transform 0.15s, box-shadow 0.15s;
++  transition:
++    transform 0.15s,
++    box-shadow 0.15s;
++  box-shadow: none;
+ }
+ 
+ .project-card:hover {
+   transform: translateY(-2px);
+-  box-shadow: 0 6px 16px rgba(45, 80, 22, 0.08);
++  box-shadow: var(--surface-shadow-hover);
+ }
+ 
+ .project-card h3 {
+- Current branch: main
+- Recent commits: 86814ba Merge pull request #7 from oozoofrog/claude/magical-sammet
+ba3583d feat: improve AdSense compliance with privacy policy, content cleanup, and ad removal
+d12c485 daily news 2026-02-28
+ee4a542 fix: align site metadata and sitemap to oozoofrog.dev
+6c391d4 daily news 2026-02-26
+74583e4 daily news 2026-02-25
+2ee1cfd daily news 2026-02-24
+d8a2fd3 daily news 2026-02-23
+8cda4af Add daily news briefing for 2026-02-22
+9d3be9c daily news 2026-02-21
+
+## Your task
+
+Based on the above changes, create a single git commit.
+
+You have the capability to call multiple tools in a single response. Stage and create the commit using a single message. Do not use any other tools or do anything else. Do not send any other text or messages besides these tool calls.
