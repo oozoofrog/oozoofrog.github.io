@@ -5,7 +5,7 @@ date    : 2019-01-31 11:52:42 +0900
 updated : 2019-03-23 22:21:52 +0900
 tags    : 
 toc     : true
-public  : true
+public  : false
 parent  : study
 parenttitle : 
 latex   : false

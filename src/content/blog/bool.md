@@ -1,4 +1,5 @@
 ---
+public: false
 title   : Bool
 date    : 2018-04-10 12:00:00 +0900
 categories : swift

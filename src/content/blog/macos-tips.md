@@ -5,7 +5,7 @@ date    : 2019-03-25 12:33:02 +0900
 updated : 2019-03-25 21:46:24 +0900
 tags    : 
 toc     : true
-public  : true
+public  : false
 parent  : developing
 parenttitle : 개발의 이모저모
 latex   : false

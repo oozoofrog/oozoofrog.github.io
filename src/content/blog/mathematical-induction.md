@@ -5,7 +5,7 @@ date    : 2018-06-05 08:43:21 +0900
 updated : 2018-06-05 08:46:48 +0900
 tags    : 
 toc     : true
-public  : true
+public  : false
 parent  : 
 parenttitle : concrete_mathematics
 latex   : false

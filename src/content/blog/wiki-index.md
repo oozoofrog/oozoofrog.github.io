@@ -1,4 +1,5 @@
 ---
+public: false
 title: "위키 인덱스"
 date: 2018-04-09
 ---
