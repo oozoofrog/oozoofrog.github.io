@@ -7,7 +7,7 @@ import { projects } from '../data/projects';
 
 const featuredProjects = projects.filter(p => p.featured);
 
-const allPosts = await getCollection('blog');
+const allPosts = await getCollection('blog', ({ data }) => data.public !== false);
 const recentPosts = allPosts
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);

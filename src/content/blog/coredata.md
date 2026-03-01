@@ -5,7 +5,7 @@ date    : 2018-06-04 14:45:59 +0900
 updated : 2018-06-04 14:54:55 +0900
 tags    : 
 toc     : true
-public  : true
+public  : false
 parent  : 
 parenttitle : 
 latex   : false
