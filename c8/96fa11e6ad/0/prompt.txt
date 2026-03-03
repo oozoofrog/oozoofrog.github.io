@@ -1,0 +1,109 @@
+Implement the following plan:
+
+# AdSense 심사 대비: 쿠키 동의 배너 구현
+
+## Context
+
+AdSense 심사 검토 결과, 빈약한 콘텐츠 8개는 이미 `public: false`로 비공개 상태여서 문제없음.
+**가장 시급한 이슈는 쿠키 동의 배너 미구현**으로, GA4와 AdSense 스크립트가 동의 없이 로드되어 GDPR 위반 및 AdSense 정책 위반 위험이 있음.
+
+Google Consent Mode v2를 적용하여 스크립트는 그대로 로드하되, 동의 상태에 따라 데이터 수집을 제어하는 방식으로 구현.
+
+## 브랜치
+
+`feat/cookie-consent` 브랜치 생성 후 작업
+
+## 수정 파일 목록
+
+| 순서 | 파일 | 작업 |
+|------|------|------|
+| 1 | `src/components/Analytics.astro` | Consent Mode v2 기본값(denied) 추가 |
+| 2 | `src/components/CookieConsent.astro` | **신규 생성** - 배너 UI/로직 |
+| 3 | `src/layouts/BaseLayout.astro` | CookieConsent 컴포넌트 포함 |
+| 4 | `src/components/AdUnit.astro` | 동의 기반 광고 로딩 |
+| 5 | `src/components/Footer.astro` | "쿠키 설정" 링크 추가 |
+
+## 상세 구현
+
+### 1. `src/components/Analytics.astro` — Consent Mode v2 추가
+
+GA4/AdSense 스크립트 **앞에** consent default 설정 삽입:
+
+- `gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 })`
+- localStorage에서 기존 동의 확인 → 있으면 즉시 `gtag('consent', 'update', ...)` 호출
+- `is:inline` 사용하여 동기적 실행 보장
+
+### 2. `src/components/CookieConsent.astro` — 신규 생성
+
+**UI 구성:**
+- 하단 고정 배너 (`position: fixed; bottom: 0`)
+- 텍스트: "이 사이트는 분석과 광고를 위해 쿠키를 사용합니다"
+- 체크박스: 분석 / 광고 (개별 선택 가능)
+- 버튼: "모두 동의" / "선택 동의" / "모두 거부"
+- 사이트 디자인 톤 유지 (`--frog-green`, `--surface-bg` 등)
+- 모바일 반응형 (600px 이하 세로 스택)
+
+**JavaScript:**
+- localStorage `cookie-consent` 키로 동의 상태 관리 `{ analytics, ads, timestamp }`
+- 동의 변경 시 `gtag('consent', 'update', ...)` 호출
+- `cookie-consent-updated` CustomEvent 발행 (AdUnit 연동용)
+- `window.openCookieSettings()` 전역 함수 노출 (Footer 링크용)
+- 기존 동의 없으면 배너 표시, 있으면 숨김
+
+### 3. `src/layouts/BaseLayout.astro` — 컴포넌트 연결
+
+- `CookieConsent` import 추가
+- `</body>` 직전, `<Footer />` 아래에 `<CookieConsent />` 배치
+
+### 4. `src/components/AdUnit.astro` — 동의 기반 광고 로딩
+
+- localStorage에서 `ads` 동의 확인
+- 동의 있으면 즉시 `adsbygoogle.push()` 실행
+- 동의 없으면 컨테이너 숨김 + `cookie-consent-updated` 이벤트 대기
+- 동의 이벤트 수신 시 컨테이너 표시 + 광고 요청
+
+### 5. `src/components/Footer.astro` — 쿠키 설정 링크
+
+- `.footer-links`에 "쿠키 설정" 버튼 추가
+- 클릭 시 `window.openCookieSettings()` 호출
+- 기존 footer 링크와 동일한 스타일
+
+## 실행 흐름
+
+```
+페이지 로드
+ → Analytics.astro: consent default denied → localStorage 확인 → GA4/AdSense 로드
+ → AdUnit: 동의 확인 → 있으면 광고 표시 / 없으면 숨김+대기
+ → CookieConsent: 동의 확인 → 없으면 배너 표시
+ → 사용자 동의 → localStorage 저장 + gtag update + 이벤트 발행
+ → AdUnit: 이벤트 수신 → 광고 표시
+```
+
+## 검증 방법
+
+1. `npm run dev`로 로컬 실행
+2. 첫 방문: 배너 표시 확인
+3. "모두 동의" 클릭: 배너 사라짐 + localStorage 저장 확인
+4. 새로고침: 배너 미표시 + 광고 정상 로드 확인
+5. Footer "쿠키 설정": 배너 재표시 + 기존 설정 반영 확인
+6. "모두 거부": 광고 숨김 확인
+7. localStorage 삭제: 배너 재표시 확인
+8. 모바일 뷰포트(600px 이하): 배너 세로 스택 레이아웃 확인
+9. DevTools Network: consent 상태에 따른 GA4 요청 파라미터 확인
+
+
+If you need specific details from before exiting plan mode (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/oozoofrog/.claude/projects/-Users-oozoofrog-blog-oozoofrog-github-io/efaf6a1a-9f0e-4806-90a5-2e7cb23be4f7.jsonl
+
+If this plan can be broken down into multiple independent tasks, consider using the TeamCreate tool to create a team and parallelize the work.
+
+---
+
+run local server and open local link
+
+---
+
+표시 잘되었음
+
+---
+
+commit and create pr
