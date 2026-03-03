@@ -14,6 +14,7 @@
       </a>
       <a href="/privacy/">Privacy Policy</a>
       <a href="/contact/">Contact</a>
+      <button class="footer-cookie-btn" onclick="window.openCookieSettings && window.openCookieSettings()">쿠키 설정</button>
     </div>
     <p class="footer-credit">Built with Astro</p>
   </div>
@@ -56,8 +57,19 @@
     gap: 4px;
   }
 
-  .footer-links a:hover {
+  .footer-links a:hover,
+  .footer-cookie-btn:hover {
     color: var(--frog-green);
+  }
+
+  .footer-cookie-btn {
+    background: none;
+    border: none;
+    color: #8a9a92;
+    font: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    padding: 0;
   }
 
   .footer-credit {
