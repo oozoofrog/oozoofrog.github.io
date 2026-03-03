@@ -8,15 +8,16 @@ interface Props {
   date: string;
   categories?: string | string[];
   description?: string;
+  noindex?: boolean;
 }
-const { title, date, categories: rawCategories, description } = Astro.props;
+const { title, date, categories: rawCategories, description, noindex = false } = Astro.props;
 const categories = Array.isArray(rawCategories)
   ? rawCategories
   : typeof rawCategories === 'string'
     ? rawCategories.split(/\s+/).filter(Boolean)
     : [];
 ---
-<BaseLayout title={`${title} | 우주개구리`} description={description}>
+<BaseLayout title={`${title} | 우주개구리`} description={description} noindex={noindex}>
   <article>
     <h1>{title}</h1>
     <p class="post-meta">

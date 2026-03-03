@@ -11,7 +11,9 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, remarkPluginFrontmatter } = await render(post);
+const wordCount = post.body?.split(/\s+/).filter(Boolean).length ?? 0;
+const shouldNoindex = wordCount < 150;
 ---
 
 <BlogPost
@@ -19,6 +21,7 @@ const { Content } = await render(post);
   date={post.data.date}
   categories={post.data.categories}
   description={post.data.summary ?? `${post.data.title} | 우주개구리 블로그`}
+  noindex={shouldNoindex}
 >
   <Content />
 </BlogPost>
