@@ -1,0 +1,48 @@
+{
+  "cli_version": "0.4.8",
+  "checkpoint_id": "4218e2e5724b",
+  "session_id": "b9b4fe1c-8392-45b3-a194-ae1fc06f30a2",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-04T15:03:09.768005Z",
+  "branch": "feat/cookie-consent",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/layouts/NewsLayout.astro",
+    "src/pages/news/2026-02-10.astro",
+    "src/pages/news/2026-02-11.astro",
+    "src/pages/news/2026-02-12.astro",
+    "src/pages/news/2026-02-13.astro",
+    "src/pages/news/2026-02-14.astro",
+    "src/pages/news/2026-02-15.astro",
+    "src/pages/news/2026-02-16.astro",
+    "src/pages/news/2026-02-17.astro",
+    "src/pages/news/2026-02-18.astro",
+    "src/pages/news/2026-02-19.astro",
+    "src/pages/news/2026-02-20.astro",
+    "src/pages/news/2026-02-21.astro",
+    "src/pages/news/2026-02-22.astro",
+    "src/pages/news/2026-02-23.astro",
+    "src/pages/news/2026-02-24.astro",
+    "src/pages/news/2026-02-25.astro",
+    "src/pages/news/2026-02-26.astro",
+    "src/pages/news/2026-02-28.astro"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "6dbf07261508",
+  "token_usage": {
+    "input_tokens": 974,
+    "cache_creation_tokens": 210334,
+    "cache_read_tokens": 1083846,
+    "output_tokens": 16717,
+    "api_call_count": 19
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-04T15:03:09.611956Z",
+    "agent_lines": 1857,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 1857,
+    "agent_percentage": 100
+  }
+}
