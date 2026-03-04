@@ -1,0 +1,354 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  date: string;
+  subtitle?: string;
+}
+
+const { title, date, subtitle = '증시, 정치, 국제, 기술, 과학, 스포츠 종합' } = Astro.props;
+---
+
+<BaseLayout noindex={true} title={title}>
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" slot="head-extra">
+
+  <div class="news-container">
+    <div class="breadcrumb">
+      <a href="/news">&larr; 뉴스 목록</a>
+    </div>
+
+    <div class="editor-note">
+      <p>이 글은 블로그 운영자가 직접 선별하고 요약한 뉴스 브리핑입니다. 각 뉴스의 원문 출처를 함께 표기하고 있으며, 개인적인 관점에서 흥미롭거나 중요하다고 판단한 소식을 모았습니다.</p>
+    </div>
+
+    <header class="news-header">
+      <h1>{title}</h1>
+      {subtitle && <p class="subtitle">{subtitle}</p>}
+      <div class="dateline">{date}</div>
+    </header>
+
+    <slot />
+
+    <div class="feedback-section">
+      <h4>이 뉴스 브리핑에 대한 의견</h4>
+      <p>오류 제보, 추가 소식 제안, 또는 피드백이 있으시면 <a href="https://github.com/oozoofrog/oozoofrog.github.io/issues" target="_blank">GitHub Issues</a>에 남겨주세요.</p>
+    </div>
+
+    <footer class="news-footer">
+      <p class="footer-credit">oozoofrog blog &middot; 뉴스 큐레이션</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .news-container {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Noto Serif KR', Georgia, serif;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--frog-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .editor-note {
+    background: #f0fdf4;
+    border-left: 4px solid var(--frog-green, #5ba847);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.9rem;
+    color: #374151;
+    line-height: 1.6;
+  }
+
+  .news-header {
+    padding: 20px 0 30px;
+    text-align: center;
+    border-bottom: 3px double #1a1a1a;
+    margin-bottom: 30px;
+  }
+
+  .news-header h1 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: #4a4a4a;
+    font-style: italic;
+  }
+
+  .dateline {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888888;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0dcd4;
+  }
+
+  .feedback-section {
+    background: #f8f9fa;
+    border: 1px solid #e0dcd4;
+    padding: 20px 24px;
+    margin: 40px 0 0;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .feedback-section h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .feedback-section p {
+    font-size: 0.85rem;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+
+  .feedback-section a {
+    color: var(--frog-green, #5ba847);
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .news-footer {
+    margin-top: 30px;
+    padding: 24px 0;
+    border-top: 1px solid #e0dcd4;
+    text-align: center;
+  }
+
+  .footer-credit {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #888888;
+    letter-spacing: 0.05em;
+  }
+
+  /* Section styles */
+  :global(.news-container section) {
+    margin-bottom: 40px;
+  }
+
+  :global(.news-container .section-header) {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  :global(.news-container .section-header h2) {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  :global(.news-container .lead-story) {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #e0dcd4;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+
+  :global(.news-container .lead-story h3) {
+    font-size: 1.4rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  :global(.news-container .lead-story p) {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  :global(.news-container .news-article) {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0dcd4;
+  }
+
+  :global(.news-container .news-article:last-child) {
+    border-bottom: none;
+  }
+
+  :global(.news-container .news-article h3) {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  :global(.news-container .news-article p) {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  :global(.news-container .source-link) {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: #6b7280;
+    text-decoration: none;
+    margin-top: 4px;
+    padding: 2px 0;
+    border-bottom: 1px dashed #9ca3af;
+  }
+
+  :global(.news-container .source-link:hover) {
+    color: var(--frog-green, #5ba847);
+    border-bottom-color: var(--frog-green, #5ba847);
+  }
+
+  :global(.news-container .tag) {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 6px;
+    margin-bottom: 8px;
+  }
+
+  :global(.news-container .tag.markets) {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  :global(.news-container .tag.ai) {
+    background: #f3e8ff;
+    color: #7c3aed;
+  }
+
+  :global(.news-container .tag.politics) {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+
+  :global(.news-container .tag.world) {
+    background: #fce7f3;
+    color: #be185d;
+  }
+
+  :global(.news-container .tag.science) {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  :global(.news-container .tag.sports) {
+    background: #ffedd5;
+    color: #c2410c;
+  }
+
+  :global(.news-container .tag.breaking) {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  :global(.news-container .today-highlight) {
+    background: #f5f2eb;
+    padding: 16px 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  :global(.news-container .market-summary) {
+    font-size: 0.9rem;
+    color: #4a4a4a;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0dcd4;
+    margin-bottom: 30px;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  :global(.news-container .highlights-box) {
+    background: #f5f2eb;
+    border-left: 4px solid #1a1a1a;
+    padding: 20px 24px;
+    margin: 30px 0;
+    border-radius: 8px;
+  }
+
+  :global(.news-container .highlights-box h4) {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  :global(.news-container .highlights-box ul) {
+    list-style: none;
+    padding: 0;
+  }
+
+  :global(.news-container .highlights-box li) {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0dcd4;
+    font-size: 0.95rem;
+  }
+
+  :global(.news-container .highlights-box li:last-child) {
+    border-bottom: none;
+  }
+
+  :global(.news-container .editor-comment) {
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-style: italic;
+    margin-top: 8px;
+    padding-left: 12px;
+    border-left: 2px solid #d1d5db;
+  }
+
+  @media (max-width: 640px) {
+    .news-header h1 {
+      font-size: 1.5rem;
+    }
+
+    :global(.news-container .lead-story) {
+      padding: 20px;
+    }
+
+    .editor-note {
+      font-size: 0.85rem;
+      padding: 12px 16px;
+    }
+  }
+</style>

@@ -1,56 +1,20 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsLayout from '../../layouts/NewsLayout.astro';
 ---
 
-<BaseLayout noindex={true} title="종합 데일리 브리핑 | 2026년 2월 13일">
-  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" slot="head-extra">
+<NewsLayout title="2026년 2월 13일 뉴스 브리핑" date="2026년 2월 13일" subtitle="증시, 정치, 국제, 기술, 과학, 스포츠 종합">
 
-  <div class="news-container">
-    <div class="breadcrumb">
-      <a href="/news">← 뉴스 목록</a>
-    </div>
+    <div class="today-highlight">오늘의 주요 소식: 다우 600포인트 급락, AI 혼란 공포 확산 &middot; 밀라노-코르티나 동계올림픽 Day 6, 노르웨이 금 7개 선두</div>
 
-
-    <header class="news-header">
-      <div class="edition">Comprehensive Daily Briefing</div>
-      <h1>지난 24시간 세상의 모든 소식</h1>
-      <p class="subtitle">증시, 정치, 국제, 기술, 과학, 스포츠 종합</p>
-      <div class="dateline">2026년 2월 13일 금요일 오전 7시 · 마리오 에디션</div>
-    </header>
-
-    <div class="breaking-banner">
-      📉 다우 600포인트 급락, AI 혼란 공포 확산 · 🎿 밀라노-코르티나 동계올림픽 Day 6, 노르웨이 금 7개 선두
-    </div>
-
-    <div class="market-ticker">
-      <div class="ticker-item">
-        <span class="ticker-label">Dow</span>
-        <span class="ticker-value down">▼ 1.34% (49,452)</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">S&P 500</span>
-        <span class="ticker-value down">▼ 1.57% (6,833)</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">Nasdaq</span>
-        <span class="ticker-value down">▼ 2.03% (22,597)</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">KOSPI</span>
-        <span class="ticker-value up">▲ 3.00% (5,522)</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">KOSDAQ</span>
-        <span class="ticker-value up">▲ 1.00% (1,126)</span>
-      </div>
+    <div class="market-summary">
+      미국: Dow ▼1.34% (49,452) &middot; S&P 500 ▼1.57% (6,833) &middot; Nasdaq ▼2.03% (22,597)<br>
+      한국: KOSPI ▲3.00% (5,522) &middot; KOSDAQ ▲1.00% (1,126)
     </div>
 
     <!-- 증시/경제 -->
     <section>
       <div class="section-header">
-        <h2>💹 증시/경제</h2>
+        <h2>증시/경제</h2>
       </div>
 
       <div class="lead-story">
@@ -75,11 +39,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- AI/기술 -->
     <section>
       <div class="section-header">
-        <h2>🤖 AI & 기술</h2>
+        <h2>AI & 기술</h2>
       </div>
 
       <div class="news-article">
-        <span class="tag breaking">BREAKING</span>
         <span class="tag ai">AI</span>
         <h3>ByteDance, AI 영상 생성 모델 Seedance 2.0 공개 — 중국발 AI 충격파</h3>
         <p>틱톡 모회사 ByteDance가 차세대 AI 영상 생성 모델 Seedance 2.0을 공개하며 업계에 충격을 주고 있습니다. 텍스트, 이미지, 오디오, 영상을 동시에 처리할 수 있는 멀티모달 시스템으로, 영화·광고·이커머스 프로덕션에 최적화되었습니다. 일론 머스크는 "빠르게 진행되고 있다"고 반응했으며, DeepSeek에 이은 '중국 AI 제2의 충격'으로 평가받고 있습니다.</p>
@@ -101,7 +64,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- 정치 -->
     <section>
       <div class="section-header">
-        <h2>🏛️ 정치</h2>
+        <h2>정치</h2>
       </div>
 
       <div class="news-article">
@@ -126,11 +89,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- 국제/올림픽 -->
     <section>
       <div class="section-header">
-        <h2>🌍 국제</h2>
+        <h2>국제</h2>
       </div>
 
       <div class="news-article">
-        <span class="tag breaking">OLYMPICS</span>
         <span class="tag world">ITALY</span>
         <h3>2026 밀라노-코르티나 동계올림픽 Day 6 — 노르웨이 금 7개 선두</h3>
         <p>밀라노-코르티나 동계올림픽 6일차, 노르웨이가 금메달 7개로 금메달 순위 1위를 달리고 있습니다. 개최국 이탈리아는 금 6개·총 15개로 총 메달 수 1위이며, 미국은 금 4개·총 13개로 3위를 기록 중입니다. 이탈리아의 페데리카 브리뇨네가 알파인 스키 금메달을 따며 홈팬들을 열광시켰습니다.</p>
@@ -152,11 +114,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- 과학 -->
     <section>
       <div class="section-header">
-        <h2>🔬 과학</h2>
+        <h2>과학</h2>
       </div>
 
       <div class="news-article">
-        <span class="tag breaking">DISCOVERY</span>
         <span class="tag science">SPACE</span>
         <h3>제임스 웹, 은하 밖에서 최초로 유기 분자 발견</h3>
         <p>제임스 웹 우주망원경이 초고광도 적외선 은하에서 벤젠, 메탄, 그리고 은하수 바깥에서 최초로 발견된 고반응성 메틸 라디칼을 포함한 놀라운 탄소 기반 유기 분자 혼합물을 검출했습니다. 외계 생명체 탐색과 우주 화학에 대한 새로운 장을 열 수 있는 발견입니다.</p>
@@ -184,7 +145,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- 스포츠 -->
     <section>
       <div class="section-header">
-        <h2>⚽ 스포츠</h2>
+        <h2>스포츠</h2>
       </div>
 
       <div class="news-article">
@@ -209,11 +170,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- 엔터테인먼트 -->
     <section>
       <div class="section-header">
-        <h2>🎬 엔터테인먼트</h2>
+        <h2>엔터테인먼트</h2>
       </div>
 
       <div class="news-article">
-        <span class="tag breaking">TOUR</span>
         <h3>Cardi B, 'Little Miss Drama' 투어 개막</h3>
         <p>Cardi B가 대규모 'Little Miss Drama' 투어의 포문을 열었습니다. 화려한 무대와 에너지 넘치는 퍼포먼스로 팬들의 열광적인 반응을 이끌어냈습니다.</p>
       </div>
@@ -230,297 +190,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </section>
 
     <div class="highlights-box">
-      <h4>📌 오늘의 주요 헤드라인</h4>
+      <h4>오늘의 주요 헤드라인</h4>
       <ul>
-        <li>💹 다우 669포인트 급락, AI·인플레이션 공포 확산 — KOSPI는 역대 최고치 5,522 경신</li>
-        <li>🤖 ByteDance Seedance 2.0 공개, 중국발 AI 영상 생성 충격파</li>
-        <li>🏛️ 공화당 내부 반란으로 트럼프 관세 철회 금지 법안 갱신 실패</li>
-        <li>🎿 밀라노-코르티나 올림픽 Day 6: 노르웨이 금 7개 선두, 이탈리아 총 메달 1위</li>
-        <li>🔬 제임스 웹, 은하 밖 최초 유기 분자 발견 — 우주 화학 새 장</li>
-        <li>⚽ 브리뇨네 알파인 스키 금, NBA 난투극 다수 출장정지</li>
-        <li>🎬 Cardi B 'Little Miss Drama' 투어 개막, 오스카 노미니 런치온</li>
+        <li>다우 669포인트 급락, AI·인플레이션 공포 확산 — KOSPI는 역대 최고치 5,522 경신</li>
+        <li>ByteDance Seedance 2.0 공개, 중국발 AI 영상 생성 충격파</li>
+        <li>공화당 내부 반란으로 트럼프 관세 철회 금지 법안 갱신 실패</li>
+        <li>밀라노-코르티나 올림픽 Day 6: 노르웨이 금 7개 선두, 이탈리아 총 메달 1위</li>
+        <li>제임스 웹, 은하 밖 최초 유기 분자 발견 — 우주 화학 새 장</li>
+        <li>브리뇨네 알파인 스키 금, NBA 난투극 다수 출장정지</li>
+        <li>Cardi B 'Little Miss Drama' 투어 개막, 오스카 노미니 런치온</li>
       </ul>
     </div>
 
-    <footer class="news-footer">
-      <p class="footer-credit">🍄 CURATED BY 마리오 · 2026년 2월 13일 오전 7시</p>
-    </footer>
-  </div>
-</BaseLayout>
-
-<style>
-  .news-container {
-    max-width: 900px;
-    margin: 0 auto;
-    font-family: 'Noto Serif KR', Georgia, serif;
-  }
-
-  .breadcrumb {
-    margin-bottom: 1.5rem;
-  }
-
-  .breadcrumb a {
-    color: var(--frog-green);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
-
-  .breadcrumb a:hover {
-    text-decoration: underline;
-  }
-
-  .news-header {
-    padding: 20px 0 30px;
-    text-align: center;
-    border-bottom: 3px double #1a1a1a;
-    margin-bottom: 30px;
-  }
-
-  .edition {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #888888;
-    margin-bottom: 12px;
-  }
-
-  .news-header h1 {
-    font-size: clamp(2rem, 5vw, 2.8rem);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
-    line-height: 1.1;
-  }
-
-  .subtitle {
-    font-size: 1.05rem;
-    color: #4a4a4a;
-    font-style: italic;
-  }
-
-  .dateline {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    color: #888888;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid #e0dcd4;
-  }
-
-  .breaking-banner {
-    background: #1a1a1a;
-    color: #ffffff;
-    padding: 16px 24px;
-    margin-bottom: 30px;
-    text-align: center;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    border-radius: 8px;
-  }
-
-  .market-ticker {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
-    padding: 16px 0;
-    border-bottom: 1px solid #e0dcd4;
-    margin-bottom: 30px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-  }
-
-  .ticker-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .ticker-label {
-    color: #888888;
-  }
-
-  .ticker-value.up {
-    color: #16a34a;
-    font-weight: 600;
-  }
-
-  .ticker-value.down {
-    color: #dc2626;
-    font-weight: 600;
-  }
-
-  section {
-    margin-bottom: 40px;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #1a1a1a;
-  }
-
-  h2 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .lead-story {
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid #e0dcd4;
-    border-radius: 12px;
-    margin-bottom: 30px;
-  }
-
-  .lead-story h3 {
-    font-size: 1.6rem;
-    font-weight: 900;
-    line-height: 1.2;
-    margin-bottom: 16px;
-  }
-
-  .lead-story p {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 12px;
-  }
-
-  .news-article {
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #e0dcd4;
-  }
-
-  .news-article:last-child {
-    border-bottom: none;
-  }
-
-  .news-article h3 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 10px;
-  }
-
-  .news-article p {
-    font-size: 0.95rem;
-    color: #4a4a4a;
-    line-height: 1.6;
-    margin-bottom: 8px;
-  }
-
-  .tag {
-    display: inline-block;
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    padding: 3px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-right: 6px;
-    margin-bottom: 8px;
-  }
-
-  .tag.markets {
-    background: #fef3c7;
-    color: #b45309;
-  }
-
-  .tag.ai {
-    background: #f3e8ff;
-    color: #7c3aed;
-  }
-
-  .tag.politics {
-    background: #dbeafe;
-    color: #1e40af;
-  }
-
-  .tag.world {
-    background: #fce7f3;
-    color: #be185d;
-  }
-
-  .tag.science {
-    background: #d1fae5;
-    color: #065f46;
-  }
-
-  .tag.sports {
-    background: #ffedd5;
-    color: #c2410c;
-  }
-
-  .tag.breaking {
-    background: #1a1a1a;
-    color: #ffffff;
-  }
-
-  .highlights-box {
-    background: #f5f2eb;
-    border-left: 4px solid #1a1a1a;
-    padding: 20px 24px;
-    margin: 30px 0;
-    border-radius: 8px;
-  }
-
-  .highlights-box h4 {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 14px;
-    font-weight: 700;
-  }
-
-  .highlights-box ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .highlights-box li {
-    padding: 8px 0;
-    border-bottom: 1px dashed #e0dcd4;
-    font-size: 0.95rem;
-  }
-
-  .highlights-box li:last-child {
-    border-bottom: none;
-  }
-
-  .news-footer {
-    margin-top: 50px;
-    padding: 24px 0;
-    border-top: 3px double #1a1a1a;
-    text-align: center;
-  }
-
-  .footer-credit {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    color: #888888;
-    letter-spacing: 0.05em;
-  }
-
-  @media (max-width: 640px) {
-    .market-ticker {
-      gap: 16px;
-    }
-
-    .news-header h1 {
-      font-size: 1.75rem;
-    }
-
-    .lead-story {
-      padding: 20px;
-    }
-  }
-</style>
+</NewsLayout>
