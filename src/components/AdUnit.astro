@@ -17,7 +17,7 @@ const {
 ---
 
 {slot && (
-  <div class="ad-container">
+  <div class="ad-container" data-ad-slot={slot} data-ad-format={format} data-ad-layout={layout || ''} data-ad-responsive={responsive ? 'true' : 'false'} style="display:none;">
     <ins class="adsbygoogle"
       style="display:block"
       data-ad-client="ca-pub-3564426383519521"
@@ -26,11 +26,47 @@ const {
       {...(layout && { 'data-ad-layout': layout })}
       {...(responsive && { 'data-full-width-responsive': 'true' })}
     ></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
   </div>
 )}
+
+<script is:inline>
+(function() {
+  function hasAdConsent() {
+    try {
+      var consent = JSON.parse(localStorage.getItem('cookie-consent'));
+      return consent && consent.ads;
+    } catch(e) {
+      return false;
+    }
+  }
+
+  function loadAds() {
+    var containers = document.querySelectorAll('.ad-container');
+    containers.forEach(function(container) {
+      if (container.dataset.adLoaded) return;
+      container.style.display = '';
+      container.dataset.adLoaded = 'true';
+      try {
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      } catch(e) {}
+    });
+  }
+
+  if (hasAdConsent()) {
+    loadAds();
+  }
+
+  window.addEventListener('cookie-consent-updated', function(e) {
+    if (e.detail && e.detail.ads) {
+      loadAds();
+    } else {
+      document.querySelectorAll('.ad-container').forEach(function(c) {
+        c.style.display = 'none';
+      });
+    }
+  });
+})();
+</script>
 
 <style>
   .ad-container {

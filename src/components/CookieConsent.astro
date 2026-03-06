@@ -1,0 +1,194 @@
+---
+---
+<div id="cookie-consent-banner" class="cookie-banner" style="display:none;">
+  <div class="cookie-inner">
+    <p class="cookie-text">이 사이트는 분석과 광고를 위해 쿠키를 사용합니다.</p>
+    <div class="cookie-options">
+      <label class="cookie-checkbox">
+        <input type="checkbox" id="consent-analytics" checked />
+        분석
+      </label>
+      <label class="cookie-checkbox">
+        <input type="checkbox" id="consent-ads" checked />
+        광고
+      </label>
+    </div>
+    <div class="cookie-buttons">
+      <button id="consent-accept-all" class="cookie-btn cookie-btn-primary">모두 동의</button>
+      <button id="consent-accept-selected" class="cookie-btn cookie-btn-secondary">선택 동의</button>
+      <button id="consent-reject-all" class="cookie-btn cookie-btn-secondary">모두 거부</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function() {
+  var banner = document.getElementById('cookie-consent-banner');
+  var analyticsCheck = document.getElementById('consent-analytics');
+  var adsCheck = document.getElementById('consent-ads');
+
+  function getConsent() {
+    try {
+      return JSON.parse(localStorage.getItem('cookie-consent'));
+    } catch(e) {
+      return null;
+    }
+  }
+
+  function saveConsent(analytics, ads) {
+    var consent = { analytics: analytics, ads: ads, timestamp: Date.now() };
+    localStorage.setItem('cookie-consent', JSON.stringify(consent));
+
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', {
+        analytics_storage: analytics ? 'granted' : 'denied',
+        ad_storage: ads ? 'granted' : 'denied',
+        ad_user_data: ads ? 'granted' : 'denied',
+        ad_personalization: ads ? 'granted' : 'denied'
+      });
+    }
+
+    window.dispatchEvent(new CustomEvent('cookie-consent-updated', {
+      detail: consent
+    }));
+
+    banner.style.display = 'none';
+  }
+
+  function showBanner() {
+    var existing = getConsent();
+    if (existing) {
+      analyticsCheck.checked = existing.analytics;
+      adsCheck.checked = existing.ads;
+    }
+    banner.style.display = 'block';
+  }
+
+  // Init
+  var existing = getConsent();
+  if (!existing) {
+    showBanner();
+  }
+
+  // Buttons
+  document.getElementById('consent-accept-all').addEventListener('click', function() {
+    saveConsent(true, true);
+  });
+
+  document.getElementById('consent-accept-selected').addEventListener('click', function() {
+    saveConsent(analyticsCheck.checked, adsCheck.checked);
+  });
+
+  document.getElementById('consent-reject-all').addEventListener('click', function() {
+    saveConsent(false, false);
+  });
+
+  // Global function for Footer link
+  window.openCookieSettings = function() {
+    showBanner();
+  };
+})();
+</script>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: var(--surface-bg);
+    border-top: 2px solid var(--frog-green);
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+    padding: 16px 20px;
+  }
+
+  .cookie-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .cookie-text {
+    margin: 0;
+    font-size: 0.9em;
+    color: #333;
+    flex-shrink: 0;
+  }
+
+  .cookie-options {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .cookie-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.85em;
+    color: #555;
+    cursor: pointer;
+  }
+
+  .cookie-checkbox input {
+    accent-color: var(--frog-green);
+  }
+
+  .cookie-buttons {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .cookie-btn {
+    border: none;
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-size: 0.82em;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .cookie-btn-primary {
+    background: var(--frog-green);
+    color: #fff;
+  }
+
+  .cookie-btn-primary:hover {
+    background: var(--frog-green-dark);
+  }
+
+  .cookie-btn-secondary {
+    background: transparent;
+    color: #555;
+    border: 1px solid var(--surface-border);
+  }
+
+  .cookie-btn-secondary:hover {
+    border-color: var(--frog-green);
+    color: var(--frog-green);
+  }
+
+  @media (max-width: 600px) {
+    .cookie-inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+    }
+
+    .cookie-text {
+      text-align: center;
+    }
+
+    .cookie-options {
+      justify-content: center;
+    }
+
+    .cookie-buttons {
+      justify-content: center;
+    }
+  }
+</style>

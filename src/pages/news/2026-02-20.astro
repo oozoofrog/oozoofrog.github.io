@@ -1,538 +1,222 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsLayout from '../../layouts/NewsLayout.astro';
 ---
 
-<BaseLayout title="종합 데일리 브리핑 | 2026년 2월 20일">
-  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" slot="head-extra">
-
-  <div class="news-container">
-    <div class="breadcrumb">
-      <a href="/news">← 뉴스 목록</a>
-    </div>
-
-
-    <header class="news-header">
-      <div class="edition">Comprehensive Daily Briefing</div>
-      <h1>지난 24시간 세상의 모든 소식</h1>
-      <p class="subtitle">증시, 정치, 국제, 기술, 과학, 스포츠 종합</p>
-      <div class="dateline">2026년 2월 20일 금요일 오전 7시 · 마리오 에디션</div>
-    </header>
-
-    <div class="breaking-banner">
-      🏆 미-이란 군사 옵션 검토 보도 확산 · 🤖 오픈AI 규제 필요성 발언으로 AI 규제 논쟁 재점화
-    </div>
-
-    <div class="market-ticker">
-      <div class="ticker-item">
-        <span class="ticker-label">Dow</span>
-        <span class="ticker-value down">▼ 금리 경계감 속 변동성 확대</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">S&P 500</span>
-        <span class="ticker-value down">▼ 연준 의사록 소화 국면</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">Nasdaq</span>
-        <span class="ticker-value up">▲ AI·반도체 기대감 재유입</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">KOSPI</span>
-        <span class="ticker-value up">▲ 5,600선 안착 시도</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">KOSDAQ</span>
-        <span class="ticker-value up">▲ 기술주 중심 반등 흐름</span>
-      </div>
-    </div>
-
-    <!-- 증시 -->
-    <section>
-      <div class="section-header">
-        <h2>💹 증시/경제</h2>
-      </div>
-
-      <div class="lead-story">
-        <h3>연준 의사록 여진…글로벌 증시, 금리 인하 경로 재점검</h3>
-        <p>지난 24시간 시장의 핵심 화두는 연준 의사록이었습니다. 조기 인하 기대가 후퇴하면서 미국 증시는 장중 변동성이 확대됐고, 채권·주식 모두 ‘정책 신호 확인’ 국면으로 들어갔습니다.</p>
-        <p>국내 시장은 반도체 랠리 영향으로 상대적 강세를 이어가며 코스피가 5,600선 안착을 시도했습니다. 투자자들은 다음 물가·고용 지표가 연준 스탠스를 얼마나 바꿀지에 주목하고 있습니다.</p>
-      </div>
-
-      <div class="news-article">
-        <span class="tag markets">MARKETS</span>
-        <h3>서울 증시 3% 급등 흐름 이후 숨 고르기</h3>
-        <p>전일 ‘칩 랠리’로 강하게 오른 서울 증시는 단기 차익 실현과 추가 모멘텀 탐색이 동시에 나타나는 모습입니다.</p>
-      </div>
-
-      <div class="news-article">
-        <span class="tag markets">KOREA</span>
-        <h3>코스피 사상 고점권 논쟁, 실적 vs 밸류 부담 충돌</h3>
-        <p>AI 전환 수혜 업종의 이익 상향이 지수 상단을 지지하는 반면, 고평가 우려는 회전매를 자극하고 있습니다.</p>
-      </div>
-    </section>
-
-    <!-- AI/기술 -->
-    <section>
-      <div class="section-header">
-        <h2>🤖 AI & 기술</h2>
-      </div>
-
-      <div class="news-article">
-        <span class="tag breaking">BREAKING</span>
-        <span class="tag ai">AI</span>
-        <h3>샘 올트먼 “AI 기술, 시급한 규제 필요” 발언</h3>
-        <p>오픈AI CEO 샘 올트먼이 AI 기술 확산 속도에 맞는 규제 체계가 필요하다고 언급하며, 글로벌 정책 논의가 다시 가열됐습니다.</p>
-      </div>
-
-      <div class="news-article">
-        <span class="tag ai">AI</span>
-        <h3>구글, 추론 강화형 Gemini 3.1 Pro 공개</h3>
-        <p>구글이 고급 추론 성능을 강조한 Gemini 3.1 Pro를 공개하며, 생성형 AI 경쟁이 모델 성능·생태계 통합 중심으로 이동하고 있습니다.</p>
-      </div>
-
-      <div class="news-article">
-        <span class="tag ai">INFRA</span>
-        <h3>엔비디아·시스코, AI 인프라·보안 통합 전략 부각</h3>
-        <p>기업용 AI 도입이 PoC를 넘어 본격 운영 단계로 진입하면서, ‘GPU+네트워크+보안’ 통합 패키지 수요가 빠르게 확대되는 분위기입니다.</p>
-      </div>
-    </section>
-
-    <!-- 정치 -->
-    <section>
-      <div class="section-header">
-        <h2>🏛️ 정치</h2>
-      </div>
-
-      <div class="news-article">
-        <span class="tag politics">US</span>
-        <h3>미국, 대이란 군사 옵션 검토 보도…백악관 긴장 고조</h3>
-        <p>미국의 대이란 대응 시나리오를 둘러싼 보도가 잇따르며 중동 리스크가 정치·외교 이슈의 중심으로 부상했습니다.</p>
-      </div>
-
-      <div class="news-article">
-        <span class="tag politics">DIPLOMACY</span>
-        <h3>가자지구 재건 구상 놓고 미국 내 정치권 공방 격화</h3>
-        <p>대규모 재건 재원과 집행 방식에 대한 해석이 엇갈리며, 대선 정국과 맞물린 외교·안보 프레임 경쟁이 본격화되고 있습니다.</p>
-      </div>
-
-      <div class="news-article">
-        <span class="tag politics">KOREA</span>
-        <h3>국내 정치권, 총선·개각 변수 속 인사 이슈 확대</h3>
-        <p>청와대 인선 관련 보도와 공직자 이동설이 겹치며, 정책 이슈보다 ‘인사와 정무’가 뉴스 흐름을 주도하고 있습니다.</p>
-      </div>
-    </section>
-
-    <!-- 국제 -->
-    <section>
-      <div class="section-header">
-        <h2>🌍 국제</h2>
-      </div>
-
-      <div class="news-article">
-        <span class="tag world">EUROPE</span>
-        <h3>우크라이나 평화 협상 ‘난항’…미·우 메시지 엇갈려</h3>
-        <p>휴전·안보보장 조건을 둘러싼 입장차가 재확인되며, 단기 타결보다 장기 소모전 가능성에 무게가 실리고 있습니다.</p>
-      </div>
-
-      <div class="news-article">
-        <span class="tag world">MIDDLE EAST</span>
-        <h3>중동 안보 리스크 재부상에 원자재·해운시장 경계 강화</h3>
-        <p>호르무즈 해협 변수와 군사적 긴장 가능성이 다시 부각되면서 에너지·물류 시장의 위험 프리미엄이 확대되고 있습니다.</p>
-      </div>
-
-      <div class="news-article">
-        <span class="tag world">GLOBAL</span>
-        <h3>신흥국, 고금리 장기화 대비 외환·재정 방어 모드</h3>
-        <p>달러 강세 가능성이 높아지자 신흥국들이 외환 보강과 재정지출 조정으로 대외 충격 흡수력 강화에 나섰습니다.</p>
-      </div>
-    </section>
-
-    <!-- 사회 -->
-    <section>
-      <div class="section-header">
-        <h2>🧭 사회</h2>
-      </div>
-
-      <div class="news-article">
-        <span class="tag breaking">ISSUE</span>
-        <h3>겨울 스포츠 현장서 기후위기 체감 증언 확산</h3>
-        <p>선수·관계자들이 “빙하와 설질이 급격히 변했다”고 잇따라 경고하며, 기후변화가 생활·산업 전반 이슈로 번지고 있습니다.</p>
-      </div>
-
-      <div class="news-article">
-        <span class="tag world">SAFETY</span>
-        <h3>국내외 도시권, 이상기후 대응 인프라 점검 본격화</h3>
-        <p>폭설·한파·가뭄 등 복합 재난 가능성에 대비해 지방정부와 공공기관이 에너지·교통·보건 비상계획을 재정비하고 있습니다.</p>
-      </div>
-    </section>
-
-    <!-- 과학 -->
-    <section>
-      <div class="section-header">
-        <h2>🔬 과학</h2>
-      </div>
-
-      <div class="news-article">
-        <span class="tag science">SPACE</span>
-        <h3>아르테미스 2 SLS 웻드레스 리허설 진행</h3>
-        <p>NASA의 달 탐사 준비가 연료 충전·카운트다운 점검 단계로 진입하면서, 유인 달 궤도 임무 일정에 대한 기대가 높아졌습니다.</p>
-      </div>
-
-      <div class="news-article">
-        <span class="tag science">ENERGY</span>
-        <h3>실내조명 기반 인공 나뭇잎, 청정수소 생산 가능성 제시</h3>
-        <p>저조도 환경에서도 작동 가능한 차세대 광촉매 연구가 공개되며, 분산형 수소 생산 기술의 상용화 논의가 확대되고 있습니다.</p>
-      </div>
-
-      <div class="news-article">
-        <span class="tag science">AI</span>
-        <h3>Google.org ‘AI for Science’ 3천만 달러 지원 프로그램 가동</h3>
-        <p>기후·보건·기초과학 분야 연구자 대상 지원이 시작되며, 공공영역에서의 AI 활용 프로젝트가 한층 늘어날 전망입니다.</p>
-      </div>
-    </section>
-
-    <!-- 스포츠 -->
-    <section>
-      <div class="section-header">
-        <h2>⚽ 스포츠</h2>
-      </div>
-
-      <div class="news-article">
-        <span class="tag sports">FOOTBALL</span>
-        <h3>UEFA 여자 챔피언스리그, 맨유-아틀레티코 맞대결 주목</h3>
-        <p>토너먼트 국면에서 빅매치가 성사되며 유럽 여자축구 흥행이 다시 가속화되는 분위기입니다.</p>
-      </div>
-
-      <div class="news-article">
-        <span class="tag sports">CLIMATE</span>
-        <h3>“스키 타던 빙하가 사라졌다”…동계 종목 생존 논의 확산</h3>
-        <p>훈련지 축소와 시즌 운영 불확실성이 커지며, 국제 스포츠 단체들의 기후 적응 전략 수립 압력이 높아지고 있습니다.</p>
-      </div>
-
-      <div class="news-article">
-        <span class="tag sports">BASEBALL</span>
-        <h3>KBO 캠프, 이색 훈련법 확산…개막 전 경쟁 본격화</h3>
-        <p>시범경기 전 구단별 전력 점검이 속도를 내며 젊은 선수들의 포지션 경쟁이 빠르게 달아오르고 있습니다.</p>
-      </div>
-    </section>
-
-    <!-- 엔터테인먼트 -->
-    <section>
-      <div class="section-header">
-        <h2>🎬 엔터테인먼트</h2>
-      </div>
-
-      <div class="news-article">
-        <span class="tag breaking">K-POP</span>
-        <h3>스트레이 키즈, 글로벌 아티스트 차트 2위권 유지</h3>
-        <p>북미·유럽 스트리밍 지표 강세가 이어지며, K-팝 상위권 경쟁이 다시 치열해지는 모습입니다.</p>
-      </div>
-
-      <div class="news-article">
-        <h3>제로베이스원, ‘K-팝 아티스트 오브 더 이어’ 선정</h3>
-        <p>해외 팬덤 확장과 음반·공연 성과가 맞물리며 차세대 보이그룹 주도권 경쟁에서 존재감을 키우고 있습니다.</p>
-      </div>
-
-      <div class="news-article">
-        <h3>게임·엔터 IP 결합 신작 출시 러시</h3>
-        <p>대형 엔터사 IP 기반 게임 신작이 글로벌 론칭을 예고하면서, 콘텐츠 산업의 ‘멀티 포맷 수익화’가 핵심 전략으로 자리 잡고 있습니다.</p>
-      </div>
-    </section>
-
-    <div class="highlights-box">
-      <h4>📌 오늘의 주요 헤드라인</h4>
-      <ul>
-        <li>💹 연준 의사록 여진으로 글로벌 증시 변동성 확대, 코스피 5,600선 안착 시도</li>
-        <li>🤖 올트먼 “AI 규제 시급” 발언과 구글 Gemini 3.1 Pro 공개로 기술경쟁 격화</li>
-        <li>🏛️ 미-이란 군사 옵션 검토 보도에 정치·안보 리스크 급부상</li>
-        <li>🌍 우크라이나 협상 난항과 중동 긴장 재부각으로 국제 정세 불확실성 확대</li>
-        <li>🧭 기후위기 여파가 스포츠·도시 안전 등 사회 전반 이슈로 확산</li>
-        <li>🔬 NASA 아르테미스 2 준비 진전, 청정수소·AI 과학지원 연구 모멘텀 강화</li>
-        <li>⚽ UEFA 여자 챔스 빅매치와 KBO 개막 전 경쟁 본격화</li>
-        <li>🎬 스트레이 키즈·제로베이스원 글로벌 성과로 K-콘텐츠 강세 지속</li>
-      </ul>
-    </div>
-
-    <footer class="news-footer">
-      <p class="footer-credit">🍄 CURATED BY 마리오 · 2026년 2월 20일 오전 7시</p>
-    </footer>
+<NewsLayout
+  title="2026년 2월 20일 뉴스 브리핑"
+  date="2026년 2월 20일 금요일"
+  subtitle="증시, 정치, 국제, 기술, 과학, 스포츠 종합"
+>
+  <div class="today-highlight">
+    오늘의 주요 소식: 미-이란 군사 옵션 검토 보도 확산 &middot; 오픈AI 규제 필요성 발언으로 AI 규제 논쟁 재점화
   </div>
-</BaseLayout>
 
-<style>
-  .news-container {
-    max-width: 900px;
-    margin: 0 auto;
-    font-family: 'Noto Serif KR', Georgia, serif;
-  }
+  <div class="market-summary">
+    미국: Dow ▼금리 경계감 속 변동성 확대 · S&P 500 ▼연준 의사록 소화 국면 · Nasdaq ▲AI·반도체 기대감 재유입<br>
+    한국: KOSPI ▲5,600선 안착 시도 · KOSDAQ ▲기술주 중심 반등 흐름
+  </div>
 
-  .breadcrumb {
-    margin-bottom: 1.5rem;
-  }
+  <!-- 증시 -->
+  <section>
+    <div class="section-header">
+      <h2>증시/경제</h2>
+    </div>
 
-  .breadcrumb a {
-    color: var(--frog-green);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
+    <div class="lead-story">
+      <h3>연준 의사록 여진…글로벌 증시, 금리 인하 경로 재점검</h3>
+      <p>지난 24시간 시장의 핵심 화두는 연준 의사록이었습니다. 조기 인하 기대가 후퇴하면서 미국 증시는 장중 변동성이 확대됐고, 채권·주식 모두 '정책 신호 확인' 국면으로 들어갔습니다.</p>
+      <p>국내 시장은 반도체 랠리 영향으로 상대적 강세를 이어가며 코스피가 5,600선 안착을 시도했습니다. 투자자들은 다음 물가·고용 지표가 연준 스탠스를 얼마나 바꿀지에 주목하고 있습니다.</p>
+    </div>
 
-  .breadcrumb a:hover {
-    text-decoration: underline;
-  }
+    <div class="news-article">
+      <span class="tag markets">MARKETS</span>
+      <h3>서울 증시 3% 급등 흐름 이후 숨 고르기</h3>
+      <p>전일 '칩 랠리'로 강하게 오른 서울 증시는 단기 차익 실현과 추가 모멘텀 탐색이 동시에 나타나는 모습입니다.</p>
+    </div>
 
-  .news-header {
-    padding: 20px 0 30px;
-    text-align: center;
-    border-bottom: 3px double #1a1a1a;
-    margin-bottom: 30px;
-  }
+    <div class="news-article">
+      <span class="tag markets">KOREA</span>
+      <h3>코스피 사상 고점권 논쟁, 실적 vs 밸류 부담 충돌</h3>
+      <p>AI 전환 수혜 업종의 이익 상향이 지수 상단을 지지하는 반면, 고평가 우려는 회전매를 자극하고 있습니다.</p>
+    </div>
+  </section>
 
-  .edition {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #888888;
-    margin-bottom: 12px;
-  }
+  <!-- AI/기술 -->
+  <section>
+    <div class="section-header">
+      <h2>AI & 기술</h2>
+    </div>
 
-  .news-header h1 {
-    font-size: clamp(2rem, 5vw, 2.8rem);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
-    line-height: 1.1;
-  }
+    <div class="news-article">
+      <span class="tag ai">AI</span>
+      <h3>샘 올트먼 "AI 기술, 시급한 규제 필요" 발언</h3>
+      <p>오픈AI CEO 샘 올트먼이 AI 기술 확산 속도에 맞는 규제 체계가 필요하다고 언급하며, 글로벌 정책 논의가 다시 가열됐습니다.</p>
+    </div>
 
-  .subtitle {
-    font-size: 1.05rem;
-    color: #4a4a4a;
-    font-style: italic;
-  }
+    <div class="news-article">
+      <span class="tag ai">AI</span>
+      <h3>구글, 추론 강화형 Gemini 3.1 Pro 공개</h3>
+      <p>구글이 고급 추론 성능을 강조한 Gemini 3.1 Pro를 공개하며, 생성형 AI 경쟁이 모델 성능·생태계 통합 중심으로 이동하고 있습니다.</p>
+    </div>
 
-  .dateline {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    color: #888888;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid #e0dcd4;
-  }
+    <div class="news-article">
+      <span class="tag ai">INFRA</span>
+      <h3>엔비디아·시스코, AI 인프라·보안 통합 전략 부각</h3>
+      <p>기업용 AI 도입이 PoC를 넘어 본격 운영 단계로 진입하면서, 'GPU+네트워크+보안' 통합 패키지 수요가 빠르게 확대되는 분위기입니다.</p>
+    </div>
+  </section>
 
-  .breaking-banner {
-    background: #1a1a1a;
-    color: #ffffff;
-    padding: 16px 24px;
-    margin-bottom: 30px;
-    text-align: center;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    border-radius: 8px;
-  }
+  <!-- 정치 -->
+  <section>
+    <div class="section-header">
+      <h2>정치</h2>
+    </div>
 
-  .market-ticker {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
-    padding: 16px 0;
-    border-bottom: 1px solid #e0dcd4;
-    margin-bottom: 30px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-  }
+    <div class="news-article">
+      <span class="tag politics">US</span>
+      <h3>미국, 대이란 군사 옵션 검토 보도…백악관 긴장 고조</h3>
+      <p>미국의 대이란 대응 시나리오를 둘러싼 보도가 잇따르며 중동 리스크가 정치·외교 이슈의 중심으로 부상했습니다.</p>
+    </div>
 
-  .ticker-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+    <div class="news-article">
+      <span class="tag politics">DIPLOMACY</span>
+      <h3>가자지구 재건 구상 놓고 미국 내 정치권 공방 격화</h3>
+      <p>대규모 재건 재원과 집행 방식에 대한 해석이 엇갈리며, 대선 정국과 맞물린 외교·안보 프레임 경쟁이 본격화되고 있습니다.</p>
+    </div>
 
-  .ticker-label {
-    color: #888888;
-  }
+    <div class="news-article">
+      <span class="tag politics">KOREA</span>
+      <h3>국내 정치권, 총선·개각 변수 속 인사 이슈 확대</h3>
+      <p>청와대 인선 관련 보도와 공직자 이동설이 겹치며, 정책 이슈보다 '인사와 정무'가 뉴스 흐름을 주도하고 있습니다.</p>
+    </div>
+  </section>
 
-  .ticker-value.up {
-    color: #16a34a;
-    font-weight: 600;
-  }
+  <!-- 국제 -->
+  <section>
+    <div class="section-header">
+      <h2>국제</h2>
+    </div>
 
-  .ticker-value.down {
-    color: #dc2626;
-    font-weight: 600;
-  }
+    <div class="news-article">
+      <span class="tag world">EUROPE</span>
+      <h3>우크라이나 평화 협상 '난항'…미·우 메시지 엇갈려</h3>
+      <p>휴전·안보보장 조건을 둘러싼 입장차가 재확인되며, 단기 타결보다 장기 소모전 가능성에 무게가 실리고 있습니다.</p>
+    </div>
 
-  section {
-    margin-bottom: 40px;
-  }
+    <div class="news-article">
+      <span class="tag world">MIDDLE EAST</span>
+      <h3>중동 안보 리스크 재부상에 원자재·해운시장 경계 강화</h3>
+      <p>호르무즈 해협 변수와 군사적 긴장 가능성이 다시 부각되면서 에너지·물류 시장의 위험 프리미엄이 확대되고 있습니다.</p>
+    </div>
 
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #1a1a1a;
-  }
+    <div class="news-article">
+      <span class="tag world">GLOBAL</span>
+      <h3>신흥국, 고금리 장기화 대비 외환·재정 방어 모드</h3>
+      <p>달러 강세 가능성이 높아지자 신흥국들이 외환 보강과 재정지출 조정으로 대외 충격 흡수력 강화에 나섰습니다.</p>
+    </div>
+  </section>
 
-  h2 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
+  <!-- 사회 -->
+  <section>
+    <div class="section-header">
+      <h2>사회</h2>
+    </div>
 
-  .lead-story {
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid #e0dcd4;
-    border-radius: 12px;
-    margin-bottom: 30px;
-  }
+    <div class="news-article">
+      <h3>겨울 스포츠 현장서 기후위기 체감 증언 확산</h3>
+      <p>선수·관계자들이 "빙하와 설질이 급격히 변했다"고 잇따라 경고하며, 기후변화가 생활·산업 전반 이슈로 번지고 있습니다.</p>
+    </div>
 
-  .lead-story h3 {
-    font-size: 1.6rem;
-    font-weight: 900;
-    line-height: 1.2;
-    margin-bottom: 16px;
-  }
+    <div class="news-article">
+      <span class="tag world">SAFETY</span>
+      <h3>국내외 도시권, 이상기후 대응 인프라 점검 본격화</h3>
+      <p>폭설·한파·가뭄 등 복합 재난 가능성에 대비해 지방정부와 공공기관이 에너지·교통·보건 비상계획을 재정비하고 있습니다.</p>
+    </div>
+  </section>
 
-  .lead-story p {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 12px;
-  }
+  <!-- 과학 -->
+  <section>
+    <div class="section-header">
+      <h2>과학</h2>
+    </div>
 
-  .news-article {
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #e0dcd4;
-  }
+    <div class="news-article">
+      <span class="tag science">SPACE</span>
+      <h3>아르테미스 2 SLS 웻드레스 리허설 진행</h3>
+      <p>NASA의 달 탐사 준비가 연료 충전·카운트다운 점검 단계로 진입하면서, 유인 달 궤도 임무 일정에 대한 기대가 높아졌습니다.</p>
+    </div>
 
-  .news-article:last-child {
-    border-bottom: none;
-  }
+    <div class="news-article">
+      <span class="tag science">ENERGY</span>
+      <h3>실내조명 기반 인공 나뭇잎, 청정수소 생산 가능성 제시</h3>
+      <p>저조도 환경에서도 작동 가능한 차세대 광촉매 연구가 공개되며, 분산형 수소 생산 기술의 상용화 논의가 확대되고 있습니다.</p>
+    </div>
 
-  .news-article h3 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 10px;
-  }
+    <div class="news-article">
+      <span class="tag science">AI</span>
+      <h3>Google.org 'AI for Science' 3천만 달러 지원 프로그램 가동</h3>
+      <p>기후·보건·기초과학 분야 연구자 대상 지원이 시작되며, 공공영역에서의 AI 활용 프로젝트가 한층 늘어날 전망입니다.</p>
+    </div>
+  </section>
 
-  .news-article p {
-    font-size: 0.95rem;
-    color: #4a4a4a;
-    line-height: 1.6;
-    margin-bottom: 8px;
-  }
+  <!-- 스포츠 -->
+  <section>
+    <div class="section-header">
+      <h2>스포츠</h2>
+    </div>
 
-  .tag {
-    display: inline-block;
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    padding: 3px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-right: 6px;
-    margin-bottom: 8px;
-  }
+    <div class="news-article">
+      <span class="tag sports">FOOTBALL</span>
+      <h3>UEFA 여자 챔피언스리그, 맨유-아틀레티코 맞대결 주목</h3>
+      <p>토너먼트 국면에서 빅매치가 성사되며 유럽 여자축구 흥행이 다시 가속화되는 분위기입니다.</p>
+    </div>
 
-  .tag.markets {
-    background: #fef3c7;
-    color: #b45309;
-  }
+    <div class="news-article">
+      <span class="tag sports">CLIMATE</span>
+      <h3>"스키 타던 빙하가 사라졌다"…동계 종목 생존 논의 확산</h3>
+      <p>훈련지 축소와 시즌 운영 불확실성이 커지며, 국제 스포츠 단체들의 기후 적응 전략 수립 압력이 높아지고 있습니다.</p>
+    </div>
 
-  .tag.ai {
-    background: #f3e8ff;
-    color: #7c3aed;
-  }
+    <div class="news-article">
+      <span class="tag sports">BASEBALL</span>
+      <h3>KBO 캠프, 이색 훈련법 확산…개막 전 경쟁 본격화</h3>
+      <p>시범경기 전 구단별 전력 점검이 속도를 내며 젊은 선수들의 포지션 경쟁이 빠르게 달아오르고 있습니다.</p>
+    </div>
+  </section>
 
-  .tag.politics {
-    background: #dbeafe;
-    color: #1e40af;
-  }
+  <!-- 엔터테인먼트 -->
+  <section>
+    <div class="section-header">
+      <h2>엔터테인먼트</h2>
+    </div>
 
-  .tag.world {
-    background: #fce7f3;
-    color: #be185d;
-  }
+    <div class="news-article">
+      <h3>스트레이 키즈, 글로벌 아티스트 차트 2위권 유지</h3>
+      <p>북미·유럽 스트리밍 지표 강세가 이어지며, K-팝 상위권 경쟁이 다시 치열해지는 모습입니다.</p>
+    </div>
 
-  .tag.science {
-    background: #d1fae5;
-    color: #065f46;
-  }
+    <div class="news-article">
+      <h3>제로베이스원, 'K-팝 아티스트 오브 더 이어' 선정</h3>
+      <p>해외 팬덤 확장과 음반·공연 성과가 맞물리며 차세대 보이그룹 주도권 경쟁에서 존재감을 키우고 있습니다.</p>
+    </div>
 
-  .tag.sports {
-    background: #ffedd5;
-    color: #c2410c;
-  }
+    <div class="news-article">
+      <h3>게임·엔터 IP 결합 신작 출시 러시</h3>
+      <p>대형 엔터사 IP 기반 게임 신작이 글로벌 론칭을 예고하면서, 콘텐츠 산업의 '멀티 포맷 수익화'가 핵심 전략으로 자리 잡고 있습니다.</p>
+    </div>
+  </section>
 
-  .tag.breaking {
-    background: #1a1a1a;
-    color: #ffffff;
-  }
-
-  .highlights-box {
-    background: #f5f2eb;
-    border-left: 4px solid #1a1a1a;
-    padding: 20px 24px;
-    margin: 30px 0;
-    border-radius: 8px;
-  }
-
-  .highlights-box h4 {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 14px;
-    font-weight: 700;
-  }
-
-  .highlights-box ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .highlights-box li {
-    padding: 8px 0;
-    border-bottom: 1px dashed #e0dcd4;
-    font-size: 0.95rem;
-  }
-
-  .highlights-box li:last-child {
-    border-bottom: none;
-  }
-
-  .news-footer {
-    margin-top: 50px;
-    padding: 24px 0;
-    border-top: 3px double #1a1a1a;
-    text-align: center;
-  }
-
-  .footer-credit {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    color: #888888;
-    letter-spacing: 0.05em;
-  }
-
-  @media (max-width: 640px) {
-    .market-ticker {
-      gap: 16px;
-    }
-
-    .news-header h1 {
-      font-size: 1.75rem;
-    }
-
-    .lead-story {
-      padding: 20px;
-    }
-  }
-</style>
+  <div class="highlights-box">
+    <h4>오늘의 주요 헤드라인</h4>
+    <ul>
+      <li>연준 의사록 여진으로 글로벌 증시 변동성 확대, 코스피 5,600선 안착 시도</li>
+      <li>올트먼 "AI 규제 시급" 발언과 구글 Gemini 3.1 Pro 공개로 기술경쟁 격화</li>
+      <li>미-이란 군사 옵션 검토 보도에 정치·안보 리스크 급부상</li>
+      <li>우크라이나 협상 난항과 중동 긴장 재부각으로 국제 정세 불확실성 확대</li>
+      <li>기후위기 여파가 스포츠·도시 안전 등 사회 전반 이슈로 확산</li>
+      <li>NASA 아르테미스 2 준비 진전, 청정수소·AI 과학지원 연구 모멘텀 강화</li>
+      <li>UEFA 여자 챔스 빅매치와 KBO 개막 전 경쟁 본격화</li>
+      <li>스트레이 키즈·제로베이스원 글로벌 성과로 K-콘텐츠 강세 지속</li>
+    </ul>
+  </div>
+</NewsLayout>

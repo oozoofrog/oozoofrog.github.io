@@ -1,90 +1,54 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsLayout from '../../layouts/NewsLayout.astro';
 ---
 
-<BaseLayout title="종합 데일리 브리핑 | 2026년 2월 23일">
-  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" slot="head-extra">
+<NewsLayout title="2026년 2월 23일 뉴스 브리핑" date="2026년 2월 23일" subtitle="증시, 정치, 국제, 기술, 과학, 스포츠 종합">
 
-  <div class="news-container">
-    <div class="breadcrumb">
-      <a href="/news">← 뉴스 목록</a>
-    </div>
+    <div class="today-highlight">오늘의 주요 소식: 엔비디아 실적 앞두고 글로벌 증시 경계감 확대 &middot; 미·이란, 26일 핵 협상 재개 조율</div>
 
-
-    <header class="news-header">
-      <div class="edition">Comprehensive Daily Briefing</div>
-      <h1>지난 24시간 세상의 모든 소식</h1>
-      <p class="subtitle">증시, 정치, 국제, 기술, 과학, 스포츠 종합</p>
-      <div class="dateline">2026년 2월 23일 월요일 오전 7시 · 마리오 에디션</div>
-    </header>
-
-    <div class="breaking-banner">
-      🏆 엔비디아 실적 앞두고 글로벌 증시 경계감 확대 · 🌍 미·이란, 26일 핵 협상 재개 조율
-    </div>
-
-    <div class="market-ticker">
-      <div class="ticker-item">
-        <span class="ticker-label">Dow</span>
-        <span class="ticker-value up">▲ 49,625.97 (+0.47%)</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">S&P 500</span>
-        <span class="ticker-value up">▲ 6,909.51 (+0.69%)</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">Nasdaq</span>
-        <span class="ticker-value up">▲ 22,886.07 (+0.90%)</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">KOSPI</span>
-        <span class="ticker-value up">▲ 5,808.53 (+2.31%)</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">KOSDAQ</span>
-        <span class="ticker-value down">▼ 1,154.00 (-0.00%)</span>
-      </div>
+    <div class="market-summary">
+      미국: Dow ▲0.47% (49,625.97) &middot; S&P 500 ▲0.69% (6,909.51) &middot; Nasdaq ▲0.90% (22,886.07)<br>
+      한국: KOSPI ▲2.31% (5,808.53) &middot; KOSDAQ ▼0.00% (1,154.00)
     </div>
 
     <section>
       <div class="section-header">
-        <h2>💹 증시/경제</h2>
+        <h2>증시/경제</h2>
       </div>
 
       <div class="lead-story">
-        <h3>관세 변수·엔비디아 실적 대기…시장, ‘랠리 지속 vs 변동성 확대’ 기로</h3>
+        <h3>관세 변수·엔비디아 실적 대기…시장, '랠리 지속 vs 변동성 확대' 기로</h3>
         <p>지난 거래일 미국 3대 지수와 코스피가 동반 강세로 마감했지만, 이번 주 시장의 시선은 엔비디아 실적과 미국 통상정책 후속 조치에 집중되고 있습니다. AI 관련 기대가 유지되는 가운데 정책 불확실성이 다시 가격에 반영되는 국면입니다.</p>
         <p>특히 미 대법원 관세 판결 이후에도 트럼프발 추가 관세 발언이 이어지며, 위험자산 선호와 안전자산 선호가 동시에 나타나는 혼조 장세가 이어지고 있습니다.</p>
       </div>
 
       <div class="news-article">
         <span class="tag markets">TRADE</span>
-        <h3>인도, 美 관세 정책 변수에 대미 무역협상 일정 연기</h3>
+        <h3>인도, 미 관세 정책 변수에 대미 무역협상 일정 연기</h3>
         <p>로이터 보도에 따르면 인도는 미국 관세정책의 불확실성이 커지자 워싱턴 무역협상 일정을 늦춘 것으로 전해졌습니다. 시장은 이번 사안을 글로벌 공급망 재조정 신호로 해석하고 있습니다.</p>
       </div>
 
       <div class="news-article">
         <span class="tag markets">WALL STREET</span>
-        <h3>월가, ‘빅테크 독주’ 피로감 속 순환매 가능성 점검</h3>
+        <h3>월가, '빅테크 독주' 피로감 속 순환매 가능성 점검</h3>
         <p>CNBC·야후파이낸스 등은 AI 수혜주 중심의 급등 이후 전통 업종으로 자금이 이동하는 조짐이 나타난다고 진단했습니다. 다만 추세 전환인지 단기 리밸런싱인지는 추가 확인이 필요하다는 평가입니다.</p>
       </div>
 
       <div class="news-article">
         <span class="tag markets">KOREA</span>
-        <h3>국내 증시, ‘엔비디아 이벤트’ 앞두고 반도체 중심 관망</h3>
+        <h3>국내 증시, '엔비디아 이벤트' 앞두고 반도체 중심 관망</h3>
         <p>국내 시장에서는 삼성전자·SK하이닉스 등 반도체 대형주가 실적 기대와 밸류에이션 부담 사이에서 줄다리기를 이어가고 있습니다. 금통위 결정과 환율 흐름도 동시 변수로 거론됩니다.</p>
       </div>
     </section>
 
     <section>
       <div class="section-header">
-        <h2>🤖 AI & 기술</h2>
+        <h2>AI & 기술</h2>
       </div>
 
       <div class="news-article">
         <span class="tag ai">INVESTMENT</span>
-        <h3>오픈AI 투자 속도 조절론 부상…AI 인프라 ‘선별 투자’ 국면</h3>
+        <h3>오픈AI 투자 속도 조절론 부상…AI 인프라 '선별 투자' 국면</h3>
         <p>국내외 보도에서 오픈AI의 대규모 투자 계획이 조정될 수 있다는 관측이 확산됐습니다. 업계는 무조건적인 CAPEX 확대보다 수익성·서비스 전환 효율 중심의 투자로 이동하는 신호로 보고 있습니다.</p>
       </div>
 
@@ -103,12 +67,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <section>
       <div class="section-header">
-        <h2>🏛️ 정치</h2>
+        <h2>정치</h2>
       </div>
 
       <div class="news-article">
         <span class="tag politics">ELECTION</span>
-        <h3>지방선거 D-100…여야, ‘정권 안정론 vs 정부 심판론’ 프레임 충돌</h3>
+        <h3>지방선거 D-100…여야, '정권 안정론 vs 정부 심판론' 프레임 충돌</h3>
         <p>한겨레·한국경제·YTN 등은 6·3 지방선거를 앞두고 여야가 수도권·광역단체장 구도에 총력전을 시작했다고 전했습니다. 민생, 부동산, 지역경제가 핵심 의제로 부상하는 분위기입니다.</p>
       </div>
 
@@ -127,7 +91,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <section>
       <div class="section-header">
-        <h2>🌍 국제</h2>
+        <h2>국제</h2>
       </div>
 
       <div class="news-article">
@@ -144,18 +108,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       <div class="news-article">
         <span class="tag world">ARCTIC</span>
-        <h3>그린란드, 美 병원선 파견 제안에 사실상 거부 의사</h3>
-        <p>트럼프 전 대통령의 병원선 파견 언급 이후, 그린란드 총리는 “필요하지 않다”는 입장을 내며 외교적 긴장이 이어졌습니다. 북극권 전략경쟁이 보건·인프라 이슈와 결합하는 양상입니다.</p>
+        <h3>그린란드, 미 병원선 파견 제안에 사실상 거부 의사</h3>
+        <p>트럼프 전 대통령의 병원선 파견 언급 이후, 그린란드 총리는 "필요하지 않다"는 입장을 내며 외교적 긴장이 이어졌습니다. 북극권 전략경쟁이 보건·인프라 이슈와 결합하는 양상입니다.</p>
       </div>
     </section>
 
     <section>
       <div class="section-header">
-        <h2>👥 사회</h2>
+        <h2>사회</h2>
       </div>
 
       <div class="news-article">
-        <span class="tag breaking">WILDFIRE</span>
+        <span class="tag politics">WILDFIRE</span>
         <h3>함양·고성 등 산불 확산…강풍 겹치며 주민 대피령</h3>
         <p>주말 사이 영남·강원 일부 지역에서 산불이 잇따르며 지자체와 산림당국이 진화 인력을 확대 투입했습니다. 건조특보와 강풍이 겹치며 산불 대응 체계 점검 필요성이 커졌습니다.</p>
       </div>
@@ -175,7 +139,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <section>
       <div class="section-header">
-        <h2>🔬 과학</h2>
+        <h2>과학</h2>
       </div>
 
       <div class="news-article">
@@ -186,7 +150,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       <div class="news-article">
         <span class="tag science">RESEARCH</span>
-        <h3>한국공학대, EU ‘호라이즌 유럽’ 과제 선정…국제 공동연구 확대</h3>
+        <h3>한국공학대, EU '호라이즌 유럽' 과제 선정…국제 공동연구 확대</h3>
         <p>국내 대학의 유럽 연구혁신 프레임워크 참여가 확대되며 소재·제조·디지털 분야 국제협력 통로가 넓어지고 있습니다. 중장기적으로 연구 인력 교류와 기술사업화 연계 효과가 기대됩니다.</p>
       </div>
 
@@ -199,7 +163,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <section>
       <div class="section-header">
-        <h2>⚽ 스포츠</h2>
+        <h2>스포츠</h2>
       </div>
 
       <div class="news-article">
@@ -223,18 +187,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <section>
       <div class="section-header">
-        <h2>🎬 엔터테인먼트</h2>
+        <h2>엔터테인먼트</h2>
       </div>
 
       <div class="news-article">
-        <span class="tag breaking">AWARDS</span>
-        <h3>BAFTA 2026, ‘One Battle After Another’ 6관왕</h3>
+        <span class="tag world">AWARDS</span>
+        <h3>BAFTA 2026, 'One Battle After Another' 6관왕</h3>
         <p>AP·할리우드리포터 보도에 따르면 올해 BAFTA는 작품상 포함 다관왕 체제가 뚜렷했습니다. 시상식 결과가 오스카 레이스 후반 변수로 떠올랐습니다.</p>
       </div>
 
       <div class="news-article">
         <span class="tag world">FILM</span>
-        <h3>‘Sinners’, BAFTA에서 주요 부문 수상하며 존재감 확대</h3>
+        <h3>'Sinners', BAFTA에서 주요 부문 수상하며 존재감 확대</h3>
         <p>평단과 시상식 반응이 겹치며 작품 화제성이 급상승했습니다. 글로벌 배급 확대와 2차 판권 시장에서도 긍정적 흐름이 이어질지 주목됩니다.</p>
       </div>
 
@@ -246,298 +210,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </section>
 
     <div class="highlights-box">
-      <h4>📌 오늘의 주요 헤드라인</h4>
+      <h4>오늘의 주요 헤드라인</h4>
       <ul>
-        <li>💹 엔비디아 실적·관세 변수 앞두고 글로벌 증시 ‘경계 속 강세’</li>
-        <li>🤖 AI 투자, 무차별 확장보다 선별·수익성 중심 재편 조짐</li>
-        <li>🏛️ 지방선거 D-100, 여야 프레임 대결 본격화</li>
-        <li>🌍 미·이란 핵 협상 재가동 조율, 우크라 에너지 인프라 타격 지속</li>
-        <li>👥 산불 대응·환경보건센터 확대 등 생활안전 이슈 부각</li>
-        <li>🔬 NASA 아르테미스 II 일정 재조정 가능성, 국제공동연구 확대</li>
-        <li>⚽ 밀라노 올림픽 폐막·미국 아이스하키 금메달, WBC 준비 본격화</li>
-        <li>🎬 BAFTA 다관왕 구도 형성, K-팝 글로벌 판매 지표 강세</li>
+        <li>엔비디아 실적·관세 변수 앞두고 글로벌 증시 '경계 속 강세'</li>
+        <li>AI 투자, 무차별 확장보다 선별·수익성 중심 재편 조짐</li>
+        <li>지방선거 D-100, 여야 프레임 대결 본격화</li>
+        <li>미·이란 핵 협상 재가동 조율, 우크라 에너지 인프라 타격 지속</li>
+        <li>산불 대응·환경보건센터 확대 등 생활안전 이슈 부각</li>
+        <li>NASA 아르테미스 II 일정 재조정 가능성, 국제공동연구 확대</li>
+        <li>밀라노 올림픽 폐막·미국 아이스하키 금메달, WBC 준비 본격화</li>
+        <li>BAFTA 다관왕 구도 형성, K-팝 글로벌 판매 지표 강세</li>
       </ul>
     </div>
 
-    <footer class="news-footer">
-      <p class="footer-credit">🍄 CURATED BY 마리오 · 2026년 2월 23일 오전 7시</p>
-    </footer>
-  </div>
-</BaseLayout>
-
-<style>
-  .news-container {
-    max-width: 900px;
-    margin: 0 auto;
-    font-family: 'Noto Serif KR', Georgia, serif;
-  }
-
-  .breadcrumb {
-    margin-bottom: 1.5rem;
-  }
-
-  .breadcrumb a {
-    color: var(--frog-green);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
-
-  .breadcrumb a:hover {
-    text-decoration: underline;
-  }
-
-  .news-header {
-    padding: 20px 0 30px;
-    text-align: center;
-    border-bottom: 3px double #1a1a1a;
-    margin-bottom: 30px;
-  }
-
-  .edition {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #888888;
-    margin-bottom: 12px;
-  }
-
-  .news-header h1 {
-    font-size: clamp(2rem, 5vw, 2.8rem);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
-    line-height: 1.1;
-  }
-
-  .subtitle {
-    font-size: 1.05rem;
-    color: #4a4a4a;
-    font-style: italic;
-  }
-
-  .dateline {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    color: #888888;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid #e0dcd4;
-  }
-
-  .breaking-banner {
-    background: #1a1a1a;
-    color: #ffffff;
-    padding: 16px 24px;
-    margin-bottom: 30px;
-    text-align: center;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    border-radius: 8px;
-  }
-
-  .market-ticker {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
-    padding: 16px 0;
-    border-bottom: 1px solid #e0dcd4;
-    margin-bottom: 30px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-  }
-
-  .ticker-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .ticker-label {
-    color: #888888;
-  }
-
-  .ticker-value.up {
-    color: #16a34a;
-    font-weight: 600;
-  }
-
-  .ticker-value.down {
-    color: #dc2626;
-    font-weight: 600;
-  }
-
-  section {
-    margin-bottom: 40px;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #1a1a1a;
-  }
-
-  h2 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .lead-story {
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid #e0dcd4;
-    border-radius: 12px;
-    margin-bottom: 30px;
-  }
-
-  .lead-story h3 {
-    font-size: 1.6rem;
-    font-weight: 900;
-    line-height: 1.2;
-    margin-bottom: 16px;
-  }
-
-  .lead-story p {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 12px;
-  }
-
-  .news-article {
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #e0dcd4;
-  }
-
-  .news-article:last-child {
-    border-bottom: none;
-  }
-
-  .news-article h3 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 10px;
-  }
-
-  .news-article p {
-    font-size: 0.95rem;
-    color: #4a4a4a;
-    line-height: 1.6;
-    margin-bottom: 8px;
-  }
-
-  .tag {
-    display: inline-block;
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    padding: 3px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-right: 6px;
-    margin-bottom: 8px;
-  }
-
-  .tag.markets {
-    background: #fef3c7;
-    color: #b45309;
-  }
-
-  .tag.ai {
-    background: #f3e8ff;
-    color: #7c3aed;
-  }
-
-  .tag.politics {
-    background: #dbeafe;
-    color: #1e40af;
-  }
-
-  .tag.world {
-    background: #fce7f3;
-    color: #be185d;
-  }
-
-  .tag.science {
-    background: #d1fae5;
-    color: #065f46;
-  }
-
-  .tag.sports {
-    background: #ffedd5;
-    color: #c2410c;
-  }
-
-  .tag.breaking {
-    background: #1a1a1a;
-    color: #ffffff;
-  }
-
-  .highlights-box {
-    background: #f5f2eb;
-    border-left: 4px solid #1a1a1a;
-    padding: 20px 24px;
-    margin: 30px 0;
-    border-radius: 8px;
-  }
-
-  .highlights-box h4 {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 14px;
-    font-weight: 700;
-  }
-
-  .highlights-box ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .highlights-box li {
-    padding: 8px 0;
-    border-bottom: 1px dashed #e0dcd4;
-    font-size: 0.95rem;
-  }
-
-  .highlights-box li:last-child {
-    border-bottom: none;
-  }
-
-  .news-footer {
-    margin-top: 50px;
-    padding: 24px 0;
-    border-top: 3px double #1a1a1a;
-    text-align: center;
-  }
-
-  .footer-credit {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    color: #888888;
-    letter-spacing: 0.05em;
-  }
-
-  @media (max-width: 640px) {
-    .market-ticker {
-      gap: 16px;
-    }
-
-    .news-header h1 {
-      font-size: 1.75rem;
-    }
-
-    .lead-story {
-      padding: 20px;
-    }
-  }
-</style>
+</NewsLayout>

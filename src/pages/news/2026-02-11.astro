@@ -1,48 +1,20 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsLayout from '../../layouts/NewsLayout.astro';
 ---
 
-<BaseLayout title="종합 데일리 브리핑 | 2026년 2월 11일">
-  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" slot="head-extra">
+<NewsLayout title="2026년 2월 11일 뉴스 브리핑" date="2026년 2월 11일" subtitle="증시, 정치, 국제, 기술, 과학, 스포츠 종합">
 
-  <div class="news-container">
-    <div class="breadcrumb">
-      <a href="/news">← 뉴스 목록</a>
-    </div>
+    <div class="today-highlight">오늘의 주요 소식: 밀라노-코르티나 동계올림픽 Day 5 &middot; Trump, 이란 향해 항모 2척 검토 &middot; 다우 사상 최고 3연속</div>
 
-
-    <header class="news-header">
-      <div class="edition">Comprehensive Daily Briefing</div>
-      <h1>지난 24시간 세상의 모든 소식</h1>
-      <p class="subtitle">증시, 정치, 국제, 기술, 과학, 스포츠 종합</p>
-      <div class="dateline">2026년 2월 11일 수요일 오전 7시 · 마리오 에디션</div>
-    </header>
-
-    <div class="breaking-banner">
-      🏔️ 밀라노-코르티나 동계올림픽 Day 5 · 🇺🇸 Trump, 이란 향해 항모 2척 검토 · 📈 다우 사상 최고 3연속
-    </div>
-
-    <div class="market-ticker">
-      <div class="ticker-item">
-        <span class="ticker-label">Dow</span>
-        <span class="ticker-value up">▲ 사상 최고 3연속</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">MSCI AP</span>
-        <span class="ticker-value up">▲ 0.5% (사상 최고)</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">KOSPI</span>
-        <span class="ticker-value up">▲ 올해 최고 성과</span>
-      </div>
+    <div class="market-summary">
+      미국: Dow ▲사상 최고 3연속 &middot; MSCI AP ▲0.5% (사상 최고)<br>
+      한국: KOSPI ▲올해 최고 성과
     </div>
 
     <!-- 증시 -->
     <section>
       <div class="section-header">
-        <h2>💹 증시/경제</h2>
+        <h2>증시/경제</h2>
       </div>
 
       <div class="lead-story">
@@ -61,11 +33,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- AI/기술 -->
     <section>
       <div class="section-header">
-        <h2>🤖 AI & 기술</h2>
+        <h2>AI & 기술</h2>
       </div>
 
       <div class="news-article">
-        <span class="tag breaking">BREAKING</span>
         <span class="tag ai">AI</span>
         <h3>알리바바, 로봇 구동 AI 모델 'RynnBrain' 출시</h3>
         <p>중국 알리바바가 로봇을 구동하기 위한 AI 모델 'RynnBrain'을 발표했습니다. 빅테크 기업들이 '피지컬 AI' — 현실 세계에서 작동하는 인공지능 — 경쟁에 본격 돌입하면서, 로봇공학과 AI의 융합이 2026년 핵심 트렌드로 떠오르고 있습니다.</p>
@@ -87,11 +58,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- 정치 -->
     <section>
       <div class="section-header">
-        <h2>🏛️ 정치</h2>
+        <h2>정치</h2>
       </div>
 
       <div class="news-article">
-        <span class="tag breaking">BREAKING</span>
         <span class="tag politics">DIPLOMACY</span>
         <h3>Trump, 이란 향해 항공모함 2척 배치 검토 — 네타냐후 방미</h3>
         <p>이스라엘 네타냐후 총리의 워싱턴 방문을 앞두고, Trump 대통령이 중동에 2번째 항공모함을 파견하는 방안을 "생각 중"이라고 밝혔습니다. 이란 핵 프로그램에 대한 미-이스라엘 공조가 핵심 의제로 부상하고 있습니다.</p>
@@ -113,11 +83,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- 국제 -->
     <section>
       <div class="section-header">
-        <h2>🌍 국제</h2>
+        <h2>국제</h2>
       </div>
 
       <div class="news-article">
-        <span class="tag breaking">BREAKING</span>
         <span class="tag world">UKRAINE</span>
         <h3>우크라이나 드론, 볼고그라드 루코일 정유소 타격</h3>
         <p>우크라이나 드론이 러시아 볼고그라드의 루코일 정유소를 공격했습니다. 2026년 첫 정유소 공격으로 기록되며, 키이우 시간 0시 15분 현재에도 폭발음이 계속 들리는 것으로 보고되었습니다. 러시아의 우크라이나 전쟁 누적 병력 손실은 약 124만 8,560명에 달합니다.</p>
@@ -139,7 +108,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- 과학 -->
     <section>
       <div class="section-header">
-        <h2>🔬 과학</h2>
+        <h2>과학</h2>
       </div>
 
       <div class="news-article">
@@ -158,11 +127,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- 스포츠 -->
     <section>
       <div class="section-header">
-        <h2>⚽ 스포츠</h2>
+        <h2>스포츠</h2>
       </div>
 
       <div class="news-article">
-        <span class="tag breaking">BREAKING</span>
         <span class="tag sports">OLYMPICS</span>
         <h3>밀라노-코르티나 동계올림픽: Breezy Johnson 금메달, Lindsey Vonn 부상</h3>
         <p>2026 밀라노-코르티나 동계올림픽 Day 4에서 Breezy Johnson이 여자 활강에서 미국의 첫 금메달을 획득했습니다. 반면 Lindsey Vonn은 코스에서 끔찍한 충돌 사고로 다리 부상을 입었습니다. 미국 피겨스케이팅도 금메달을 추가했습니다.</p>
@@ -184,7 +152,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- 엔터테인먼트 -->
     <section>
       <div class="section-header">
-        <h2>🎬 엔터테인먼트</h2>
+        <h2>엔터테인먼트</h2>
       </div>
 
       <div class="news-article">
@@ -200,297 +168,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </section>
 
     <div class="highlights-box">
-      <h4>📌 오늘의 주요 헤드라인</h4>
+      <h4>오늘의 주요 헤드라인</h4>
       <ul>
-        <li>💹 다우 사상 최고 3연속, MSCI 아시아도 역대 최고 — 한국 올해 최강</li>
-        <li>🤖 알리바바 로봇 AI 'RynnBrain' 출시, Alphabet AI에 $185B 투자</li>
-        <li>🏛️ Trump, 이란 향해 항모 2척 검토 — 네타냐후 워싱턴 방문</li>
-        <li>🌍 우크라이나 드론, 볼고그라드 루코일 정유소 첫 타격</li>
-        <li>🔬 맹장염 항생제 치료 10년 추적 — 절반 이상 수술 불필요</li>
-        <li>⚽ 동계올림픽: Breezy Johnson 금메달, Lindsey Vonn 부상 충격</li>
-        <li>🎬 올림픽이 만든 드라마 — Vonn의 눈물, Johnson의 환호</li>
+        <li>다우 사상 최고 3연속, MSCI 아시아도 역대 최고 — 한국 올해 최강</li>
+        <li>알리바바 로봇 AI 'RynnBrain' 출시, Alphabet AI에 $185B 투자</li>
+        <li>Trump, 이란 향해 항모 2척 검토 — 네타냐후 워싱턴 방문</li>
+        <li>우크라이나 드론, 볼고그라드 루코일 정유소 첫 타격</li>
+        <li>맹장염 항생제 치료 10년 추적 — 절반 이상 수술 불필요</li>
+        <li>동계올림픽: Breezy Johnson 금메달, Lindsey Vonn 부상 충격</li>
+        <li>올림픽이 만든 드라마 — Vonn의 눈물, Johnson의 환호</li>
       </ul>
     </div>
 
-    <footer class="news-footer">
-      <p class="footer-credit">🍄 CURATED BY 마리오 · 2026년 2월 11일 오전 7시</p>
-    </footer>
-  </div>
-</BaseLayout>
-
-<style>
-  .news-container {
-    max-width: 900px;
-    margin: 0 auto;
-    font-family: 'Noto Serif KR', Georgia, serif;
-  }
-
-  .breadcrumb {
-    margin-bottom: 1.5rem;
-  }
-
-  .breadcrumb a {
-    color: var(--frog-green);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
-
-  .breadcrumb a:hover {
-    text-decoration: underline;
-  }
-
-  .news-header {
-    padding: 20px 0 30px;
-    text-align: center;
-    border-bottom: 3px double #1a1a1a;
-    margin-bottom: 30px;
-  }
-
-  .edition {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #888888;
-    margin-bottom: 12px;
-  }
-
-  .news-header h1 {
-    font-size: clamp(2rem, 5vw, 2.8rem);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
-    line-height: 1.1;
-  }
-
-  .subtitle {
-    font-size: 1.05rem;
-    color: #4a4a4a;
-    font-style: italic;
-  }
-
-  .dateline {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    color: #888888;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid #e0dcd4;
-  }
-
-  .breaking-banner {
-    background: #1a1a1a;
-    color: #ffffff;
-    padding: 16px 24px;
-    margin-bottom: 30px;
-    text-align: center;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    border-radius: 8px;
-  }
-
-  .market-ticker {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
-    padding: 16px 0;
-    border-bottom: 1px solid #e0dcd4;
-    margin-bottom: 30px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-  }
-
-  .ticker-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .ticker-label {
-    color: #888888;
-  }
-
-  .ticker-value.up {
-    color: #16a34a;
-    font-weight: 600;
-  }
-
-  .ticker-value.down {
-    color: #dc2626;
-    font-weight: 600;
-  }
-
-  section {
-    margin-bottom: 40px;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #1a1a1a;
-  }
-
-  h2 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .lead-story {
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid #e0dcd4;
-    border-radius: 12px;
-    margin-bottom: 30px;
-  }
-
-  .lead-story h3 {
-    font-size: 1.6rem;
-    font-weight: 900;
-    line-height: 1.2;
-    margin-bottom: 16px;
-  }
-
-  .lead-story p {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 12px;
-  }
-
-  .news-article {
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #e0dcd4;
-  }
-
-  .news-article:last-child {
-    border-bottom: none;
-  }
-
-  .news-article h3 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 10px;
-  }
-
-  .news-article p {
-    font-size: 0.95rem;
-    color: #4a4a4a;
-    line-height: 1.6;
-    margin-bottom: 8px;
-  }
-
-  .tag {
-    display: inline-block;
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    padding: 3px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-right: 6px;
-    margin-bottom: 8px;
-  }
-
-  .tag.markets {
-    background: #fef3c7;
-    color: #b45309;
-  }
-
-  .tag.ai {
-    background: #f3e8ff;
-    color: #7c3aed;
-  }
-
-  .tag.politics {
-    background: #dbeafe;
-    color: #1e40af;
-  }
-
-  .tag.world {
-    background: #fce7f3;
-    color: #be185d;
-  }
-
-  .tag.science {
-    background: #d1fae5;
-    color: #065f46;
-  }
-
-  .tag.sports {
-    background: #ffedd5;
-    color: #c2410c;
-  }
-
-  .tag.breaking {
-    background: #1a1a1a;
-    color: #ffffff;
-  }
-
-  .highlights-box {
-    background: #f5f2eb;
-    border-left: 4px solid #1a1a1a;
-    padding: 20px 24px;
-    margin: 30px 0;
-    border-radius: 8px;
-  }
-
-  .highlights-box h4 {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 14px;
-    font-weight: 700;
-  }
-
-  .highlights-box ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .highlights-box li {
-    padding: 8px 0;
-    border-bottom: 1px dashed #e0dcd4;
-    font-size: 0.95rem;
-  }
-
-  .highlights-box li:last-child {
-    border-bottom: none;
-  }
-
-  .news-footer {
-    margin-top: 50px;
-    padding: 24px 0;
-    border-top: 3px double #1a1a1a;
-    text-align: center;
-  }
-
-  .footer-credit {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    color: #888888;
-    letter-spacing: 0.05em;
-  }
-
-  @media (max-width: 640px) {
-    .market-ticker {
-      gap: 16px;
-    }
-
-    .news-header h1 {
-      font-size: 1.75rem;
-    }
-
-    .lead-story {
-      padding: 20px;
-    }
-  }
-</style>
+</NewsLayout>
