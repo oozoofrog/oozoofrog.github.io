@@ -5,23 +5,59 @@ import AdUnit from '../components/AdUnit.astro';
 
 interface Props {
   title: string;
-  date: string;
+  date: string | Date;
   categories?: string | string[];
   description?: string;
   noindex?: boolean;
+  image?: string;
 }
-const { title, date, categories: rawCategories, description, noindex = false } = Astro.props;
+const { title, date, categories: rawCategories, description, noindex = false, image } = Astro.props;
 const categories = Array.isArray(rawCategories)
   ? rawCategories
   : typeof rawCategories === 'string'
     ? rawCategories.split(/\s+/).filter(Boolean)
     : [];
+
+const canonicalUrl = Astro.url?.toString();
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://oozoofrog.dev';
+const ogImage = image ?? `${siteUrl}/assets/images/og-default.png`;
+const publishedDate = new Date(date);
+const publishedDateIso = publishedDate.toISOString();
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description ?? `${title} - oozoofrog 기술 블로그`,
+  "image": ogImage,
+  "datePublished": publishedDateIso,
+  "dateModified": publishedDateIso,
+  "author": {
+    "@type": "Person",
+    "name": "oozoofrog",
+    "url": `${siteUrl}/about/`
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "oozoofrog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteUrl}/assets/images/avatar.png`
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalUrl
+  },
+  ...(categories.length > 0 && { "keywords": categories.join(', ') })
+};
 ---
-<BaseLayout title={`${title} | 우주개구리`} description={description} noindex={noindex}>
+<BaseLayout title={`${title} | 우주개구리`} description={description} noindex={noindex} image={ogImage} type="article" publishedDate={publishedDateIso}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <article>
     <h1>{title}</h1>
     <p class="post-meta">
-      <time datetime={date}>{new Date(date).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+      <time datetime={publishedDateIso}>{publishedDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
       {categories.length > 0 && (
         <span class="post-categories">
           {categories.map((cat) => (

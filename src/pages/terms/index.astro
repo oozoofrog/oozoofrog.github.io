@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Terms of Service"
+  description="oozoofrog.dev 이용약관 - 사이트 이용 조건 및 면책 사항"
+>
+  <article class="terms">
+    <h1>이용약관 (Terms of Service)</h1>
+    <p class="last-updated">최종 업데이트: 2026년 3월 5일</p>
+
+    <section>
+      <h2>서비스 개요</h2>
+      <p>oozoofrog.dev(이하 "본 사이트")는 iOS/macOS 개발, 오픈소스 도구, 컴퓨터 과학 관련 기술 블로그입니다. 본 이용약관은 사이트 이용 시 적용되는 조건을 안내합니다.</p>
+    </section>
+
+    <section>
+      <h2>콘텐츠 이용</h2>
+      <p>본 사이트의 블로그 글, 코드 예제, 이미지 등의 콘텐츠는 별도의 라이선스 표기가 없는 한 저작권법에 의해 보호됩니다.</p>
+      <ul>
+        <li>개인 학습 및 비상업적 목적의 인용은 출처를 명시하는 조건으로 허용됩니다</li>
+        <li>코드 예제는 각 게시물에 명시된 라이선스에 따르며, 별도 표기가 없는 경우 MIT 라이선스가 적용됩니다</li>
+        <li>콘텐츠의 무단 복제, 배포, 상업적 이용은 금지됩니다</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>면책 사항</h2>
+      <p>본 사이트의 콘텐츠는 정보 제공 목적으로 작성되었으며, 정확성이나 완전성을 보장하지 않습니다.</p>
+      <ul>
+        <li>기술 관련 정보는 작성 시점 기준이며, 이후 변경될 수 있습니다</li>
+        <li>코드 예제의 사용으로 인한 문제에 대해 책임지지 않습니다</li>
+        <li>외부 링크의 콘텐츠에 대해서는 책임지지 않습니다</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>댓글 및 사용자 기여</h2>
+      <p>본 사이트는 GitHub Discussions 기반의 Giscus 댓글 시스템을 사용합니다. 댓글 작성 시 다음 사항을 준수해 주세요:</p>
+      <ul>
+        <li>타인을 존중하고 건설적인 대화를 지향합니다</li>
+        <li>스팸, 광고, 욕설, 혐오 표현 등의 부적절한 내용은 삭제될 수 있습니다</li>
+        <li>댓글은 GitHub 계정을 통해 작성되며, GitHub의 이용약관이 적용됩니다</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>광고</h2>
+      <p>본 사이트는 Google AdSense를 통해 광고를 게재합니다. 광고 관련 세부 사항은 <a href="/privacy/">개인정보처리방침</a>을 참조해 주세요.</p>
+    </section>
+
+    <section>
+      <h2>서비스 변경 및 중단</h2>
+      <p>본 사이트는 사전 통보 없이 콘텐츠를 수정, 삭제하거나 서비스를 중단할 수 있습니다.</p>
+    </section>
+
+    <section>
+      <h2>약관 변경</h2>
+      <p>본 이용약관은 필요에 따라 변경될 수 있으며, 변경 사항은 본 페이지에 게시됩니다. 변경 후에도 사이트를 계속 이용하는 것은 변경된 약관에 동의하는 것으로 간주됩니다.</p>
+    </section>
+
+    <section>
+      <h2>문의</h2>
+      <p>이용약관 관련 문의는 <a href="mailto:oozoofrog@gmail.com">oozoofrog@gmail.com</a>으로 연락해 주세요.</p>
+    </section>
+
+    <nav class="page-nav">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/privacy/" class="nav-link">Privacy Policy</a>
+      <a href="/contact/" class="nav-link">Contact</a>
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .terms {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  @supports not (backdrop-filter: blur(20px)) {
+    .terms {
+      background: rgba(255, 255, 255, 0.75);
+    }
+  }
+
+  h1 {
+    font-size: 2.2em;
+    color: var(--dark-green);
+    margin-bottom: 8px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid var(--frog-green);
+  }
+
+  .last-updated {
+    color: #8a9a92;
+    font-size: 0.9em;
+    margin-bottom: 40px;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    color: var(--dark-green);
+    margin-bottom: 16px;
+    position: relative;
+    padding-left: 16px;
+  }
+
+  h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 1.2em;
+    background: var(--frog-green);
+    border-radius: 2px;
+  }
+
+  p {
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  li {
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 8px;
+    padding-left: 24px;
+    position: relative;
+  }
+
+  li::before {
+    content: '\2022';
+    color: var(--frog-green);
+    font-weight: bold;
+    position: absolute;
+    left: 8px;
+  }
+
+  a {
+    color: var(--frog-green);
+    text-decoration: none;
+    border-bottom: 1.5px solid transparent;
+    transition: color 0.2s ease, border-bottom 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--planet-orange);
+    border-bottom: 1.5px solid var(--planet-orange);
+  }
+
+  .page-nav {
+    display: flex;
+    gap: 16px;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #e0ebe6;
+    flex-wrap: wrap;
+  }
+
+  .nav-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(112, 168, 80, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all 0.15s;
+    box-shadow: 0 4px 12px rgba(45, 80, 22, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .nav-link:hover {
+    transform: translateY(-2px);
+    background: rgba(112, 168, 80, 0.85);
+    box-shadow: 0 6px 20px rgba(45, 80, 22, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  @supports not (backdrop-filter: blur(12px)) {
+    .nav-link {
+      background: rgba(112, 168, 80, 0.9);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .terms {
+      padding: 24px 16px;
+    }
+
+    h1 {
+      font-size: 1.8em;
+    }
+
+    h2 {
+      font-size: 1.3em;
+    }
+
+    .page-nav {
+      flex-direction: column;
+    }
+
+    .nav-link {
+      text-align: center;
+    }
+  }
+</style>
