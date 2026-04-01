@@ -1,0 +1,207 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="RunnersHeart 개인정보 처리방침"
+  description="RunnersHeart 앱이 기기 내 건강 및 운동 데이터를 어떻게 다루는지 설명하는 개인정보 처리방침입니다."
+  lang="ko"
+>
+  <article class="privacy-policy">
+    <nav class="locale-switch" aria-label="언어 선택">
+      <a href="/runners-heart/privacy/" class="locale-pill">EN</a>
+      <a href="/runners-heart/privacy/ko/" class="locale-pill is-active">한국어</a>
+    </nav>
+
+    <h1>RunnersHeart 개인정보 처리방침</h1>
+
+    <section>
+      <h2>개요</h2>
+      <p>RunnersHeart는 심박수 존 기반 훈련을 돕는 앱이며, 운동 데이터가 사용자의 기기 안에 머무르도록 설계되어 있습니다.</p>
+      <p>이 문서는 앱이 어떤 정보에 접근하는지, 그 정보가 어떻게 사용되는지, 그리고 사용자가 어떤 선택권을 가지는지 설명합니다.</p>
+    </section>
+
+    <section>
+      <h2>앱이 접근하는 정보</h2>
+      <ul>
+        <li>Apple HealthKit을 통한 심박수 데이터</li>
+        <li>운동 시간, 거리, 페이스, 칼로리와 같은 운동 데이터</li>
+        <li>야외 러닝 시 이용 가능한 경로 데이터</li>
+        <li>심박수 존 설정 및 관련 운동 환경설정</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>정보 사용 목적</h2>
+      <ul>
+        <li>운동 중 실시간 측정값을 표시하기 위해</li>
+        <li>%MaxHR 또는 HRR 같은 방식으로 심박수 존을 계산하기 위해</li>
+        <li>운동 강도 변화에 맞춰 햅틱 피드백을 제공하기 위해</li>
+        <li>러닝 후 존 체류 시간, 경로, 훈련 부하 같은 분석을 생성하기 위해</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>저장 및 보안</h2>
+      <ul>
+        <li>운동 및 건강 관련 데이터는 사용자 기기와 Apple HealthKit 안에 저장됩니다</li>
+        <li>RunnersHeart는 운동 기록을 보관하는 별도 서버를 운영하지 않습니다</li>
+        <li>iPhone과 Apple Watch 간 동기화는 Apple 시스템 프레임워크를 사용합니다</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>데이터 공유</h2>
+      <ul>
+        <li>개인 데이터를 판매하지 않습니다</li>
+        <li>건강 데이터나 경로 데이터를 제3자 서버로 업로드하지 않습니다</li>
+        <li>운동 데이터를 광고주와 공유하지 않습니다</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>사용자 제어</h2>
+      <ul>
+        <li>iOS 설정에서 HealthKit 권한을 언제든지 관리할 수 있습니다</li>
+        <li>앱을 삭제하고 Health 앱에서 별도로 건강 데이터를 관리할 수 있습니다</li>
+        <li>지원되는 기능이 있는 경우 앱 안에서 운동 관련 정보를 검토하거나 내보낼 수 있습니다</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>문의</h2>
+      <p>개인정보와 관련된 문의는 <a href="mailto:oozoofrog@gmail.com">oozoofrog@gmail.com</a> 으로 보내주세요.</p>
+    </section>
+
+    <section>
+      <h2>시행일</h2>
+      <p>2026년 1월 11일</p>
+    </section>
+
+    <nav class="page-nav">
+      <a href="/runners-heart/ko/" class="nav-link">홈</a>
+      <a href="/runners-heart/support/ko/" class="nav-link">지원</a>
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .privacy-policy {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 22px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+  }
+
+  .locale-switch {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .locale-pill {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85);
+    color: #714855;
+    border: 1px solid rgba(158, 49, 71, 0.08);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .locale-pill.is-active {
+    background: linear-gradient(135deg, #9e3147, #bf4960);
+    color: #fff;
+  }
+
+  .locale-pill:hover {
+    border-bottom: 1px solid transparent;
+    color: #9e3147;
+  }
+
+  .locale-pill.is-active:hover {
+    color: #fff;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: #3f1c27;
+    margin-bottom: 30px;
+    padding-bottom: 14px;
+    border-bottom: 3px solid var(--frog-green);
+  }
+
+  section {
+    margin-bottom: 32px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    color: #3f1c27;
+    margin-bottom: 14px;
+  }
+
+  p,
+  li {
+    color: #5d4650;
+    line-height: 1.8;
+  }
+
+  ul {
+    padding-left: 1.2rem;
+  }
+
+  li + li {
+    margin-top: 8px;
+  }
+
+  .page-nav {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 18px;
+    border-top: 1px solid #eadfe2;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(112, 168, 80, 0.92), rgba(74, 142, 58, 0.92));
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .nav-link:hover {
+    color: #fff;
+    border-bottom: 1px solid transparent;
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 640px) {
+    .privacy-policy {
+      padding: 24px 18px;
+    }
+
+    .locale-switch {
+      justify-content: flex-start;
+    }
+
+    .page-nav {
+      flex-direction: column;
+    }
+  }
+</style>

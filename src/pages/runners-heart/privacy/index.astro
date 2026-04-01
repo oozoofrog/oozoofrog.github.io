@@ -3,69 +3,79 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Runner's Heart Privacy Policy"
-  description="Privacy policy for Runner's Heart app - data collection and usage"
+  title="RunnersHeart Privacy Policy"
+  description="Privacy policy for the RunnersHeart app and its on-device health and workout data handling."
+  lang="en"
 >
   <article class="privacy-policy">
-    <h1>Runner's Heart Privacy Policy</h1>
+    <nav class="locale-switch" aria-label="Language selector">
+      <a href="/runners-heart/privacy/" class="locale-pill is-active">EN</a>
+      <a href="/runners-heart/privacy/ko/" class="locale-pill">한국어</a>
+    </nav>
+
+    <h1>RunnersHeart Privacy Policy</h1>
 
     <section>
       <h2>Overview</h2>
-      <p>Runner's Heart values your privacy. This policy explains what information the app collects and how it is used.</p>
+      <p>RunnersHeart is designed to help you train with heart rate zones while keeping your workout data on your own devices.</p>
+      <p>This policy describes what the app accesses, how the information is used, and the choices you have.</p>
     </section>
 
     <section>
-      <h2>Information We Collect</h2>
+      <h2>Information We Access</h2>
       <ul>
-        <li>HealthKit heart rate data (real-time measurement during runs)</li>
-        <li>Running records (distance, time, pace)</li>
-        <li>Heart rate zone settings (configured by the user)</li>
+        <li>Heart rate data through Apple HealthKit</li>
+        <li>Workout data such as time, distance, pace, and calories</li>
+        <li>Route data for outdoor running workouts, when available</li>
+        <li>Heart rate zone settings and related workout preferences</li>
       </ul>
     </section>
 
     <section>
       <h2>How We Use Information</h2>
       <ul>
-        <li>Providing real-time running guidance</li>
-        <li>Running statistics and history analysis</li>
-        <li>Heart rate zone-based pace guidance</li>
+        <li>To show live workout metrics during a run</li>
+        <li>To calculate heart rate zones using supported methods such as %MaxHR or HRR</li>
+        <li>To provide haptic feedback when your workout intensity changes</li>
+        <li>To generate post-run analysis such as time in zone, route review, and training load</li>
       </ul>
     </section>
 
     <section>
-      <h2>Data Storage</h2>
+      <h2>Storage and Security</h2>
       <ul>
-        <li>All data is stored only on your device</li>
-        <li>No data is transmitted to external servers</li>
-        <li>Data is securely managed through Apple's HealthKit framework</li>
+        <li>Workout and health-related data stay on your device and within Apple HealthKit</li>
+        <li>RunnersHeart does not operate a server for storing your workout history</li>
+        <li>Synchronization between iPhone and Apple Watch uses Apple system frameworks</li>
       </ul>
     </section>
 
     <section>
       <h2>Data Sharing</h2>
       <ul>
-        <li>We do not share any data with third parties</li>
-        <li>We do not use data for advertising purposes</li>
-        <li>We do not use analytics tools or trackers</li>
+        <li>We do not sell your personal data</li>
+        <li>We do not upload your health or route data to third-party servers</li>
+        <li>We do not share workout data with advertisers</li>
       </ul>
     </section>
 
     <section>
-      <h2>Data Deletion</h2>
+      <h2>Your Controls</h2>
       <ul>
-        <li>Deleting the app removes all app data</li>
-        <li>HealthKit data can be managed separately in the Health app</li>
+        <li>You can manage HealthKit permissions in iOS settings at any time</li>
+        <li>You can remove the app and manage Health data separately in the Health app</li>
+        <li>You can review and export workout-related information through app features when available</li>
       </ul>
     </section>
 
     <section>
       <h2>Contact</h2>
-      <p>For privacy-related inquiries, please contact us at <a href="mailto:oozoofrog@gmail.com">oozoofrog@gmail.com</a>.</p>
+      <p>For privacy questions, please contact <a href="mailto:oozoofrog@gmail.com">oozoofrog@gmail.com</a>.</p>
     </section>
 
     <section>
       <h2>Effective Date</h2>
-      <p>Effective from January 1, 2025</p>
+      <p>January 11, 2026</p>
     </section>
 
     <nav class="page-nav">
@@ -77,149 +87,121 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 <style>
   .privacy-policy {
-    max-width: 800px;
+    max-width: 860px;
     margin: 0 auto;
-    padding: 40px 20px;
-    background: rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(20px) saturate(150%);
-    -webkit-backdrop-filter: blur(20px) saturate(150%);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    padding: 32px 24px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 22px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
   }
 
-  @supports not (backdrop-filter: blur(20px)) {
-    .privacy-policy {
-      background: rgba(255, 255, 255, 0.75);
-    }
+  .locale-switch {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .locale-pill {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85);
+    color: #714855;
+    border: 1px solid rgba(158, 49, 71, 0.08);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .locale-pill.is-active {
+    background: linear-gradient(135deg, #9e3147, #bf4960);
+    color: #fff;
+  }
+
+  .locale-pill:hover {
+    border-bottom: 1px solid transparent;
+    color: #9e3147;
+  }
+
+  .locale-pill.is-active:hover {
+    color: #fff;
   }
 
   h1 {
-    font-size: 2.2em;
-    color: var(--dark-green);
-    margin-bottom: 40px;
-    padding-bottom: 16px;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: #3f1c27;
+    margin-bottom: 30px;
+    padding-bottom: 14px;
     border-bottom: 3px solid var(--frog-green);
   }
 
   section {
-    margin-bottom: 40px;
+    margin-bottom: 32px;
   }
 
   h2 {
-    font-size: 1.5em;
-    color: var(--dark-green);
-    margin-bottom: 16px;
-    position: relative;
-    padding-left: 16px;
+    font-size: 1.4rem;
+    color: #3f1c27;
+    margin-bottom: 14px;
   }
 
-  h2::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 1.2em;
-    background: var(--frog-green);
-    border-radius: 2px;
-  }
-
-  p {
-    color: #333;
+  p,
+  li {
+    color: #5d4650;
     line-height: 1.8;
-    margin-bottom: 12px;
   }
 
   ul {
-    list-style: none;
-    padding-left: 0;
+    padding-left: 1.2rem;
   }
 
-  li {
-    color: #333;
-    line-height: 1.8;
-    margin-bottom: 8px;
-    padding-left: 24px;
-    position: relative;
-  }
-
-  li::before {
-    content: '•';
-    color: var(--frog-green);
-    font-weight: bold;
-    position: absolute;
-    left: 8px;
-  }
-
-  a {
-    color: var(--frog-green);
-    text-decoration: none;
-    border-bottom: 1.5px solid transparent;
-    transition: color 0.2s ease, border-bottom 0.2s ease;
-  }
-
-  a:hover {
-    color: var(--planet-orange);
-    border-bottom: 1.5px solid var(--planet-orange);
+  li + li {
+    margin-top: 8px;
   }
 
   .page-nav {
     display: flex;
-    gap: 16px;
-    margin-top: 60px;
-    padding-top: 40px;
-    border-top: 1px solid #e0ebe6;
+    gap: 12px;
     flex-wrap: wrap;
+    padding-top: 18px;
+    border-top: 1px solid #eadfe2;
   }
 
   .nav-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background: rgba(112, 168, 80, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(112, 168, 80, 0.92), rgba(74, 142, 58, 0.92));
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    font-weight: 600;
-    transition: all 0.15s;
-    box-shadow: 0 4px 12px rgba(45, 80, 22, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    font-weight: 700;
   }
 
   .nav-link:hover {
-    transform: translateY(-2px);
-    background: rgba(112, 168, 80, 0.85);
-    box-shadow: 0 6px 20px rgba(45, 80, 22, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    border-bottom: 1px solid transparent;
+    transform: translateY(-1px);
   }
 
-  @supports not (backdrop-filter: blur(12px)) {
-    .nav-link {
-      background: rgba(112, 168, 80, 0.9);
-    }
-  }
-
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .privacy-policy {
-      padding: 24px 16px;
+      padding: 24px 18px;
     }
 
-    h1 {
-      font-size: 1.8em;
-    }
-
-    h2 {
-      font-size: 1.3em;
+    .locale-switch {
+      justify-content: flex-start;
     }
 
     .page-nav {
       flex-direction: column;
-    }
-
-    .nav-link {
-      text-align: center;
     }
   }
 </style>

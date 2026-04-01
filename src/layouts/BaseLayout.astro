@@ -7,6 +7,8 @@ interface Props {
   image?: string;
   type?: string;
   publishedDate?: string;
+  lang?: string;
+  ogLocale?: string;
 }
 const {
   title = 'oozoofrog',
@@ -16,6 +18,8 @@ const {
   image,
   type = 'website',
   publishedDate,
+  lang = 'ko',
+  ogLocale = lang === 'en' ? 'en_US' : 'ko_KR',
 } = Astro.props;
 const canonicalUrl = canonical ?? Astro.url?.toString();
 const ogImage = image ?? new URL('/assets/images/og-default.png', Astro.site).toString();
@@ -41,7 +45,7 @@ import Analytics from '../components/Analytics.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 ---
 <!DOCTYPE html>
-<html lang="ko">
+<html lang={lang}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -58,7 +62,7 @@ import CookieConsent from '../components/CookieConsent.astro';
   {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
   <meta property="og:image" content={ogImage} />
   <meta property="og:site_name" content="oozoofrog" />
-  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:locale" content={ogLocale} />
   {publishedDate && <meta property="article:published_time" content={publishedDate} />}
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />

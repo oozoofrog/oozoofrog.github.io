@@ -14,14 +14,14 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    name: "Runner's Heart",
+    name: "RunnersHeart",
     slug: "runners-heart",
-    tagline: "Heart Rate Based Running Guide",
-    description: "Monitor your real-time heart rate with Apple Watch and get guided to your optimal running pace.",
+    tagline: "Heart Rate Zone Running Coach",
+    description: "Train smarter with live heart rate zone feedback, Apple Watch haptics, personalized zones, and richer iPhone workout analysis.",
     status: "released",
     featured: true,
     icon: "/assets/images/projects/runners-heart-icon.png",
-    tags: ["SwiftUI", "HealthKit", "WatchOS", "CoreData"],
+    tags: ["SwiftUI", "HealthKit", "watchOS", "TRIMP"],
     appstore: "https://apps.apple.com/us/app/runners-heart/id6758222219",
     page: "/runners-heart/",
   },
