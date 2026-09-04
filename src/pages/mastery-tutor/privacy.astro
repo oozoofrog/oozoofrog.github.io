@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Mastery Tutor Privacy Policy"
+  description="Privacy policy for the Mastery Tutor app and Tutor State Engine."
+  lang="en"
+>
+  <article class="page">
+    <h1>Mastery Tutor Privacy Policy</h1>
+    <p><strong>Effective:</strong> September 4, 2026</p>
+
+    <h2>Overview</h2>
+    <p>
+      Mastery Tutor is an educational workflow. Its optional v0.8.0 Tutor State Engine is a stateless,
+      read-only MCP service used to recommend the next pedagogical mode for a lesson.
+    </p>
+
+    <h2>Information processed</h2>
+    <p>
+      When the Tutor State Engine is invoked, it is designed to receive only compact structured lesson state:
+      a short learning goal or topic, learner-level category, current lesson stage, last-result category,
+      current support level, a small stall counter, and whether the interaction is a review context.
+    </p>
+    <p>
+      The tool is explicitly designed not to require a raw conversation transcript, passwords, access tokens,
+      account identifiers, or unrelated personal information.
+    </p>
+
+    <h2>Storage and retention</h2>
+    <p>
+      The Mastery Tutor application code does not write tool inputs or outputs to a database, Cloudflare KV,
+      Durable Objects, R2, Analytics Engine, or another application-level persistent store. It does not maintain
+      a user account or persistent learner profile.
+    </p>
+    <p>
+      Cloudflare may process standard network, security, and operational metadata as the infrastructure provider.
+      OpenAI may process information according to the ChatGPT service and app privacy terms applicable to the user.
+    </p>
+
+    <h2>Cookies and authentication</h2>
+    <p>The v0.8.0 Tutor State Engine does not require login, OAuth, or application cookies.</p>
+
+    <h2>Sharing and sale</h2>
+    <p>
+      Mastery Tutor does not sell personal information. The service does not intentionally disclose lesson-state
+      payloads to advertising networks or data brokers. Infrastructure processing by OpenAI and Cloudflare is
+      subject to their respective policies and service terms.
+    </p>
+
+    <h2>Security</h2>
+    <p>
+      The MCP service is deployed over HTTPS and exposes read-only deterministic tutoring-state advice. No external
+      write action is provided by v0.8.0.
+    </p>
+
+    <h2>Changes</h2>
+    <p>This policy may be updated when the app's data practices or platform requirements change.</p>
+
+    <h2>Contact</h2>
+    <p>
+      For privacy questions, open an issue in the
+      <a href="https://github.com/oozoofrog/mastery-tutor/issues">Mastery Tutor GitHub repository</a>.
+    </p>
+
+    <p class="back"><a href="/mastery-tutor/">← Mastery Tutor</a></p>
+  </article>
+</BaseLayout>
+
+<style>
+  .page { max-width: 760px; margin: 0 auto 4rem; line-height: 1.75; }
+  h1, h2 { color: var(--dark-green); }
+  h2 { margin-top: 2rem; }
+  .back { margin-top: 3rem; }
+</style>
