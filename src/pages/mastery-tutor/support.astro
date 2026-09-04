@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Mastery Tutor Support"
+  description="Support and troubleshooting for Mastery Tutor."
+  lang="en"
+>
+  <article class="page">
+    <h1>Mastery Tutor Support</h1>
+
+    <h2>Source and issues</h2>
+    <p>
+      Source code, release notes, and issue tracking are available at
+      <a href="https://github.com/oozoofrog/mastery-tutor">github.com/oozoofrog/mastery-tutor</a>.
+    </p>
+    <p>
+      For bugs, privacy questions, or compatibility problems, open a
+      <a href="https://github.com/oozoofrog/mastery-tutor/issues/new">GitHub issue</a> with the smallest reproducible example you can provide.
+    </p>
+
+    <h2>App wrapper</h2>
+    <p>
+      The v0.8.0 app wrapper is a stateless Cloudflare Worker exposing a read-only MCP tool named
+      <code>tutor_state</code>. It does not require a user account or OAuth.
+    </p>
+
+    <h2>Before reporting a problem</h2>
+    <ul>
+      <li>Confirm the Skill or plugin version.</li>
+      <li>For MCP issues, verify the remote endpoint responds at <code>/health</code>.</li>
+      <li>Use MCP Inspector to confirm <code>tutor_state</code> is listed and callable.</li>
+      <li>Include the ChatGPT plan and surface because app and plugin availability can vary.</li>
+      <li>Do not include passwords, tokens, private account identifiers, or unrelated sensitive data.</li>
+    </ul>
+
+    <nav class="links">
+      <a href="/mastery-tutor/">Mastery Tutor</a>
+      <a href="/mastery-tutor/privacy/">Privacy</a>
+      <a href="/mastery-tutor/terms/">Terms</a>
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .page { max-width: 760px; margin: 0 auto 4rem; line-height: 1.75; }
+  h1, h2 { color: var(--dark-green); }
+  h2 { margin-top: 2rem; }
+  .links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; }
+</style>
