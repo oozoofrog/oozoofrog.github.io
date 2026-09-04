@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Mastery Tutor"
+  description="Conversation-native adaptive tutoring for ChatGPT and Codex."
+  lang="en"
+>
+  <article class="page">
+    <p class="eyebrow">Open-source learning workflow · v0.8.0 preview</p>
+    <h1>Mastery Tutor</h1>
+    <p class="lead">
+      Mastery Tutor turns an ordinary AI conversation into deliberate practice: one focused question at a time,
+      with worked examples, scaffold fading, transfer checks, and later retrieval.
+    </p>
+
+    <section>
+      <h2>How it works</h2>
+      <p>
+        The core tutoring policy is a reusable Skill. The optional app wrapper adds a small, stateless,
+        read-only Tutor State Engine that recommends the next pedagogical mode without storing a learner account
+        or a conversation transcript.
+      </p>
+      <ul>
+        <li>No account or OAuth required for the v0.8.0 state engine.</li>
+        <li>No database or persistent learner profile.</li>
+        <li>No write actions to external systems.</li>
+        <li>The MCP tool accepts compact structured lesson state rather than a raw transcript.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Mentor modes</h2>
+      <ul>
+        <li><strong>Socrates</strong> — causal reasoning, diagnosis, and transfer.</li>
+        <li><strong>Aristotle</strong> — structure, worked examples, and explanation.</li>
+        <li><strong>Confucius</strong> — retrieval, review, and retention checks.</li>
+        <li><strong>Epictetus</strong> — recovery when the learner is stuck or overloaded.</li>
+      </ul>
+    </section>
+
+    <nav class="links" aria-label="Mastery Tutor resources">
+      <a href="https://github.com/oozoofrog/mastery-tutor">GitHub source</a>
+      <a href="/mastery-tutor/privacy/">Privacy</a>
+      <a href="/mastery-tutor/terms/">Terms</a>
+      <a href="/mastery-tutor/support/">Support</a>
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .page { max-width: 760px; margin: 0 auto 4rem; }
+  .eyebrow { color: var(--frog-green); font-weight: 700; margin-bottom: .6rem; }
+  h1 { margin-top: 0; color: var(--dark-green); font-size: clamp(2.2rem, 6vw, 4rem); }
+  .lead { font-size: 1.2rem; line-height: 1.7; }
+  section { margin-top: 2.5rem; }
+  li { margin: .65rem 0; }
+  .links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 3rem; }
+  .links a { padding: .6rem .9rem; border: 1px solid var(--surface-border); border-radius: 999px; }
+</style>
