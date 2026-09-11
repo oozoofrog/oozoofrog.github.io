@@ -1,0 +1,5180 @@
+{
+  "schema": 1,
+  "experiment_dates_kst": [
+    "2026-09-11",
+    "2026-09-12"
+  ],
+  "models_requested": {
+    "A": "gpt-6-astra",
+    "L": "gpt-5.6-luna"
+  },
+  "astra_efforts": [
+    "low",
+    "medium",
+    "high",
+    "xhigh",
+    "max",
+    "ultra"
+  ],
+  "luna_effort": "max",
+  "cli_version": "0.153.4",
+  "platform": "macOS arm64",
+  "python_version": "3.14.7",
+  "service_tier_requested": "standard",
+  "stage_timeout_seconds": 180,
+  "repetitions_per_configuration_and_task": 1,
+  "seed": 20260911,
+  "dataset": {
+    "repository": "https://github.com/jkoppel/QuixBugs",
+    "commit": "4257f44b0ff1181dedaedee6a447e133219fcebf",
+    "public_cases": 18,
+    "additional_cases": 424,
+    "test_suite": "local independently generated expectations, not upstream benchmark suite"
+  },
+  "source_report_sha256": {
+    "AL-LA": "12706a70e0a181defba12a15f297fe8ba8f5a6ffb4556913942a965a02131f33",
+    "AA-LL-A-L": "8645d1a65f9cb2e5f448428fd0bf03311509e2526d27ea23e985924df6c4a88f"
+  },
+  "interpretation": {
+    "invalid_trial": "AL xhigh quicksort planner interrupted; implementation skipped and usage unknown",
+    "latency": "local process wall time; the two experiment batches overlapped",
+    "usage": "reported input + output; cached input and reasoning output are included subsets; not monetary cost",
+    "luna_only_baselines": "LL and L each run once per task, not repeated for each Astra effort"
+  },
+  "trials": [
+    {
+      "task": "quicksort",
+      "condition": "AL",
+      "astra_effort": "xhigh",
+      "status": "INVALID",
+      "total_usage": null,
+      "planner_usage": null,
+      "implementer_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "planner_elapsed_s": 4.475105,
+      "implementer_elapsed_s": 0,
+      "elapsed_from_logs_s": 4.475105
+    },
+    {
+      "task": "quicksort",
+      "condition": "LA",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 104270,
+        "cached_input_tokens": 66176,
+        "output_tokens": 4699,
+        "reasoning_output_tokens": 3150,
+        "total_tokens": 108969,
+        "uncached_input_tokens": 38094
+      },
+      "planner_usage": {
+        "input_tokens": 39514,
+        "cached_input_tokens": 26624,
+        "output_tokens": 4012,
+        "reasoning_output_tokens": 3126,
+        "total_tokens": 43526,
+        "uncached_input_tokens": 12890
+      },
+      "implementer_usage": {
+        "input_tokens": 64756,
+        "cached_input_tokens": 39552,
+        "output_tokens": 687,
+        "reasoning_output_tokens": 24,
+        "total_tokens": 65443,
+        "uncached_input_tokens": 25204
+      },
+      "planner_elapsed_s": 86.193878,
+      "implementer_elapsed_s": 40.511099,
+      "elapsed_from_logs_s": 126.704977
+    },
+    {
+      "task": "bitcount",
+      "condition": "LA",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 91751,
+        "cached_input_tokens": 65536,
+        "output_tokens": 3717,
+        "reasoning_output_tokens": 2680,
+        "total_tokens": 95468,
+        "uncached_input_tokens": 26215
+      },
+      "planner_usage": {
+        "input_tokens": 38888,
+        "cached_input_tokens": 22528,
+        "output_tokens": 2853,
+        "reasoning_output_tokens": 2269,
+        "total_tokens": 41741,
+        "uncached_input_tokens": 16360
+      },
+      "implementer_usage": {
+        "input_tokens": 52863,
+        "cached_input_tokens": 43008,
+        "output_tokens": 864,
+        "reasoning_output_tokens": 411,
+        "total_tokens": 53727,
+        "uncached_input_tokens": 9855
+      },
+      "planner_elapsed_s": 65.553429,
+      "implementer_elapsed_s": 43.152957,
+      "elapsed_from_logs_s": 108.706386
+    },
+    {
+      "task": "bitcount",
+      "condition": "AL",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 98815,
+        "cached_input_tokens": 70784,
+        "output_tokens": 2717,
+        "reasoning_output_tokens": 1375,
+        "total_tokens": 101532,
+        "uncached_input_tokens": 28031
+      },
+      "planner_usage": {
+        "input_tokens": 51824,
+        "cached_input_tokens": 39296,
+        "output_tokens": 1231,
+        "reasoning_output_tokens": 561,
+        "total_tokens": 53055,
+        "uncached_input_tokens": 12528
+      },
+      "implementer_usage": {
+        "input_tokens": 46991,
+        "cached_input_tokens": 31488,
+        "output_tokens": 1486,
+        "reasoning_output_tokens": 814,
+        "total_tokens": 48477,
+        "uncached_input_tokens": 15503
+      },
+      "planner_elapsed_s": 54.053435,
+      "implementer_elapsed_s": 42.756426,
+      "elapsed_from_logs_s": 96.809861
+    },
+    {
+      "task": "gcd",
+      "condition": "LA",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 88468,
+        "cached_input_tokens": 65408,
+        "output_tokens": 2169,
+        "reasoning_output_tokens": 960,
+        "total_tokens": 90637,
+        "uncached_input_tokens": 23060
+      },
+      "planner_usage": {
+        "input_tokens": 38409,
+        "cached_input_tokens": 26624,
+        "output_tokens": 1747,
+        "reasoning_output_tokens": 927,
+        "total_tokens": 40156,
+        "uncached_input_tokens": 11785
+      },
+      "implementer_usage": {
+        "input_tokens": 50059,
+        "cached_input_tokens": 38784,
+        "output_tokens": 422,
+        "reasoning_output_tokens": 33,
+        "total_tokens": 50481,
+        "uncached_input_tokens": 11275
+      },
+      "planner_elapsed_s": 41.886869,
+      "implementer_elapsed_s": 31.535403,
+      "elapsed_from_logs_s": 73.42227199999999
+    },
+    {
+      "task": "gcd",
+      "condition": "AL",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 96995,
+        "cached_input_tokens": 85376,
+        "output_tokens": 2379,
+        "reasoning_output_tokens": 992,
+        "total_tokens": 99374,
+        "uncached_input_tokens": 11619
+      },
+      "planner_usage": {
+        "input_tokens": 51430,
+        "cached_input_tokens": 46976,
+        "output_tokens": 975,
+        "reasoning_output_tokens": 261,
+        "total_tokens": 52405,
+        "uncached_input_tokens": 4454
+      },
+      "implementer_usage": {
+        "input_tokens": 45565,
+        "cached_input_tokens": 38400,
+        "output_tokens": 1404,
+        "reasoning_output_tokens": 731,
+        "total_tokens": 46969,
+        "uncached_input_tokens": 7165
+      },
+      "planner_elapsed_s": 45.126193,
+      "implementer_elapsed_s": 38.972209,
+      "elapsed_from_logs_s": 84.098402
+    },
+    {
+      "task": "bitcount",
+      "condition": "AL",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 95777,
+        "cached_input_tokens": 74880,
+        "output_tokens": 1935,
+        "reasoning_output_tokens": 670,
+        "total_tokens": 97712,
+        "uncached_input_tokens": 20897
+      },
+      "planner_usage": {
+        "input_tokens": 51047,
+        "cached_input_tokens": 46464,
+        "output_tokens": 648,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51695,
+        "uncached_input_tokens": 4583
+      },
+      "implementer_usage": {
+        "input_tokens": 44730,
+        "cached_input_tokens": 28416,
+        "output_tokens": 1287,
+        "reasoning_output_tokens": 670,
+        "total_tokens": 46017,
+        "uncached_input_tokens": 16314
+      },
+      "planner_elapsed_s": 35.518792,
+      "implementer_elapsed_s": 39.813829,
+      "elapsed_from_logs_s": 75.33262099999999
+    },
+    {
+      "task": "bitcount",
+      "condition": "LA",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 123914,
+        "cached_input_tokens": 100864,
+        "output_tokens": 3479,
+        "reasoning_output_tokens": 2297,
+        "total_tokens": 127393,
+        "uncached_input_tokens": 23050
+      },
+      "planner_usage": {
+        "input_tokens": 72775,
+        "cached_input_tokens": 54272,
+        "output_tokens": 3177,
+        "reasoning_output_tokens": 2297,
+        "total_tokens": 75952,
+        "uncached_input_tokens": 18503
+      },
+      "implementer_usage": {
+        "input_tokens": 51139,
+        "cached_input_tokens": 46592,
+        "output_tokens": 302,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51441,
+        "uncached_input_tokens": 4547
+      },
+      "planner_elapsed_s": 79.681855,
+      "implementer_elapsed_s": 25.182137,
+      "elapsed_from_logs_s": 104.863992
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "LA",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 80480,
+        "cached_input_tokens": 61824,
+        "output_tokens": 3907,
+        "reasoning_output_tokens": 2557,
+        "total_tokens": 84387,
+        "uncached_input_tokens": 18656
+      },
+      "planner_usage": {
+        "input_tokens": 38534,
+        "cached_input_tokens": 32512,
+        "output_tokens": 3372,
+        "reasoning_output_tokens": 2557,
+        "total_tokens": 41906,
+        "uncached_input_tokens": 6022
+      },
+      "implementer_usage": {
+        "input_tokens": 41946,
+        "cached_input_tokens": 29312,
+        "output_tokens": 535,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 42481,
+        "uncached_input_tokens": 12634
+      },
+      "planner_elapsed_s": 71.284724,
+      "implementer_elapsed_s": 35.86024,
+      "elapsed_from_logs_s": 107.14496399999999
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "AL",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 90943,
+        "cached_input_tokens": 69376,
+        "output_tokens": 2596,
+        "reasoning_output_tokens": 1099,
+        "total_tokens": 93539,
+        "uncached_input_tokens": 21567
+      },
+      "planner_usage": {
+        "input_tokens": 51115,
+        "cached_input_tokens": 38912,
+        "output_tokens": 605,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51720,
+        "uncached_input_tokens": 12203
+      },
+      "implementer_usage": {
+        "input_tokens": 39828,
+        "cached_input_tokens": 30464,
+        "output_tokens": 1991,
+        "reasoning_output_tokens": 1099,
+        "total_tokens": 41819,
+        "uncached_input_tokens": 9364
+      },
+      "planner_elapsed_s": 42.609393,
+      "implementer_elapsed_s": 51.540358,
+      "elapsed_from_logs_s": 94.149751
+    },
+    {
+      "task": "quicksort",
+      "condition": "AL",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 89836,
+        "cached_input_tokens": 73984,
+        "output_tokens": 2385,
+        "reasoning_output_tokens": 962,
+        "total_tokens": 92221,
+        "uncached_input_tokens": 15852
+      },
+      "planner_usage": {
+        "input_tokens": 51181,
+        "cached_input_tokens": 46592,
+        "output_tokens": 702,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51883,
+        "uncached_input_tokens": 4589
+      },
+      "implementer_usage": {
+        "input_tokens": 38655,
+        "cached_input_tokens": 27392,
+        "output_tokens": 1683,
+        "reasoning_output_tokens": 962,
+        "total_tokens": 40338,
+        "uncached_input_tokens": 11263
+      },
+      "planner_elapsed_s": 36.512245,
+      "implementer_elapsed_s": 44.959698,
+      "elapsed_from_logs_s": 81.47194300000001
+    },
+    {
+      "task": "quicksort",
+      "condition": "LA",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 97340,
+        "cached_input_tokens": 69632,
+        "output_tokens": 3005,
+        "reasoning_output_tokens": 1857,
+        "total_tokens": 100345,
+        "uncached_input_tokens": 27708
+      },
+      "planner_usage": {
+        "input_tokens": 44866,
+        "cached_input_tokens": 29440,
+        "output_tokens": 2595,
+        "reasoning_output_tokens": 1857,
+        "total_tokens": 47461,
+        "uncached_input_tokens": 15426
+      },
+      "implementer_usage": {
+        "input_tokens": 52474,
+        "cached_input_tokens": 40192,
+        "output_tokens": 410,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52884,
+        "uncached_input_tokens": 12282
+      },
+      "planner_elapsed_s": 60.868685,
+      "implementer_elapsed_s": 32.009247,
+      "elapsed_from_logs_s": 92.877932
+    },
+    {
+      "task": "gcd",
+      "condition": "AL",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 88921,
+        "cached_input_tokens": 77952,
+        "output_tokens": 1682,
+        "reasoning_output_tokens": 522,
+        "total_tokens": 90603,
+        "uncached_input_tokens": 10969
+      },
+      "planner_usage": {
+        "input_tokens": 51012,
+        "cached_input_tokens": 46464,
+        "output_tokens": 606,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51618,
+        "uncached_input_tokens": 4548
+      },
+      "implementer_usage": {
+        "input_tokens": 37909,
+        "cached_input_tokens": 31488,
+        "output_tokens": 1076,
+        "reasoning_output_tokens": 522,
+        "total_tokens": 38985,
+        "uncached_input_tokens": 6421
+      },
+      "planner_elapsed_s": 35.857746,
+      "implementer_elapsed_s": 31.548055,
+      "elapsed_from_logs_s": 67.405801
+    },
+    {
+      "task": "gcd",
+      "condition": "LA",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 90905,
+        "cached_input_tokens": 74368,
+        "output_tokens": 2217,
+        "reasoning_output_tokens": 1043,
+        "total_tokens": 93122,
+        "uncached_input_tokens": 16537
+      },
+      "planner_usage": {
+        "input_tokens": 38647,
+        "cached_input_tokens": 26624,
+        "output_tokens": 1871,
+        "reasoning_output_tokens": 1043,
+        "total_tokens": 40518,
+        "uncached_input_tokens": 12023
+      },
+      "implementer_usage": {
+        "input_tokens": 52258,
+        "cached_input_tokens": 47744,
+        "output_tokens": 346,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52604,
+        "uncached_input_tokens": 4514
+      },
+      "planner_elapsed_s": 45.108011,
+      "implementer_elapsed_s": 29.899178,
+      "elapsed_from_logs_s": 75.007189
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "AL",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 82925,
+        "cached_input_tokens": 72192,
+        "output_tokens": 1838,
+        "reasoning_output_tokens": 547,
+        "total_tokens": 84763,
+        "uncached_input_tokens": 10733
+      },
+      "planner_usage": {
+        "input_tokens": 53196,
+        "cached_input_tokens": 47616,
+        "output_tokens": 978,
+        "reasoning_output_tokens": 200,
+        "total_tokens": 54174,
+        "uncached_input_tokens": 5580
+      },
+      "implementer_usage": {
+        "input_tokens": 29729,
+        "cached_input_tokens": 24576,
+        "output_tokens": 860,
+        "reasoning_output_tokens": 347,
+        "total_tokens": 30589,
+        "uncached_input_tokens": 5153
+      },
+      "planner_elapsed_s": 52.680969,
+      "implementer_elapsed_s": 26.041182,
+      "elapsed_from_logs_s": 78.722151
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "LA",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 140310,
+        "cached_input_tokens": 109696,
+        "output_tokens": 3181,
+        "reasoning_output_tokens": 1705,
+        "total_tokens": 143491,
+        "uncached_input_tokens": 30614
+      },
+      "planner_usage": {
+        "input_tokens": 74075,
+        "cached_input_tokens": 58368,
+        "output_tokens": 2674,
+        "reasoning_output_tokens": 1663,
+        "total_tokens": 76749,
+        "uncached_input_tokens": 15707
+      },
+      "implementer_usage": {
+        "input_tokens": 66235,
+        "cached_input_tokens": 51328,
+        "output_tokens": 507,
+        "reasoning_output_tokens": 42,
+        "total_tokens": 66742,
+        "uncached_input_tokens": 14907
+      },
+      "planner_elapsed_s": 68.799117,
+      "implementer_elapsed_s": 46.772036,
+      "elapsed_from_logs_s": 115.571153
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "LA",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 80777,
+        "cached_input_tokens": 57600,
+        "output_tokens": 3483,
+        "reasoning_output_tokens": 2114,
+        "total_tokens": 84260,
+        "uncached_input_tokens": 23177
+      },
+      "planner_usage": {
+        "input_tokens": 38722,
+        "cached_input_tokens": 28416,
+        "output_tokens": 2786,
+        "reasoning_output_tokens": 2102,
+        "total_tokens": 41508,
+        "uncached_input_tokens": 10306
+      },
+      "implementer_usage": {
+        "input_tokens": 42055,
+        "cached_input_tokens": 29184,
+        "output_tokens": 697,
+        "reasoning_output_tokens": 12,
+        "total_tokens": 42752,
+        "uncached_input_tokens": 12871
+      },
+      "planner_elapsed_s": 79.11881,
+      "implementer_elapsed_s": 41.280292,
+      "elapsed_from_logs_s": 120.399102
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "AL",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 89076,
+        "cached_input_tokens": 60928,
+        "output_tokens": 1936,
+        "reasoning_output_tokens": 764,
+        "total_tokens": 91012,
+        "uncached_input_tokens": 28148
+      },
+      "planner_usage": {
+        "input_tokens": 51121,
+        "cached_input_tokens": 29440,
+        "output_tokens": 612,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51733,
+        "uncached_input_tokens": 21681
+      },
+      "implementer_usage": {
+        "input_tokens": 37955,
+        "cached_input_tokens": 31488,
+        "output_tokens": 1324,
+        "reasoning_output_tokens": 764,
+        "total_tokens": 39279,
+        "uncached_input_tokens": 6467
+      },
+      "planner_elapsed_s": 34.20534,
+      "implementer_elapsed_s": 37.877298,
+      "elapsed_from_logs_s": 72.082638
+    },
+    {
+      "task": "quicksort",
+      "condition": "LA",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 102908,
+        "cached_input_tokens": 90624,
+        "output_tokens": 2239,
+        "reasoning_output_tokens": 971,
+        "total_tokens": 105147,
+        "uncached_input_tokens": 12284
+      },
+      "planner_usage": {
+        "input_tokens": 38374,
+        "cached_input_tokens": 31488,
+        "output_tokens": 1744,
+        "reasoning_output_tokens": 951,
+        "total_tokens": 40118,
+        "uncached_input_tokens": 6886
+      },
+      "implementer_usage": {
+        "input_tokens": 64534,
+        "cached_input_tokens": 59136,
+        "output_tokens": 495,
+        "reasoning_output_tokens": 20,
+        "total_tokens": 65029,
+        "uncached_input_tokens": 5398
+      },
+      "planner_elapsed_s": 43.14535,
+      "implementer_elapsed_s": 40.067094,
+      "elapsed_from_logs_s": 83.212444
+    },
+    {
+      "task": "quicksort",
+      "condition": "AL",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 97269,
+        "cached_input_tokens": 85248,
+        "output_tokens": 2321,
+        "reasoning_output_tokens": 972,
+        "total_tokens": 99590,
+        "uncached_input_tokens": 12021
+      },
+      "planner_usage": {
+        "input_tokens": 51557,
+        "cached_input_tokens": 46848,
+        "output_tokens": 883,
+        "reasoning_output_tokens": 198,
+        "total_tokens": 52440,
+        "uncached_input_tokens": 4709
+      },
+      "implementer_usage": {
+        "input_tokens": 45712,
+        "cached_input_tokens": 38400,
+        "output_tokens": 1438,
+        "reasoning_output_tokens": 774,
+        "total_tokens": 47150,
+        "uncached_input_tokens": 7312
+      },
+      "planner_elapsed_s": 42.285564,
+      "implementer_elapsed_s": 39.572612,
+      "elapsed_from_logs_s": 81.858176
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "AL",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 104024,
+        "cached_input_tokens": 90112,
+        "output_tokens": 2653,
+        "reasoning_output_tokens": 1215,
+        "total_tokens": 106677,
+        "uncached_input_tokens": 13912
+      },
+      "planner_usage": {
+        "input_tokens": 51353,
+        "cached_input_tokens": 46848,
+        "output_tokens": 1036,
+        "reasoning_output_tokens": 305,
+        "total_tokens": 52389,
+        "uncached_input_tokens": 4505
+      },
+      "implementer_usage": {
+        "input_tokens": 52671,
+        "cached_input_tokens": 43264,
+        "output_tokens": 1617,
+        "reasoning_output_tokens": 910,
+        "total_tokens": 54288,
+        "uncached_input_tokens": 9407
+      },
+      "planner_elapsed_s": 45.782106,
+      "implementer_elapsed_s": 43.545255,
+      "elapsed_from_logs_s": 89.327361
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "LA",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 102636,
+        "cached_input_tokens": 89728,
+        "output_tokens": 4060,
+        "reasoning_output_tokens": 2759,
+        "total_tokens": 106696,
+        "uncached_input_tokens": 12908
+      },
+      "planner_usage": {
+        "input_tokens": 39490,
+        "cached_input_tokens": 31488,
+        "output_tokens": 3541,
+        "reasoning_output_tokens": 2709,
+        "total_tokens": 43031,
+        "uncached_input_tokens": 8002
+      },
+      "implementer_usage": {
+        "input_tokens": 63146,
+        "cached_input_tokens": 58240,
+        "output_tokens": 519,
+        "reasoning_output_tokens": 50,
+        "total_tokens": 63665,
+        "uncached_input_tokens": 4906
+      },
+      "planner_elapsed_s": 75.959024,
+      "implementer_elapsed_s": 29.781218,
+      "elapsed_from_logs_s": 105.740242
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "AL",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 81461,
+        "cached_input_tokens": 61952,
+        "output_tokens": 1832,
+        "reasoning_output_tokens": 672,
+        "total_tokens": 83293,
+        "uncached_input_tokens": 19509
+      },
+      "planner_usage": {
+        "input_tokens": 51757,
+        "cached_input_tokens": 37376,
+        "output_tokens": 989,
+        "reasoning_output_tokens": 297,
+        "total_tokens": 52746,
+        "uncached_input_tokens": 14381
+      },
+      "implementer_usage": {
+        "input_tokens": 29704,
+        "cached_input_tokens": 24576,
+        "output_tokens": 843,
+        "reasoning_output_tokens": 375,
+        "total_tokens": 30547,
+        "uncached_input_tokens": 5128
+      },
+      "planner_elapsed_s": 43.586891,
+      "implementer_elapsed_s": 25.759298,
+      "elapsed_from_logs_s": 69.34618900000001
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "LA",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 103531,
+        "cached_input_tokens": 89472,
+        "output_tokens": 4238,
+        "reasoning_output_tokens": 2699,
+        "total_tokens": 107769,
+        "uncached_input_tokens": 14059
+      },
+      "planner_usage": {
+        "input_tokens": 38383,
+        "cached_input_tokens": 30464,
+        "output_tokens": 3469,
+        "reasoning_output_tokens": 2651,
+        "total_tokens": 41852,
+        "uncached_input_tokens": 7919
+      },
+      "implementer_usage": {
+        "input_tokens": 65148,
+        "cached_input_tokens": 59008,
+        "output_tokens": 769,
+        "reasoning_output_tokens": 48,
+        "total_tokens": 65917,
+        "uncached_input_tokens": 6140
+      },
+      "planner_elapsed_s": 74.271064,
+      "implementer_elapsed_s": 46.070926,
+      "elapsed_from_logs_s": 120.34199
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "AL",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 91247,
+        "cached_input_tokens": 63360,
+        "output_tokens": 2691,
+        "reasoning_output_tokens": 1096,
+        "total_tokens": 93938,
+        "uncached_input_tokens": 27887
+      },
+      "planner_usage": {
+        "input_tokens": 51559,
+        "cached_input_tokens": 37760,
+        "output_tokens": 1020,
+        "reasoning_output_tokens": 267,
+        "total_tokens": 52579,
+        "uncached_input_tokens": 13799
+      },
+      "implementer_usage": {
+        "input_tokens": 39688,
+        "cached_input_tokens": 25600,
+        "output_tokens": 1671,
+        "reasoning_output_tokens": 829,
+        "total_tokens": 41359,
+        "uncached_input_tokens": 14088
+      },
+      "planner_elapsed_s": 46.824875,
+      "implementer_elapsed_s": 44.556134,
+      "elapsed_from_logs_s": 91.381009
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "LA",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 114686,
+        "cached_input_tokens": 86144,
+        "output_tokens": 3499,
+        "reasoning_output_tokens": 2030,
+        "total_tokens": 118185,
+        "uncached_input_tokens": 28542
+      },
+      "planner_usage": {
+        "input_tokens": 49716,
+        "cached_input_tokens": 28672,
+        "output_tokens": 3020,
+        "reasoning_output_tokens": 2007,
+        "total_tokens": 52736,
+        "uncached_input_tokens": 21044
+      },
+      "implementer_usage": {
+        "input_tokens": 64970,
+        "cached_input_tokens": 57472,
+        "output_tokens": 479,
+        "reasoning_output_tokens": 23,
+        "total_tokens": 65449,
+        "uncached_input_tokens": 7498
+      },
+      "planner_elapsed_s": 68.260283,
+      "implementer_elapsed_s": 34.151995,
+      "elapsed_from_logs_s": 102.412278
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "LA",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 120139,
+        "cached_input_tokens": 96768,
+        "output_tokens": 4103,
+        "reasoning_output_tokens": 2830,
+        "total_tokens": 124242,
+        "uncached_input_tokens": 23371
+      },
+      "planner_usage": {
+        "input_tokens": 67302,
+        "cached_input_tokens": 56320,
+        "output_tokens": 3713,
+        "reasoning_output_tokens": 2830,
+        "total_tokens": 71015,
+        "uncached_input_tokens": 10982
+      },
+      "implementer_usage": {
+        "input_tokens": 52837,
+        "cached_input_tokens": 40448,
+        "output_tokens": 390,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 53227,
+        "uncached_input_tokens": 12389
+      },
+      "planner_elapsed_s": 82.568147,
+      "implementer_elapsed_s": 29.731039,
+      "elapsed_from_logs_s": 112.29918599999999
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "AL",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 116821,
+        "cached_input_tokens": 90240,
+        "output_tokens": 3926,
+        "reasoning_output_tokens": 2343,
+        "total_tokens": 120747,
+        "uncached_input_tokens": 26581
+      },
+      "planner_usage": {
+        "input_tokens": 51533,
+        "cached_input_tokens": 39040,
+        "output_tokens": 669,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52202,
+        "uncached_input_tokens": 12493
+      },
+      "implementer_usage": {
+        "input_tokens": 65288,
+        "cached_input_tokens": 51200,
+        "output_tokens": 3257,
+        "reasoning_output_tokens": 2343,
+        "total_tokens": 68545,
+        "uncached_input_tokens": 14088
+      },
+      "planner_elapsed_s": 34.873414,
+      "implementer_elapsed_s": 76.684518,
+      "elapsed_from_logs_s": 111.557932
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "AL",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 80641,
+        "cached_input_tokens": 59776,
+        "output_tokens": 2968,
+        "reasoning_output_tokens": 1473,
+        "total_tokens": 83609,
+        "uncached_input_tokens": 20865
+      },
+      "planner_usage": {
+        "input_tokens": 41895,
+        "cached_input_tokens": 29312,
+        "output_tokens": 1435,
+        "reasoning_output_tokens": 702,
+        "total_tokens": 43330,
+        "uncached_input_tokens": 12583
+      },
+      "implementer_usage": {
+        "input_tokens": 38746,
+        "cached_input_tokens": 30464,
+        "output_tokens": 1533,
+        "reasoning_output_tokens": 771,
+        "total_tokens": 40279,
+        "uncached_input_tokens": 8282
+      },
+      "planner_elapsed_s": 56.115062,
+      "implementer_elapsed_s": 43.831859,
+      "elapsed_from_logs_s": 99.946921
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "LA",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 100389,
+        "cached_input_tokens": 78848,
+        "output_tokens": 6519,
+        "reasoning_output_tokens": 4684,
+        "total_tokens": 106908,
+        "uncached_input_tokens": 21541
+      },
+      "planner_usage": {
+        "input_tokens": 31298,
+        "cached_input_tokens": 25600,
+        "output_tokens": 4728,
+        "reasoning_output_tokens": 3833,
+        "total_tokens": 36026,
+        "uncached_input_tokens": 5698
+      },
+      "implementer_usage": {
+        "input_tokens": 69091,
+        "cached_input_tokens": 53248,
+        "output_tokens": 1791,
+        "reasoning_output_tokens": 851,
+        "total_tokens": 70882,
+        "uncached_input_tokens": 15843
+      },
+      "planner_elapsed_s": 94.734849,
+      "implementer_elapsed_s": 79.919969,
+      "elapsed_from_logs_s": 174.65481799999998
+    },
+    {
+      "task": "gcd",
+      "condition": "AL",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 113247,
+        "cached_input_tokens": 89600,
+        "output_tokens": 3323,
+        "reasoning_output_tokens": 1749,
+        "total_tokens": 116570,
+        "uncached_input_tokens": 23647
+      },
+      "planner_usage": {
+        "input_tokens": 51777,
+        "cached_input_tokens": 36352,
+        "output_tokens": 1504,
+        "reasoning_output_tokens": 826,
+        "total_tokens": 53281,
+        "uncached_input_tokens": 15425
+      },
+      "implementer_usage": {
+        "input_tokens": 61470,
+        "cached_input_tokens": 53248,
+        "output_tokens": 1819,
+        "reasoning_output_tokens": 923,
+        "total_tokens": 63289,
+        "uncached_input_tokens": 8222
+      },
+      "planner_elapsed_s": 63.560161,
+      "implementer_elapsed_s": 50.905146,
+      "elapsed_from_logs_s": 114.465307
+    },
+    {
+      "task": "gcd",
+      "condition": "LA",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 120904,
+        "cached_input_tokens": 95744,
+        "output_tokens": 3077,
+        "reasoning_output_tokens": 1615,
+        "total_tokens": 123981,
+        "uncached_input_tokens": 25160
+      },
+      "planner_usage": {
+        "input_tokens": 56268,
+        "cached_input_tokens": 36608,
+        "output_tokens": 2311,
+        "reasoning_output_tokens": 1333,
+        "total_tokens": 58579,
+        "uncached_input_tokens": 19660
+      },
+      "implementer_usage": {
+        "input_tokens": 64636,
+        "cached_input_tokens": 59136,
+        "output_tokens": 766,
+        "reasoning_output_tokens": 282,
+        "total_tokens": 65402,
+        "uncached_input_tokens": 5500
+      },
+      "planner_elapsed_s": 56.280794,
+      "implementer_elapsed_s": 43.586058,
+      "elapsed_from_logs_s": 99.866852
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "LA",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 91517,
+        "cached_input_tokens": 75136,
+        "output_tokens": 3762,
+        "reasoning_output_tokens": 2519,
+        "total_tokens": 95279,
+        "uncached_input_tokens": 16381
+      },
+      "planner_usage": {
+        "input_tokens": 38302,
+        "cached_input_tokens": 26624,
+        "output_tokens": 3280,
+        "reasoning_output_tokens": 2503,
+        "total_tokens": 41582,
+        "uncached_input_tokens": 11678
+      },
+      "implementer_usage": {
+        "input_tokens": 53215,
+        "cached_input_tokens": 48512,
+        "output_tokens": 482,
+        "reasoning_output_tokens": 16,
+        "total_tokens": 53697,
+        "uncached_input_tokens": 4703
+      },
+      "planner_elapsed_s": 71.294072,
+      "implementer_elapsed_s": 35.460009,
+      "elapsed_from_logs_s": 106.754081
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "AL",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 98378,
+        "cached_input_tokens": 78592,
+        "output_tokens": 2378,
+        "reasoning_output_tokens": 817,
+        "total_tokens": 100756,
+        "uncached_input_tokens": 19786
+      },
+      "planner_usage": {
+        "input_tokens": 53223,
+        "cached_input_tokens": 43264,
+        "output_tokens": 1161,
+        "reasoning_output_tokens": 286,
+        "total_tokens": 54384,
+        "uncached_input_tokens": 9959
+      },
+      "implementer_usage": {
+        "input_tokens": 45155,
+        "cached_input_tokens": 35328,
+        "output_tokens": 1217,
+        "reasoning_output_tokens": 531,
+        "total_tokens": 46372,
+        "uncached_input_tokens": 9827
+      },
+      "planner_elapsed_s": 56.080007,
+      "implementer_elapsed_s": 36.17071,
+      "elapsed_from_logs_s": 92.25071700000001
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "LA",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 106268,
+        "cached_input_tokens": 73728,
+        "output_tokens": 4605,
+        "reasoning_output_tokens": 3391,
+        "total_tokens": 110873,
+        "uncached_input_tokens": 32540
+      },
+      "planner_usage": {
+        "input_tokens": 54208,
+        "cached_input_tokens": 44544,
+        "output_tokens": 4274,
+        "reasoning_output_tokens": 3391,
+        "total_tokens": 58482,
+        "uncached_input_tokens": 9664
+      },
+      "implementer_usage": {
+        "input_tokens": 52060,
+        "cached_input_tokens": 29184,
+        "output_tokens": 331,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52391,
+        "uncached_input_tokens": 22876
+      },
+      "planner_elapsed_s": 94.182699,
+      "implementer_elapsed_s": 29.027848,
+      "elapsed_from_logs_s": 123.21054699999999
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "AL",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 96718,
+        "cached_input_tokens": 72576,
+        "output_tokens": 2152,
+        "reasoning_output_tokens": 795,
+        "total_tokens": 98870,
+        "uncached_input_tokens": 24142
+      },
+      "planner_usage": {
+        "input_tokens": 51352,
+        "cached_input_tokens": 39040,
+        "output_tokens": 726,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52078,
+        "uncached_input_tokens": 12312
+      },
+      "implementer_usage": {
+        "input_tokens": 45366,
+        "cached_input_tokens": 33536,
+        "output_tokens": 1426,
+        "reasoning_output_tokens": 795,
+        "total_tokens": 46792,
+        "uncached_input_tokens": 11830
+      },
+      "planner_elapsed_s": 35.399463,
+      "implementer_elapsed_s": 38.518624,
+      "elapsed_from_logs_s": 73.918087
+    },
+    {
+      "task": "bitcount",
+      "condition": "LA",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 101178,
+        "cached_input_tokens": 78336,
+        "output_tokens": 3539,
+        "reasoning_output_tokens": 2288,
+        "total_tokens": 104717,
+        "uncached_input_tokens": 22842
+      },
+      "planner_usage": {
+        "input_tokens": 48852,
+        "cached_input_tokens": 41472,
+        "output_tokens": 3185,
+        "reasoning_output_tokens": 2288,
+        "total_tokens": 52037,
+        "uncached_input_tokens": 7380
+      },
+      "implementer_usage": {
+        "input_tokens": 52326,
+        "cached_input_tokens": 36864,
+        "output_tokens": 354,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52680,
+        "uncached_input_tokens": 15462
+      },
+      "planner_elapsed_s": 71.880489,
+      "implementer_elapsed_s": 28.272988,
+      "elapsed_from_logs_s": 100.153477
+    },
+    {
+      "task": "bitcount",
+      "condition": "AL",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 98561,
+        "cached_input_tokens": 71552,
+        "output_tokens": 2474,
+        "reasoning_output_tokens": 1043,
+        "total_tokens": 101035,
+        "uncached_input_tokens": 27009
+      },
+      "planner_usage": {
+        "input_tokens": 51046,
+        "cached_input_tokens": 44928,
+        "output_tokens": 637,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51683,
+        "uncached_input_tokens": 6118
+      },
+      "implementer_usage": {
+        "input_tokens": 47515,
+        "cached_input_tokens": 26624,
+        "output_tokens": 1837,
+        "reasoning_output_tokens": 1043,
+        "total_tokens": 49352,
+        "uncached_input_tokens": 20891
+      },
+      "planner_elapsed_s": 39.941829,
+      "implementer_elapsed_s": 50.147282,
+      "elapsed_from_logs_s": 90.089111
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "AL",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 107530,
+        "cached_input_tokens": 94336,
+        "output_tokens": 3241,
+        "reasoning_output_tokens": 1730,
+        "total_tokens": 110771,
+        "uncached_input_tokens": 13194
+      },
+      "planner_usage": {
+        "input_tokens": 51712,
+        "cached_input_tokens": 46976,
+        "output_tokens": 867,
+        "reasoning_output_tokens": 191,
+        "total_tokens": 52579,
+        "uncached_input_tokens": 4736
+      },
+      "implementer_usage": {
+        "input_tokens": 55818,
+        "cached_input_tokens": 47360,
+        "output_tokens": 2374,
+        "reasoning_output_tokens": 1539,
+        "total_tokens": 58192,
+        "uncached_input_tokens": 8458
+      },
+      "planner_elapsed_s": 37.955657,
+      "implementer_elapsed_s": 61.188134,
+      "elapsed_from_logs_s": 99.143791
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "LA",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 104176,
+        "cached_input_tokens": 86144,
+        "output_tokens": 4015,
+        "reasoning_output_tokens": 2616,
+        "total_tokens": 108191,
+        "uncached_input_tokens": 18032
+      },
+      "planner_usage": {
+        "input_tokens": 38620,
+        "cached_input_tokens": 30464,
+        "output_tokens": 3369,
+        "reasoning_output_tokens": 2568,
+        "total_tokens": 41989,
+        "uncached_input_tokens": 8156
+      },
+      "implementer_usage": {
+        "input_tokens": 65556,
+        "cached_input_tokens": 55680,
+        "output_tokens": 646,
+        "reasoning_output_tokens": 48,
+        "total_tokens": 66202,
+        "uncached_input_tokens": 9876
+      },
+      "planner_elapsed_s": 70.689513,
+      "implementer_elapsed_s": 41.219737,
+      "elapsed_from_logs_s": 111.90925000000001
+    },
+    {
+      "task": "quicksort",
+      "condition": "AL",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 101144,
+        "cached_input_tokens": 71936,
+        "output_tokens": 2603,
+        "reasoning_output_tokens": 1053,
+        "total_tokens": 103747,
+        "uncached_input_tokens": 29208
+      },
+      "planner_usage": {
+        "input_tokens": 51164,
+        "cached_input_tokens": 29440,
+        "output_tokens": 632,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51796,
+        "uncached_input_tokens": 21724
+      },
+      "implementer_usage": {
+        "input_tokens": 49980,
+        "cached_input_tokens": 42496,
+        "output_tokens": 1971,
+        "reasoning_output_tokens": 1053,
+        "total_tokens": 51951,
+        "uncached_input_tokens": 7484
+      },
+      "planner_elapsed_s": 35.559706,
+      "implementer_elapsed_s": 48.419752,
+      "elapsed_from_logs_s": 83.979458
+    },
+    {
+      "task": "quicksort",
+      "condition": "LA",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 87279,
+        "cached_input_tokens": 67584,
+        "output_tokens": 6033,
+        "reasoning_output_tokens": 4660,
+        "total_tokens": 93312,
+        "uncached_input_tokens": 19695
+      },
+      "planner_usage": {
+        "input_tokens": 46086,
+        "cached_input_tokens": 38400,
+        "output_tokens": 5623,
+        "reasoning_output_tokens": 4660,
+        "total_tokens": 51709,
+        "uncached_input_tokens": 7686
+      },
+      "implementer_usage": {
+        "input_tokens": 41193,
+        "cached_input_tokens": 29184,
+        "output_tokens": 410,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 41603,
+        "uncached_input_tokens": 12009
+      },
+      "planner_elapsed_s": 112.707505,
+      "implementer_elapsed_s": 29.655969,
+      "elapsed_from_logs_s": 142.363474
+    },
+    {
+      "task": "bitcount",
+      "condition": "LA",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 85080,
+        "cached_input_tokens": 48000,
+        "output_tokens": 3219,
+        "reasoning_output_tokens": 2157,
+        "total_tokens": 88299,
+        "uncached_input_tokens": 37080
+      },
+      "planner_usage": {
+        "input_tokens": 32629,
+        "cached_input_tokens": 18688,
+        "output_tokens": 2829,
+        "reasoning_output_tokens": 2141,
+        "total_tokens": 35458,
+        "uncached_input_tokens": 13941
+      },
+      "implementer_usage": {
+        "input_tokens": 52451,
+        "cached_input_tokens": 29312,
+        "output_tokens": 390,
+        "reasoning_output_tokens": 16,
+        "total_tokens": 52841,
+        "uncached_input_tokens": 23139
+      },
+      "planner_elapsed_s": 62.011891,
+      "implementer_elapsed_s": 32.454711,
+      "elapsed_from_logs_s": 94.466602
+    },
+    {
+      "task": "bitcount",
+      "condition": "AL",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 93720,
+        "cached_input_tokens": 81536,
+        "output_tokens": 2477,
+        "reasoning_output_tokens": 1048,
+        "total_tokens": 96197,
+        "uncached_input_tokens": 12184
+      },
+      "planner_usage": {
+        "input_tokens": 51842,
+        "cached_input_tokens": 46976,
+        "output_tokens": 883,
+        "reasoning_output_tokens": 198,
+        "total_tokens": 52725,
+        "uncached_input_tokens": 4866
+      },
+      "implementer_usage": {
+        "input_tokens": 41878,
+        "cached_input_tokens": 34560,
+        "output_tokens": 1594,
+        "reasoning_output_tokens": 850,
+        "total_tokens": 43472,
+        "uncached_input_tokens": 7318
+      },
+      "planner_elapsed_s": 53.323043,
+      "implementer_elapsed_s": 42.16238,
+      "elapsed_from_logs_s": 95.485423
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "LA",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 106591,
+        "cached_input_tokens": 93056,
+        "output_tokens": 4352,
+        "reasoning_output_tokens": 2474,
+        "total_tokens": 110943,
+        "uncached_input_tokens": 13535
+      },
+      "planner_usage": {
+        "input_tokens": 38209,
+        "cached_input_tokens": 31488,
+        "output_tokens": 2897,
+        "reasoning_output_tokens": 1923,
+        "total_tokens": 41106,
+        "uncached_input_tokens": 6721
+      },
+      "implementer_usage": {
+        "input_tokens": 68382,
+        "cached_input_tokens": 61568,
+        "output_tokens": 1455,
+        "reasoning_output_tokens": 551,
+        "total_tokens": 69837,
+        "uncached_input_tokens": 6814
+      },
+      "planner_elapsed_s": 64.062974,
+      "implementer_elapsed_s": 60.40944,
+      "elapsed_from_logs_s": 124.47241399999999
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "AL",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 97060,
+        "cached_input_tokens": 80896,
+        "output_tokens": 3269,
+        "reasoning_output_tokens": 1809,
+        "total_tokens": 100329,
+        "uncached_input_tokens": 16164
+      },
+      "planner_usage": {
+        "input_tokens": 52291,
+        "cached_input_tokens": 43520,
+        "output_tokens": 1805,
+        "reasoning_output_tokens": 983,
+        "total_tokens": 54096,
+        "uncached_input_tokens": 8771
+      },
+      "implementer_usage": {
+        "input_tokens": 44769,
+        "cached_input_tokens": 37376,
+        "output_tokens": 1464,
+        "reasoning_output_tokens": 826,
+        "total_tokens": 46233,
+        "uncached_input_tokens": 7393
+      },
+      "planner_elapsed_s": 74.368399,
+      "implementer_elapsed_s": 42.34275,
+      "elapsed_from_logs_s": 116.711149
+    },
+    {
+      "task": "bitcount",
+      "condition": "LA",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 113514,
+        "cached_input_tokens": 81792,
+        "output_tokens": 3258,
+        "reasoning_output_tokens": 1893,
+        "total_tokens": 116772,
+        "uncached_input_tokens": 31722
+      },
+      "planner_usage": {
+        "input_tokens": 49688,
+        "cached_input_tokens": 40448,
+        "output_tokens": 2785,
+        "reasoning_output_tokens": 1814,
+        "total_tokens": 52473,
+        "uncached_input_tokens": 9240
+      },
+      "implementer_usage": {
+        "input_tokens": 63826,
+        "cached_input_tokens": 41344,
+        "output_tokens": 473,
+        "reasoning_output_tokens": 79,
+        "total_tokens": 64299,
+        "uncached_input_tokens": 22482
+      },
+      "planner_elapsed_s": 63.193492,
+      "implementer_elapsed_s": 36.598935,
+      "elapsed_from_logs_s": 99.792427
+    },
+    {
+      "task": "bitcount",
+      "condition": "AL",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 88008,
+        "cached_input_tokens": 76160,
+        "output_tokens": 1901,
+        "reasoning_output_tokens": 666,
+        "total_tokens": 89909,
+        "uncached_input_tokens": 11848
+      },
+      "planner_usage": {
+        "input_tokens": 51226,
+        "cached_input_tokens": 46720,
+        "output_tokens": 834,
+        "reasoning_output_tokens": 181,
+        "total_tokens": 52060,
+        "uncached_input_tokens": 4506
+      },
+      "implementer_usage": {
+        "input_tokens": 36782,
+        "cached_input_tokens": 29440,
+        "output_tokens": 1067,
+        "reasoning_output_tokens": 485,
+        "total_tokens": 37849,
+        "uncached_input_tokens": 7342
+      },
+      "planner_elapsed_s": 44.109648,
+      "implementer_elapsed_s": 32.089475,
+      "elapsed_from_logs_s": 76.199123
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "AL",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 138637,
+        "cached_input_tokens": 112384,
+        "output_tokens": 3632,
+        "reasoning_output_tokens": 1603,
+        "total_tokens": 142269,
+        "uncached_input_tokens": 26253
+      },
+      "planner_usage": {
+        "input_tokens": 51366,
+        "cached_input_tokens": 45056,
+        "output_tokens": 625,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51991,
+        "uncached_input_tokens": 6310
+      },
+      "implementer_usage": {
+        "input_tokens": 87271,
+        "cached_input_tokens": 67328,
+        "output_tokens": 3007,
+        "reasoning_output_tokens": 1603,
+        "total_tokens": 90278,
+        "uncached_input_tokens": 19943
+      },
+      "planner_elapsed_s": 35.632915,
+      "implementer_elapsed_s": 76.8748,
+      "elapsed_from_logs_s": 112.50771499999999
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "LA",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 95392,
+        "cached_input_tokens": 72320,
+        "output_tokens": 2073,
+        "reasoning_output_tokens": 927,
+        "total_tokens": 97465,
+        "uncached_input_tokens": 23072
+      },
+      "planner_usage": {
+        "input_tokens": 53890,
+        "cached_input_tokens": 39424,
+        "output_tokens": 1734,
+        "reasoning_output_tokens": 927,
+        "total_tokens": 55624,
+        "uncached_input_tokens": 14466
+      },
+      "implementer_usage": {
+        "input_tokens": 41502,
+        "cached_input_tokens": 32896,
+        "output_tokens": 339,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 41841,
+        "uncached_input_tokens": 8606
+      },
+      "planner_elapsed_s": 49.167271,
+      "implementer_elapsed_s": 31.057965,
+      "elapsed_from_logs_s": 80.225236
+    },
+    {
+      "task": "quicksort",
+      "condition": "AL",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 80996,
+        "cached_input_tokens": 64512,
+        "output_tokens": 1884,
+        "reasoning_output_tokens": 768,
+        "total_tokens": 82880,
+        "uncached_input_tokens": 16484
+      },
+      "planner_usage": {
+        "input_tokens": 51160,
+        "cached_input_tokens": 38912,
+        "output_tokens": 660,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51820,
+        "uncached_input_tokens": 12248
+      },
+      "implementer_usage": {
+        "input_tokens": 29836,
+        "cached_input_tokens": 25600,
+        "output_tokens": 1224,
+        "reasoning_output_tokens": 768,
+        "total_tokens": 31060,
+        "uncached_input_tokens": 4236
+      },
+      "planner_elapsed_s": 36.541842,
+      "implementer_elapsed_s": 32.353029,
+      "elapsed_from_logs_s": 68.894871
+    },
+    {
+      "task": "quicksort",
+      "condition": "LA",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 73034,
+        "cached_input_tokens": 63488,
+        "output_tokens": 3203,
+        "reasoning_output_tokens": 2080,
+        "total_tokens": 76237,
+        "uncached_input_tokens": 9546
+      },
+      "planner_usage": {
+        "input_tokens": 31808,
+        "cached_input_tokens": 26624,
+        "output_tokens": 2826,
+        "reasoning_output_tokens": 2080,
+        "total_tokens": 34634,
+        "uncached_input_tokens": 5184
+      },
+      "implementer_usage": {
+        "input_tokens": 41226,
+        "cached_input_tokens": 36864,
+        "output_tokens": 377,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 41603,
+        "uncached_input_tokens": 4362
+      },
+      "planner_elapsed_s": 59.620117,
+      "implementer_elapsed_s": 28.888981,
+      "elapsed_from_logs_s": 88.509098
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "LA",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 85473,
+        "cached_input_tokens": 64128,
+        "output_tokens": 3633,
+        "reasoning_output_tokens": 2340,
+        "total_tokens": 89106,
+        "uncached_input_tokens": 21345
+      },
+      "planner_usage": {
+        "input_tokens": 32085,
+        "cached_input_tokens": 23552,
+        "output_tokens": 3100,
+        "reasoning_output_tokens": 2340,
+        "total_tokens": 35185,
+        "uncached_input_tokens": 8533
+      },
+      "implementer_usage": {
+        "input_tokens": 53388,
+        "cached_input_tokens": 40576,
+        "output_tokens": 533,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 53921,
+        "uncached_input_tokens": 12812
+      },
+      "planner_elapsed_s": 67.700195,
+      "implementer_elapsed_s": 36.733654,
+      "elapsed_from_logs_s": 104.433849
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "AL",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 98569,
+        "cached_input_tokens": 87168,
+        "output_tokens": 2768,
+        "reasoning_output_tokens": 1558,
+        "total_tokens": 101337,
+        "uncached_input_tokens": 11401
+      },
+      "planner_usage": {
+        "input_tokens": 51588,
+        "cached_input_tokens": 46720,
+        "output_tokens": 664,
+        "reasoning_output_tokens": 35,
+        "total_tokens": 52252,
+        "uncached_input_tokens": 4868
+      },
+      "implementer_usage": {
+        "input_tokens": 46981,
+        "cached_input_tokens": 40448,
+        "output_tokens": 2104,
+        "reasoning_output_tokens": 1523,
+        "total_tokens": 49085,
+        "uncached_input_tokens": 6533
+      },
+      "planner_elapsed_s": 34.066647,
+      "implementer_elapsed_s": 50.486716,
+      "elapsed_from_logs_s": 84.553363
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "LA",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 83480,
+        "cached_input_tokens": 71552,
+        "output_tokens": 2681,
+        "reasoning_output_tokens": 1576,
+        "total_tokens": 86161,
+        "uncached_input_tokens": 11928
+      },
+      "planner_usage": {
+        "input_tokens": 42059,
+        "cached_input_tokens": 34560,
+        "output_tokens": 2349,
+        "reasoning_output_tokens": 1576,
+        "total_tokens": 44408,
+        "uncached_input_tokens": 7499
+      },
+      "implementer_usage": {
+        "input_tokens": 41421,
+        "cached_input_tokens": 36992,
+        "output_tokens": 332,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 41753,
+        "uncached_input_tokens": 4429
+      },
+      "planner_elapsed_s": 56.060507,
+      "implementer_elapsed_s": 29.19446,
+      "elapsed_from_logs_s": 85.254967
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "AL",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 98137,
+        "cached_input_tokens": 87168,
+        "output_tokens": 2208,
+        "reasoning_output_tokens": 838,
+        "total_tokens": 100345,
+        "uncached_input_tokens": 10969
+      },
+      "planner_usage": {
+        "input_tokens": 51630,
+        "cached_input_tokens": 46720,
+        "output_tokens": 696,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52326,
+        "uncached_input_tokens": 4910
+      },
+      "implementer_usage": {
+        "input_tokens": 46507,
+        "cached_input_tokens": 40448,
+        "output_tokens": 1512,
+        "reasoning_output_tokens": 838,
+        "total_tokens": 48019,
+        "uncached_input_tokens": 6059
+      },
+      "planner_elapsed_s": 38.260088,
+      "implementer_elapsed_s": 41.981849,
+      "elapsed_from_logs_s": 80.24193700000001
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "LA",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 102471,
+        "cached_input_tokens": 71936,
+        "output_tokens": 4005,
+        "reasoning_output_tokens": 2566,
+        "total_tokens": 106476,
+        "uncached_input_tokens": 30535
+      },
+      "planner_usage": {
+        "input_tokens": 49635,
+        "cached_input_tokens": 31488,
+        "output_tokens": 3519,
+        "reasoning_output_tokens": 2538,
+        "total_tokens": 53154,
+        "uncached_input_tokens": 18147
+      },
+      "implementer_usage": {
+        "input_tokens": 52836,
+        "cached_input_tokens": 40448,
+        "output_tokens": 486,
+        "reasoning_output_tokens": 28,
+        "total_tokens": 53322,
+        "uncached_input_tokens": 12388
+      },
+      "planner_elapsed_s": 78.080507,
+      "implementer_elapsed_s": 33.278674,
+      "elapsed_from_logs_s": 111.359181
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "AL",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 89607,
+        "cached_input_tokens": 65280,
+        "output_tokens": 1957,
+        "reasoning_output_tokens": 711,
+        "total_tokens": 91564,
+        "uncached_input_tokens": 24327
+      },
+      "planner_usage": {
+        "input_tokens": 51351,
+        "cached_input_tokens": 46592,
+        "output_tokens": 736,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52087,
+        "uncached_input_tokens": 4759
+      },
+      "implementer_usage": {
+        "input_tokens": 38256,
+        "cached_input_tokens": 18688,
+        "output_tokens": 1221,
+        "reasoning_output_tokens": 711,
+        "total_tokens": 39477,
+        "uncached_input_tokens": 19568
+      },
+      "planner_elapsed_s": 38.988968,
+      "implementer_elapsed_s": 35.978527,
+      "elapsed_from_logs_s": 74.967495
+    },
+    {
+      "task": "quicksort",
+      "condition": "LA",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 87592,
+        "cached_input_tokens": 77056,
+        "output_tokens": 3541,
+        "reasoning_output_tokens": 2464,
+        "total_tokens": 91133,
+        "uncached_input_tokens": 10536
+      },
+      "planner_usage": {
+        "input_tokens": 22844,
+        "cached_input_tokens": 17664,
+        "output_tokens": 2958,
+        "reasoning_output_tokens": 2396,
+        "total_tokens": 25802,
+        "uncached_input_tokens": 5180
+      },
+      "implementer_usage": {
+        "input_tokens": 64748,
+        "cached_input_tokens": 59392,
+        "output_tokens": 583,
+        "reasoning_output_tokens": 68,
+        "total_tokens": 65331,
+        "uncached_input_tokens": 5356
+      },
+      "planner_elapsed_s": 64.121601,
+      "implementer_elapsed_s": 30.312932,
+      "elapsed_from_logs_s": 94.434533
+    },
+    {
+      "task": "quicksort",
+      "condition": "AL",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 99786,
+        "cached_input_tokens": 88320,
+        "output_tokens": 2908,
+        "reasoning_output_tokens": 1387,
+        "total_tokens": 102694,
+        "uncached_input_tokens": 11466
+      },
+      "planner_usage": {
+        "input_tokens": 51380,
+        "cached_input_tokens": 46848,
+        "output_tokens": 1357,
+        "reasoning_output_tokens": 584,
+        "total_tokens": 52737,
+        "uncached_input_tokens": 4532
+      },
+      "implementer_usage": {
+        "input_tokens": 48406,
+        "cached_input_tokens": 41472,
+        "output_tokens": 1551,
+        "reasoning_output_tokens": 803,
+        "total_tokens": 49957,
+        "uncached_input_tokens": 6934
+      },
+      "planner_elapsed_s": 59.12175,
+      "implementer_elapsed_s": 43.61625,
+      "elapsed_from_logs_s": 102.738
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "AL",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 96869,
+        "cached_input_tokens": 78464,
+        "output_tokens": 2260,
+        "reasoning_output_tokens": 844,
+        "total_tokens": 99129,
+        "uncached_input_tokens": 18405
+      },
+      "planner_usage": {
+        "input_tokens": 51641,
+        "cached_input_tokens": 43136,
+        "output_tokens": 718,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52359,
+        "uncached_input_tokens": 8505
+      },
+      "implementer_usage": {
+        "input_tokens": 45228,
+        "cached_input_tokens": 35328,
+        "output_tokens": 1542,
+        "reasoning_output_tokens": 844,
+        "total_tokens": 46770,
+        "uncached_input_tokens": 9900
+      },
+      "planner_elapsed_s": 36.548778,
+      "implementer_elapsed_s": 39.902624,
+      "elapsed_from_logs_s": 76.451402
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "LA",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 90925,
+        "cached_input_tokens": 71936,
+        "output_tokens": 2856,
+        "reasoning_output_tokens": 1631,
+        "total_tokens": 93781,
+        "uncached_input_tokens": 18989
+      },
+      "planner_usage": {
+        "input_tokens": 38237,
+        "cached_input_tokens": 24576,
+        "output_tokens": 2501,
+        "reasoning_output_tokens": 1631,
+        "total_tokens": 40738,
+        "uncached_input_tokens": 13661
+      },
+      "implementer_usage": {
+        "input_tokens": 52688,
+        "cached_input_tokens": 47360,
+        "output_tokens": 355,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 53043,
+        "uncached_input_tokens": 5328
+      },
+      "planner_elapsed_s": 56.674401,
+      "implementer_elapsed_s": 26.63542,
+      "elapsed_from_logs_s": 83.309821
+    },
+    {
+      "task": "gcd",
+      "condition": "AL",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 82910,
+        "cached_input_tokens": 62976,
+        "output_tokens": 1749,
+        "reasoning_output_tokens": 574,
+        "total_tokens": 84659,
+        "uncached_input_tokens": 19934
+      },
+      "planner_usage": {
+        "input_tokens": 50336,
+        "cached_input_tokens": 35328,
+        "output_tokens": 664,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51000,
+        "uncached_input_tokens": 15008
+      },
+      "implementer_usage": {
+        "input_tokens": 32574,
+        "cached_input_tokens": 27648,
+        "output_tokens": 1085,
+        "reasoning_output_tokens": 574,
+        "total_tokens": 33659,
+        "uncached_input_tokens": 4926
+      },
+      "planner_elapsed_s": 39.08851,
+      "implementer_elapsed_s": 28.967664,
+      "elapsed_from_logs_s": 68.056174
+    },
+    {
+      "task": "gcd",
+      "condition": "LA",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 90860,
+        "cached_input_tokens": 63872,
+        "output_tokens": 2284,
+        "reasoning_output_tokens": 1017,
+        "total_tokens": 93144,
+        "uncached_input_tokens": 26988
+      },
+      "planner_usage": {
+        "input_tokens": 38106,
+        "cached_input_tokens": 23552,
+        "output_tokens": 1889,
+        "reasoning_output_tokens": 1006,
+        "total_tokens": 39995,
+        "uncached_input_tokens": 14554
+      },
+      "implementer_usage": {
+        "input_tokens": 52754,
+        "cached_input_tokens": 40320,
+        "output_tokens": 395,
+        "reasoning_output_tokens": 11,
+        "total_tokens": 53149,
+        "uncached_input_tokens": 12434
+      },
+      "planner_elapsed_s": 48.944384,
+      "implementer_elapsed_s": 32.132674,
+      "elapsed_from_logs_s": 81.077058
+    },
+    {
+      "task": "gcd",
+      "condition": "AL",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 88981,
+        "cached_input_tokens": 58240,
+        "output_tokens": 1839,
+        "reasoning_output_tokens": 649,
+        "total_tokens": 90820,
+        "uncached_input_tokens": 30741
+      },
+      "planner_usage": {
+        "input_tokens": 51227,
+        "cached_input_tokens": 27776,
+        "output_tokens": 639,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51866,
+        "uncached_input_tokens": 23451
+      },
+      "implementer_usage": {
+        "input_tokens": 37754,
+        "cached_input_tokens": 30464,
+        "output_tokens": 1200,
+        "reasoning_output_tokens": 649,
+        "total_tokens": 38954,
+        "uncached_input_tokens": 7290
+      },
+      "planner_elapsed_s": 36.554163,
+      "implementer_elapsed_s": 33.096577,
+      "elapsed_from_logs_s": 69.65074000000001
+    },
+    {
+      "task": "gcd",
+      "condition": "LA",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 79616,
+        "cached_input_tokens": 61568,
+        "output_tokens": 2632,
+        "reasoning_output_tokens": 1549,
+        "total_tokens": 82248,
+        "uncached_input_tokens": 18048
+      },
+      "planner_usage": {
+        "input_tokens": 38616,
+        "cached_input_tokens": 32512,
+        "output_tokens": 2336,
+        "reasoning_output_tokens": 1549,
+        "total_tokens": 40952,
+        "uncached_input_tokens": 6104
+      },
+      "implementer_usage": {
+        "input_tokens": 41000,
+        "cached_input_tokens": 29056,
+        "output_tokens": 296,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 41296,
+        "uncached_input_tokens": 11944
+      },
+      "planner_elapsed_s": 55.757533,
+      "implementer_elapsed_s": 28.01119,
+      "elapsed_from_logs_s": 83.768723
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "AL",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 116114,
+        "cached_input_tokens": 85376,
+        "output_tokens": 3681,
+        "reasoning_output_tokens": 1970,
+        "total_tokens": 119795,
+        "uncached_input_tokens": 30738
+      },
+      "planner_usage": {
+        "input_tokens": 53642,
+        "cached_input_tokens": 48000,
+        "output_tokens": 1488,
+        "reasoning_output_tokens": 738,
+        "total_tokens": 55130,
+        "uncached_input_tokens": 5642
+      },
+      "implementer_usage": {
+        "input_tokens": 62472,
+        "cached_input_tokens": 37376,
+        "output_tokens": 2193,
+        "reasoning_output_tokens": 1232,
+        "total_tokens": 64665,
+        "uncached_input_tokens": 25096
+      },
+      "planner_elapsed_s": 58.28843,
+      "implementer_elapsed_s": 62.205812,
+      "elapsed_from_logs_s": 120.494242
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "LA",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 103523,
+        "cached_input_tokens": 88576,
+        "output_tokens": 2680,
+        "reasoning_output_tokens": 1097,
+        "total_tokens": 106203,
+        "uncached_input_tokens": 14947
+      },
+      "planner_usage": {
+        "input_tokens": 38831,
+        "cached_input_tokens": 29440,
+        "output_tokens": 2019,
+        "reasoning_output_tokens": 929,
+        "total_tokens": 40850,
+        "uncached_input_tokens": 9391
+      },
+      "implementer_usage": {
+        "input_tokens": 64692,
+        "cached_input_tokens": 59136,
+        "output_tokens": 661,
+        "reasoning_output_tokens": 168,
+        "total_tokens": 65353,
+        "uncached_input_tokens": 5556
+      },
+      "planner_elapsed_s": 47.131134,
+      "implementer_elapsed_s": 37.282156,
+      "elapsed_from_logs_s": 84.41329
+    },
+    {
+      "task": "bitcount",
+      "condition": "LA",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 99937,
+        "cached_input_tokens": 89088,
+        "output_tokens": 3034,
+        "reasoning_output_tokens": 1917,
+        "total_tokens": 102971,
+        "uncached_input_tokens": 10849
+      },
+      "planner_usage": {
+        "input_tokens": 47734,
+        "cached_input_tokens": 41472,
+        "output_tokens": 2591,
+        "reasoning_output_tokens": 1910,
+        "total_tokens": 50325,
+        "uncached_input_tokens": 6262
+      },
+      "implementer_usage": {
+        "input_tokens": 52203,
+        "cached_input_tokens": 47616,
+        "output_tokens": 443,
+        "reasoning_output_tokens": 7,
+        "total_tokens": 52646,
+        "uncached_input_tokens": 4587
+      },
+      "planner_elapsed_s": 62.128944,
+      "implementer_elapsed_s": 36.090608,
+      "elapsed_from_logs_s": 98.219552
+    },
+    {
+      "task": "bitcount",
+      "condition": "AL",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 110278,
+        "cached_input_tokens": 91008,
+        "output_tokens": 2169,
+        "reasoning_output_tokens": 709,
+        "total_tokens": 112447,
+        "uncached_input_tokens": 19270
+      },
+      "planner_usage": {
+        "input_tokens": 62470,
+        "cached_input_tokens": 56448,
+        "output_tokens": 657,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 63127,
+        "uncached_input_tokens": 6022
+      },
+      "implementer_usage": {
+        "input_tokens": 47808,
+        "cached_input_tokens": 34560,
+        "output_tokens": 1512,
+        "reasoning_output_tokens": 709,
+        "total_tokens": 49320,
+        "uncached_input_tokens": 13248
+      },
+      "planner_elapsed_s": 48.725553,
+      "implementer_elapsed_s": 42.846241,
+      "elapsed_from_logs_s": 91.571794
+    },
+    {
+      "task": "gcd",
+      "condition": "LA",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 102048,
+        "cached_input_tokens": 89088,
+        "output_tokens": 2777,
+        "reasoning_output_tokens": 1596,
+        "total_tokens": 104825,
+        "uncached_input_tokens": 12960
+      },
+      "planner_usage": {
+        "input_tokens": 38409,
+        "cached_input_tokens": 32512,
+        "output_tokens": 2379,
+        "reasoning_output_tokens": 1576,
+        "total_tokens": 40788,
+        "uncached_input_tokens": 5897
+      },
+      "implementer_usage": {
+        "input_tokens": 63639,
+        "cached_input_tokens": 56576,
+        "output_tokens": 398,
+        "reasoning_output_tokens": 20,
+        "total_tokens": 64037,
+        "uncached_input_tokens": 7063
+      },
+      "planner_elapsed_s": 62.343503,
+      "implementer_elapsed_s": 37.021495,
+      "elapsed_from_logs_s": 99.364998
+    },
+    {
+      "task": "gcd",
+      "condition": "AL",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 93367,
+        "cached_input_tokens": 68480,
+        "output_tokens": 2857,
+        "reasoning_output_tokens": 1422,
+        "total_tokens": 96224,
+        "uncached_input_tokens": 24887
+      },
+      "planner_usage": {
+        "input_tokens": 51112,
+        "cached_input_tokens": 46720,
+        "output_tokens": 880,
+        "reasoning_output_tokens": 237,
+        "total_tokens": 51992,
+        "uncached_input_tokens": 4392
+      },
+      "implementer_usage": {
+        "input_tokens": 42255,
+        "cached_input_tokens": 21760,
+        "output_tokens": 1977,
+        "reasoning_output_tokens": 1185,
+        "total_tokens": 44232,
+        "uncached_input_tokens": 20495
+      },
+      "planner_elapsed_s": 44.017978,
+      "implementer_elapsed_s": 57.562236,
+      "elapsed_from_logs_s": 101.580214
+    },
+    {
+      "task": "quicksort",
+      "condition": "AA",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 104252,
+        "cached_input_tokens": 68224,
+        "output_tokens": 1138,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 105390,
+        "uncached_input_tokens": 36028
+      },
+      "planner_usage": {
+        "input_tokens": 50981,
+        "cached_input_tokens": 27776,
+        "output_tokens": 616,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51597,
+        "uncached_input_tokens": 23205
+      },
+      "implementer_usage": {
+        "input_tokens": 53271,
+        "cached_input_tokens": 40448,
+        "output_tokens": 522,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 53793,
+        "uncached_input_tokens": 12823
+      },
+      "planner_elapsed_s": 38.777289,
+      "implementer_elapsed_s": 34.623391,
+      "elapsed_from_logs_s": 73.40068
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "A",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 40640,
+        "cached_input_tokens": 36608,
+        "output_tokens": 364,
+        "reasoning_output_tokens": 17,
+        "total_tokens": 41004,
+        "uncached_input_tokens": 4032
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 40640,
+        "cached_input_tokens": 36608,
+        "output_tokens": 364,
+        "reasoning_output_tokens": 17,
+        "total_tokens": 41004,
+        "uncached_input_tokens": 4032
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 26.910981,
+      "elapsed_from_logs_s": 26.910981
+    },
+    {
+      "task": "bitcount",
+      "condition": "AA",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 101728,
+        "cached_input_tokens": 70016,
+        "output_tokens": 912,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 102640,
+        "uncached_input_tokens": 31712
+      },
+      "planner_usage": {
+        "input_tokens": 51007,
+        "cached_input_tokens": 38784,
+        "output_tokens": 640,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51647,
+        "uncached_input_tokens": 12223
+      },
+      "implementer_usage": {
+        "input_tokens": 50721,
+        "cached_input_tokens": 31232,
+        "output_tokens": 272,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 50993,
+        "uncached_input_tokens": 19489
+      },
+      "planner_elapsed_s": 41.270106,
+      "implementer_elapsed_s": 25.221245,
+      "elapsed_from_logs_s": 66.491351
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "AA",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 107638,
+        "cached_input_tokens": 77056,
+        "output_tokens": 2121,
+        "reasoning_output_tokens": 885,
+        "total_tokens": 109759,
+        "uncached_input_tokens": 30582
+      },
+      "planner_usage": {
+        "input_tokens": 41694,
+        "cached_input_tokens": 29184,
+        "output_tokens": 1262,
+        "reasoning_output_tokens": 612,
+        "total_tokens": 42956,
+        "uncached_input_tokens": 12510
+      },
+      "implementer_usage": {
+        "input_tokens": 65944,
+        "cached_input_tokens": 47872,
+        "output_tokens": 859,
+        "reasoning_output_tokens": 273,
+        "total_tokens": 66803,
+        "uncached_input_tokens": 18072
+      },
+      "planner_elapsed_s": 55.153531,
+      "implementer_elapsed_s": 44.878281,
+      "elapsed_from_logs_s": 100.031812
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "AA",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 93945,
+        "cached_input_tokens": 68736,
+        "output_tokens": 1100,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 95045,
+        "uncached_input_tokens": 25209
+      },
+      "planner_usage": {
+        "input_tokens": 51879,
+        "cached_input_tokens": 39168,
+        "output_tokens": 722,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52601,
+        "uncached_input_tokens": 12711
+      },
+      "implementer_usage": {
+        "input_tokens": 42066,
+        "cached_input_tokens": 29568,
+        "output_tokens": 378,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 42444,
+        "uncached_input_tokens": 12498
+      },
+      "planner_elapsed_s": 39.336706,
+      "implementer_elapsed_s": 30.45921,
+      "elapsed_from_logs_s": 69.795916
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "A",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 64102,
+        "cached_input_tokens": 41472,
+        "output_tokens": 532,
+        "reasoning_output_tokens": 51,
+        "total_tokens": 64634,
+        "uncached_input_tokens": 22630
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 64102,
+        "cached_input_tokens": 41472,
+        "output_tokens": 532,
+        "reasoning_output_tokens": 51,
+        "total_tokens": 64634,
+        "uncached_input_tokens": 22630
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 37.603845,
+      "elapsed_from_logs_s": 37.603845
+    },
+    {
+      "task": "quicksort",
+      "condition": "AA",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 104832,
+        "cached_input_tokens": 72704,
+        "output_tokens": 1227,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 106059,
+        "uncached_input_tokens": 32128
+      },
+      "planner_usage": {
+        "input_tokens": 51430,
+        "cached_input_tokens": 41344,
+        "output_tokens": 693,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52123,
+        "uncached_input_tokens": 10086
+      },
+      "implementer_usage": {
+        "input_tokens": 53402,
+        "cached_input_tokens": 31360,
+        "output_tokens": 534,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 53936,
+        "uncached_input_tokens": 22042
+      },
+      "planner_elapsed_s": 39.60796,
+      "implementer_elapsed_s": 41.81256,
+      "elapsed_from_logs_s": 81.42052
+    },
+    {
+      "task": "bitcount",
+      "condition": "AA",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 103959,
+        "cached_input_tokens": 94592,
+        "output_tokens": 1031,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 104990,
+        "uncached_input_tokens": 9367
+      },
+      "planner_usage": {
+        "input_tokens": 51052,
+        "cached_input_tokens": 46464,
+        "output_tokens": 648,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51700,
+        "uncached_input_tokens": 4588
+      },
+      "implementer_usage": {
+        "input_tokens": 52907,
+        "cached_input_tokens": 48128,
+        "output_tokens": 383,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 53290,
+        "uncached_input_tokens": 4779
+      },
+      "planner_elapsed_s": 39.390837,
+      "implementer_elapsed_s": 30.29407,
+      "elapsed_from_logs_s": 69.684907
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "A",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 62144,
+        "cached_input_tokens": 49664,
+        "output_tokens": 397,
+        "reasoning_output_tokens": 9,
+        "total_tokens": 62541,
+        "uncached_input_tokens": 12480
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 62144,
+        "cached_input_tokens": 49664,
+        "output_tokens": 397,
+        "reasoning_output_tokens": 9,
+        "total_tokens": 62541,
+        "uncached_input_tokens": 12480
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 34.508443,
+      "elapsed_from_logs_s": 34.508443
+    },
+    {
+      "task": "bitcount",
+      "condition": "AA",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 92263,
+        "cached_input_tokens": 76672,
+        "output_tokens": 915,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 93178,
+        "uncached_input_tokens": 15591
+      },
+      "planner_usage": {
+        "input_tokens": 50850,
+        "cached_input_tokens": 44928,
+        "output_tokens": 586,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51436,
+        "uncached_input_tokens": 5922
+      },
+      "implementer_usage": {
+        "input_tokens": 41413,
+        "cached_input_tokens": 31744,
+        "output_tokens": 329,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 41742,
+        "uncached_input_tokens": 9669
+      },
+      "planner_elapsed_s": 40.455189,
+      "implementer_elapsed_s": 25.403434,
+      "elapsed_from_logs_s": 65.858623
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "A",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 63056,
+        "cached_input_tokens": 57984,
+        "output_tokens": 379,
+        "reasoning_output_tokens": 10,
+        "total_tokens": 63435,
+        "uncached_input_tokens": 5072
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 63056,
+        "cached_input_tokens": 57984,
+        "output_tokens": 379,
+        "reasoning_output_tokens": 10,
+        "total_tokens": 63435,
+        "uncached_input_tokens": 5072
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 30.512212,
+      "elapsed_from_logs_s": 30.512212
+    },
+    {
+      "task": "gcd",
+      "condition": "AA",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 115654,
+        "cached_input_tokens": 96384,
+        "output_tokens": 1492,
+        "reasoning_output_tokens": 258,
+        "total_tokens": 117146,
+        "uncached_input_tokens": 19270
+      },
+      "planner_usage": {
+        "input_tokens": 50936,
+        "cached_input_tokens": 45184,
+        "output_tokens": 868,
+        "reasoning_output_tokens": 216,
+        "total_tokens": 51804,
+        "uncached_input_tokens": 5752
+      },
+      "implementer_usage": {
+        "input_tokens": 64718,
+        "cached_input_tokens": 51200,
+        "output_tokens": 624,
+        "reasoning_output_tokens": 42,
+        "total_tokens": 65342,
+        "uncached_input_tokens": 13518
+      },
+      "planner_elapsed_s": 40.433735,
+      "implementer_elapsed_s": 36.93315,
+      "elapsed_from_logs_s": 77.366885
+    },
+    {
+      "task": "quicksort",
+      "condition": "AA",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 116773,
+        "cached_input_tokens": 89728,
+        "output_tokens": 1666,
+        "reasoning_output_tokens": 256,
+        "total_tokens": 118439,
+        "uncached_input_tokens": 27045
+      },
+      "planner_usage": {
+        "input_tokens": 51078,
+        "cached_input_tokens": 45056,
+        "output_tokens": 901,
+        "reasoning_output_tokens": 219,
+        "total_tokens": 51979,
+        "uncached_input_tokens": 6022
+      },
+      "implementer_usage": {
+        "input_tokens": 65695,
+        "cached_input_tokens": 44672,
+        "output_tokens": 765,
+        "reasoning_output_tokens": 37,
+        "total_tokens": 66460,
+        "uncached_input_tokens": 21023
+      },
+      "planner_elapsed_s": 41.330125,
+      "implementer_elapsed_s": 51.154699,
+      "elapsed_from_logs_s": 92.484824
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "AA",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 118061,
+        "cached_input_tokens": 94720,
+        "output_tokens": 1783,
+        "reasoning_output_tokens": 293,
+        "total_tokens": 119844,
+        "uncached_input_tokens": 23341
+      },
+      "planner_usage": {
+        "input_tokens": 52715,
+        "cached_input_tokens": 47360,
+        "output_tokens": 1090,
+        "reasoning_output_tokens": 279,
+        "total_tokens": 53805,
+        "uncached_input_tokens": 5355
+      },
+      "implementer_usage": {
+        "input_tokens": 65346,
+        "cached_input_tokens": 47360,
+        "output_tokens": 693,
+        "reasoning_output_tokens": 14,
+        "total_tokens": 66039,
+        "uncached_input_tokens": 17986
+      },
+      "planner_elapsed_s": 58.83531,
+      "implementer_elapsed_s": 38.531923,
+      "elapsed_from_logs_s": 97.367233
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "AA",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 118053,
+        "cached_input_tokens": 102912,
+        "output_tokens": 3028,
+        "reasoning_output_tokens": 1428,
+        "total_tokens": 121081,
+        "uncached_input_tokens": 15141
+      },
+      "planner_usage": {
+        "input_tokens": 51522,
+        "cached_input_tokens": 45056,
+        "output_tokens": 1770,
+        "reasoning_output_tokens": 980,
+        "total_tokens": 53292,
+        "uncached_input_tokens": 6466
+      },
+      "implementer_usage": {
+        "input_tokens": 66531,
+        "cached_input_tokens": 57856,
+        "output_tokens": 1258,
+        "reasoning_output_tokens": 448,
+        "total_tokens": 67789,
+        "uncached_input_tokens": 8675
+      },
+      "planner_elapsed_s": 72.417248,
+      "implementer_elapsed_s": 59.579448,
+      "elapsed_from_logs_s": 131.996696
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "AA",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 117979,
+        "cached_input_tokens": 104704,
+        "output_tokens": 2095,
+        "reasoning_output_tokens": 792,
+        "total_tokens": 120074,
+        "uncached_input_tokens": 13275
+      },
+      "planner_usage": {
+        "input_tokens": 52202,
+        "cached_input_tokens": 47232,
+        "output_tokens": 1189,
+        "reasoning_output_tokens": 532,
+        "total_tokens": 53391,
+        "uncached_input_tokens": 4970
+      },
+      "implementer_usage": {
+        "input_tokens": 65777,
+        "cached_input_tokens": 57472,
+        "output_tokens": 906,
+        "reasoning_output_tokens": 260,
+        "total_tokens": 66683,
+        "uncached_input_tokens": 8305
+      },
+      "planner_elapsed_s": 57.689705,
+      "implementer_elapsed_s": 48.602763,
+      "elapsed_from_logs_s": 106.292468
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "A",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 52554,
+        "cached_input_tokens": 40192,
+        "output_tokens": 605,
+        "reasoning_output_tokens": 106,
+        "total_tokens": 53159,
+        "uncached_input_tokens": 12362
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 52554,
+        "cached_input_tokens": 40192,
+        "output_tokens": 605,
+        "reasoning_output_tokens": 106,
+        "total_tokens": 53159,
+        "uncached_input_tokens": 12362
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 36.733405,
+      "elapsed_from_logs_s": 36.733405
+    },
+    {
+      "task": "quicksort",
+      "condition": "A",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 76935,
+        "cached_input_tokens": 63232,
+        "output_tokens": 796,
+        "reasoning_output_tokens": 127,
+        "total_tokens": 77731,
+        "uncached_input_tokens": 13703
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 76935,
+        "cached_input_tokens": 63232,
+        "output_tokens": 796,
+        "reasoning_output_tokens": 127,
+        "total_tokens": 77731,
+        "uncached_input_tokens": 13703
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 47.009726,
+      "elapsed_from_logs_s": 47.009726
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "AA",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 93465,
+        "cached_input_tokens": 74624,
+        "output_tokens": 1026,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 94491,
+        "uncached_input_tokens": 18841
+      },
+      "planner_usage": {
+        "input_tokens": 51667,
+        "cached_input_tokens": 37504,
+        "output_tokens": 660,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52327,
+        "uncached_input_tokens": 14163
+      },
+      "implementer_usage": {
+        "input_tokens": 41798,
+        "cached_input_tokens": 37120,
+        "output_tokens": 366,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 42164,
+        "uncached_input_tokens": 4678
+      },
+      "planner_elapsed_s": 34.268825,
+      "implementer_elapsed_s": 28.953319,
+      "elapsed_from_logs_s": 63.222144
+    },
+    {
+      "task": "quicksort",
+      "condition": "A",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 50180,
+        "cached_input_tokens": 27648,
+        "output_tokens": 385,
+        "reasoning_output_tokens": 7,
+        "total_tokens": 50565,
+        "uncached_input_tokens": 22532
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 50180,
+        "cached_input_tokens": 27648,
+        "output_tokens": 385,
+        "reasoning_output_tokens": 7,
+        "total_tokens": 50565,
+        "uncached_input_tokens": 22532
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 29.100001,
+      "elapsed_from_logs_s": 29.100001
+    },
+    {
+      "task": "gcd",
+      "condition": "AA",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 91013,
+        "cached_input_tokens": 65408,
+        "output_tokens": 1040,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 92053,
+        "uncached_input_tokens": 25605
+      },
+      "planner_usage": {
+        "input_tokens": 50906,
+        "cached_input_tokens": 29312,
+        "output_tokens": 601,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51507,
+        "uncached_input_tokens": 21594
+      },
+      "implementer_usage": {
+        "input_tokens": 40107,
+        "cached_input_tokens": 36096,
+        "output_tokens": 439,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 40546,
+        "uncached_input_tokens": 4011
+      },
+      "planner_elapsed_s": 35.952932,
+      "implementer_elapsed_s": 31.587434,
+      "elapsed_from_logs_s": 67.54036599999999
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "AA",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 93974,
+        "cached_input_tokens": 83840,
+        "output_tokens": 1237,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 95211,
+        "uncached_input_tokens": 10134
+      },
+      "planner_usage": {
+        "input_tokens": 51559,
+        "cached_input_tokens": 46720,
+        "output_tokens": 675,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52234,
+        "uncached_input_tokens": 4839
+      },
+      "implementer_usage": {
+        "input_tokens": 42415,
+        "cached_input_tokens": 37120,
+        "output_tokens": 562,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 42977,
+        "uncached_input_tokens": 5295
+      },
+      "planner_elapsed_s": 38.846835,
+      "implementer_elapsed_s": 40.11487,
+      "elapsed_from_logs_s": 78.961705
+    },
+    {
+      "task": "gcd",
+      "condition": "A",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 50779,
+        "cached_input_tokens": 30080,
+        "output_tokens": 348,
+        "reasoning_output_tokens": 10,
+        "total_tokens": 51127,
+        "uncached_input_tokens": 20699
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 50779,
+        "cached_input_tokens": 30080,
+        "output_tokens": 348,
+        "reasoning_output_tokens": 10,
+        "total_tokens": 51127,
+        "uncached_input_tokens": 20699
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 25.214399,
+      "elapsed_from_logs_s": 25.214399
+    },
+    {
+      "task": "quicksort",
+      "condition": "LL",
+      "astra_effort": null,
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 71521,
+        "cached_input_tokens": 49408,
+        "output_tokens": 3378,
+        "reasoning_output_tokens": 2004,
+        "total_tokens": 74899,
+        "uncached_input_tokens": 22113
+      },
+      "planner_usage": {
+        "input_tokens": 32468,
+        "cached_input_tokens": 21760,
+        "output_tokens": 2189,
+        "reasoning_output_tokens": 1508,
+        "total_tokens": 34657,
+        "uncached_input_tokens": 10708
+      },
+      "implementer_usage": {
+        "input_tokens": 39053,
+        "cached_input_tokens": 27648,
+        "output_tokens": 1189,
+        "reasoning_output_tokens": 496,
+        "total_tokens": 40242,
+        "uncached_input_tokens": 11405
+      },
+      "planner_elapsed_s": 50.688814,
+      "implementer_elapsed_s": 32.416962,
+      "elapsed_from_logs_s": 83.10577599999999
+    },
+    {
+      "task": "bitcount",
+      "condition": "AA",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 115613,
+        "cached_input_tokens": 85888,
+        "output_tokens": 1657,
+        "reasoning_output_tokens": 236,
+        "total_tokens": 117270,
+        "uncached_input_tokens": 29725
+      },
+      "planner_usage": {
+        "input_tokens": 50930,
+        "cached_input_tokens": 46464,
+        "output_tokens": 1014,
+        "reasoning_output_tokens": 206,
+        "total_tokens": 51944,
+        "uncached_input_tokens": 4466
+      },
+      "implementer_usage": {
+        "input_tokens": 64683,
+        "cached_input_tokens": 39424,
+        "output_tokens": 643,
+        "reasoning_output_tokens": 30,
+        "total_tokens": 65326,
+        "uncached_input_tokens": 25259
+      },
+      "planner_elapsed_s": 50.346418,
+      "implementer_elapsed_s": 41.104981,
+      "elapsed_from_logs_s": 91.45139900000001
+    },
+    {
+      "task": "gcd",
+      "condition": "A",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 51770,
+        "cached_input_tokens": 39808,
+        "output_tokens": 491,
+        "reasoning_output_tokens": 31,
+        "total_tokens": 52261,
+        "uncached_input_tokens": 11962
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 51770,
+        "cached_input_tokens": 39808,
+        "output_tokens": 491,
+        "reasoning_output_tokens": 31,
+        "total_tokens": 52261,
+        "uncached_input_tokens": 11962
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 33.465307,
+      "elapsed_from_logs_s": 33.465307
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "AA",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 120287,
+        "cached_input_tokens": 98176,
+        "output_tokens": 2224,
+        "reasoning_output_tokens": 401,
+        "total_tokens": 122511,
+        "uncached_input_tokens": 22111
+      },
+      "planner_usage": {
+        "input_tokens": 54470,
+        "cached_input_tokens": 38528,
+        "output_tokens": 1568,
+        "reasoning_output_tokens": 380,
+        "total_tokens": 56038,
+        "uncached_input_tokens": 15942
+      },
+      "implementer_usage": {
+        "input_tokens": 65817,
+        "cached_input_tokens": 59648,
+        "output_tokens": 656,
+        "reasoning_output_tokens": 21,
+        "total_tokens": 66473,
+        "uncached_input_tokens": 6169
+      },
+      "planner_elapsed_s": 72.40365,
+      "implementer_elapsed_s": 39.18734,
+      "elapsed_from_logs_s": 111.59099
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "AA",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 117085,
+        "cached_input_tokens": 93312,
+        "output_tokens": 1482,
+        "reasoning_output_tokens": 206,
+        "total_tokens": 118567,
+        "uncached_input_tokens": 23773
+      },
+      "planner_usage": {
+        "input_tokens": 51392,
+        "cached_input_tokens": 39040,
+        "output_tokens": 804,
+        "reasoning_output_tokens": 159,
+        "total_tokens": 52196,
+        "uncached_input_tokens": 12352
+      },
+      "implementer_usage": {
+        "input_tokens": 65693,
+        "cached_input_tokens": 54272,
+        "output_tokens": 678,
+        "reasoning_output_tokens": 47,
+        "total_tokens": 66371,
+        "uncached_input_tokens": 11421
+      },
+      "planner_elapsed_s": 41.291504,
+      "implementer_elapsed_s": 41.148074,
+      "elapsed_from_logs_s": 82.43957800000001
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "L",
+      "astra_effort": null,
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 47447,
+        "cached_input_tokens": 28672,
+        "output_tokens": 1362,
+        "reasoning_output_tokens": 597,
+        "total_tokens": 48809,
+        "uncached_input_tokens": 18775
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 47447,
+        "cached_input_tokens": 28672,
+        "output_tokens": 1362,
+        "reasoning_output_tokens": 597,
+        "total_tokens": 48809,
+        "uncached_input_tokens": 18775
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 41.376359,
+      "elapsed_from_logs_s": 41.376359
+    },
+    {
+      "task": "quicksort",
+      "condition": "L",
+      "astra_effort": null,
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 47586,
+        "cached_input_tokens": 31488,
+        "output_tokens": 1547,
+        "reasoning_output_tokens": 843,
+        "total_tokens": 49133,
+        "uncached_input_tokens": 16098
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 47586,
+        "cached_input_tokens": 31488,
+        "output_tokens": 1547,
+        "reasoning_output_tokens": 843,
+        "total_tokens": 49133,
+        "uncached_input_tokens": 16098
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 45.16428,
+      "elapsed_from_logs_s": 45.16428
+    },
+    {
+      "task": "bitcount",
+      "condition": "A",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 62637,
+        "cached_input_tokens": 57728,
+        "output_tokens": 445,
+        "reasoning_output_tokens": 10,
+        "total_tokens": 63082,
+        "uncached_input_tokens": 4909
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 62637,
+        "cached_input_tokens": 57728,
+        "output_tokens": 445,
+        "reasoning_output_tokens": 10,
+        "total_tokens": 63082,
+        "uncached_input_tokens": 4909
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 30.851285,
+      "elapsed_from_logs_s": 30.851285
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "AA",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 117475,
+        "cached_input_tokens": 104832,
+        "output_tokens": 1508,
+        "reasoning_output_tokens": 315,
+        "total_tokens": 118983,
+        "uncached_input_tokens": 12643
+      },
+      "planner_usage": {
+        "input_tokens": 51911,
+        "cached_input_tokens": 46976,
+        "output_tokens": 978,
+        "reasoning_output_tokens": 207,
+        "total_tokens": 52889,
+        "uncached_input_tokens": 4935
+      },
+      "implementer_usage": {
+        "input_tokens": 65564,
+        "cached_input_tokens": 57856,
+        "output_tokens": 530,
+        "reasoning_output_tokens": 108,
+        "total_tokens": 66094,
+        "uncached_input_tokens": 7708
+      },
+      "planner_elapsed_s": 45.868828,
+      "implementer_elapsed_s": 35.592242,
+      "elapsed_from_logs_s": 81.46107
+    },
+    {
+      "task": "gcd",
+      "condition": "A",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 62974,
+        "cached_input_tokens": 56832,
+        "output_tokens": 691,
+        "reasoning_output_tokens": 202,
+        "total_tokens": 63665,
+        "uncached_input_tokens": 6142
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 62974,
+        "cached_input_tokens": 56832,
+        "output_tokens": 691,
+        "reasoning_output_tokens": 202,
+        "total_tokens": 63665,
+        "uncached_input_tokens": 6142
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 40.243798,
+      "elapsed_from_logs_s": 40.243798
+    },
+    {
+      "task": "gcd",
+      "condition": "A",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 50413,
+        "cached_input_tokens": 46080,
+        "output_tokens": 316,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 50729,
+        "uncached_input_tokens": 4333
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 50413,
+        "cached_input_tokens": 46080,
+        "output_tokens": 316,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 50729,
+        "uncached_input_tokens": 4333
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 30.614992,
+      "elapsed_from_logs_s": 30.614992
+    },
+    {
+      "task": "bitcount",
+      "condition": "AA",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 105069,
+        "cached_input_tokens": 87680,
+        "output_tokens": 1424,
+        "reasoning_output_tokens": 225,
+        "total_tokens": 106493,
+        "uncached_input_tokens": 17389
+      },
+      "planner_usage": {
+        "input_tokens": 51480,
+        "cached_input_tokens": 39168,
+        "output_tokens": 848,
+        "reasoning_output_tokens": 208,
+        "total_tokens": 52328,
+        "uncached_input_tokens": 12312
+      },
+      "implementer_usage": {
+        "input_tokens": 53589,
+        "cached_input_tokens": 48512,
+        "output_tokens": 576,
+        "reasoning_output_tokens": 17,
+        "total_tokens": 54165,
+        "uncached_input_tokens": 5077
+      },
+      "planner_elapsed_s": 47.899908,
+      "implementer_elapsed_s": 34.809863,
+      "elapsed_from_logs_s": 82.709771
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "AA",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 105375,
+        "cached_input_tokens": 88064,
+        "output_tokens": 1409,
+        "reasoning_output_tokens": 52,
+        "total_tokens": 106784,
+        "uncached_input_tokens": 17311
+      },
+      "planner_usage": {
+        "input_tokens": 51353,
+        "cached_input_tokens": 43136,
+        "output_tokens": 821,
+        "reasoning_output_tokens": 52,
+        "total_tokens": 52174,
+        "uncached_input_tokens": 8217
+      },
+      "implementer_usage": {
+        "input_tokens": 54022,
+        "cached_input_tokens": 44928,
+        "output_tokens": 588,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 54610,
+        "uncached_input_tokens": 9094
+      },
+      "planner_elapsed_s": 43.345123,
+      "implementer_elapsed_s": 40.294555,
+      "elapsed_from_logs_s": 83.639678
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "A",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 51639,
+        "cached_input_tokens": 36736,
+        "output_tokens": 415,
+        "reasoning_output_tokens": 7,
+        "total_tokens": 52054,
+        "uncached_input_tokens": 14903
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 51639,
+        "cached_input_tokens": 36736,
+        "output_tokens": 415,
+        "reasoning_output_tokens": 7,
+        "total_tokens": 52054,
+        "uncached_input_tokens": 14903
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 28.948816,
+      "elapsed_from_logs_s": 28.948816
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "AA",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 93502,
+        "cached_input_tokens": 59392,
+        "output_tokens": 932,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 94434,
+        "uncached_input_tokens": 34110
+      },
+      "planner_usage": {
+        "input_tokens": 51779,
+        "cached_input_tokens": 39168,
+        "output_tokens": 669,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52448,
+        "uncached_input_tokens": 12611
+      },
+      "implementer_usage": {
+        "input_tokens": 41723,
+        "cached_input_tokens": 20224,
+        "output_tokens": 263,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 41986,
+        "uncached_input_tokens": 21499
+      },
+      "planner_elapsed_s": 36.272241,
+      "implementer_elapsed_s": 21.321059,
+      "elapsed_from_logs_s": 57.5933
+    },
+    {
+      "task": "bitcount",
+      "condition": "L",
+      "astra_effort": null,
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 49814,
+        "cached_input_tokens": 42496,
+        "output_tokens": 1315,
+        "reasoning_output_tokens": 662,
+        "total_tokens": 51129,
+        "uncached_input_tokens": 7318
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 49814,
+        "cached_input_tokens": 42496,
+        "output_tokens": 1315,
+        "reasoning_output_tokens": 662,
+        "total_tokens": 51129,
+        "uncached_input_tokens": 7318
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 36.667285,
+      "elapsed_from_logs_s": 36.667285
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "LL",
+      "astra_effort": null,
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 80323,
+        "cached_input_tokens": 64000,
+        "output_tokens": 4875,
+        "reasoning_output_tokens": 3043,
+        "total_tokens": 85198,
+        "uncached_input_tokens": 16323
+      },
+      "planner_usage": {
+        "input_tokens": 34894,
+        "cached_input_tokens": 25600,
+        "output_tokens": 3233,
+        "reasoning_output_tokens": 2106,
+        "total_tokens": 38127,
+        "uncached_input_tokens": 9294
+      },
+      "implementer_usage": {
+        "input_tokens": 45429,
+        "cached_input_tokens": 38400,
+        "output_tokens": 1642,
+        "reasoning_output_tokens": 937,
+        "total_tokens": 47071,
+        "uncached_input_tokens": 7029
+      },
+      "planner_elapsed_s": 65.650978,
+      "implementer_elapsed_s": 42.319082,
+      "elapsed_from_logs_s": 107.97005999999999
+    },
+    {
+      "task": "quicksort",
+      "condition": "A",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 52029,
+        "cached_input_tokens": 29312,
+        "output_tokens": 445,
+        "reasoning_output_tokens": 28,
+        "total_tokens": 52474,
+        "uncached_input_tokens": 22717
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 52029,
+        "cached_input_tokens": 29312,
+        "output_tokens": 445,
+        "reasoning_output_tokens": 28,
+        "total_tokens": 52474,
+        "uncached_input_tokens": 22717
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 37.09534,
+      "elapsed_from_logs_s": 37.09534
+    },
+    {
+      "task": "quicksort",
+      "condition": "A",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 63527,
+        "cached_input_tokens": 58368,
+        "output_tokens": 488,
+        "reasoning_output_tokens": 14,
+        "total_tokens": 64015,
+        "uncached_input_tokens": 5159
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 63527,
+        "cached_input_tokens": 58368,
+        "output_tokens": 488,
+        "reasoning_output_tokens": 14,
+        "total_tokens": 64015,
+        "uncached_input_tokens": 5159
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 36.324534,
+      "elapsed_from_logs_s": 36.324534
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "A",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 76202,
+        "cached_input_tokens": 70528,
+        "output_tokens": 1320,
+        "reasoning_output_tokens": 477,
+        "total_tokens": 77522,
+        "uncached_input_tokens": 5674
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 76202,
+        "cached_input_tokens": 70528,
+        "output_tokens": 1320,
+        "reasoning_output_tokens": 477,
+        "total_tokens": 77522,
+        "uncached_input_tokens": 5674
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 63.82983,
+      "elapsed_from_logs_s": 63.82983
+    },
+    {
+      "task": "bitcount",
+      "condition": "LL",
+      "astra_effort": null,
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 82866,
+        "cached_input_tokens": 65792,
+        "output_tokens": 4834,
+        "reasoning_output_tokens": 3283,
+        "total_tokens": 87700,
+        "uncached_input_tokens": 17074
+      },
+      "planner_usage": {
+        "input_tokens": 38003,
+        "cached_input_tokens": 28416,
+        "output_tokens": 3485,
+        "reasoning_output_tokens": 2590,
+        "total_tokens": 41488,
+        "uncached_input_tokens": 9587
+      },
+      "implementer_usage": {
+        "input_tokens": 44863,
+        "cached_input_tokens": 37376,
+        "output_tokens": 1349,
+        "reasoning_output_tokens": 693,
+        "total_tokens": 46212,
+        "uncached_input_tokens": 7487
+      },
+      "planner_elapsed_s": 77.452965,
+      "implementer_elapsed_s": 36.682358,
+      "elapsed_from_logs_s": 114.135323
+    },
+    {
+      "task": "bitcount",
+      "condition": "A",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 63146,
+        "cached_input_tokens": 51072,
+        "output_tokens": 789,
+        "reasoning_output_tokens": 286,
+        "total_tokens": 63935,
+        "uncached_input_tokens": 12074
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 63146,
+        "cached_input_tokens": 51072,
+        "output_tokens": 789,
+        "reasoning_output_tokens": 286,
+        "total_tokens": 63935,
+        "uncached_input_tokens": 12074
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 42.104941,
+      "elapsed_from_logs_s": 42.104941
+    },
+    {
+      "task": "gcd",
+      "condition": "AA",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 104746,
+        "cached_input_tokens": 94976,
+        "output_tokens": 1504,
+        "reasoning_output_tokens": 276,
+        "total_tokens": 106250,
+        "uncached_input_tokens": 9770
+      },
+      "planner_usage": {
+        "input_tokens": 51378,
+        "cached_input_tokens": 46720,
+        "output_tokens": 925,
+        "reasoning_output_tokens": 241,
+        "total_tokens": 52303,
+        "uncached_input_tokens": 4658
+      },
+      "implementer_usage": {
+        "input_tokens": 53368,
+        "cached_input_tokens": 48256,
+        "output_tokens": 579,
+        "reasoning_output_tokens": 35,
+        "total_tokens": 53947,
+        "uncached_input_tokens": 5112
+      },
+      "planner_elapsed_s": 50.128336,
+      "implementer_elapsed_s": 34.797225,
+      "elapsed_from_logs_s": 84.92556099999999
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "A",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 64152,
+        "cached_input_tokens": 52608,
+        "output_tokens": 683,
+        "reasoning_output_tokens": 174,
+        "total_tokens": 64835,
+        "uncached_input_tokens": 11544
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 64152,
+        "cached_input_tokens": 52608,
+        "output_tokens": 683,
+        "reasoning_output_tokens": 174,
+        "total_tokens": 64835,
+        "uncached_input_tokens": 11544
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 47.144497,
+      "elapsed_from_logs_s": 47.144497
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "A",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 64248,
+        "cached_input_tokens": 39680,
+        "output_tokens": 556,
+        "reasoning_output_tokens": 50,
+        "total_tokens": 64804,
+        "uncached_input_tokens": 24568
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 64248,
+        "cached_input_tokens": 39680,
+        "output_tokens": 556,
+        "reasoning_output_tokens": 50,
+        "total_tokens": 64804,
+        "uncached_input_tokens": 24568
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 37.097537,
+      "elapsed_from_logs_s": 37.097537
+    },
+    {
+      "task": "bitcount",
+      "condition": "A",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 51360,
+        "cached_input_tokens": 30336,
+        "output_tokens": 365,
+        "reasoning_output_tokens": 8,
+        "total_tokens": 51725,
+        "uncached_input_tokens": 21024
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 51360,
+        "cached_input_tokens": 30336,
+        "output_tokens": 365,
+        "reasoning_output_tokens": 8,
+        "total_tokens": 51725,
+        "uncached_input_tokens": 21024
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 28.517101,
+      "elapsed_from_logs_s": 28.517101
+    },
+    {
+      "task": "bitcount",
+      "condition": "A",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 63254,
+        "cached_input_tokens": 50560,
+        "output_tokens": 511,
+        "reasoning_output_tokens": 41,
+        "total_tokens": 63765,
+        "uncached_input_tokens": 12694
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 63254,
+        "cached_input_tokens": 50560,
+        "output_tokens": 511,
+        "reasoning_output_tokens": 41,
+        "total_tokens": 63765,
+        "uncached_input_tokens": 12694
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 41.427692,
+      "elapsed_from_logs_s": 41.427692
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "L",
+      "astra_effort": null,
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 62352,
+        "cached_input_tokens": 52480,
+        "output_tokens": 3018,
+        "reasoning_output_tokens": 2353,
+        "total_tokens": 65370,
+        "uncached_input_tokens": 9872
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 62352,
+        "cached_input_tokens": 52480,
+        "output_tokens": 3018,
+        "reasoning_output_tokens": 2353,
+        "total_tokens": 65370,
+        "uncached_input_tokens": 9872
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 70.835281,
+      "elapsed_from_logs_s": 70.835281
+    },
+    {
+      "task": "bitcount",
+      "condition": "AA",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 114759,
+        "cached_input_tokens": 100992,
+        "output_tokens": 2632,
+        "reasoning_output_tokens": 1289,
+        "total_tokens": 117391,
+        "uncached_input_tokens": 13767
+      },
+      "planner_usage": {
+        "input_tokens": 51389,
+        "cached_input_tokens": 46848,
+        "output_tokens": 1184,
+        "reasoning_output_tokens": 516,
+        "total_tokens": 52573,
+        "uncached_input_tokens": 4541
+      },
+      "implementer_usage": {
+        "input_tokens": 63370,
+        "cached_input_tokens": 54144,
+        "output_tokens": 1448,
+        "reasoning_output_tokens": 773,
+        "total_tokens": 64818,
+        "uncached_input_tokens": 9226
+      },
+      "planner_elapsed_s": 51.996136,
+      "implementer_elapsed_s": 63.583817,
+      "elapsed_from_logs_s": 115.579953
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "LL",
+      "astra_effort": null,
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 108268,
+        "cached_input_tokens": 78848,
+        "output_tokens": 5239,
+        "reasoning_output_tokens": 3591,
+        "total_tokens": 113507,
+        "uncached_input_tokens": 29420
+      },
+      "planner_usage": {
+        "input_tokens": 62873,
+        "cached_input_tokens": 39424,
+        "output_tokens": 3161,
+        "reasoning_output_tokens": 2333,
+        "total_tokens": 66034,
+        "uncached_input_tokens": 23449
+      },
+      "implementer_usage": {
+        "input_tokens": 45395,
+        "cached_input_tokens": 39424,
+        "output_tokens": 2078,
+        "reasoning_output_tokens": 1258,
+        "total_tokens": 47473,
+        "uncached_input_tokens": 5971
+      },
+      "planner_elapsed_s": 74.479909,
+      "implementer_elapsed_s": 48.514536,
+      "elapsed_from_logs_s": 122.99444500000001
+    },
+    {
+      "task": "quicksort",
+      "condition": "AA",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 93806,
+        "cached_input_tokens": 77056,
+        "output_tokens": 1181,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 94987,
+        "uncached_input_tokens": 16750
+      },
+      "planner_usage": {
+        "input_tokens": 40500,
+        "cached_input_tokens": 36608,
+        "output_tokens": 635,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 41135,
+        "uncached_input_tokens": 3892
+      },
+      "implementer_usage": {
+        "input_tokens": 53306,
+        "cached_input_tokens": 40448,
+        "output_tokens": 546,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 53852,
+        "uncached_input_tokens": 12858
+      },
+      "planner_elapsed_s": 38.772389,
+      "implementer_elapsed_s": 35.735292,
+      "elapsed_from_logs_s": 74.50768099999999
+    },
+    {
+      "task": "bitcount",
+      "condition": "A",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 51785,
+        "cached_input_tokens": 36608,
+        "output_tokens": 523,
+        "reasoning_output_tokens": 36,
+        "total_tokens": 52308,
+        "uncached_input_tokens": 15177
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 51785,
+        "cached_input_tokens": 36608,
+        "output_tokens": 523,
+        "reasoning_output_tokens": 36,
+        "total_tokens": 52308,
+        "uncached_input_tokens": 15177
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 36.50962,
+      "elapsed_from_logs_s": 36.50962
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "AA",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 93600,
+        "cached_input_tokens": 78976,
+        "output_tokens": 1047,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 94647,
+        "uncached_input_tokens": 14624
+      },
+      "planner_usage": {
+        "input_tokens": 51624,
+        "cached_input_tokens": 46848,
+        "output_tokens": 700,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52324,
+        "uncached_input_tokens": 4776
+      },
+      "implementer_usage": {
+        "input_tokens": 41976,
+        "cached_input_tokens": 32128,
+        "output_tokens": 347,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 42323,
+        "uncached_input_tokens": 9848
+      },
+      "planner_elapsed_s": 42.837322,
+      "implementer_elapsed_s": 27.602783,
+      "elapsed_from_logs_s": 70.440105
+    },
+    {
+      "task": "gcd",
+      "condition": "A",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 62720,
+        "cached_input_tokens": 57728,
+        "output_tokens": 444,
+        "reasoning_output_tokens": 18,
+        "total_tokens": 63164,
+        "uncached_input_tokens": 4992
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 62720,
+        "cached_input_tokens": 57728,
+        "output_tokens": 444,
+        "reasoning_output_tokens": 18,
+        "total_tokens": 63164,
+        "uncached_input_tokens": 4992
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 31.733205,
+      "elapsed_from_logs_s": 31.733205
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "A",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 63243,
+        "cached_input_tokens": 58112,
+        "output_tokens": 422,
+        "reasoning_output_tokens": 8,
+        "total_tokens": 63665,
+        "uncached_input_tokens": 5131
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 63243,
+        "cached_input_tokens": 58112,
+        "output_tokens": 422,
+        "reasoning_output_tokens": 8,
+        "total_tokens": 63665,
+        "uncached_input_tokens": 5131
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 33.265085,
+      "elapsed_from_logs_s": 33.265085
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "A",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 64553,
+        "cached_input_tokens": 55808,
+        "output_tokens": 631,
+        "reasoning_output_tokens": 91,
+        "total_tokens": 65184,
+        "uncached_input_tokens": 8745
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 64553,
+        "cached_input_tokens": 55808,
+        "output_tokens": 631,
+        "reasoning_output_tokens": 91,
+        "total_tokens": 65184,
+        "uncached_input_tokens": 8745
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 43.134085,
+      "elapsed_from_logs_s": 43.134085
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "A",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 77144,
+        "cached_input_tokens": 64000,
+        "output_tokens": 1314,
+        "reasoning_output_tokens": 547,
+        "total_tokens": 78458,
+        "uncached_input_tokens": 13144
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 77144,
+        "cached_input_tokens": 64000,
+        "output_tokens": 1314,
+        "reasoning_output_tokens": 547,
+        "total_tokens": 78458,
+        "uncached_input_tokens": 13144
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 64.554301,
+      "elapsed_from_logs_s": 64.554301
+    },
+    {
+      "task": "quicksort",
+      "condition": "AA",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 106115,
+        "cached_input_tokens": 95872,
+        "output_tokens": 2698,
+        "reasoning_output_tokens": 1028,
+        "total_tokens": 108813,
+        "uncached_input_tokens": 10243
+      },
+      "planner_usage": {
+        "input_tokens": 41707,
+        "cached_input_tokens": 36992,
+        "output_tokens": 1525,
+        "reasoning_output_tokens": 633,
+        "total_tokens": 43232,
+        "uncached_input_tokens": 4715
+      },
+      "implementer_usage": {
+        "input_tokens": 64408,
+        "cached_input_tokens": 58880,
+        "output_tokens": 1173,
+        "reasoning_output_tokens": 395,
+        "total_tokens": 65581,
+        "uncached_input_tokens": 5528
+      },
+      "planner_elapsed_s": 56.964007,
+      "implementer_elapsed_s": 55.830455,
+      "elapsed_from_logs_s": 112.79446200000001
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "AA",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 93370,
+        "cached_input_tokens": 75776,
+        "output_tokens": 1010,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 94380,
+        "uncached_input_tokens": 17594
+      },
+      "planner_usage": {
+        "input_tokens": 51445,
+        "cached_input_tokens": 42624,
+        "output_tokens": 650,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52095,
+        "uncached_input_tokens": 8821
+      },
+      "implementer_usage": {
+        "input_tokens": 41925,
+        "cached_input_tokens": 33152,
+        "output_tokens": 360,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 42285,
+        "uncached_input_tokens": 8773
+      },
+      "planner_elapsed_s": 36.463672,
+      "implementer_elapsed_s": 26.98303,
+      "elapsed_from_logs_s": 63.446702
+    },
+    {
+      "task": "gcd",
+      "condition": "AA",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 108767,
+        "cached_input_tokens": 97920,
+        "output_tokens": 3328,
+        "reasoning_output_tokens": 1790,
+        "total_tokens": 112095,
+        "uncached_input_tokens": 10847
+      },
+      "planner_usage": {
+        "input_tokens": 41285,
+        "cached_input_tokens": 36864,
+        "output_tokens": 1882,
+        "reasoning_output_tokens": 1142,
+        "total_tokens": 43167,
+        "uncached_input_tokens": 4421
+      },
+      "implementer_usage": {
+        "input_tokens": 67482,
+        "cached_input_tokens": 61056,
+        "output_tokens": 1446,
+        "reasoning_output_tokens": 648,
+        "total_tokens": 68928,
+        "uncached_input_tokens": 6426
+      },
+      "planner_elapsed_s": 70.620765,
+      "implementer_elapsed_s": 73.005647,
+      "elapsed_from_logs_s": 143.62641200000002
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "LL",
+      "astra_effort": null,
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 100014,
+        "cached_input_tokens": 79104,
+        "output_tokens": 3885,
+        "reasoning_output_tokens": 2208,
+        "total_tokens": 103899,
+        "uncached_input_tokens": 20910
+      },
+      "planner_usage": {
+        "input_tokens": 41553,
+        "cached_input_tokens": 28672,
+        "output_tokens": 2023,
+        "reasoning_output_tokens": 1252,
+        "total_tokens": 43576,
+        "uncached_input_tokens": 12881
+      },
+      "implementer_usage": {
+        "input_tokens": 58461,
+        "cached_input_tokens": 50432,
+        "output_tokens": 1862,
+        "reasoning_output_tokens": 956,
+        "total_tokens": 60323,
+        "uncached_input_tokens": 8029
+      },
+      "planner_elapsed_s": 52.347302,
+      "implementer_elapsed_s": 50.294787,
+      "elapsed_from_logs_s": 102.642089
+    },
+    {
+      "task": "quicksort",
+      "condition": "A",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 52166,
+        "cached_input_tokens": 40064,
+        "output_tokens": 574,
+        "reasoning_output_tokens": 42,
+        "total_tokens": 52740,
+        "uncached_input_tokens": 12102
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 52166,
+        "cached_input_tokens": 40064,
+        "output_tokens": 574,
+        "reasoning_output_tokens": 42,
+        "total_tokens": 52740,
+        "uncached_input_tokens": 12102
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 37.513968,
+      "elapsed_from_logs_s": 37.513968
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "A",
+      "astra_effort": "max",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 64051,
+        "cached_input_tokens": 58752,
+        "output_tokens": 823,
+        "reasoning_output_tokens": 330,
+        "total_tokens": 64874,
+        "uncached_input_tokens": 5299
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 64051,
+        "cached_input_tokens": 58752,
+        "output_tokens": 823,
+        "reasoning_output_tokens": 330,
+        "total_tokens": 64874,
+        "uncached_input_tokens": 5299
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 44.479454,
+      "elapsed_from_logs_s": 44.479454
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "AA",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 104712,
+        "cached_input_tokens": 93568,
+        "output_tokens": 1122,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 105834,
+        "uncached_input_tokens": 11144
+      },
+      "planner_usage": {
+        "input_tokens": 51206,
+        "cached_input_tokens": 44928,
+        "output_tokens": 728,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51934,
+        "uncached_input_tokens": 6278
+      },
+      "implementer_usage": {
+        "input_tokens": 53506,
+        "cached_input_tokens": 48640,
+        "output_tokens": 394,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 53900,
+        "uncached_input_tokens": 4866
+      },
+      "planner_elapsed_s": 40.89093,
+      "implementer_elapsed_s": 32.037203,
+      "elapsed_from_logs_s": 72.928133
+    },
+    {
+      "task": "bitcount",
+      "condition": "A",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 40916,
+        "cached_input_tokens": 36608,
+        "output_tokens": 471,
+        "reasoning_output_tokens": 7,
+        "total_tokens": 41387,
+        "uncached_input_tokens": 4308
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 40916,
+        "cached_input_tokens": 36608,
+        "output_tokens": 471,
+        "reasoning_output_tokens": 7,
+        "total_tokens": 41387,
+        "uncached_input_tokens": 4308
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 39.164882,
+      "elapsed_from_logs_s": 39.164882
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "A",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 61467,
+        "cached_input_tokens": 39808,
+        "output_tokens": 430,
+        "reasoning_output_tokens": 27,
+        "total_tokens": 61897,
+        "uncached_input_tokens": 21659
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 61467,
+        "cached_input_tokens": 39808,
+        "output_tokens": 430,
+        "reasoning_output_tokens": 27,
+        "total_tokens": 61897,
+        "uncached_input_tokens": 21659
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 32.756995,
+      "elapsed_from_logs_s": 32.756995
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "L",
+      "astra_effort": null,
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 46233,
+        "cached_input_tokens": 37376,
+        "output_tokens": 2371,
+        "reasoning_output_tokens": 1741,
+        "total_tokens": 48604,
+        "uncached_input_tokens": 8857
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 46233,
+        "cached_input_tokens": 37376,
+        "output_tokens": 2371,
+        "reasoning_output_tokens": 1741,
+        "total_tokens": 48604,
+        "uncached_input_tokens": 8857
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 62.330698,
+      "elapsed_from_logs_s": 62.330698
+    },
+    {
+      "task": "gcd",
+      "condition": "L",
+      "astra_effort": null,
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 46915,
+        "cached_input_tokens": 40448,
+        "output_tokens": 1117,
+        "reasoning_output_tokens": 461,
+        "total_tokens": 48032,
+        "uncached_input_tokens": 6467
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 46915,
+        "cached_input_tokens": 40448,
+        "output_tokens": 1117,
+        "reasoning_output_tokens": 461,
+        "total_tokens": 48032,
+        "uncached_input_tokens": 6467
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 32.816434,
+      "elapsed_from_logs_s": 32.816434
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "AA",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 106021,
+        "cached_input_tokens": 95744,
+        "output_tokens": 1586,
+        "reasoning_output_tokens": 309,
+        "total_tokens": 107607,
+        "uncached_input_tokens": 10277
+      },
+      "planner_usage": {
+        "input_tokens": 51893,
+        "cached_input_tokens": 46976,
+        "output_tokens": 1007,
+        "reasoning_output_tokens": 309,
+        "total_tokens": 52900,
+        "uncached_input_tokens": 4917
+      },
+      "implementer_usage": {
+        "input_tokens": 54128,
+        "cached_input_tokens": 48768,
+        "output_tokens": 579,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 54707,
+        "uncached_input_tokens": 5360
+      },
+      "planner_elapsed_s": 48.071577,
+      "implementer_elapsed_s": 41.857375,
+      "elapsed_from_logs_s": 89.928952
+    },
+    {
+      "task": "gcd",
+      "condition": "AA",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 94135,
+        "cached_input_tokens": 77056,
+        "output_tokens": 1251,
+        "reasoning_output_tokens": 32,
+        "total_tokens": 95386,
+        "uncached_input_tokens": 17079
+      },
+      "planner_usage": {
+        "input_tokens": 40981,
+        "cached_input_tokens": 28928,
+        "output_tokens": 751,
+        "reasoning_output_tokens": 32,
+        "total_tokens": 41732,
+        "uncached_input_tokens": 12053
+      },
+      "implementer_usage": {
+        "input_tokens": 53154,
+        "cached_input_tokens": 48128,
+        "output_tokens": 500,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 53654,
+        "uncached_input_tokens": 5026
+      },
+      "planner_elapsed_s": 41.483987,
+      "implementer_elapsed_s": 39.934721,
+      "elapsed_from_logs_s": 81.41870800000001
+    },
+    {
+      "task": "quicksort",
+      "condition": "AA",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 116176,
+        "cached_input_tokens": 96000,
+        "output_tokens": 1580,
+        "reasoning_output_tokens": 294,
+        "total_tokens": 117756,
+        "uncached_input_tokens": 20176
+      },
+      "planner_usage": {
+        "input_tokens": 51560,
+        "cached_input_tokens": 37248,
+        "output_tokens": 880,
+        "reasoning_output_tokens": 266,
+        "total_tokens": 52440,
+        "uncached_input_tokens": 14312
+      },
+      "implementer_usage": {
+        "input_tokens": 64616,
+        "cached_input_tokens": 58752,
+        "output_tokens": 700,
+        "reasoning_output_tokens": 28,
+        "total_tokens": 65316,
+        "uncached_input_tokens": 5864
+      },
+      "planner_elapsed_s": 44.956813,
+      "implementer_elapsed_s": 38.500931,
+      "elapsed_from_logs_s": 83.45774399999999
+    },
+    {
+      "task": "quicksort",
+      "condition": "A",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 53706,
+        "cached_input_tokens": 48896,
+        "output_tokens": 532,
+        "reasoning_output_tokens": 43,
+        "total_tokens": 54238,
+        "uncached_input_tokens": 4810
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 53706,
+        "cached_input_tokens": 48896,
+        "output_tokens": 532,
+        "reasoning_output_tokens": 43,
+        "total_tokens": 54238,
+        "uncached_input_tokens": 4810
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 36.465222,
+      "elapsed_from_logs_s": 36.465222
+    },
+    {
+      "task": "gcd",
+      "condition": "LL",
+      "astra_effort": null,
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 74217,
+        "cached_input_tokens": 61952,
+        "output_tokens": 3869,
+        "reasoning_output_tokens": 2516,
+        "total_tokens": 78086,
+        "uncached_input_tokens": 12265
+      },
+      "planner_usage": {
+        "input_tokens": 37537,
+        "cached_input_tokens": 32512,
+        "output_tokens": 2743,
+        "reasoning_output_tokens": 1972,
+        "total_tokens": 40280,
+        "uncached_input_tokens": 5025
+      },
+      "implementer_usage": {
+        "input_tokens": 36680,
+        "cached_input_tokens": 29440,
+        "output_tokens": 1126,
+        "reasoning_output_tokens": 544,
+        "total_tokens": 37806,
+        "uncached_input_tokens": 7240
+      },
+      "planner_elapsed_s": 59.626563,
+      "implementer_elapsed_s": 34.946489,
+      "elapsed_from_logs_s": 94.57305199999999
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "A",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 51801,
+        "cached_input_tokens": 25984,
+        "output_tokens": 345,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52146,
+        "uncached_input_tokens": 25817
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 51801,
+        "cached_input_tokens": 25984,
+        "output_tokens": 345,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 52146,
+        "uncached_input_tokens": 25817
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 31.45759,
+      "elapsed_from_logs_s": 31.45759
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "A",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 63689,
+        "cached_input_tokens": 47232,
+        "output_tokens": 479,
+        "reasoning_output_tokens": 26,
+        "total_tokens": 64168,
+        "uncached_input_tokens": 16457
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 63689,
+        "cached_input_tokens": 47232,
+        "output_tokens": 479,
+        "reasoning_output_tokens": 26,
+        "total_tokens": 64168,
+        "uncached_input_tokens": 16457
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 37.343195,
+      "elapsed_from_logs_s": 37.343195
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "AA",
+      "astra_effort": "xhigh",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 115933,
+        "cached_input_tokens": 96384,
+        "output_tokens": 1707,
+        "reasoning_output_tokens": 232,
+        "total_tokens": 117640,
+        "uncached_input_tokens": 19549
+      },
+      "planner_usage": {
+        "input_tokens": 51485,
+        "cached_input_tokens": 46848,
+        "output_tokens": 925,
+        "reasoning_output_tokens": 191,
+        "total_tokens": 52410,
+        "uncached_input_tokens": 4637
+      },
+      "implementer_usage": {
+        "input_tokens": 64448,
+        "cached_input_tokens": 49536,
+        "output_tokens": 782,
+        "reasoning_output_tokens": 41,
+        "total_tokens": 65230,
+        "uncached_input_tokens": 14912
+      },
+      "planner_elapsed_s": 40.367632,
+      "implementer_elapsed_s": 41.638242,
+      "elapsed_from_logs_s": 82.005874
+    },
+    {
+      "task": "gcd",
+      "condition": "AA",
+      "astra_effort": "medium",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 104342,
+        "cached_input_tokens": 87040,
+        "output_tokens": 1101,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 105443,
+        "uncached_input_tokens": 17302
+      },
+      "planner_usage": {
+        "input_tokens": 51163,
+        "cached_input_tokens": 38912,
+        "output_tokens": 622,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51785,
+        "uncached_input_tokens": 12251
+      },
+      "implementer_usage": {
+        "input_tokens": 53179,
+        "cached_input_tokens": 48128,
+        "output_tokens": 479,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 53658,
+        "uncached_input_tokens": 5051
+      },
+      "planner_elapsed_s": 37.102183,
+      "implementer_elapsed_s": 39.203276,
+      "elapsed_from_logs_s": 76.305459
+    },
+    {
+      "task": "next_palindrome",
+      "condition": "A",
+      "astra_effort": "high",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 63242,
+        "cached_input_tokens": 40960,
+        "output_tokens": 414,
+        "reasoning_output_tokens": 13,
+        "total_tokens": 63656,
+        "uncached_input_tokens": 22282
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 63242,
+        "cached_input_tokens": 40960,
+        "output_tokens": 414,
+        "reasoning_output_tokens": 13,
+        "total_tokens": 63656,
+        "uncached_input_tokens": 22282
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 36.538951,
+      "elapsed_from_logs_s": 36.538951
+    },
+    {
+      "task": "find_first_in_sorted",
+      "condition": "AA",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 91267,
+        "cached_input_tokens": 75008,
+        "output_tokens": 1156,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 92423,
+        "uncached_input_tokens": 16259
+      },
+      "planner_usage": {
+        "input_tokens": 51270,
+        "cached_input_tokens": 46592,
+        "output_tokens": 668,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 51938,
+        "uncached_input_tokens": 4678
+      },
+      "implementer_usage": {
+        "input_tokens": 39997,
+        "cached_input_tokens": 28416,
+        "output_tokens": 488,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 40485,
+        "uncached_input_tokens": 11581
+      },
+      "planner_elapsed_s": 41.163246,
+      "implementer_elapsed_s": 38.798621,
+      "elapsed_from_logs_s": 79.961867
+    },
+    {
+      "task": "rpn_eval",
+      "condition": "A",
+      "astra_effort": "low",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 40691,
+        "cached_input_tokens": 36608,
+        "output_tokens": 293,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 40984,
+        "uncached_input_tokens": 4083
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 40691,
+        "cached_input_tokens": 36608,
+        "output_tokens": 293,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 40984,
+        "uncached_input_tokens": 4083
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 27.384401,
+      "elapsed_from_logs_s": 27.384401
+    },
+    {
+      "task": "gcd",
+      "condition": "A",
+      "astra_effort": "ultra",
+      "status": "PASS",
+      "total_usage": {
+        "input_tokens": 63429,
+        "cached_input_tokens": 56576,
+        "output_tokens": 531,
+        "reasoning_output_tokens": 63,
+        "total_tokens": 63960,
+        "uncached_input_tokens": 6853
+      },
+      "planner_usage": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0,
+        "uncached_input_tokens": 0
+      },
+      "implementer_usage": {
+        "input_tokens": 63429,
+        "cached_input_tokens": 56576,
+        "output_tokens": 531,
+        "reasoning_output_tokens": 63,
+        "total_tokens": 63960,
+        "uncached_input_tokens": 6853
+      },
+      "planner_elapsed_s": null,
+      "implementer_elapsed_s": 45.159314,
+      "elapsed_from_logs_s": 45.159314
+    }
+  ]
+}
