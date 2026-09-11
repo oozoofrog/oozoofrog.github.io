@@ -71,6 +71,7 @@ const categoryMap: Record<string, string> = {
   'git-tips': 'tools',
   'vsc-lsp': 'tools',
   'settings': 'tools',
+  'codex-routing-planning-vs-direct': 'tools',
 
   // 유니코드 (2)
   'unicode': 'unicode',
