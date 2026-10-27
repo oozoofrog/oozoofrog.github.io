@@ -10,6 +10,8 @@ Karpathy의 `microgpt.py`를 코드와 같이 보면서 정리한 노트.
 
 - 원문: [https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95](https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95)
 
+> **읽기 노트 · 2026-10-28 보완:** 코드 블록은 원문을 읽기 위한 발췌이며, `...`를 포함하는 블록과 Swift 골격은 독립 실행 가능한 완성본이 아니다. 아래 보완은 [확인한 원문 revision `14fb038`](https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95/14fb038816c7aae0bb9342c2dbf1a51dd134a5ff)의 학습 흐름을 기준으로 한다. 원래 작성 시점의 revision을 소급해 단정하지 않는다.
+
 이 글의 목적은 요약이 아니라, **코드를 실제로 따라 읽는 순서**를 만드는 것이다.
 
 ---
@@ -82,6 +84,19 @@ class Value:
 
 ---
 
+### 손으로 확인할 작은 그래프
+
+`a = 2`, `b = 3`, `c = 4`, `y = a * b + c`이면 `y = 10`이다. 역전파의 기대값은 `dy/da = 3`, `dy/db = 2`, `dy/dc = 1`이다. 원문의 완전한 `Value` 구현 뒤에 아래 검사를 붙여 큰 모델 전에 체인룰을 확인할 수 있다.
+
+```python
+a, b, c = Value(2), Value(3), Value(4)
+y = a * b + c
+y.backward()
+assert (y.data, a.grad, b.grad, c.grad) == (10, 3, 2, 1)
+```
+
+이것은 검사용 기대값이며, 이 글에서 학습 실험을 새로 실행한 결과는 아니다.
+
 ## 3) 파라미터 초기화
 
 작은 GPT를 만들기 위한 행렬들을 정의한다.
@@ -107,6 +122,8 @@ state_dict = {
 - `wpe`: position embedding
 - 레이어별 `q/k/v`, `wo`, `mlp` 가중치 추가
 - 전체 파라미터를 1차원 리스트로 flatten
+
+이 설정에서 임베딩 벡터 길이는 16, head별 길이는 `16 / 4 = 4`다. `wte`는 `vocab_size × 16`, `wpe`는 `16 × 16`, `lm_head`는 `vocab_size × 16`이며 `linear(x, w)`는 `w`의 행 수만큼 값을 반환한다. `n_embd`를 바꿀 때는 `n_head`로 나누어떨어지는지도 확인한다.
 
 ---
 
@@ -182,6 +199,8 @@ attn_weights = softmax(attn_logits)
 head_out = [sum(attn_weights[t] * v_h[t][j] for t in range(len(v_h))) for j in range(head_dim)]
 ```
 
+`q_h`, `k_h`, `v_h`는 위 블록에서 생략된 head별 분할 결과다. 원문은 `for h in range(n_head)` 안에서 `hs = h * head_dim`을 구하고, `q[hs:hs + head_dim]` 및 각 시점의 `k`, `v`에서 같은 구간을 잘라낸다. 이 설정에서는 각 head의 벡터 길이가 4이고, `k_h`·`v_h`의 바깥 축은 누적된 시점이다. 각 head 출력 4개를 이어 붙여 다시 길이 16으로 만든다.
+
 체크포인트:
 
 - `keys/values` 누적 = 과거 문맥 기억
@@ -197,6 +216,8 @@ head_out = [sum(attn_weights[t] * v_h[t][j] for t in range(len(v_h))) for j in r
 ```python
 doc = docs[step % len(docs)]
 tokens = [BOS] + [uchars.index(ch) for ch in doc] + [BOS]
+n = min(block_size, len(tokens) - 1)
+keys, values = [[] for _ in range(n_layer)], [[] for _ in range(n_layer)]
 
 losses = []
 for pos_id in range(n):
@@ -212,6 +233,8 @@ loss.backward()
 
 핵심:
 
+- `n`은 이번 문서에서 학습할 다음 토큰 쌍의 수다. 마지막 토큰 뒤에는 정답이 없으므로 `len(tokens) - 1`을 사용하고, 위치 임베딩 범위를 넘지 않도록 `block_size`로 제한한다.
+- `keys/values`는 **문서마다 새로 만든다**. 서로 다른 이름의 문맥과 계산 그래프가 섞이지 않게 한다.
 - 목표: 다음 토큰 확률 최대화
 - loss: 평균 NLL (cross-entropy 형태)
 - 역전파로 모든 파라미터 gradient 계산
@@ -226,6 +249,7 @@ v[i] = beta2 * v[i] + (1 - beta2) * p.grad ** 2
 m_hat = m[i] / (1 - beta1 ** (step + 1))
 v_hat = v[i] / (1 - beta2 ** (step + 1))
 p.data -= lr_t * m_hat / (v_hat ** 0.5 + eps_adam)
+p.grad = 0
 ```
 
 핵심:
@@ -233,6 +257,7 @@ p.data -= lr_t * m_hat / (v_hat ** 0.5 + eps_adam)
 - 1차/2차 모멘트 사용
 - 편향 보정(`m_hat`, `v_hat`)
 - 학습률 선형 감소(`lr_t`)
+- 위 블록은 `for i, p in enumerate(params):` 안에서 실행한다. 업데이트 뒤 `p.grad = 0`으로 초기화하지 않으면 다음 문서의 기울기에 이전 값이 더해진다. Adam의 `m`과 `v`는 학습 이력을 유지하므로 여기서 초기화하지 않는다.
 
 ---
 
@@ -241,6 +266,8 @@ p.data -= lr_t * m_hat / (v_hat ** 0.5 + eps_adam)
 학습이 끝나면 `BOS`에서 시작해 토큰을 하나씩 샘플링한다.
 
 ```python
+# 새 샘플을 시작할 때마다 문맥을 비운다.
+keys, values = [[] for _ in range(n_layer)], [[] for _ in range(n_layer)]
 token_id = BOS
 for pos_id in range(block_size):
     logits = gpt(token_id, pos_id, keys, values)
@@ -252,7 +279,8 @@ for pos_id in range(block_size):
 
 핵심:
 
-- temperature로 다양성 조절
+- 위 블록도 전체 샘플 출력 코드의 발췌다. 생성 토큰을 문자열로 모으는 부분은 원문을 참고한다.
+- temperature는 양수로 두고 다양성을 조절
 - `BOS`가 나오면 샘플 종료
 
 ---
@@ -401,7 +429,7 @@ func * (lhs: Value, rhs: Value) -> Value {
 토큰은 모델의 최소 단위, vocab은 가능한 전체 토큰 집합.
 
 ### BOS
-시퀀스 시작을 의미하는 특수 토큰.
+시퀀스 경계를 표시하는 특수 토큰. 이 구현은 같은 `BOS` 토큰을 문서 앞뒤에 놓고, 생성 중 다시 나오면 종료한다.
 
 ### Logits / Softmax
 logits는 확률화 전 점수, softmax는 이를 확률 분포로 변환.

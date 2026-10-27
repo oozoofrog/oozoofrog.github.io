@@ -1,6 +1,6 @@
 ---
 title   : SIL 스터디
-summary : 
+summary : 클로저의 변경 가능한 캡처를 raw SIL에서 따라가는 2018년 공부 기록
 date    : 2018-07-07 00:23:15 +0900
 updated : 2018-07-07 00:34:16 +0900
 tags    : 
@@ -11,7 +11,32 @@ parenttitle : swift
 latex   : false
 ---
 
-원코드
+> **읽기 안내 · 2026-10-28 보완:** 2018년에 저장한 raw SIL 출력에 주석을 단 공부 기록입니다. 당시 컴파일러의 정확한 버전과 생성 명령은 남아 있지 않아, 아래 덤프를 특정 버전의 재현 결과로 단정하지 않습니다. 이번에는 출력의 읽는 순서와 재현 절차를 보완했습니다.
+
+## 먼저 볼 부분
+
+이 예제는 클로저가 지역 변수 `count`를 캡처한 뒤에도 그 저장 공간을 함께 사용하는 모습을 살펴봅니다. 소스의 흐름대로라면 첫 호출에서 `count`가 1이 된 후 출력되고, 이후 호출은 같은 캡처를 사용하므로 1부터 5까지 출력할 것으로 예상할 수 있습니다. 이번 편집에서 실행한 결과는 아닙니다.
+
+1. `Task.run()`의 `alloc_box ... name "count"`는 캡처할 변경 가능한 값의 저장 공간을 만듭니다.
+2. `project_box`는 그 안의 값에 접근할 주소를 얻습니다.
+3. `partial_apply`는 클로저 함수에 캡처를 결합합니다. 클로저 본문의 `project_box`를 따라가면 같은 캡처의 읽기와 쓰기를 볼 수 있습니다.
+
+최적화 후에도 반드시 같은 box가 남는다는 뜻은 아닙니다. 아래 출력은 `sil_stage raw` 단계이며, 최적화 수준에 따라 표현과 명령어가 바뀔 수 있습니다. [Swift의 SIL 문서](https://github.com/swiftlang/swift/blob/main/docs/SIL/SIL.md)에서 각 명령어의 정의를 확인할 수 있습니다.
+
+## 다시 확인하는 방법
+
+아래 Swift 코드를 `test.swift`에 저장하고, 같은 디렉터리에서 실행합니다. 버전 정보와 생성 옵션을 함께 보관해야 비교할 수 있습니다.
+
+```sh
+swiftc --version
+swiftc -emit-silgen -Onone test.swift > test.raw.sil
+swiftc -emit-sil -O test.swift > test.optimized.sil
+swift test.swift
+```
+
+이 명령은 재확인을 위한 절차입니다. 아래의 2018년 덤프와 줄 번호·심볼 이름이 일치한다고 보장하지 않습니다.
+
+## 원코드
 ```swift
 
 class Task {
@@ -40,7 +65,7 @@ for _ in 0..<5 {
 
 ```
 
-## Swift Intermedite Language
+## 부록: 당시 Swift Intermediate Language 출력
 
 ```sil
 sil_stage raw

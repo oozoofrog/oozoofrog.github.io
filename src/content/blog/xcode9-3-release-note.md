@@ -1,14 +1,18 @@
 ---
 title   : Xcode 9.3 Release Note
-summary : 
+summary :
 date    : 2018-04-09 22:40:10 +0900
 updated : 2018-04-10 22:13:39 +0900
-tags    : 
+tags    :
 toc     : true
 public  : true
 parent  : swift
 latex   : false
 ---
+
+> **자료 안내 · 2026-10-28 정리:** 2018년 Xcode 9.3 릴리스 노트를 모아 둔 부분 번역입니다. 앞부분은 한국어, 나머지는 영문 발췌 상태입니다. 아래의 알려진 문제·해결 방법과 OS 조작은 당시 버전에 한정되며 현재 Xcode 설치 안내가 아닙니다. 코드가 표 안에서 깨지던 서식을 정리했지만, 당시 원문 전체와의 대조나 Xcode 9.3 실행 검증을 마친 자료는 아닙니다.
+
+[Apple Xcode 릴리스 노트](https://developer.apple.com/documentation/xcode-release-notes) · [Swift 4.1 변경사항 요약](/blog/swift4-1-diff/)
 
 ### Xcode 9.3
 
@@ -18,7 +22,7 @@ latex   : false
 
 **주의:** 이 모드는 숙련된 IT 관리자나 개발자들만 활성화 할 것을 강력히 권고합니다.
 
-64 비트 테스트모드를 활성하 하기 위해서는:
+다음은 macOS 10.13.4의 테스트 절차 기록입니다. 현재 사용 중인 Mac에 그대로 적용하지 마세요. 당시 64비트 테스트 모드를 활성화하려면:
 
 1. 부팅시 Command + R키를 눌러 OS 복구 모드로 진입.
 2. 터미널 실행
@@ -174,7 +178,7 @@ latex   : false
 
 - Documentation for the HealthKit framework is missing from the Developer Documentation window. (39005708)
 
-  *Workaround*: Read [the HealthKit framework documentation](https://developer.apple.com/documentation/healthkit) on the web. 
+  *Workaround*: Read [the HealthKit framework documentation](https://developer.apple.com/documentation/healthkit) on the web.
 
 #### Instruments
 
@@ -357,36 +361,39 @@ latex   : false
 
 ##### New Features
 
-- Implicitly unwrapped optionals may be used only as a top level type for properties, function parameters, function return values, and variables. Nesting them inside other types is deprecated and results in a warning. This will change to an error in a later version of Swift. ([SR-3023](https://bugs.swift.org/browse/SR-3023), [SE-0054](https://github.com/apple/swift-evolution/blob/master/proposals/0054-abolish-iuo.md)) 
+- Implicitly unwrapped optionals may be used only as a top level type for properties, function parameters, function return values, and variables. Nesting them inside other types is deprecated and results in a warning. This will change to an error in a later version of Swift. ([SR-3023](https://bugs.swift.org/browse/SR-3023), [SE-0054](https://github.com/apple/swift-evolution/blob/master/proposals/0054-abolish-iuo.md))
 
 - Swift now consistently enforces that you can’t override a computed property with a stored property, even when the overridden property is marked as `lazy`. If you need to use a stored value when overriding a property, define a separate property as backing storage and make it available through your override. (35870371)
 
 - The type checker now resolves a function overload as ambiguous when there is an overload that returns an optional type, another overload that returns a function type, and the function is called in a context where either overload's return type could be used. For example, on the last line of the the code example below, the type checker can't resolve which version of `f` to call because  `result` has no explicit type information. (36892416)
 
-  | `**struct** S<T> {}`                                         |
-  | ------------------------------------------------------------ |
-  | ` `                                                          |
-  | `**func** f<T>(**_**: S<T>) -> T? { … }`                     |
-  | `**func** f<T>(**_**: S<T>) -> (T) -> Int { … }`             |
-  | ` `                                                          |
-  | `**let** s = S<String>()`                                    |
-  | `**let** result = f(s)    // now correctly reports the ambiguity as an error` |
+  ```swift
+  struct S<T> {}
+
+  func f<T>(_: S<T>) -> T? { … }
+  func f<T>(_: S<T>) -> (T) -> Int { … }
+
+  let s = S<String>()
+  let result = f(s)    // now correctly reports the ambiguity as an error
+  ```
 
 - Passing different kinds of optionals (`?` or `!`) to a function as `inout` no longer requires overriding that function. (36913150)
 
   For example, the following code is now correct:
 
-  | `**func** takesOptional(i: **inout** Int?) { … }` |
-  | ------------------------------------------------- |
-  | `**var** x: Int! = 1`                             |
-  | `takesOptional(&x)`                               |
+  ```swift
+  func takesOptional(i: inout Int?) { … }
+  var x: Int! = 1
+  takesOptional(&x)
+  ```
 
 - Swift now supports conditional compilation based on available modules using `canImport()` with an argument that is the name of a module that may not be present on all platforms. This condition tests whether it's possible to import the module, but doesn't actually import it. If the module is present, the platform condition returns true; otherwise, it returns false. ([SE-0075](https://github.com/apple/swift-evolution/blob/master/proposals/0075-import-test.md))
 
-  | `**#if** **canImport**(**UIKit**)` |
-  | ---------------------------------- |
-  | `<#module-specific code#>`         |
-  | `**#endif**`                       |
+  ```swift
+  #if canImport(UIKit)
+  <#module-specific code#>
+  #endif
+  ```
 
 - When `swiftc` is run from the command line, the default deployment target is set to the version of the currently running OS. (29948658)
 
@@ -402,28 +409,31 @@ latex   : false
 
   For example, the compiler now warns about overlapping accesses to the variable `value`:
 
-  | `**var** value = 7`                      |
-  | ---------------------------------------- |
-  | `withUnsafeMutablePointer(to: &value) {` |
-  | `    $0.pointee = value + 1`             |
-  | `}`                                      |
+  ```swift
+  var value = 7
+  withUnsafeMutablePointer(to: &value) {
+      $0.pointee = value + 1
+  }
+  ```
 
   One way to avoid the warning is to make a copy of the local variable before passing it as `inout`:
 
-  | `**var** value = 7`                      |
-  | ---------------------------------------- |
-  | `**let** valueCopy = value`              |
-  | `withUnsafeMutablePointer(to: &value) {` |
-  | `    $0.pointee = valueCopy + 1`         |
-  | `}`                                      |
+  ```swift
+  var value = 7
+  let valueCopy = value
+  withUnsafeMutablePointer(to: &value) {
+      $0.pointee = valueCopy + 1
+  }
+  ```
 
   Another way is to refer to the variable using a closure parameter instead of capturing it:
 
-  | `**var** value = 7`                      |
-  | ---------------------------------------- |
-  | `withUnsafeMutablePointer(to: &value) {` |
-  | `    $0.pointee = $0.pointee + 1`        |
-  | `}`                                      |
+  ```swift
+  var value = 7
+  withUnsafeMutablePointer(to: &value) {
+      $0.pointee = $0.pointee + 1
+  }
+  ```
 
 - Calls to unavailable functions are permitted if the calling context is also marked unavailable. This simplifies writing code that can be compiled with and without application extension restrictions enabled. (34949130)
 
@@ -441,55 +451,60 @@ latex   : false
 
   Example:
 
-  | `**protocol** P { }`                   |
-  | -------------------------------------- |
-  | `**class** Generic<T> {`               |
-  | `    **let** protocolMetatype: P.Type` |
-  | `}`                                    |
+  ```swift
+  protocol P { }
+  class Generic<T> {
+      let protocolMetatype: P.Type
+  }
+  ```
 
   *Workaround*: Box the metatype in a class.
 
-  | `**class** BoxedType {`                        |
-  | ---------------------------------------------- |
-  | `    **let** p: P.Type`                        |
-  | `    **init**(**_** type: P.Type) {`           |
-  | `        p = type`                             |
-  | `    }`                                        |
-  | `}`                                            |
-  | ` `                                            |
-  | `**class** Generic<T> {`                       |
-  | `    **let** boxedProtocolMetatype: BoxedType` |
-  | `}`                                            |
+  ```swift
+  class BoxedType {
+      let p: P.Type
+      init(_ type: P.Type) {
+          p = type
+      }
+  }
+
+  class Generic<T> {
+      let boxedProtocolMetatype: BoxedType
+  }
+  ```
 
 - In circumstances where protocol methods or base class methods defined in Objective-C claim to take non-null arguments of type `id` in their headers, but get invoked with `nil` values at runtime, Swift code compiled by Xcode 9.3 that overrides those methods may crash when the Swift implementations are invoked. (38675815)
 
   *Workaround*: Change the Swift override to take a value of type `Any?`. For example, if you implement the `UIApplicationDelegate` protocol's `application(_:open:sourceApplication:annotation:)` method:
 
-  | `**class** AppDelegate: UIApplicationDelegate {`             |
-  | ------------------------------------------------------------ |
-  | `    **func** application(**_** application: UIApplication, open url: URL, sourceApplication: String?, annotation: **Any**) -> Bool {` |
-  | `        **return** **true**`                                |
-  | `    }`                                                      |
-  | `}`                                                          |
+  ```swift
+  class AppDelegate: UIApplicationDelegate {
+      func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+          return true
+      }
+  }
+  ```
 
   The program may crash when passed `nil` as the annotation argument. Avoid the crash by making the `annotation` argument have type `Any?`:
 
-  | `**class** AppDelegate: UIApplicationDelegate {`             |
-  | ------------------------------------------------------------ |
-  | `    **func** application(**_** application: UIApplication, open url: URL, sourceApplication: String?, annotation: **Any**?) -> Bool {` |
-  | `        **return** **true**`                                |
-  | `    }`                                                      |
-  | `}`                                                          |
+  ```swift
+  class AppDelegate: UIApplicationDelegate {
+      func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any?) -> Bool {
+          return true
+      }
+  }
+  ```
 
 - Conditional conformances are unsupported when performing a dynamic cast (with `is` or `as`). ([SE-0143](https://github.com/apple/swift-evolution/blob/master/proposals/0143-conditional-conformances.md))
 
   For example:
 
-  | `print([1, 2, 3] **is** Codable) // Prints "false", but [Int]` |
-  | ------------------------------------------------------------ |
-  | `// instances really are Codable.`                           |
-  | `**try** JSONEncoder().encode([1, 2, 3]) // Successfully encodes` |
-  | `// the array as JSON.`                                      |
+  ```swift
+  print([1, 2, 3] is Codable) // Prints "false", but [Int]
+  // instances really are Codable.
+  try JSONEncoder().encode([1, 2, 3]) // Successfully encodes
+  // the array as JSON.
+  ```
 
   Arrays only conform to `Codable` when their elements are also `Codable`, but checking for this conformance isn't supported at runtime.
 
@@ -531,18 +546,19 @@ latex   : false
 
   For example, the `SubSequence` associated type of `Sequence` follows the enclosing protocol:
 
-  | `**protocol** Sequence {`                                    |
-  | ------------------------------------------------------------ |
-  | `    **associatedtype** Element`                             |
-  | `    **associatedtype** SubSequence: Sequence`               |
-  | `    **where** SubSequence.Element == Element,`              |
-  | `    SubSequence.SubSequence == SubSequence`                 |
-  | `    // ...`                                                 |
-  | `}`                                                          |
-  | ` `                                                          |
-  | `**protocol** Collection: Sequence **where** Self.SubSequence: Collection {` |
-  | `    // ...`                                                 |
-  | `}`                                                          |
+  ```swift
+  protocol Sequence {
+      associatedtype Element
+      associatedtype SubSequence: Sequence
+      where SubSequence.Element == Element,
+      SubSequence.SubSequence == SubSequence
+      // ...
+  }
+
+  protocol Collection: Sequence where Self.SubSequence: Collection {
+      // ...
+  }
+  ```
 
 - Access control is enforced for subclasses of generic classes. A `public` class may not subclass an `internal` class. For source compatibility, these new diagnostics are warnings in Swift 4.1. (35119972)
 
@@ -576,10 +592,11 @@ latex   : false
 
   For example:
 
-  | `**let** s = "Hashable"`             |
-  | ------------------------------------ |
-  | `**let** p = \String.[s.startIndex]` |
-  | `s[keyPath: p] // "H"`               |
+  ```swift
+  let s = "Hashable"
+  let p = \String.[s.startIndex]
+  s[keyPath: p] // "H"
+  ```
 
 - The variant of `Sequence.flatMap(_:)` that accepts a closure returning an `Optional` value has been deprecated. Other variants of `flatMap(_:)` on both `Sequence` and `Optional` remain as is. ([SE-0187](https://github.com/apple/swift-evolution/blob/master/proposals/0187-introduce-filtermap.md))
 
