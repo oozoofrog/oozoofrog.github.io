@@ -4,6 +4,8 @@ date    : 2018-04-09 00:00:00 +0900
 parent: swift
 ---
 
+> **검토 메모 · 2026-10-28:** Swift 4.1(2018년) 변경사항을 정리한 글입니다. 인덱스의 Hashable 채택, compactMap의 적용 범위, 소유권 키워드의 경고/오류 시점을 Swift Evolution 제안서에 맞춰 정정했습니다. 예제는 Swift 4.1 문법 기준이며 이번 검토에서 당시 컴파일러로 실행하지는 않았습니다.
+
 from [raywenderlich](https://www.raywenderlich.com/187826/whats-new-in-swift-4-1)
 
 <br/>
@@ -31,7 +33,7 @@ struct Property<Value> {
 }
 
 struct TestValue: Valuable {}
-struct Int: Valuable {}
+extension Int: Valuable {}
 
 extension Property: Equatable where Value: Equatable {
 	static func == (lhs: Property<Value>, rhs: Property<Value>) -> Bool {
@@ -44,7 +46,7 @@ let t2 = Property(property: "t2", value: 1)
 
 print(t1 == t2)
 ~~~
-- 4.0까지는 상속 확장같은 제약조건이 있는 경우 where contaraint를 쓸 수가 없었지만, 4.1부터는 가능해졌다.
+- Swift 4.1부터 타입 매개변수가 조건을 만족할 때만 프로토콜을 채택하는 조건부 준수(conditional conformance)를 선언할 수 있다. `where` 자체가 처음 도입된 것은 아니다.
 
 <br/>
 ### in JSON parsing
@@ -63,14 +65,15 @@ print(t1 == t2)
 evolution: [SE-0185](https://github.com/apple/swift-evolution/blob/master/proposals/0185-synthesize-equatable-hashable.md)
 
 - boilerplate code 제거
-- 명시적으로 == 함수나 hashValue 프로퍼티를 선언하지 않아도 된다.
+- 조건을 만족하는 구조체·열거형은 명시적으로 `==` 함수나 `hashValue` 프로퍼티를 작성하지 않아도 된다. 저장 프로퍼티 또는 연관 값도 해당 프로토콜을 준수해야 하며, 타입 자체의 `Equatable`/`Hashable` 채택 선언은 필요하다.
 
 <br/>
 ## Hashable Index Types
 
 evolution: [SE-0188](https://github.com/apple/swift-evolution/blob/master/proposals/0188-stdlib-index-types-hashable.md)
 
-- 배열의 index type이 Hashable이 되었다. 따라서 KeyPath로 사용이 가능하다.
+- `String.Index`, `Dictionary.Index`, `Set.Index` 등 표준 라이브러리의 인덱스 타입에 `Hashable` 준수가 추가되었다. 배열의 인덱스인 `Int`는 이미 `Hashable`이었다.
+- 이로써 문자열 인덱스 등을 서브스크립트 인자로 사용하는 키 경로를 만들 수 있다. 모든 사용자 정의 `Collection.Index`에 `Hashable`을 요구하는 변경은 아니다.
 
 <br/>
 ## Protocol의 associated type에 재귀적 조건문선언이 가능해졌다.
@@ -90,7 +93,8 @@ protocol Hi {
 
 evolution: [SE-0186](https://github.com/apple/swift-evolution/blob/master/proposals/0186-remove-ownership-keyword-support-in-protocols.md)
 
-- protocol에서 프로퍼티를 정의할 때, `weak`, `unowned`를 사용할 수 있었는데, 의미가 없는 선언자이기 때문에 사용하지 못하도록 제거
+- 프로토콜 프로퍼티 요구사항의 `weak`, `unowned`는 채택하는 타입의 저장 프로퍼티 소유권을 강제하지 못했다. SE-0186은 이 오해하기 쉬운 표기를 제거한다.
+- Swift 3·4 언어 모드에서는 경고, Swift 5 언어 모드에서는 오류로 전환하는 계획이다. Xcode 9.3의 `@objc` 프로토콜은 생성되는 Objective-C 헤더에 영향을 주어 경고 대상에서 제외된 예외도 있으므로, 4.1에서 곧바로 모든 경우가 오류였다고 읽으면 안 된다. [당시 릴리스 노트 기록](/blog/xcode9-3-release-note/)
 
 <br/>
 ## Collection의 Index Distances
@@ -143,8 +147,13 @@ evolution: [SE-0190](https://github.com/apple/swift-evolution/blob/master/propos
 
 evolution: [SE-0187](https://github.com/apple/swift-evolution/blob/master/proposals/0187-introduce-filtermap.md)
 
-- flatMap함수의 이름이 역할과의 관계가 모호했다.
-- 그래서 compactMap으로 바꿈
+- `Sequence.flatMap` 중 변환 함수가 옵셔널을 반환하고 `nil`을 제외하는 오버로드가 `compactMap`으로 분리되었다.
+- 시퀀스를 펼치는 `Sequence.flatMap`과 `Optional.flatMap`은 그대로다. 모든 `flatMap`을 일괄 치환하는 변경은 아니다.
+
+```swift
+let numbers = ["1", "x", "3"].compactMap { Int($0) } // [1, 3]
+let flattened = [[1, 2], [3]].flatMap { $0 }          // [1, 2, 3]
+```
 
 ## Unsafe Pointers
 

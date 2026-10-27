@@ -11,6 +11,8 @@ parenttitle : Swift
 latex   : false
 ---
 
+> **읽기 안내 · 2026-10-28 보완:** Swift 5.0이 발표된 2019년의 릴리스 요약입니다. 아래 OS·Xcode·패키지 목록은 당시 기준이며 현재 설치 안내는 아닙니다. 누락된 Xcode 항목과 문서 링크를 보완했습니다.
+
 *[원문](https://swift.org/blog/swift-5-released/)*
 
 # Language Updates
@@ -20,13 +22,13 @@ latex   : false
 ### 새로운 피처
 
 - Swift 라이브러리가 앞으로, macOS, iOS, tvOS, watchOS에 포함. 기존에는 앱에 포함되어 앱의 크기를 키웠음.
-    - [ABI 안정화 그리고 그 이상](abi_stability_and_more)
+    - [ABI 안정화 그리고 그 이상](/blog/abi_stability_and_more/)
     - [Evolving Swift On Apple Platforms After ABI Stability](https://swift.org/blog/abi-stability-and-apple/)
 
 <br/>
 ## Standard Library Updates
 
-- String이 UTF-8 인코딩으로 다시 전환하여 퍼포먼스를 높임
+- String의 주된 내부 인코딩을 UTF-8로 바꾸어 많은 작업의 성능을 개선함(모든 작업이 빨라진다는 뜻은 아님)
     - [UTF-8 String](https://swift.org/blog/utf8-string/)
 - raw text를 지원하는 string literal 추가
     - [String Literals](https://swift.org/blog/behind-se-0200/)
@@ -37,11 +39,11 @@ latex   : false
 ### Swift Evolution
 
 - [SE-0200 Enhancing String Literals Delimiters to Support Raw Text](https://github.com/apple/swift-evolution/blob/master/proposals/0200-raw-string-escaping.md)
-- [ SE-0211 Add Unicode Properties to Unicode.Scalar](https://github.com/apple/swift-evolution/blob/master/proposals/0211-unicode-scalar-properties.md)
-- [ SE-0214 Renaming the DictionaryLiteral type to KeyValuePairs](https://github.com/apple/swift-evolution/blob/master/proposals/0214-DictionaryLiteral.md)
-- [ SE-0215 Conform Never to Equatable and Hashable](https://github.com/apple/swift-evolution/blob/master/proposals/0215-conform-never-to-hashable-and-equatable.md)
-- [ SE-0218 Introduce compactMapValues to Dictionary](https://github.com/apple/swift-evolution/blob/master/proposals/0218-introduce-compact-map-values.md)
-- [ SE-0221 Character Properties](https://github.com/apple/swift-evolution/blob/master/proposals/0221-character-properties.md)
+- [SE-0211 Add Unicode Properties to Unicode.Scalar](https://github.com/apple/swift-evolution/blob/master/proposals/0211-unicode-scalar-properties.md)
+- [SE-0214 Renaming the DictionaryLiteral type to KeyValuePairs](https://github.com/apple/swift-evolution/blob/master/proposals/0214-DictionaryLiteral.md)
+- [SE-0215 Conform Never to Equatable and Hashable](https://github.com/apple/swift-evolution/blob/master/proposals/0215-conform-never-to-hashable-and-equatable.md)
+- [SE-0218 Introduce compactMapValues to Dictionary](https://github.com/apple/swift-evolution/blob/master/proposals/0218-introduce-compact-map-values.md)
+- [SE-0221 Character Properties](https://github.com/apple/swift-evolution/blob/master/proposals/0221-character-properties.md)
 - [SE-0225 Adding isMultiple to BinaryInteger](https://github.com/apple/swift-evolution/blob/master/proposals/0225-binaryinteger-iseven-isodd-ismultiple.md)
 - [SE-0228 Fix ExpressibleByStringInterpolation](https://github.com/apple/swift-evolution/blob/master/proposals/0228-fix-expressiblebystringinterpolation.md)
 - [SE-0229 SIMD Vectors](https://github.com/apple/swift-evolution/blob/master/proposals/0229-simd.md)
@@ -50,7 +52,7 @@ latex   : false
 - [SE-0234 Remove Sequence.SubSequence](https://github.com/apple/swift-evolution/blob/master/proposals/0234-remove-sequence-subsequence.md)
 - [SE-0235 Add Result to the Standard Library](https://github.com/apple/swift-evolution/blob/master/proposals/0235-add-result.md)
 - [SE-0237 Introduce withContiguous{Mutable}StorageIfAvailable methods](https://github.com/apple/swift-evolution/blob/master/proposals/0237-contiguous-collection.md)
-- [ SE-0239 Add Codable conformance to Range types](https://github.com/apple/swift-evolution/blob/master/proposals/0239-codable-range.md)
+- [SE-0239 Add Codable conformance to Range types](https://github.com/apple/swift-evolution/blob/master/proposals/0239-codable-range.md)
 - [SE-0241 Deprecate String Index Encoded Offsets](https://github.com/apple/swift-evolution/blob/master/proposals/0241-string-index-explicit-encoding-offset.md)
 
 <br/>
@@ -62,10 +64,10 @@ latex   : false
 
 - [SE-0192 Handling Future Enum Cases](https://github.com/apple/swift-evolution/blob/master/proposals/0192-non-exhaustive-enums.md)
 - [SE-0213 Literal initialization via coercion](https://github.com/apple/swift-evolution/blob/master/proposals/0213-literal-init-via-coercion.md)
-- [ SE-0216 Introduce user-defined dynamically “callable” types](https://github.com/apple/swift-evolution/blob/master/proposals/0216-dynamic-callable.md)
+- [SE-0216 Introduce user-defined dynamically “callable” types](https://github.com/apple/swift-evolution/blob/master/proposals/0216-dynamic-callable.md)
 - [SE-0224 Support ‘less than’ operator in compilation conditions](https://github.com/apple/swift-evolution/blob/master/proposals/0224-ifswift-lessthan-operator.md)
-- [ SE-0227 Identity key path](https://github.com/apple/swift-evolution/blob/master/proposals/0227-identity-keypath.md)
-- [ SE-0230 Flatten nested optionals resulting from ‘try?’](https://github.com/apple/swift-evolution/blob/master/proposals/0230-flatten-optional-try.md)
+- [SE-0227 Identity key path](https://github.com/apple/swift-evolution/blob/master/proposals/0227-identity-keypath.md)
+- [SE-0230 Flatten nested optionals resulting from ‘try?’](https://github.com/apple/swift-evolution/blob/master/proposals/0230-flatten-optional-try.md)
 
 <br/>
 ## Package Manager
@@ -79,20 +81,20 @@ latex   : false
 
 ### Swift Evolution
 
-- [ SE-0219 Package Manager Dependency Mirroring](https://github.com/apple/swift-evolution/blob/master/proposals/0219-package-manager-dependency-mirroring.md)
+- [SE-0219 Package Manager Dependency Mirroring](https://github.com/apple/swift-evolution/blob/master/proposals/0219-package-manager-dependency-mirroring.md)
 - [SE-0236 Package Manager Platform Deployment Settings](https://github.com/apple/swift-evolution/blob/master/proposals/0236-package-manager-platform-deployment-settings.md)
-- [ SE-0238 Package Manager Target Specific Build Settings](https://github.com/apple/swift-evolution/blob/master/proposals/0238-package-manager-build-settings.md)
+- [SE-0238 Package Manager Target Specific Build Settings](https://github.com/apple/swift-evolution/blob/master/proposals/0238-package-manager-build-settings.md)
 
 <br/>
 # Migrating to Swift 5
 
 Swift 5는 Swift 4, 4.1, 4.2와 소스 호환됩니다. 
 
-*Xcode는 항상 마이그레이션을 지원하지만, 손으로 하는것이 여러모로 좋습니다.*
+*Xcode 10.2에는 마이그레이터가 포함되어 있습니다. 자동 변환 결과를 읽어보고 의미가 달라지는 부분은 손으로 확인하는 편이 좋습니다.*
 
 <br/>
 # Documentation
-[The Swift Programming Language](https://swift.org/blog/swift-5-released/) 문서가 업데이트 되었습니다. [Apple Books store](https://itunes.apple.com/us/book/the-swift-programming-language/id881256329?mt=11)에서도 무료로 받을 수 있습니다.
+[The Swift Programming Language](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/) 문서가 업데이트 되었습니다. [Apple Books store](https://itunes.apple.com/us/book/the-swift-programming-language/id881256329?mt=11)에서도 무료로 받을 수 있습니다.
 
 
 # Platforms
@@ -104,12 +106,12 @@ Swift 5는 Swift 4, 4.1, 4.2와 소스 호환됩니다.
 <br/>
 ## Apple (Xcode)
 
-... 써야함?
+Swift 5.0은 Xcode 10.2에 포함되었습니다. 위 원문에서 당시 배포 정보를 확인할 수 있습니다.
 
 <br/>
 # Sources
 
-Swift 5.0 브랜치를 따라가는 repository
+아래는 당시 Swift 5.0 개발에 사용된 저장소 목록입니다. 원문의 설명대로 최종 릴리스 기준은 `swift-5.0-RELEASE` 태그이며, 각 저장소의 현재 기본 브랜치가 Swift 5.0이라는 뜻은 아닙니다.
 
 - [swift](https://github.com/apple/swift)
 - [swift-clang](https://github.com/apple/swift-clang)

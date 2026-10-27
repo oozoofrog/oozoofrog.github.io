@@ -6,9 +6,11 @@ updated : 2018-04-16 23:27:20 +0900
 categories : unicode history
 ---
 
+> **검토·정정 (2026-10-28)** 초기 Unicode의 설계 목표와 역사를 정리한 학습 노트입니다. 초기의 16비트 고정폭 구상은 오늘날의 UTF-8/UTF-16 인코딩 설명과 다릅니다. round trip의 의미를 정정하고 원문 링크를 구체화했습니다.
+
 *더 이상 유니코드 때문에 이것저것 찾아보며 열받기 싫어서 머리에 넣어놓기로 했다.*
 
-참고: [unicode.org](https://unicode.org)
+참고: Unicode Consortium의 [Summary Narrative](https://www.unicode.org/history/summary.html)
 
 # 유니코드의 역사
 
@@ -20,7 +22,7 @@ categories : unicode history
 ### 유니코드의 주요 목표
 
 * 범용성(universal) - 모든 언어에 대응.
-* 일관성(uniform) - 효율적인 접근을 위한 고정폭을 가진 코드.
+* 일관성(uniform) - 효율적인 접근을 위한 고정폭을 가진 코드. **초기 설계 목표**에 대한 설명이다. 현재 UTF-8과 UTF-16은 가변 길이 인코딩이며, 문자 하나와 코드 유닛 하나가 항상 일치하지 않는다.
 * 유일성(unique) - 비트 배열은 하나의 캐릭터를 위한 하나의 해석만을 가짐.
 
 16비트 범용 코드는 새로운 개념은 아니며, ISO 멀티 바이트 문자 인코딩의 원래 원칙에서도 그래픽 문자를 위한 ISO 표준 개발과 2 바이트 그래픽 문자셋을 위한 코딩에서 프로그래밍 언어는 각 문자열에 동일한 양의 저장소를 가질 것을 고려해야 한다고 명시했다. \[ISO/TC97/SC2 N1436, 1984\]
@@ -41,7 +43,7 @@ categories : unicode history
 
 - 1989년
 	- 초반, 다른 회사들이 참여. 당시, [Metaphor](https://en.wikipedia.org/wiki/Metaphor_Computer_Systems)의 켄 휘슬러(Ken Whistler)와 마이크 커나한(Mike Kernaghan), [RLG](https://en.wikipedia.org/wiki/Research_Libraries_Group)의 카렌 스미스 요시무라(Karen Smith-Yoshimura)와 조앤 앨리프랜드(Joan Aliprand), Sun의 글렌 라이트(Glen Wright)가 작업 그룹에 합류하여 디자인에 큰 기여를 시작했다.
-	- 중반, 유니코드를 기존 표준에 가깝게 하기 위한 여러 변경이 있었다. 존재하던 모든 ISO 복합 문자(composite character)가 유니코드에 추가되었고, **[round trips](https://en.wikipedia.org/wiki/Round-trip_format_conversion)**(국제 표준에서 두 문자로 이루어진 모든 문자는 유니코드로 분류)가 추가되었고, 가능한 경우 [ISO 8859](https://ko.wikipedia.org/wiki/ISO/IEC_8859 )의 순서를 따르도록 변경되었다.
+	- 중반, 유니코드를 기존 표준에 가깝게 하기 위한 여러 변경이 있었다. 존재하던 모든 ISO 복합 문자(composite character)가 유니코드에 추가되었고, **round trip 변환**(기존 국가 표준에서 서로 다른 문자로 구별하는 항목은 유니코드에서도 구별하여, 변환 후 원래 인코딩으로 돌아갈 때 그 구별을 보존)이 고려되었고, 가능한 경우 [ISO 8859](https://ko.wikipedia.org/wiki/ISO/IEC_8859 )의 순서를 따르도록 변경되었다.
 - 1990년
 	- 초반, 마이크로소프트를 대표하여 Michel Suignard와 Asmus Freytag가 합류. 그들은 Whistler와 함께 다른 문자 인코딩 표준에 대한 매핑 테이블을 만들기 위해 광범위한 작업을 지속했다. 1990년 봄에 유니코드 알파벳과 기호는 완성되었지만, 교차 매핑 작업은 계속되었다. ISO 10646(유니코드 표준안 및 워킹 그룹), IBM, Mac과 국제 표준에 대한 이 광범위한 매핑 작업은 완전하고 효과적인 인코딩을 제작하는데 매우 가치있는 도움이 되었다.
 	- Joan Winters가 Unicode 회의에서 SHARE를 대표해서 등장했다. IBM의 Isai Scheinberg와 J.G. Van Stee가 90년 중반에 합류했다. 토론토 대학(Tronto University)에서는 IBM과 함께 광범위한 검토와 연구가 계획되었다. 이 검토의 결과로 반각문자와 아랍어 문자의 호환 영역이 포함되었다. [Pacific Rim Connection](http://www.pacrim50.com)의 James Caldwell이 편집자로 참여해 산만한 문서들을 일관성 있는 표준 문서로 통합했다. 대부분의 문자 서술이 이 시점에서 완성되었다.
@@ -69,4 +71,6 @@ Unicode, Inc의 초기 임원진은 다음과 같다:
 - Ken Whistler, 사무관
 - Bill English, 재무관
 
-다음은 [유니코드 1.0 연대기](chronology_unicode)로 넘어간다.
+다음은 [유니코드 1.0 연대기](/blog/chronology_unicode/)로 넘어간다.
+
+현재 문자열의 단위는 [프로그래밍 언어별 문자열 세기](/blog/counts-by-language/)에서 코드 포인트·코드 유닛·문자로 나누어 정리했다.

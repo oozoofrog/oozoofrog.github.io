@@ -1,33 +1,31 @@
 ---
 title   : iOS 취약점 정리
-summary : 
+summary :
 date    : 2018-04-10 22:14:19 +0900
 updated : 2018-04-10 22:14:19 +0900
 tags    : security, iOS
 ---
 
-[cve](https://www.cvedetails.com/product/15556/Apple-Iphone-Os.html?vendor_id=49 )
+> **2026-10-28 정정:** 2018년에 작성한 2007–2008년 취약점 발췌 메모입니다. 전체 목록이나 현재 iOS의 보안 상태를 나타내지 않습니다. Apple 보안 공지와 대조해 CVE·수정 버전을 붙이고, 힙 취약점의 위험을 낮게 평가했던 설명을 삭제했습니다.
 
-현재까지 보고된 iOS 취약점 리스트
+## 2007: Safari의 PCRE 힙 버퍼 오버플로
 
-# 2007
-### code of execution or overflow
+- **CVE-2007-3944**: Safari JavaScript 엔진이 쓰던 PCRE의 힙 버퍼 오버플로 문제다. 조작된 웹 페이지 방문으로 임의 코드 실행이 가능했다.
+- **영향/수정:** iPhone OS 1.0 대상, 1.0.1 업데이트에서 수정.
+- 힙이 동적 메모리라는 사실만으로 공격이 효과적이지 않다고 결론낼 수 없다. 메모리 할당 방식과 악용 가능성은 별개이며, 이 문제의 영향은 Apple도 임의 코드 실행으로 명시했다.
 
-1. iOS에서 WebKit의 javascript 엔진의 perl compatible regular expressions(줄여서 PCRE) 라이브러리에서 다중 힙 기반 버퍼 오버플로우를 통해 원격으로 특정 javascript를 통해 임의의 코드를 실행할 수 있다.
-	- iOS 1.0.1 미만
-	- 유형: code execution, overflow
-	- 다만, 힙 메모리는 동적으로 지정되기 때문에, 이런 방식의 공격자체는 효과적이지는 않다고 한다.
+출처: [Apple iPhone v1.0.1 보안 공지](https://support.apple.com/en-gb/102579).
 
-# 2008
+## 2008: iPhone OS 2.2에서 수정한 항목 중 발췌
 
-1. 공격자가 HTML문서를 통해 임의로 전화를 걸 수 있다.
-	- iPhone 1.0 ~ 2.1, iPod touch 1.1 ~ 2.1
-2. safari에서 HTML TABLE element를 제대로 처리하지 못하여 조작된 HTML을 통해 임의의 코드 실행이나 서비스 거부(메모리 오염 및 어플리케이션 크래시)를 발생시킬 수 있다.
-	- iPhone 1.0 ~ 2.1, iPod touch 1.1 ~ 2.1
-	- 유형: DoS, code execution, memory corruption
-3. iFrame의 컨텐츠가 iFrame의 영역을 넘을 수 있음을 이용, 조작된 HTML을 통해 사용자 인터페이스를 [스푸핑](https://ko.wikipedia.org/wiki/스푸핑)할 수 있다.
-	- iPhone 2.0 ~ 2.1, iPod touch 2.1
-4. 암호 잠금 기능은 긴급 통화 화면에서 SMS 메시지를 표시하기 때문에, 중요한 메시지의 정보가 타인에게 노출될 수 있습니다.
-	- iOS 1.0 ~ 2.1, iPod touch 1.1 ~ 2.1
-	- 유형: Gain Information
-5. Race condition in the Passcode Lock feature in Apple iPhone OS 2.0 through 2.1 and iPhone OS for iPod touch 2.0 through 2.1 allows physically proximate attackers to remove the lock and launch arbitrary applications by restoring the device from a backup.
+| CVE | 내용 | 영향 범위 |
+| --- | --- | --- |
+| CVE-2008-4233 | 조작된 웹 페이지에서 사용자 승인 없이 전화 발신 가능 | iPhone OS 1.0–2.1, iPod touch 1.1–2.1 |
+| CVE-2008-4231 | HTML table 처리의 메모리 손상으로 앱 종료 또는 임의 코드 실행 | iPhone OS 1.0–2.1, iPod touch 1.1–2.1 |
+| CVE-2008-4232 | iframe 경계 밖 콘텐츠 표시로 UI 스푸핑 가능 | iPhone OS·iPod touch 2.0–2.1 |
+| CVE-2008-4230 | 긴급 통화 화면에서 수신 SMS 내용 노출 | iPhone OS 1.0–2.1, iPod touch 1.1–2.1 |
+| CVE-2008-4229 | 백업 복원 뒤 암호 잠금이 다시 활성화되지 않을 수 있음 | iPhone OS·iPod touch 2.0–2.1 |
+
+위 다섯 항목의 수정 버전은 **2.2**다. 암호 잠금 문제는 기기에 물리적으로 접근할 수 있는 상황과 관련된다. 원문의 iframe 영향 범위에서 iPod touch 2.0을 빠뜨린 부분도 수정했다.
+
+출처: [Apple iOS 2.2 및 iPod touch 2.2 보안 공지](https://support.apple.com/en-us/104121). 당시 제품 명칭은 iPhone OS였고, 현재 아카이브 제목은 iOS로 표시된다. 최신 업데이트의 취약점과 혼동하지 말고 해당 버전의 공지를 확인해야 한다.

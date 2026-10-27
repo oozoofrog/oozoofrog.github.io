@@ -6,11 +6,13 @@ updated : 2022-01-18 21:00:00 +0900
 categories : swift compiler architecture
 ---
 
+> **읽기 안내 · 2026-10-28 정리:** 2017년 원문의 부분 번역에 2022년 Swift 5.5 관련 메모를 덧붙인 글입니다. 현재 번역 범위는 Driver부터 Parse까지입니다. Swift 3.1 로그, 옛 C++ 드라이버 설명, Swift 5.5 보충 내용을 분리해서 읽어주세요.
+
 # Swift compiler architecture
 
-*[@rintaro](https://qiita.com/rintaro)님이 [Qiita](https://qiita.com)에 포스팅한 일본어 [원문](https://qiita.com/rintaro/items/3ad640e3938207218c20?fbclid=IwAR1NiW77-FJuHqHYi5PJjIS6BFtEKP3H2s4UIAI-GvTfEjcbwNlL3Gp58jQ)을 번역한 글입니다.*
+*[@rintaro](https://qiita.com/rintaro)님이 [Qiita](https://qiita.com)에 포스팅한 일본어 [원문](https://qiita.com/rintaro/items/3ad640e3938207218c20)을 번역한 글입니다.*
 
-*글 자체는 2017년도의 글이라 업데이트되어있는 변경점을 반영하면서 번역하고 있습니다.*
+*원문의 설명을 보존하되, 버전이 다른 보충 내용에는 기준을 표시했습니다. 전체 컴파일러 구조의 최신 번역본은 아닙니다.*
 
 Swift 컴파일러 개발을 시작해보고 싶은 분들을 위해, 컴파일러의 전체 구성이 어떻게 되어있는지 대략적으로 설명해보겠습니다. 코드를 읽을 때 참고가 되면 좋겠네요.
 
@@ -22,9 +24,11 @@ Swift 컴파일러 개발을 시작해보고 싶은 분들을 위해, 컴파일�
 
 ## 드라이버 (Driver)
 
-`swift` 명령어 인데, 실체는 [tools/driver](https://github.com/apple/swift/tree/master/tools/driver) 입니다.
+아래는 **2017년 C++ 드라이버**의 설명입니다. 당시 `swift` 명령어의 구현은 [Swift 3.1의 tools/driver](https://github.com/swiftlang/swift/tree/swift-3.1-RELEASE/tools/driver)에 있습니다.
 
-tools/driver/driver.cpp에 main 함수가 있어, 여기서부터 [lib 디렉토리](https://github.com/apple/swift/tree/master/lib) 에서 구현하고 있는 각종 라이브러리를 호출하도록 되어있습니다.
+**Swift 5.5 보충:** Xcode 13부터는 Swift로 작성된 [swift-driver](https://github.com/swiftlang/swift-driver)가 기본 드라이버입니다. 따라서 아래의 C++ `main`을 현재 기본 드라이버의 진입점으로 보면 안 됩니다. [WWDC21 공식 설명](https://developer.apple.com/videos/play/wwdc2021/10192/)
+
+tools/driver/driver.cpp에 main 함수가 있어, 여기서부터 [Swift 3.1 lib 디렉토리](https://github.com/swiftlang/swift/tree/swift-3.1-RELEASE/lib) 에서 구현하고 있는 각종 라이브러리를 호출하도록 되어있습니다.
 
 드라이버에는 명령어 argument에 따른 몇개의 모드가 존재합니다.
 
@@ -36,7 +40,7 @@ tools/driver/driver.cpp에 main 함수가 있어, 여기서부터 [lib 디렉토
 
 - -로 시작하지 않는다
 - .을 포함하지 않는다 (파일명이 아니다)
-- repl이 아니다 <sup>[1](#1)</sup>
+- repl이 아니다 <sup>[1](#note-1)</sup>
 
 시험삼아 `swift oozoofrog` 같은 느낌으로 명령어를 실행하면 swift-oozoofrog 라는 서브명령어를 찾지 못했다는 에러를 표시하게 됩니다.
 ```shell
@@ -60,7 +64,7 @@ func hello() {
 hello()
 ```
 
--v 옵션을 붙이면 서브프로세스를 호출하는 모습을 확인할 수 있습니다.
+`-v` 옵션을 붙이면 서브프로세스를 호출하는 모습을 확인할 수 있습니다. 아래는 원문에 있던 **Swift 3.1 / macOS SDK 10.12의 로그**이며, 현재 도구 체인에서 다시 실행한 출력이 아닙니다.
 
 ```shell
 # 실행하는 서브프로세스를 표시하면서 컴파일
@@ -127,7 +131,7 @@ Type :help for assistance.
   1>  
 ```
 
-`lldb`명령어가 특정 디렉토리에 존재하는 경우 `lldb`를 Swift의 REPL mode로 실행, 그렇지 않으면 Frontend에 내장되어 있는 REPL을 실행합니다. <sup>[2](#2)</sup>
+`lldb`명령어가 특정 디렉토리에 존재하는 경우 `lldb`를 Swift의 REPL mode로 실행, 그렇지 않으면 Frontend에 내장되어 있는 REPL을 실행합니다. <sup>[2](#note-2)</sup>
 
 ```shell
 # STDIN(standard input)을 REPL 실행
@@ -161,14 +165,14 @@ Debugger commands:
 
 ### 그 외의 mode
 
-이 외에도 몇 개의 모드가 더 있습니다. 어떤게 있는지 살펴보자면, (원문의 모드는 더 이상 존재하지 않거나 바뀌거나 해서 새로 작성했습니다. ***swift 5.5기준**)
+이 외에도 몇 개의 모드가 더 있습니다. 어떤게 있는지 살펴보자면, (원문의 모드는 더 이상 존재하지 않거나 바뀌거나 해서 새로 작성했습니다. **Swift 5.5 기준**)
 
 |실행방법|      |
 | ---- | ---- |
 | swift api-digester | ABI 검사기로 서로 다른 버전의 라이브러리 간에 안전하지 않는 변경점을 도출합니다. |
 | swift api-extract | 조사중 |
 | swift demangle | 맹글링된 코드를 디맹글링합니다. |
-| swift -modulewrap | .swiftmodule의 데이터를 그대로 .o로<sup>[3](#3)</sup> |
+| swift -modulewrap | .swiftmodule의 데이터를 그대로 .o로<sup>[3](#note-3)</sup> |
 | swift package | swift package 생성 등 관련한 작업을 합니다. |
 | swift package-collection | swift package collection 추가 등 관련한 작업을 합니다. |
 | swift stdlib-tool | |
@@ -176,7 +180,7 @@ Debugger commands:
 
 각 모드가 명령어 옵션을 지정하거나, 심볼릭 링크에 의한 명령어의 이름의 별칭이거나 한것은 무슨 기준일까요.
 
-## Fontend의 구성
+## Frontend의 구성 (기존 번역 범위)
 
 `lib/FrontendTool/FrontendTool.cpp`에 있는 `swift::performFrontend`가 진입부가 됩니다. 큰 흐름은 아래와 같습니다.
 
@@ -217,24 +221,34 @@ CompilerInstance는 아래와 같은, 컴파일러의 중요한 싱글턴을 가
 
 또한 `SourceManager` 나 `DiagnosticEngine` 를 참조하고 있어, 각 서브시스템으로부터 이를 참조해야할 필요가 생기는 경우의 창구역할을 하고 있습니다. 여러군데서 찾아보고 싶은 경우는 일단 여기에 넣어두자 라는 친구죠.
 
-## 서브시스템
+## 서브시스템 (Parse까지 부분 번역)
 
-컴파일러의 파이프라인상에 나타나는, 주요한 프로세스입니다. [swift.org](https://swift.org/compiler-stdlib/) 에도 설명되어있습니다.
+컴파일러의 파이프라인상에 나타나는, 주요한 프로세스입니다. [Swift Compiler 문서](https://www.swift.org/swift-compiler/) 에도 설명되어있습니다.
 
 알맞은 용어인지 잘 모르겠습니다만, 소스 상에서는 ["subsystems"](https://github.com/apple/swift/blob/master/include/swift/Subsystems.h)에서 참조하고 있는 것들을 여기서는 서브시스템이라고 부릅니다. swift.org에서는 [Compiler Architecture](https://www.swift.org/swift-compiler/#compiler-architecture)로 표기하고 있습니다.
 
 ### Parse
 
-소스를 [AST(추상구문트리)](https://ko.wikipedia.org/wiki/추상_구문_트리)로 변환합니다. 비교적 간단한 [재귀 하향 파서](https://ko.wikipedia.org/wiki/재귀_하향_파서)로, `lib/Parse/Lexer.cpp`에 의해  [낱말 분석](https://ko.wikipedia.org/wiki/낱말_분석)을 수행하며, Lexer로부터 얻은 토큰의 나열을 판단해서 AST를 만들어갑니다. 타입 정보나, 의미 해석에는 관여하지 않습니다.<sup>[4](#4)</sup> 예외적으로 로컬변수의 사용 등, 문맥상 명확한 경우 해당 시점에 [Name Binding](https://ko.wikipedia.org/wiki/언어_바인딩)을 수행합니다. 또 문법 에러나, 문법과 관련한 워닝을 출력하는 것도 Parse가 하는 일입니다.
+소스를 [AST(추상구문트리)](https://ko.wikipedia.org/wiki/추상_구문_트리)로 변환합니다. 비교적 간단한 [재귀 하향 파서](https://ko.wikipedia.org/wiki/재귀_하향_파서)로, `lib/Parse/Lexer.cpp`에 의해  [낱말 분석](https://ko.wikipedia.org/wiki/낱말_분석)을 수행하며, Lexer로부터 얻은 토큰의 나열을 판단해서 AST를 만들어갑니다. 타입 정보나, 의미 해석에는 관여하지 않습니다.<sup>[4](#note-4)</sup> 예외적으로 로컬변수의 사용 등, 문맥상 명확한 경우 해당 시점에 [Name Binding](https://ko.wikipedia.org/wiki/언어_바인딩)을 수행합니다. 또 문법 에러나, 문법과 관련한 워닝을 출력하는 것도 Parse가 하는 일입니다.
 
 빌드 과정에서의 진입부는 [`lib/Parse/ParseRequests.cpp`](https://github.com/apple/swift/blob/main/lib/Parse/ParseRequests.cpp) 에서 `ParseSourceFileRequest::evaluate`함수이며  `lib/Parse`에 있는 `Parser`의 인스턴스가 만들어집니다. 여기에서 `lib/Parse/ParseDecl.cpp`의 [Parser::parseTopLevel](https://github.com/apple/swift/blob/07e2dfda56661bd9f1a335d0164a38aee2208a84/lib/Parse/ParseDecl.cpp#L169) 함수를 호출합니다. `parseTopLevel`함수는 `lib/Parse/Parser.cpp`의 `ParserUnit::parse()` 함수에서도 호출되는데 이 경우 소스의 syntax highlighting이나 formatting 등에서 사용되는듯 합니다.
 
 
 
-<a name="1">1</a> 최근(여기선 2017년)까지는 run도 대상이었습니다만, 내장하고 있는 swift run은 [SE-0179](https://github.com/apple/swift-evolution/blob/master/proposals/0179-swift-run-command.md)의 swiftpm의 기능을 덮어쓰기 때문에 폐기되었습니다. [SR-5332](https://bugs.swift.org/browse/SR-5332)
+<a id="note-1">1</a> 최근(여기선 2017년)까지는 run도 대상이었습니다만, 내장하고 있는 swift run은 [SE-0179](https://github.com/apple/swift-evolution/blob/master/proposals/0179-swift-run-command.md)의 swiftpm의 기능을 덮어쓰기 때문에 폐기되었습니다. [SR-5332](https://bugs.swift.org/browse/SR-5332)
 
-<a name="2">2</a> Swift3까지 Linux에는 내장 REPL을 지원하고 있지 않았기 때문에, `lldb`가 없는 경우 에러가 났습니다만, 이제는 포함되어 있는듯합니다. [PR-7709](https://github.com/apple/swift/pull/7709)
+<a id="note-2">2</a> Swift3까지 Linux에는 내장 REPL을 지원하고 있지 않았기 때문에, `lldb`가 없는 경우 에러가 났습니다만, 이제는 포함되어 있는듯합니다. [PR-7709](https://github.com/apple/swift/pull/7709)
 
-<a name="3">3</a> `swiftc -g`로 컴파일할 때 사용하며, 바이너리에 포함되어 디버거가 사용합니다.
+<a id="note-3">3</a> `swiftc -g`로 컴파일할 때 사용하며, 바이너리에 포함되어 디버거가 사용합니다.
 
-<a name="4">4</a> 타입 정보에는 관여하지는 않지만, 타입명의 분석은 수행합니다. 다만, 분석한 타입명이 실제로는 무엇인지는 Parse의 시점에서는 알 수 없습니다.
+<a id="note-4">4</a> 타입 정보에는 관여하지는 않지만, 타입명의 분석은 수행합니다. 다만, 분석한 타입명이 실제로는 무엇인지는 Parse의 시점에서는 알 수 없습니다.
+
+
+## 확인할 때 남길 환경 정보
+
+```sh
+swiftc --version
+swiftc -driver-print-jobs -o hello main.swift hello.swift
+```
+
+`hello.swift`와 `main.swift`는 위 예제를 각각 저장한 파일입니다. 컴파일러 소스를 따라갈 때는 사용한 Swift 태그 또는 커밋도 기록해야 합니다. 이 글의 `main`/`master` 링크는 이동하는 대상이며, 함수의 위치와 세부 단계는 버전에 따라 달라질 수 있습니다. Sema 이후 단계는 아직 번역하지 않았습니다.
