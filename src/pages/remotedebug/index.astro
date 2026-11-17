@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="RemoteDebug" description="Mac의 Debug 빌드를 Tailscale을 거쳐 iPhone에 설치하는 Mac·iPhone 앱." lang="ko">
+  <article class="page">
+    <p class="eyebrow">오픈 소스 · MIT</p>
+    <h1>RemoteDebug</h1>
+    <p class="lead">Mac에서 만든 Debug(개발 서명) 빌드를 Tailscale을 거쳐 iPhone에 보내 설치합니다. Mac 앱이 빌드를 검사해 게시하고, 페어링한 iPhone 앱이 목록을 받아 설치합니다.</p>
+
+    <div class="download">
+      <a class="btn btn-primary" href="https://github.com/oozoofrog/remotedebug/releases/latest/download/RemoteDebug.zip">Mac 앱 받기</a>
+      <p class="note">공증된 Developer ID 빌드입니다. 압축을 풀어 응용 프로그램 폴더로 옮기세요.</p>
+    </div>
+
+    <section>
+      <h2>필요한 것</h2>
+      <ul>
+        <li>Apple silicon Mac, macOS 26 이상</li>
+        <li>iPhone, iOS 26 이상</li>
+        <li>Tailscale 계정: 두 기기가 같은 tailnet에 들어갑니다</li>
+        <li>설치할 앱은 그 iPhone이 등록된 개발 서명 Debug 빌드여야 합니다</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>iPhone 앱</h2>
+      <p>iPhone 앱은 App Store에 없고 여기서 내려받을 수도 없습니다. iOS 앱은 받는 사람의 개발 팀으로 서명해야 하기 때문입니다. 소스를 받아 직접 빌드합니다.</p>
+      <ol>
+        <li>저장소를 받습니다: <code>git clone https://github.com/oozoofrog/remotedebug</code></li>
+        <li>Mac 앱의 <strong>iPhone 앱 설치…</strong>에서 받은 폴더를 소스로 고르고, 케이블로 연결한 iPhone에 설치합니다.</li>
+        <li>VPN 권한 때문에 유료 Apple Developer Program 팀과 Xcode가 필요합니다.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>페어링</h2>
+      <ul>
+        <li><strong>RemoteDebug 앱이 있는 iPhone</strong>: Mac의 QR을 앱에서 읽고, 양쪽에 나온 확인 숫자가 같으면 Mac에서 허용합니다.</li>
+        <li><strong>앱이 아직 없는 iPhone</strong>: Tailscale 앱을 켠 iPhone의 Safari로 Mac의 설치 페이지를 열어 8자 코드를 넣습니다.</li>
+      </ul>
+    </section>
+
+    <nav class="links" aria-label="RemoteDebug">
+      <a href="https://github.com/oozoofrog/remotedebug/blob/main/docs/setup.md">설정 문서</a>
+      <a href="https://github.com/oozoofrog/remotedebug/releases">릴리스 기록</a>
+      <a href="https://github.com/oozoofrog/remotedebug">GitHub 소스</a>
+      <a href="/remotedebug/en/">English</a>
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .page { max-width: 760px; margin: 0 auto 4rem; }
+  .eyebrow { color: var(--frog-green); font-weight: 700; margin-bottom: .6rem; }
+  h1 { margin-top: 0; color: var(--dark-green); font-size: clamp(2.2rem, 6vw, 4rem); }
+  .lead { font-size: 1.2rem; line-height: 1.7; }
+  .download { margin-top: 2rem; }
+  .note { margin-top: .75rem; font-size: .95rem; opacity: .8; }
+  section { margin-top: 2.5rem; }
+  li { margin: .65rem 0; }
+  code { word-break: break-all; }
+  .links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 3rem; }
+  .links a { padding: .6rem .9rem; border: 1px solid var(--surface-border); border-radius: 999px; }
+</style>

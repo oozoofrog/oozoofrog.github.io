@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="RemoteDebug" description="Mac and iPhone apps that install Debug builds from your Mac onto an iPhone over Tailscale." lang="en">
+  <article class="page">
+    <p class="eyebrow">Open source · MIT</p>
+    <h1>RemoteDebug</h1>
+    <p class="lead">Send Debug (development-signed) builds from your Mac to an iPhone over Tailscale and install them there. The Mac app inspects and publishes each build, and the paired iPhone app lists and installs it.</p>
+
+    <div class="download">
+      <a class="btn btn-primary" href="https://github.com/oozoofrog/remotedebug/releases/latest/download/RemoteDebug.zip">Download for Mac</a>
+      <p class="note">Notarized Developer ID build. Unzip it and move the app to Applications.</p>
+    </div>
+
+    <section>
+      <h2>Requirements</h2>
+      <ul>
+        <li>Apple silicon Mac, macOS 26 or later</li>
+        <li>iPhone, iOS 26 or later</li>
+        <li>A Tailscale account: both devices join the same tailnet</li>
+        <li>Apps you install must be development-signed Debug builds that include that iPhone</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>iPhone app</h2>
+      <p>The iPhone app is not on the App Store and cannot be downloaded here, because an iOS app has to be signed with your own development team. You build it from source.</p>
+      <ol>
+        <li>Get the repository: <code>git clone https://github.com/oozoofrog/remotedebug</code></li>
+        <li>In the Mac app, choose <strong>Install iPhone App…</strong>, pick that folder as the source, and install onto an iPhone connected by cable.</li>
+        <li>The VPN entitlement needs a paid Apple Developer Program team and Xcode.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Pairing</h2>
+      <ul>
+        <li><strong>iPhone with RemoteDebug</strong>: scan the Mac’s QR code in the app, then allow on the Mac when both screens show the same confirmation number.</li>
+        <li><strong>iPhone without the app yet</strong>: with the Tailscale app connected, open the Mac’s install page in Safari and enter the 8-character code.</li>
+      </ul>
+    </section>
+
+    <nav class="links" aria-label="RemoteDebug">
+      <a href="https://github.com/oozoofrog/remotedebug/blob/main/docs/setup.md">Setup guide (Korean)</a>
+      <a href="https://github.com/oozoofrog/remotedebug/releases">Release notes</a>
+      <a href="https://github.com/oozoofrog/remotedebug">Source on GitHub</a>
+      <a href="/remotedebug/">한국어</a>
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .page { max-width: 760px; margin: 0 auto 4rem; }
+  .eyebrow { color: var(--frog-green); font-weight: 700; margin-bottom: .6rem; }
+  h1 { margin-top: 0; color: var(--dark-green); font-size: clamp(2.2rem, 6vw, 4rem); }
+  .lead { font-size: 1.2rem; line-height: 1.7; }
+  .download { margin-top: 2rem; }
+  .note { margin-top: .75rem; font-size: .95rem; opacity: .8; }
+  section { margin-top: 2.5rem; }
+  li { margin: .65rem 0; }
+  code { word-break: break-all; }
+  .links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 3rem; }
+  .links a { padding: .6rem .9rem; border: 1px solid var(--surface-border); border-radius: 999px; }
+</style>
