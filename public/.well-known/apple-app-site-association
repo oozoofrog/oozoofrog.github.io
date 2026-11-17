@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["HY47J4787Q.com.oozoofrog.app.RemoteDebugPhone"],
+        "components": [
+          { "/": "/remotedebug/pair" },
+          { "/": "/remotedebug/pair/" }
+        ]
+      }
+    ]
+  }
+}

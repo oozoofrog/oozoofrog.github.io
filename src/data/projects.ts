@@ -26,6 +26,17 @@ export const projects: Project[] = [
     page: "/runners-heart/",
   },
   {
+    name: "RemoteDebug",
+    slug: "remotedebug",
+    tagline: "Debug Builds to iPhone over Tailscale",
+    description: "Publish development-signed Debug builds from a Mac and install them on a paired iPhone over Tailscale. Notarized Mac app; the iPhone app is built from source.",
+    status: "opensource",
+    featured: true,
+    tags: ["SwiftUI", "Tailscale", "NetworkExtension", "MCP"],
+    github: "https://github.com/oozoofrog/remotedebug",
+    page: "/remotedebug/",
+  },
+  {
     name: "Tesella",
     slug: "tesella",
     tagline: "Photo Mosaic Generator",
