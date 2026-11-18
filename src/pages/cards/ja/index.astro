@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CardKeeperLanding from '../../../components/CardKeeperLanding.astro';
+import { cardKeeperAlternates, cardKeeperPageJa as content } from '../../../data/cardKeeperPage';
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://oozoofrog.dev';
+---
+
+<BaseLayout
+  title={content.seoTitle}
+  description={content.seoDescription}
+  image={`${siteUrl}${content.ogImage}`}
+  lang={content.lang}
+  ogLocale={content.ogLocale}
+  alternates={cardKeeperAlternates(siteUrl)}
+>
+  <CardKeeperLanding content={content} />
+</BaseLayout>
