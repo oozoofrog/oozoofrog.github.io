@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Cards プライバシーポリシー"
+  description="iPhone・Mac用アプリCardsが支払い用カードとバーコードをキーチェーンにどのように保存するか、そしてどこにも送信しない情報について説明します。"
+  lang="ja"
+  ogLocale="ja_JP"
+>
+  <article class="privacy-policy">
+    <nav class="locale-switch" aria-label="言語を選択">
+      <a href="/cards/privacy/" class="locale-pill" hreflang="en" lang="en">EN</a>
+      <a href="/cards/privacy/ko/" class="locale-pill" hreflang="ko" lang="ko">한국어</a>
+      <a href="/cards/privacy/ja/" class="locale-pill is-active" hreflang="ja" lang="ja">日本語</a>
+      <a href="/cards/privacy/zh-hans/" class="locale-pill" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+      <a href="/cards/privacy/zh-hant/" class="locale-pill" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+    </nav>
+
+    <h1>Cards プライバシーポリシー</h1>
+
+    <section>
+      <h2>概要</h2>
+      <p>Cardsは、支払い用カードとバーコードカードをiPhoneやMacのキーチェーンに保存します。アカウント、サーバ、分析ツール、広告はありません。ユーザがCardsに保存した情報を、デベロッパが見たり取得したりすることはできません。</p>
+    </section>
+
+    <section>
+      <h2>保存する情報</h2>
+      <ul>
+        <li><strong>支払い用カード：</strong>カード番号、有効期限、カード名義人、CVC（任意）、ユーザが付けたニックネーム</li>
+        <li><strong>バーコードカード</strong>（会員証、図書館カードなど）：バーコードの値、バーコードの形式（QR、EAN-13など）、ニックネーム</li>
+        <li>本人確認なしでカード一覧を表示できるよう、支払い用カードのニックネーム、カードブランド、下4桁、有効期限は、カード番号・カード名義人・CVCとは別に保存します。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>保存場所と同期</h2>
+      <ul>
+        <li>すべての情報はデバイスのキーチェーンに保存されます。</li>
+        <li>Apple AccountでiCloudキーチェーンをオンにしている場合、カードとバーコードはユーザ自身のiCloudキーチェーンを通じてほかのデバイスと同期されます。iCloudキーチェーンはAppleによってエンドツーエンドで暗号化されており、デベロッパはアクセスできません。</li>
+        <li>保存するとき、またはあとから詳細画面でこのiPhone（MacではこのMac）にのみ保存するオプションをオンにすると、そのカードやバーコードはiCloudキーチェーンで同期されず、そのデバイスにだけ保存されます。</li>
+        <li>変更があったことをほかのデバイスに知らせるため、ユーザのiCloudのキー値ストレージに、ランダムに生成した変更通知用の値を書き込みます。この値にカードやバーコードの情報は含まれません。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>本人確認</h2>
+      <ul>
+        <li>カード番号、カード名義人、CVCを表示、コピー、または入力欄に入力する前に、本人確認を求めます。iPhoneではFace ID、Touch ID、またはパスコードで、MacではTouch IDまたはログインパスワードで確認します。</li>
+        <li>ニックネーム、カードブランド、下4桁、有効期限は本人確認なしで表示されます。バーコードカードも本人確認なしで表示されます。</li>
+        <li>Face IDとTouch IDはシステムが処理します。Cardsが受け取るのは認証に成功したかどうかだけで、生体情報は受け取りません。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>カメラと写真</h2>
+      <ul>
+        <li>カメラでカードやバーコードを読み取るとき、または画像を選んだとき、Cardsはデバイス内で文字やバーコードを認識します。</li>
+        <li>カメラの映像や画像は保存せず、どこにも送信しません。保存するのは、ユーザが確認した値だけです。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Safari機能拡張</h2>
+      <ul>
+        <li>Cardsの機能拡張のスクリプトは、アクセスを許可したWebサイトのページに組み込まれます。そのため、Safariはこの機能拡張がWebページを読み取れると表示します。ただし、ページの入力欄を読み取るのは、そのページでCardsを開いたときだけです。</li>
+        <li>支払いページでSafariからCardsを開くと、機能拡張はカードの入力欄を見つけるために、そのページの入力欄のラベルや自動入力のヒントなどを調べ、ページのアドレスを読み取ります。</li>
+        <li>入力するのはhttpsのページだけで、ユーザがカードを選び、デバイスで本人確認を済ませたあとに限ります。</li>
+        <li>カード情報は、デバイス内の機能拡張を通じてキーチェーンからページへ渡されます。ページやカードの情報をデベロッパやほかの誰かに送信することはなく、機能拡張がページの情報を保存することもありません。</li>
+        <li>Safariの設定で、いつでも機能拡張をオフにしたり、アクセスできるWebサイトを変更したりできます。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>バーコードウィジェット（iPhone）</h2>
+      <ul>
+        <li>ウィジェットは、ユーザが選んだバーコードをホーム画面に表示します。バーコードはiPhoneのキーチェーンから読み込みます。</li>
+        <li>iPhoneがロックされているあいだは、バーコードの画像と値を隠します。バーコードのニックネームと形式は表示されたままです。</li>
+        <li>最後に表示したバーコードを覚えておくため、ウィジェットはそのバーコードの識別子だけをiPhoneに保存します。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>クリップボード</h2>
+      <ul>
+        <li>Cardsでコピーした値は、コピーしたデバイスでのみペーストでき、ユニバーサルクリップボードでほかのデバイスに渡ることはありません。</li>
+        <li>コピーした値は60秒後にクリップボードから消去されます。Macでは、アプリを終了したときにも消去します。ただし、そのあいだにほかの内容をコピーした場合、その内容は消去しません。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>行わないこと</h2>
+      <ul>
+        <li>サーバは運営しておらず、アプリが独自にネットワーク通信を行うことはありません。</li>
+        <li>アプリには分析、広告、トラッキングのコードは含まれていません。アプリに含まれるカード番号認識モデルはオープンソースのstripe-iosプロジェクトに由来するもので、デバイス内でのみ動作し、何も送信しません。</li>
+        <li>個人情報を収集、販売、共有することはありません。ユーザが保存したカードやバーコードに、デベロッパはアクセスできません。</li>
+        <li>本ポリシーはCardsアプリに適用されます。このWebサイトは独自の分析ツールと広告を使用しており、それについては<a href="/privacy/">サイトのプライバシーポリシー</a>で説明しています。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>データの削除</h2>
+      <ul>
+        <li>カードやバーコードは、Cardsの詳細画面で削除できます。iCloudキーチェーンで同期している項目は、iCloudキーチェーンを使っているすべてのデバイスから削除されます。</li>
+        <li>アプリを削除しても、キーチェーンの項目は削除されません。同期した項目もiCloudキーチェーンに残ります。Cardsを再インストールすると、保存していた項目がふたたび表示されます。情報を消去するには、アプリを削除する前に、Cardsでカードとバーコードをひとつずつ削除してください。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>お子様の情報</h2>
+      <p>Cardsはお子様を対象としたアプリではありません。誰の個人情報も収集しないため、お子様の個人情報も収集しません。</p>
+    </section>
+
+    <section>
+      <h2>本ポリシーの変更</h2>
+      <p>本ポリシーを変更する場合は、このページと下記の施行日を更新します。</p>
+    </section>
+
+    <section>
+      <h2>お問い合わせ</h2>
+      <p>プライバシーに関するご質問は、<a href="mailto:oozoofrog@gmail.com">oozoofrog@gmail.com</a>までお送りください。</p>
+    </section>
+
+    <section>
+      <h2>施行日</h2>
+      <p>2026年11月18日</p>
+    </section>
+
+    <nav class="page-nav">
+      <a href="/cards/support/ja/" class="nav-link">サポート</a>
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .privacy-policy {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 22px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+  }
+
+  .locale-switch {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .locale-pill {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85);
+    color: #714855;
+    border: 1px solid rgba(158, 49, 71, 0.08);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .locale-pill.is-active {
+    background: linear-gradient(135deg, #9e3147, #bf4960);
+    color: #fff;
+  }
+
+  .locale-pill:hover {
+    border-bottom: 1px solid transparent;
+    color: #9e3147;
+  }
+
+  .locale-pill.is-active:hover {
+    color: #fff;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: #3f1c27;
+    margin-bottom: 30px;
+    padding-bottom: 14px;
+    border-bottom: 3px solid var(--frog-green);
+  }
+
+  section {
+    margin-bottom: 32px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    color: #3f1c27;
+    margin-bottom: 14px;
+  }
+
+  p,
+  li {
+    color: #5d4650;
+    line-height: 1.8;
+  }
+
+  ul {
+    padding-left: 1.2rem;
+  }
+
+  li + li {
+    margin-top: 8px;
+  }
+
+  .page-nav {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 18px;
+    border-top: 1px solid #eadfe2;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(112, 168, 80, 0.92), rgba(74, 142, 58, 0.92));
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .nav-link:hover {
+    color: #fff;
+    border-bottom: 1px solid transparent;
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 640px) {
+    .privacy-policy {
+      padding: 24px 18px;
+    }
+
+    .locale-switch {
+      justify-content: flex-start;
+    }
+
+    .page-nav {
+      flex-direction: column;
+    }
+  }
+</style>

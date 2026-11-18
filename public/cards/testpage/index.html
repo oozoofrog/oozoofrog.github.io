@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; frame-src 'self'; form-action 'none'; base-uri 'none'">
+  <title>주문 결제 - 달토끼 문구점</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="shop">
+    <span class="shop-name">달토끼 문구점</span>
+    <span class="step">주문 결제</span>
+  </header>
+
+  <nav class="layouts" aria-label="카드 입력 칸 배치">
+    <a href="?layout=single" data-layout="single">한 칸 번호 + MM/YY</a>
+    <a href="?layout=split" data-layout="split">4칸 번호 + 월/년 선택</a>
+    <a href="?layout=iframe" data-layout="iframe">iframe 안 카드 칸</a>
+  </nav>
+
+  <main>
+    <section class="panel" aria-labelledby="order-title">
+      <h2 id="order-title">주문 상품</h2>
+      <div class="item">
+        <div class="thumb" aria-hidden="true"></div>
+        <div class="item-text">
+          <span class="item-name">별빛 노트 A5 (2권 묶음)</span>
+          <span class="item-option">옵션: 줄 없음 · 수량 1</span>
+        </div>
+        <span class="price">12,000원</span>
+      </div>
+      <dl class="totals">
+        <div><dt>상품 금액</dt><dd>12,000원</dd></div>
+        <div><dt>배송비</dt><dd>3,000원</dd></div>
+        <div class="total"><dt>총 결제 금액</dt><dd>15,000원</dd></div>
+      </dl>
+    </section>
+
+    <section class="panel" aria-labelledby="buyer-title">
+      <h2 id="buyer-title">주문자</h2>
+      <div class="field">
+        <label for="phone">휴대폰 번호</label>
+        <input id="phone" name="buyerPhone" type="tel" inputmode="tel" placeholder="010-0000-0000" maxlength="13">
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="pay-title">
+      <h2 id="pay-title">카드 결제</h2>
+      <div id="card-area"></div>
+      <div class="field">
+        <label for="installment">할부 개월</label>
+        <select id="installment" name="installment">
+          <option value="0">일시불</option>
+          <option value="2">2개월</option>
+          <option value="3">3개월</option>
+          <option value="4">4개월</option>
+          <option value="5">5개월</option>
+          <option value="6">6개월</option>
+          <option value="12">12개월</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="panel">
+      <label class="agree"><input id="agree" type="checkbox"> 주문 내용을 확인했으며 결제에 동의합니다.</label>
+      <p id="agree-error" class="error" role="alert" hidden>결제에 동의해야 진행할 수 있습니다.</p>
+      <button id="pay" type="button" class="pay">15,000원 결제하기</button>
+      <button id="reveal" type="button" class="reveal" aria-pressed="false">가려진 값 보기</button>
+    </section>
+
+    <section id="result" class="panel result" aria-labelledby="result-title" aria-live="polite" hidden>
+      <h2 id="result-title">입력 확인 결과</h2>
+      <dl id="result-list" class="checks"></dl>
+    </section>
+  </main>
+
+  <footer>
+    <p>Cards Safari 확장 프로그램 시험용 결제 페이지입니다. 달토끼 문구점과 상품은 실제로 존재하지 않으며, 입력한 내용은 어디로도 전송되거나 저장되지 않습니다.</p>
+    <p lang="en">Test checkout page for the Cards Safari extension. The shop and product are fictional. Nothing you enter is sent or stored.</p>
+  </footer>
+
+  <script src="cardform.js"></script>
+  <script src="checkout.js"></script>
+</body>
+</html>

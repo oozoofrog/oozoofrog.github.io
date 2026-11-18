@@ -1,0 +1,325 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Cards Support"
+  description="Help with the Cards app for iPhone and Mac: turning on the Safari extension, authentication, iCloud Keychain sync, the barcode widget and deleting data."
+  lang="en"
+>
+  <div class="support-page">
+    <header class="page-header">
+      <nav class="locale-switch" aria-label="Language selector">
+        <a href="/cards/support/" class="locale-pill is-active" hreflang="en" lang="en">EN</a>
+        <a href="/cards/support/ko/" class="locale-pill" hreflang="ko" lang="ko">한국어</a>
+        <a href="/cards/support/ja/" class="locale-pill" hreflang="ja" lang="ja">日本語</a>
+        <a href="/cards/support/zh-hans/" class="locale-pill" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+        <a href="/cards/support/zh-hant/" class="locale-pill" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+      </nav>
+      <h1>Cards Support</h1>
+      <p class="intro">Answers to common questions about Cards on iPhone and Mac. If your question isn't covered here, email us.</p>
+    </header>
+
+    <section class="faq-section">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <details>
+          <summary><span class="icon">▶</span><span class="question">Which devices does Cards support?</span></summary>
+          <div class="answer"><p>iPhone with iOS 26 or later, and Mac with macOS 26 or later. The barcode widget is available on iPhone.</p></div>
+        </details>
+        <details>
+          <summary><span class="icon">▶</span><span class="question">How do I turn on the Safari extension on iPhone?</span></summary>
+          <div class="answer">
+            <ol>
+              <li>Open the Settings app and go to Apps &gt; Safari &gt; Extensions &gt; Cards, then turn it on.</li>
+              <li>On the same screen, allow website access. Allowing only the sites where you pay is enough.</li>
+              <li>In Safari, open a checkout page, tap the extensions menu in the address bar, tap Cards and choose a card.</li>
+            </ol>
+            <p>Cards fills the fields after you confirm with Face ID, Touch ID or your passcode. The same steps are in the Cards app, in the menu at the top left of the card list.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="icon">▶</span><span class="question">How do I turn on the Safari extension on Mac?</span></summary>
+          <div class="answer">
+            <ol>
+              <li>In Safari, choose Safari &gt; Settings &gt; Extensions, turn on Cards and allow access to the sites where you pay. You can also open this screen from Settings in the Cards menu bar item, which shows whether the extension is on.</li>
+              <li>On a checkout page, click Cards in the Safari toolbar, choose a card and the fields to fill: card number, expiry date, cardholder name or CVC.</li>
+            </ol>
+            <p>Cards fills the fields after you confirm with Touch ID or your login password.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="icon">▶</span><span class="question">Why does Cards ask me to authenticate?</span></summary>
+          <div class="answer">
+            <p>The card number, cardholder name and CVC are shown, copied or filled only after you authenticate: Face ID, Touch ID or your passcode on iPhone, and Touch ID or your login password on Mac. The nickname, last four digits and expiry date are visible without authentication, and so are barcode cards.</p>
+            <p>If Cards says authentication is unavailable, set a passcode on your iPhone, or check your login password and Touch ID in System Settings on your Mac.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="icon">▶</span><span class="question">How do my cards sync between iPhone and Mac?</span></summary>
+          <div class="answer">
+            <p>Cards syncs through your own iCloud Keychain. Turn on iCloud Keychain on both your iPhone and your Mac. A newly synced card can take a moment to arrive on the other device.</p>
+            <p>To keep a card or barcode on one device only, turn on the option to keep it on this iPhone (or this Mac) only, when you save it or later on its detail screen. It is then removed from iCloud Keychain and disappears from your other devices.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="icon">▶</span><span class="question">Which pages can't Cards fill?</span></summary>
+          <div class="answer">
+            <ul>
+              <li>Pages that are not https, or card fields inside a frame that is not https.</li>
+              <li>Pages that use a secure keypad or a separate payment window (such as Korean app card or ISP checkout).</li>
+              <li>Sites you haven't allowed the extension to access in Safari settings.</li>
+            </ul>
+            <p>On these pages, copy the values instead and paste them. On iPhone, copy from the card's detail screen in Cards. On Mac, copy from the Cards menu bar item. Copied values stay on that device and are removed from the clipboard after 60 seconds.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="icon">▶</span><span class="question">How do I add the barcode widget?</span></summary>
+          <div class="answer">
+            <ol>
+              <li>Register a barcode in Cards first.</li>
+              <li>On the Home Screen, touch and hold an empty area, tap Edit, then Add Widget.</li>
+              <li>Find Cards and add the Barcode widget in medium or large size.</li>
+              <li>Touch and hold the widget, choose Edit Widget and pick a barcode.</li>
+            </ol>
+            <p>If you have more than one barcode, use the arrows on the widget to move between them. Tap the widget to open that barcode in Cards. While your iPhone is locked, the widget hides the barcode image and value.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="icon">▶</span><span class="question">How do I delete my data?</span></summary>
+          <div class="answer">
+            <p>Open a card or barcode in Cards and delete it on its detail screen. Items that sync through iCloud Keychain are deleted from all your devices that use iCloud Keychain.</p>
+            <p>Removing the app does not delete items from the keychain, and synced items stay in your iCloud Keychain. If you reinstall Cards, they appear again. Delete your cards and barcodes in Cards before you remove the app.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <h2>Contact</h2>
+      <p class="contact-intro">For bug reports, questions or feedback, email:</p>
+      <div class="contact-card">
+        <span class="label">Email</span>
+        <a href="mailto:oozoofrog@gmail.com" class="email-link">oozoofrog@gmail.com</a>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <nav class="footer-links">
+        <a href="/cards/privacy/">Privacy Policy</a>
+      </nav>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .support-page {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .page-header,
+  details,
+  .contact-card {
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+  }
+
+  .page-header {
+    padding: 32px 24px;
+    border-radius: 22px;
+    margin-bottom: 40px;
+    background: linear-gradient(135deg, rgba(255, 245, 240, 0.92), rgba(255, 255, 255, 0.82));
+  }
+
+  .locale-switch {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .locale-pill {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85);
+    color: #714855;
+    border: 1px solid rgba(158, 49, 71, 0.08);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .locale-pill.is-active {
+    background: linear-gradient(135deg, #9e3147, #bf4960);
+    color: #fff;
+  }
+
+  .locale-pill:hover {
+    border-bottom: 1px solid transparent;
+    color: #9e3147;
+  }
+
+  .locale-pill.is-active:hover {
+    color: #fff;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: #3f1c27;
+    margin-bottom: 10px;
+  }
+
+  .intro {
+    color: #5d4650;
+    line-height: 1.7;
+  }
+
+  .faq-section,
+  .contact-section {
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: 1.55rem;
+    color: #3f1c27;
+    margin-bottom: 18px;
+  }
+
+  .faq-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  details {
+    background: rgba(255, 255, 255, 0.68);
+    border-radius: 18px;
+    padding: 18px 20px;
+  }
+
+  details[open] {
+    background: rgba(255, 255, 255, 0.84);
+  }
+
+  summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    color: #3f1c27;
+    font-weight: 700;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .icon {
+    color: #9e3147;
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+  }
+
+  details[open] .icon {
+    transform: rotate(90deg);
+  }
+
+  .question {
+    flex: 1;
+  }
+
+  .answer {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #eadfe2;
+    color: #5d4650;
+    line-height: 1.8;
+  }
+
+  .answer p,
+  .answer ol,
+  .answer ul {
+    margin: 0;
+  }
+
+  .answer ol,
+  .answer ul {
+    padding-left: 1.2rem;
+  }
+
+  .answer li + li {
+    margin-top: 6px;
+  }
+
+  .answer > * + * {
+    margin-top: 12px;
+  }
+
+  .contact-intro {
+    color: #5d4650;
+    margin-bottom: 12px;
+  }
+
+  .contact-card {
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.74);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .label {
+    color: #9e3147;
+    font-size: 0.88rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .email-link {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #3f1c27;
+  }
+
+  .page-footer {
+    padding-top: 10px;
+  }
+
+  .footer-links {
+    text-align: center;
+  }
+
+  .footer-links a {
+    color: #9e3147;
+    display: inline-block;
+    padding: 6px 10px;
+  }
+
+  .footer-links a:hover {
+    color: #3f1c27;
+  }
+
+  .separator {
+    margin: 0 8px;
+    color: rgba(144, 112, 123, 0.7);
+  }
+
+  @media (max-width: 640px) {
+    .page-header {
+      padding: 24px 18px;
+    }
+
+    .locale-switch {
+      justify-content: flex-start;
+    }
+  }
+</style>
