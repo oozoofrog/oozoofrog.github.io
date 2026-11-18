@@ -3,8 +3,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Cards Privacy Policy"
-  description="How the Cards app for iPhone and Mac stores payment cards and barcodes in your keychain, and what it never sends anywhere."
+  title="Card Keeper Privacy Policy"
+  description="How the Card Keeper app for iPhone and Mac stores payment cards and barcodes in your keychain, and what it never sends anywhere."
   lang="en"
 >
   <article class="privacy-policy">
@@ -16,15 +16,15 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       <a href="/cards/privacy/zh-hant/" class="locale-pill" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
     </nav>
 
-    <h1>Cards Privacy Policy</h1>
+    <h1>Card Keeper Privacy Policy</h1>
 
     <section>
       <h2>Summary</h2>
-      <p>Cards keeps your payment cards and barcode cards in the keychain on your iPhone and Mac. The app has no account, no server, no analytics and no advertising. We, the developer, cannot see or access anything you save in Cards.</p>
+      <p>Card Keeper keeps your payment cards and barcode cards in the keychain on your iPhone and Mac. The app has no account, no server, no analytics and no advertising. We, the developer, cannot see or access anything you save in Card Keeper.</p>
     </section>
 
     <section>
-      <h2>What Cards Stores</h2>
+      <h2>What Card Keeper Stores</h2>
       <ul>
         <li><strong>Payment cards:</strong> card number, expiry date, cardholder name, CVC (optional) and a nickname you choose.</li>
         <li><strong>Barcode cards</strong> (for example membership or library cards): the barcode value, its format (such as QR or EAN-13) and a nickname.</li>
@@ -38,23 +38,23 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         <li>Everything is saved in the keychain on your device.</li>
         <li>If iCloud Keychain is turned on for your Apple Account, your cards and barcodes sync to your other devices through your own iCloud Keychain. Apple encrypts iCloud Keychain end to end, and we have no access to it.</li>
         <li>You can keep any card or barcode out of iCloud Keychain by turning on the option to keep it on this iPhone or this Mac only, either when you save it or later on its detail screen. It is then stored only on that device.</li>
-        <li>To tell your other devices that something changed, Cards writes a random change token to iCloud key-value storage in your iCloud account. The token contains no card or barcode data.</li>
+        <li>To tell your other devices that something changed, Card Keeper writes a random change token to iCloud key-value storage in your iCloud account. The token contains no card or barcode data.</li>
       </ul>
     </section>
 
     <section>
       <h2>Authentication</h2>
       <ul>
-        <li>Before Cards shows, copies or fills a card number, cardholder name or CVC, it asks you to authenticate: Face ID, Touch ID or your passcode on iPhone, and Touch ID or your login password on Mac.</li>
+        <li>Before Card Keeper shows, copies or fills a card number, cardholder name or CVC, it asks you to authenticate: Face ID, Touch ID or your passcode on iPhone, and Touch ID or your login password on Mac.</li>
         <li>The nickname, card brand, last four digits and expiry date are shown without authentication. Barcode cards are also shown without authentication.</li>
-        <li>Face ID and Touch ID are handled by the system. Cards receives only whether authentication succeeded, never your biometric data.</li>
+        <li>Face ID and Touch ID are handled by the system. Card Keeper receives only whether authentication succeeded, never your biometric data.</li>
       </ul>
     </section>
 
     <section>
       <h2>Camera and Photos</h2>
       <ul>
-        <li>When you read a card or barcode with the camera, or choose an image, Cards recognises the text or barcode on your device.</li>
+        <li>When you read a card or barcode with the camera, or choose an image, Card Keeper recognises the text or barcode on your device.</li>
         <li>Camera frames and images are not saved and are not sent anywhere. Only the values you confirm are saved.</li>
       </ul>
     </section>
@@ -62,8 +62,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     <section>
       <h2>Safari Extension</h2>
       <ul>
-        <li>Cards' extension script is present on the pages of the websites you allow it to access, which is why Safari warns that the extension can read webpages. It reads a page's form fields only when you open Cards on that page.</li>
-        <li>When you open Cards from Safari on a checkout page, the extension looks at the form fields on that page to find card fields, such as their labels and autofill hints, and reads the page address.</li>
+        <li>Card Keeper's extension script is present on the pages of the websites you allow it to access, which is why Safari warns that the extension can read webpages. It reads a page's form fields only when you open Card Keeper on that page.</li>
+        <li>When you open Card Keeper from Safari on a checkout page, the extension looks at the form fields on that page to find card fields, such as their labels and autofill hints, and reads the page address.</li>
         <li>It fills only on https pages, and only after you choose a card and authenticate on your device.</li>
         <li>Card details pass from the keychain to the page through the extension on your device. Nothing from the page or from your cards is sent to us or to anyone else, and the extension does not keep any page data.</li>
         <li>You can turn the extension off, or change which websites it may access, in Safari settings at any time.</li>
@@ -82,8 +82,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     <section>
       <h2>Clipboard</h2>
       <ul>
-        <li>Values you copy from Cards stay on the device where you copied them and are not shared with your other devices through Universal Clipboard.</li>
-        <li>A copied value is removed from the clipboard after 60 seconds. On Mac, Cards also removes it when you quit the app. If you have copied something else in the meantime, Cards leaves that alone.</li>
+        <li>Values you copy from Card Keeper stay on the device where you copied them and are not shared with your other devices through Universal Clipboard.</li>
+        <li>A copied value is removed from the clipboard after 60 seconds. On Mac, Card Keeper also removes it when you quit the app. If you have copied something else in the meantime, Card Keeper leaves that alone.</li>
       </ul>
     </section>
 
@@ -93,21 +93,21 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         <li>We do not run servers, and the app makes no network requests of its own.</li>
         <li>The app contains no analytics, advertising or tracking code. The card number recognition model in the app comes from the open-source stripe-ios project; it runs on your device and sends nothing.</li>
         <li>We do not collect, sell or share your personal information. We cannot access the cards and barcodes you save.</li>
-        <li>This policy covers the Cards app. This website uses its own analytics and advertising, described in the <a href="/privacy/">site privacy policy</a>.</li>
+        <li>This policy covers the Card Keeper app. This website uses its own analytics and advertising, described in the <a href="/privacy/">site privacy policy</a>.</li>
       </ul>
     </section>
 
     <section>
       <h2>Deleting Your Data</h2>
       <ul>
-        <li>Delete a card or barcode on its detail screen in Cards. If it syncs through iCloud Keychain, it is deleted from all your devices that use iCloud Keychain.</li>
-        <li>Removing the app does not delete items from the keychain, and synced items stay in your iCloud Keychain. If you reinstall Cards, your saved items appear again. To remove your data, delete each card and barcode in Cards before you remove the app.</li>
+        <li>Delete a card or barcode on its detail screen in Card Keeper. If it syncs through iCloud Keychain, it is deleted from all your devices that use iCloud Keychain.</li>
+        <li>Removing the app does not delete items from the keychain, and synced items stay in your iCloud Keychain. If you reinstall Card Keeper, your saved items appear again. To remove your data, delete each card and barcode in Card Keeper before you remove the app.</li>
       </ul>
     </section>
 
     <section>
       <h2>Children</h2>
-      <p>Cards is not directed at children. Because Cards collects no personal information from anyone, it collects none from children.</p>
+      <p>Card Keeper is not directed at children. Because Card Keeper collects no personal information from anyone, it collects none from children.</p>
     </section>
 
     <section>

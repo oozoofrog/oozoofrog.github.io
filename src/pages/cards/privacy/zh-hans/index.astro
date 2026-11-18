@@ -3,8 +3,8 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Cards 隐私政策"
-  description="介绍适用于 iPhone 和 Mac 的 Cards App 如何将银行卡和条形码存储在钥匙串中，以及哪些信息绝不会被发送出去。"
+  title="Card Keeper 隐私政策"
+  description="介绍适用于 iPhone 和 Mac 的 Card Keeper App 如何将银行卡和条形码存储在钥匙串中，以及哪些信息绝不会被发送出去。"
   lang="zh-Hans"
   ogLocale="zh_CN"
 >
@@ -17,11 +17,11 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
       <a href="/cards/privacy/zh-hant/" class="locale-pill" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
     </nav>
 
-    <h1>Cards 隐私政策</h1>
+    <h1>Card Keeper 隐私政策</h1>
 
     <section>
       <h2>概要</h2>
-      <p>Cards 将你的银行卡和条形码卡存储在 iPhone 和 Mac 的钥匙串中。App 没有账户、服务器、分析工具，也没有广告。开发者无法查看或获取你保存在 Cards 中的任何信息。</p>
+      <p>Card Keeper 将你的银行卡和条形码卡存储在 iPhone 和 Mac 的钥匙串中。App 没有账户、服务器、分析工具，也没有广告。开发者无法查看或获取你保存在 Card Keeper 中的任何信息。</p>
     </section>
 
     <section>
@@ -39,23 +39,23 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
         <li>所有信息都保存在你设备上的钥匙串中。</li>
         <li>如果你的 Apple 账户开启了 iCloud 钥匙串，卡片和条形码会通过你自己的 iCloud 钥匙串同步到你的其他设备。iCloud 钥匙串由 Apple 进行端对端加密，开发者无法访问。</li>
         <li>保存时或之后在详细信息界面中，你可以将任意卡片或条形码设为仅保存在这台 iPhone（或这台 Mac）上。这样它就不会通过 iCloud 钥匙串同步，只存储在该设备上。</li>
-        <li>为了通知你的其他设备有内容发生变化，Cards 会在你 iCloud 账户的 iCloud 键值存储中写入一个随机生成的变更标记。该标记不包含任何卡片或条形码信息。</li>
+        <li>为了通知你的其他设备有内容发生变化，Card Keeper 会在你 iCloud 账户的 iCloud 键值存储中写入一个随机生成的变更标记。该标记不包含任何卡片或条形码信息。</li>
       </ul>
     </section>
 
     <section>
       <h2>身份验证</h2>
       <ul>
-        <li>在显示、拷贝或填写卡号、持卡人姓名或 CVC 之前，Cards 会要求你验证身份：在 iPhone 上使用面容 ID、触控 ID 或设备密码，在 Mac 上使用触控 ID 或登录密码。</li>
+        <li>在显示、拷贝或填写卡号、持卡人姓名或 CVC 之前，Card Keeper 会要求你验证身份：在 iPhone 上使用面容 ID、触控 ID 或设备密码，在 Mac 上使用触控 ID 或登录密码。</li>
         <li>昵称、卡组织、卡号后四位和有效期无需验证即可查看。条形码卡也无需验证即可查看。</li>
-        <li>面容 ID 和触控 ID 由系统处理。Cards 只会收到验证是否成功的结果，绝不会收到你的生物识别数据。</li>
+        <li>面容 ID 和触控 ID 由系统处理。Card Keeper 只会收到验证是否成功的结果，绝不会收到你的生物识别数据。</li>
       </ul>
     </section>
 
     <section>
       <h2>相机与照片</h2>
       <ul>
-        <li>当你用相机读取卡片或条形码，或选取图片时，Cards 会在设备上识别其中的文字或条形码。</li>
+        <li>当你用相机读取卡片或条形码，或选取图片时，Card Keeper 会在设备上识别其中的文字或条形码。</li>
         <li>相机画面和图片不会被保存，也不会被发送到任何地方。只有你确认过的信息会被保存。</li>
       </ul>
     </section>
@@ -63,8 +63,8 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
     <section>
       <h2>Safari 浏览器扩展</h2>
       <ul>
-        <li>Cards 扩展的脚本会载入你允许它访问的网站的页面，因此 Safari 浏览器会提示该扩展可以读取网页。但只有当你在某个页面上打开 Cards 时，扩展才会读取该页面的表单栏位。</li>
-        <li>当你在付款页面从 Safari 浏览器打开 Cards 时，扩展会查看该页面的表单栏位（如栏位标签和自动填充提示）以找到卡片栏位，并读取页面地址。</li>
+        <li>Card Keeper 扩展的脚本会载入你允许它访问的网站的页面，因此 Safari 浏览器会提示该扩展可以读取网页。但只有当你在某个页面上打开 Card Keeper 时，扩展才会读取该页面的表单栏位。</li>
+        <li>当你在付款页面从 Safari 浏览器打开 Card Keeper 时，扩展会查看该页面的表单栏位（如栏位标签和自动填充提示）以找到卡片栏位，并读取页面地址。</li>
         <li>扩展只在 https 页面中填写，并且只在你选择卡片并在设备上完成身份验证之后才会填写。</li>
         <li>卡片信息在你的设备上经由扩展从钥匙串传递到页面。页面或卡片中的任何信息都不会发送给我们或其他任何人，扩展也不会保留任何页面数据。</li>
         <li>你可以随时在 Safari 浏览器设置中关闭扩展，或更改它可以访问的网站。</li>
@@ -83,8 +83,8 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
     <section>
       <h2>剪贴板</h2>
       <ul>
-        <li>从 Cards 拷贝的内容只保留在拷贝时所用的设备上，不会通过通用剪贴板共享到你的其他设备。</li>
-        <li>拷贝的内容会在 60 秒后从剪贴板中清除。在 Mac 上，退出 App 时 Cards 也会清除拷贝的内容。如果你在此期间拷贝了其他内容，Cards 不会清除那些内容。</li>
+        <li>从 Card Keeper 拷贝的内容只保留在拷贝时所用的设备上，不会通过通用剪贴板共享到你的其他设备。</li>
+        <li>拷贝的内容会在 60 秒后从剪贴板中清除。在 Mac 上，退出 App 时 Card Keeper 也会清除拷贝的内容。如果你在此期间拷贝了其他内容，Card Keeper 不会清除那些内容。</li>
       </ul>
     </section>
 
@@ -94,21 +94,21 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
         <li>我们不运营服务器，App 本身也不会发出任何网络请求。</li>
         <li>App 中不含任何分析、广告或跟踪代码。App 内置的卡号识别模型来自开源项目 stripe-ios，只在你的设备上运行，不会发送任何内容。</li>
         <li>我们不收集、出售或共享你的个人信息。我们无法访问你保存的卡片和条形码。</li>
-        <li>本政策适用于 Cards App。本网站使用其自身的分析工具和广告，相关说明请参阅<a href="/privacy/">网站隐私政策</a>。</li>
+        <li>本政策适用于 Card Keeper App。本网站使用其自身的分析工具和广告，相关说明请参阅<a href="/privacy/">网站隐私政策</a>。</li>
       </ul>
     </section>
 
     <section>
       <h2>删除数据</h2>
       <ul>
-        <li>你可以在 Cards 中卡片或条形码的详细信息界面将其删除。如果它通过 iCloud 钥匙串同步，则会从你所有使用 iCloud 钥匙串的设备上删除。</li>
-        <li>删除 App 不会删除钥匙串中的项目，已同步的项目也会保留在你的 iCloud 钥匙串中。重新安装 Cards 后，之前保存的项目会再次出现。如需删除数据，请在删除 App 之前，在 Cards 中逐一删除卡片和条形码。</li>
+        <li>你可以在 Card Keeper 中卡片或条形码的详细信息界面将其删除。如果它通过 iCloud 钥匙串同步，则会从你所有使用 iCloud 钥匙串的设备上删除。</li>
+        <li>删除 App 不会删除钥匙串中的项目，已同步的项目也会保留在你的 iCloud 钥匙串中。重新安装 Card Keeper 后，之前保存的项目会再次出现。如需删除数据，请在删除 App 之前，在 Card Keeper 中逐一删除卡片和条形码。</li>
       </ul>
     </section>
 
     <section>
       <h2>儿童隐私</h2>
-      <p>Cards 并非面向儿童。由于 Cards 不收集任何人的个人信息，因此也不会收集儿童的个人信息。</p>
+      <p>Card Keeper 并非面向儿童。由于 Card Keeper 不收集任何人的个人信息，因此也不会收集儿童的个人信息。</p>
     </section>
 
     <section>
