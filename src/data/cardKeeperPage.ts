@@ -48,7 +48,7 @@ export const cardKeeperAppStoreUrl = 'https://apps.apple.com/app/id6836199766';
 
 // App Store availability. ios: false hides every App Store button and marks the
 // project as in development; mac: false hides the Mac platform line and tag.
-export const cardKeeperRelease = { ios: true, mac: true };
+export const cardKeeperRelease = { ios: true, mac: false };
 
 export const cardKeeperLocales: { locale: CardKeeperLocale; lang: string; label: string }[] = [
   { locale: 'en', lang: 'en', label: 'EN' },
