@@ -1,0 +1,326 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Cards サポート"
+  description="iPhone・Mac用アプリCardsのヘルプ：Safari機能拡張をオンにする方法、本人確認、iCloudキーチェーンでの同期、バーコードウィジェット、データの削除。"
+  lang="ja"
+  ogLocale="ja_JP"
+>
+  <div class="support-page">
+    <header class="page-header">
+      <nav class="locale-switch" aria-label="言語を選択">
+        <a href="/cards/support/" class="locale-pill" hreflang="en" lang="en">EN</a>
+        <a href="/cards/support/ko/" class="locale-pill" hreflang="ko" lang="ko">한국어</a>
+        <a href="/cards/support/ja/" class="locale-pill is-active" hreflang="ja" lang="ja">日本語</a>
+        <a href="/cards/support/zh-hans/" class="locale-pill" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+        <a href="/cards/support/zh-hant/" class="locale-pill" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+      </nav>
+      <h1>Cards サポート</h1>
+      <p class="intro">iPhoneとMacでCardsを使うときのよくある質問です。ここで解決しない場合は、メールでお問い合わせください。</p>
+    </header>
+
+    <section class="faq-section">
+      <h2>よくある質問</h2>
+      <div class="faq-list">
+        <details>
+          <summary><span class="icon">▶</span><span class="question">どのデバイスで使えますか？</span></summary>
+          <div class="answer"><p>iOS 26以降のiPhoneと、macOS 26以降のMacで使えます。バーコードウィジェットはiPhoneで使えます。</p></div>
+        </details>
+        <details>
+          <summary><span class="icon">▶</span><span class="question">iPhoneでSafari機能拡張をオンにするには？</span></summary>
+          <div class="answer">
+            <ol>
+              <li>「設定」アプリを開き、「アプリ」&gt;「Safari」&gt;「機能拡張」&gt;「Cards」の順に進んで、オンにします。</li>
+              <li>同じ画面でWebサイトへのアクセスを許可します。支払いをするサイトだけを許可しても構いません。</li>
+              <li>Safariで支払いページを開き、アドレスバーの機能拡張メニューで「Cards」をタップして、カードを選びます。</li>
+            </ol>
+            <p>Face ID、Touch ID、またはパスコードで確認すると、入力欄に入力されます。同じ手順は、Cardsアプリのカード一覧の左上にあるメニューでも確認できます。</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="icon">▶</span><span class="question">MacでSafari機能拡張をオンにするには？</span></summary>
+          <div class="answer">
+            <ol>
+              <li>Safariで「Safari」&gt;「設定」&gt;「機能拡張」を選び、Cardsをオンにして、支払いをするサイトへのアクセスを許可します。メニューバーのCardsから「設定…」を開くと、機能拡張がオンになっているかを確認でき、この画面にすぐに移動できます。</li>
+              <li>支払いページでSafariのツールバーにあるCardsをクリックし、カードと入力する項目（カード番号、有効期限、カード名義人、CVC）を選びます。</li>
+            </ol>
+            <p>Touch IDまたはログインパスワードで確認すると、入力欄に入力されます。</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="icon">▶</span><span class="question">なぜ本人確認が必要なのですか？</span></summary>
+          <div class="answer">
+            <p>カード番号、カード名義人、CVCは、本人確認を済ませたあとにだけ表示、コピー、または入力欄に入力します。iPhoneではFace ID、Touch ID、またはパスコードで、MacではTouch IDまたはログインパスワードで確認します。ニックネーム、下4桁、有効期限とバーコードカードは、本人確認なしで表示されます。</p>
+            <p>認証を使用できないと表示された場合は、iPhoneにパスコードを設定するか、Macの「システム設定」でログインパスワードとTouch IDを確認してください。</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="icon">▶</span><span class="question">iPhoneとMacのあいだでカードはどのように同期されますか？</span></summary>
+          <div class="answer">
+            <p>ユーザ自身のiCloudキーチェーンで同期されます。iPhoneとMacの両方でiCloudキーチェーンをオンにしてください。新しく同期したカードが別のデバイスに届くまで、少し時間がかかることがあります。</p>
+            <p>ひとつのデバイスだけに置いておきたいカードやバーコードは、保存するとき、またはあとから詳細画面でこのiPhone（MacではこのMac）にのみ保存するオプションをオンにしてください。iCloudキーチェーンから外れ、ほかのデバイスからは消えます。</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="icon">▶</span><span class="question">入力できないページはありますか？</span></summary>
+          <div class="answer">
+            <ul>
+              <li>httpsではないページ、またはhttpsではないフレーム内にあるカードの入力欄</li>
+              <li>セキュリティキーパッドや、韓国のカード会社のアプリ・ISP決済などの専用決済ウインドウを使うページ</li>
+              <li>Safariの設定で、機能拡張のアクセスを許可していないサイト</li>
+            </ul>
+            <p>このようなページでは、値をコピーしてペーストしてください。iPhoneではCardsアプリのカード詳細画面から、MacではメニューバーのCardsからコピーできます。コピーした値はそのデバイスでのみペーストでき、60秒後にクリップボードから消去されます。</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="icon">▶</span><span class="question">バーコードウィジェットを追加するには？</span></summary>
+          <div class="answer">
+            <ol>
+              <li>先にCardsでバーコードを登録します。</li>
+              <li>ホーム画面の何もないところを長押しし、「編集」&gt;「ウィジェットを追加」をタップします。</li>
+              <li>Cardsを探し、「バーコード」ウィジェットを中または大のサイズで追加します。</li>
+              <li>ウィジェットを長押しして「ウィジェットを編集」を選び、バーコードを選びます。</li>
+            </ol>
+            <p>バーコードが複数あるときは、ウィジェットの矢印で切り替えられます。ウィジェットをタップすると、Cardsでそのバーコードが開きます。iPhoneがロックされているあいだは、バーコードの画像と値を隠します。</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="icon">▶</span><span class="question">保存した情報を削除するには？</span></summary>
+          <div class="answer">
+            <p>Cardsでカードやバーコードを開き、詳細画面で削除してください。iCloudキーチェーンで同期している項目は、iCloudキーチェーンを使っているすべてのデバイスから削除されます。</p>
+            <p>アプリを削除しても、キーチェーンの項目は削除されません。同期した項目もiCloudキーチェーンに残ります。Cardsを再インストールすると、ふたたび表示されます。アプリを削除する前に、Cardsでカードとバーコードを削除してください。</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <h2>お問い合わせ</h2>
+      <p class="contact-intro">不具合の報告、使い方のご質問、ご意見は、下記のメールアドレスまでお送りください。</p>
+      <div class="contact-card">
+        <span class="label">メール</span>
+        <a href="mailto:oozoofrog@gmail.com" class="email-link">oozoofrog@gmail.com</a>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <nav class="footer-links">
+        <a href="/cards/privacy/ja/">プライバシーポリシー</a>
+      </nav>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .support-page {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .page-header,
+  details,
+  .contact-card {
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+  }
+
+  .page-header {
+    padding: 32px 24px;
+    border-radius: 22px;
+    margin-bottom: 40px;
+    background: linear-gradient(135deg, rgba(255, 245, 240, 0.92), rgba(255, 255, 255, 0.82));
+  }
+
+  .locale-switch {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .locale-pill {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85);
+    color: #714855;
+    border: 1px solid rgba(158, 49, 71, 0.08);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .locale-pill.is-active {
+    background: linear-gradient(135deg, #9e3147, #bf4960);
+    color: #fff;
+  }
+
+  .locale-pill:hover {
+    border-bottom: 1px solid transparent;
+    color: #9e3147;
+  }
+
+  .locale-pill.is-active:hover {
+    color: #fff;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: #3f1c27;
+    margin-bottom: 10px;
+  }
+
+  .intro {
+    color: #5d4650;
+    line-height: 1.7;
+  }
+
+  .faq-section,
+  .contact-section {
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: 1.55rem;
+    color: #3f1c27;
+    margin-bottom: 18px;
+  }
+
+  .faq-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  details {
+    background: rgba(255, 255, 255, 0.68);
+    border-radius: 18px;
+    padding: 18px 20px;
+  }
+
+  details[open] {
+    background: rgba(255, 255, 255, 0.84);
+  }
+
+  summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    color: #3f1c27;
+    font-weight: 700;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .icon {
+    color: #9e3147;
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+  }
+
+  details[open] .icon {
+    transform: rotate(90deg);
+  }
+
+  .question {
+    flex: 1;
+  }
+
+  .answer {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #eadfe2;
+    color: #5d4650;
+    line-height: 1.8;
+  }
+
+  .answer p,
+  .answer ol,
+  .answer ul {
+    margin: 0;
+  }
+
+  .answer ol,
+  .answer ul {
+    padding-left: 1.2rem;
+  }
+
+  .answer li + li {
+    margin-top: 6px;
+  }
+
+  .answer > * + * {
+    margin-top: 12px;
+  }
+
+  .contact-intro {
+    color: #5d4650;
+    margin-bottom: 12px;
+  }
+
+  .contact-card {
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.74);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .label {
+    color: #9e3147;
+    font-size: 0.88rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .email-link {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #3f1c27;
+  }
+
+  .page-footer {
+    padding-top: 10px;
+  }
+
+  .footer-links {
+    text-align: center;
+  }
+
+  .footer-links a {
+    color: #9e3147;
+    display: inline-block;
+    padding: 6px 10px;
+  }
+
+  .footer-links a:hover {
+    color: #3f1c27;
+  }
+
+  .separator {
+    margin: 0 8px;
+    color: rgba(144, 112, 123, 0.7);
+  }
+
+  @media (max-width: 640px) {
+    .page-header {
+      padding: 24px 18px;
+    }
+
+    .locale-switch {
+      justify-content: flex-start;
+    }
+  }
+</style>

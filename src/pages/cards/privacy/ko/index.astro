@@ -1,0 +1,254 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Cards 개인정보 처리방침"
+  description="iPhone·Mac용 Cards 앱이 결제 카드와 바코드를 키체인에 어떻게 보관하는지, 어디로도 보내지 않는 정보는 무엇인지 안내합니다."
+  lang="ko"
+>
+  <article class="privacy-policy">
+    <nav class="locale-switch" aria-label="언어 선택">
+      <a href="/cards/privacy/" class="locale-pill" hreflang="en" lang="en">EN</a>
+      <a href="/cards/privacy/ko/" class="locale-pill is-active" hreflang="ko" lang="ko">한국어</a>
+      <a href="/cards/privacy/ja/" class="locale-pill" hreflang="ja" lang="ja">日本語</a>
+      <a href="/cards/privacy/zh-hans/" class="locale-pill" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+      <a href="/cards/privacy/zh-hant/" class="locale-pill" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+    </nav>
+
+    <h1>Cards 개인정보 처리방침</h1>
+
+    <section>
+      <h2>요약</h2>
+      <p>Cards는 결제 카드와 바코드 카드를 iPhone과 Mac의 키체인에 보관합니다. 계정, 서버, 분석 도구, 광고가 없습니다. 개발자는 사용자가 Cards에 저장한 정보를 보거나 가져올 수 없습니다.</p>
+    </section>
+
+    <section>
+      <h2>저장하는 정보</h2>
+      <ul>
+        <li><strong>결제 카드:</strong> 카드번호, 유효기간, 카드 소유자 이름, CVC(선택), 사용자가 정한 별명</li>
+        <li><strong>바코드 카드</strong>(회원증, 도서관 카드 등): 바코드 값, 바코드 형식(QR, EAN-13 등), 별명</li>
+        <li>인증 없이 목록을 보여 주기 위해 결제 카드의 별명, 카드 브랜드, 끝 4자리, 유효기간은 카드번호·소유자 이름·CVC와 따로 저장합니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>저장 위치와 동기화</h2>
+      <ul>
+        <li>모든 정보는 기기의 키체인에 저장됩니다.</li>
+        <li>Apple 계정에서 iCloud 키체인을 켜 두었다면, 카드와 바코드는 사용자 본인의 iCloud 키체인을 거쳐 다른 기기와 동기화됩니다. iCloud 키체인은 Apple이 종단 간 암호화하며, 개발자는 여기에 접근할 수 없습니다.</li>
+        <li>저장할 때나 나중에 상세 화면에서 '이 iPhone에만 보관'(Mac에서는 '이 Mac에만 보관')을 켜면, 그 카드나 바코드는 iCloud 키체인으로 동기화하지 않고 해당 기기에만 저장됩니다.</li>
+        <li>다른 기기에 변경 사실을 알리기 위해 사용자의 iCloud 키-값 저장소에 무작위로 만든 변경 표시값을 기록합니다. 이 값에는 카드나 바코드 정보가 들어 있지 않습니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>본인 확인</h2>
+      <ul>
+        <li>카드번호, 소유자 이름, CVC를 보여 주거나 복사하거나 입력란에 채우기 전에 본인 확인을 요청합니다. iPhone에서는 Face ID, Touch ID 또는 기기 암호로, Mac에서는 Touch ID 또는 로그인 암호로 확인합니다.</li>
+        <li>별명, 카드 브랜드, 끝 4자리, 유효기간은 본인 확인 없이 보입니다. 바코드 카드도 본인 확인 없이 보입니다.</li>
+        <li>Face ID와 Touch ID는 시스템이 처리합니다. Cards는 인증에 성공했는지만 전달받으며 생체 정보는 받지 않습니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>카메라와 사진</h2>
+      <ul>
+        <li>카메라로 카드나 바코드를 읽거나 이미지를 고르면, Cards가 기기 안에서 글자나 바코드를 인식합니다.</li>
+        <li>카메라 화면과 이미지는 저장하지 않으며 어디로도 보내지 않습니다. 사용자가 확인한 값만 저장합니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Safari 확장 프로그램</h2>
+      <ul>
+        <li>Cards 확장 프로그램의 스크립트는 사용자가 접근을 허용한 웹 사이트의 페이지마다 들어가 있습니다. 그래서 Safari는 이 확장 프로그램이 웹 페이지를 읽을 수 있다고 알립니다. 하지만 페이지의 입력란은 사용자가 그 페이지에서 Cards를 열었을 때만 읽습니다.</li>
+        <li>결제 페이지에서 Safari의 Cards를 열면, 확장 프로그램이 카드 입력란을 찾기 위해 그 페이지 입력란의 이름표와 자동 완성 힌트 등을 살펴보고 페이지 주소를 읽습니다.</li>
+        <li>https 페이지에서만, 사용자가 카드를 고르고 기기에서 본인 확인을 마친 뒤에만 입력란을 채웁니다.</li>
+        <li>카드 정보는 기기 안의 확장 프로그램을 거쳐 키체인에서 페이지로 전달됩니다. 페이지나 카드의 어떤 정보도 개발자나 다른 누구에게 보내지 않으며, 확장 프로그램은 페이지 정보를 따로 보관하지 않습니다.</li>
+        <li>Safari 설정에서 언제든 확장 프로그램을 끄거나 접근할 수 있는 웹 사이트를 바꿀 수 있습니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>바코드 위젯(iPhone)</h2>
+      <ul>
+        <li>위젯은 사용자가 고른 바코드를 홈 화면에 보여 줍니다. 바코드는 iPhone의 키체인에서 읽어 옵니다.</li>
+        <li>iPhone이 잠겨 있을 때는 바코드 이미지와 값을 가립니다. 바코드 별명과 형식은 그대로 보입니다.</li>
+        <li>마지막으로 보여 준 바코드를 기억하기 위해, 위젯은 그 바코드의 식별자만 iPhone에 저장합니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>클립보드</h2>
+      <ul>
+        <li>Cards에서 복사한 값은 복사한 기기에서만 붙여 넣을 수 있고, 유니버설 클립보드로 다른 기기에 넘어가지 않습니다.</li>
+        <li>복사한 값은 60초 뒤 클립보드에서 지워집니다. Mac에서는 앱을 종료할 때도 지웁니다. 그 사이 다른 내용을 복사했다면 그 내용은 지우지 않습니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>하지 않는 일</h2>
+      <ul>
+        <li>서버를 운영하지 않으며, 앱이 직접 네트워크 요청을 보내지 않습니다.</li>
+        <li>앱에는 분석, 광고, 추적 코드가 없습니다. 앱에 들어 있는 카드번호 인식 모델은 오픈소스 stripe-ios 프로젝트에서 가져온 것으로, 기기 안에서만 동작하며 아무것도 보내지 않습니다.</li>
+        <li>개인정보를 수집하거나 판매하거나 공유하지 않습니다. 개발자는 사용자가 저장한 카드와 바코드에 접근할 수 없습니다.</li>
+        <li>이 방침은 Cards 앱에 적용됩니다. 지금 보고 있는 웹 사이트는 별도의 분석 도구와 광고를 쓰며, 이는 <a href="/privacy/">사이트 개인정보 처리방침</a>에서 안내합니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>데이터 삭제</h2>
+      <ul>
+        <li>Cards의 상세 화면에서 카드나 바코드를 삭제할 수 있습니다. iCloud 키체인으로 동기화되는 항목은 iCloud 키체인을 쓰는 모든 기기에서 삭제됩니다.</li>
+        <li>앱을 지워도 키체인의 항목은 지워지지 않으며, 동기화된 항목은 iCloud 키체인에 남습니다. Cards를 다시 설치하면 저장했던 항목이 다시 보입니다. 정보를 지우려면 앱을 지우기 전에 Cards에서 카드와 바코드를 하나씩 삭제하세요.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>아동의 개인정보</h2>
+      <p>Cards는 아동을 대상으로 하지 않습니다. 누구의 개인정보도 수집하지 않으므로 아동의 개인정보도 수집하지 않습니다.</p>
+    </section>
+
+    <section>
+      <h2>방침 변경</h2>
+      <p>이 방침이 바뀌면 이 페이지와 아래 시행일을 고칩니다.</p>
+    </section>
+
+    <section>
+      <h2>문의</h2>
+      <p>개인정보 처리와 관련해 궁금한 점은 <a href="mailto:oozoofrog@gmail.com">oozoofrog@gmail.com</a>으로 보내 주세요.</p>
+    </section>
+
+    <section>
+      <h2>시행일</h2>
+      <p>2026년 11월 18일</p>
+    </section>
+
+    <nav class="page-nav">
+      <a href="/cards/support/ko/" class="nav-link">지원</a>
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .privacy-policy {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 22px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+  }
+
+  .locale-switch {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .locale-pill {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85);
+    color: #714855;
+    border: 1px solid rgba(158, 49, 71, 0.08);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .locale-pill.is-active {
+    background: linear-gradient(135deg, #9e3147, #bf4960);
+    color: #fff;
+  }
+
+  .locale-pill:hover {
+    border-bottom: 1px solid transparent;
+    color: #9e3147;
+  }
+
+  .locale-pill.is-active:hover {
+    color: #fff;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: #3f1c27;
+    margin-bottom: 30px;
+    padding-bottom: 14px;
+    border-bottom: 3px solid var(--frog-green);
+  }
+
+  section {
+    margin-bottom: 32px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    color: #3f1c27;
+    margin-bottom: 14px;
+  }
+
+  p,
+  li {
+    color: #5d4650;
+    line-height: 1.8;
+  }
+
+  ul {
+    padding-left: 1.2rem;
+  }
+
+  li + li {
+    margin-top: 8px;
+  }
+
+  .page-nav {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 18px;
+    border-top: 1px solid #eadfe2;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(112, 168, 80, 0.92), rgba(74, 142, 58, 0.92));
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .nav-link:hover {
+    color: #fff;
+    border-bottom: 1px solid transparent;
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 640px) {
+    .privacy-policy {
+      padding: 24px 18px;
+    }
+
+    .locale-switch {
+      justify-content: flex-start;
+    }
+
+    .page-nav {
+      flex-direction: column;
+    }
+  }
+</style>

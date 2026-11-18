@@ -1,0 +1,108 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f4f5f7;
+  --panel: #ffffff;
+  --text: #1c1d21;
+  --muted: #6b7078;
+  --line: #dcdfe4;
+  --accent: #2f5bd3;
+  --accent-text: #ffffff;
+  --good: #1a7f4b;
+  --bad: #c0362c;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16171a;
+    --panel: #212327;
+    --text: #eceef1;
+    --muted: #9ba0a8;
+    --line: #363a41;
+    --accent: #7096f5;
+    --accent-text: #10131a;
+    --good: #5fcf94;
+    --bad: #f08379;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+body.embedded { background: var(--panel); padding: 2px; }
+header.shop, nav.layouts, main, footer { max-width: 560px; margin: 0 auto; padding: 0 16px; }
+header.shop { display: flex; justify-content: space-between; align-items: baseline; padding-top: 24px; }
+.shop-name { font-size: 20px; font-weight: 700; }
+.step { color: var(--muted); }
+nav.layouts { display: flex; gap: 0; margin-top: 16px; }
+nav.layouts a {
+  flex: 1;
+  padding: 7px 6px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 13px;
+  text-align: center;
+  text-decoration: none;
+}
+nav.layouts a + a { border-left: 0; }
+nav.layouts a:first-child { border-radius: 8px 0 0 8px; }
+nav.layouts a:last-child { border-radius: 0 8px 8px 0; }
+nav.layouts a[aria-current] { background: var(--accent); border-color: var(--accent); color: var(--accent-text); font-weight: 600; }
+.panel { margin-top: 16px; padding: 18px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+h2 { margin: 0 0 12px; font-size: 16px; }
+.item { display: flex; align-items: center; gap: 12px; }
+.thumb { width: 56px; height: 56px; flex: none; border-radius: 8px; background: linear-gradient(135deg, #283a6b, #6f8fe0); }
+.item-text { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.item-name { font-weight: 600; }
+.item-option { color: var(--muted); font-size: 13px; }
+.price { font-variant-numeric: tabular-nums; white-space: nowrap; }
+dl { margin: 0; }
+.totals { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.totals div, .checks div { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; }
+dt { color: var(--muted); }
+dd { margin: 0; font-variant-numeric: tabular-nums; text-align: right; }
+.totals .total dt, .totals .total dd { color: var(--text); font-weight: 700; font-size: 17px; padding-top: 6px; }
+.field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; min-width: 0; }
+.field:last-child { margin-bottom: 0; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+label, .label { font-size: 13px; color: var(--muted); }
+input:not([type="checkbox"]), select {
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.split { display: flex; gap: 8px; }
+.split input { text-align: center; }
+.card-frame { display: block; width: 100%; height: 232px; margin-bottom: 12px; border: 0; }
+.agree { display: flex; gap: 8px; align-items: flex-start; color: var(--text); font-size: 14px; }
+.agree input { margin-top: 4px; }
+.error { margin: 8px 0 0; color: var(--bad); font-size: 13px; }
+.pay {
+  width: 100%;
+  height: 48px;
+  margin-top: 14px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--accent-text);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.checks .good dd { color: var(--good); }
+.checks .bad dd { color: var(--bad); }
+footer { padding-top: 20px; padding-bottom: 32px; color: var(--muted); font-size: 12px; }
+[hidden] { display: none !important; }
+
+.reveal { display: block; margin: 10px auto 0; background: none; border: 0; color: inherit; opacity: .7; text-decoration: underline; cursor: pointer; font: inherit; font-size: 13px; }
+footer p { margin: 0 0 6px; }

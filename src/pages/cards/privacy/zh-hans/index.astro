@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Cards 隐私政策"
+  description="介绍适用于 iPhone 和 Mac 的 Cards App 如何将银行卡和条形码存储在钥匙串中，以及哪些信息绝不会被发送出去。"
+  lang="zh-Hans"
+  ogLocale="zh_CN"
+>
+  <article class="privacy-policy">
+    <nav class="locale-switch" aria-label="选择语言">
+      <a href="/cards/privacy/" class="locale-pill" hreflang="en" lang="en">EN</a>
+      <a href="/cards/privacy/ko/" class="locale-pill" hreflang="ko" lang="ko">한국어</a>
+      <a href="/cards/privacy/ja/" class="locale-pill" hreflang="ja" lang="ja">日本語</a>
+      <a href="/cards/privacy/zh-hans/" class="locale-pill is-active" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+      <a href="/cards/privacy/zh-hant/" class="locale-pill" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+    </nav>
+
+    <h1>Cards 隐私政策</h1>
+
+    <section>
+      <h2>概要</h2>
+      <p>Cards 将你的银行卡和条形码卡存储在 iPhone 和 Mac 的钥匙串中。App 没有账户、服务器、分析工具，也没有广告。开发者无法查看或获取你保存在 Cards 中的任何信息。</p>
+    </section>
+
+    <section>
+      <h2>存储的信息</h2>
+      <ul>
+        <li><strong>银行卡：</strong>卡号、有效期、持卡人姓名、CVC（可选），以及你设定的昵称。</li>
+        <li><strong>条形码卡</strong>（如会员卡、图书馆卡）：条形码值、条形码格式（如二维码、EAN-13）和昵称。</li>
+        <li>为了无需验证身份即可显示卡片列表，每张银行卡的昵称、卡组织、卡号后四位和有效期，与卡号、持卡人姓名和 CVC 分开存储。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>存储位置与同步</h2>
+      <ul>
+        <li>所有信息都保存在你设备上的钥匙串中。</li>
+        <li>如果你的 Apple 账户开启了 iCloud 钥匙串，卡片和条形码会通过你自己的 iCloud 钥匙串同步到你的其他设备。iCloud 钥匙串由 Apple 进行端对端加密，开发者无法访问。</li>
+        <li>保存时或之后在详细信息界面中，你可以将任意卡片或条形码设为仅保存在这台 iPhone（或这台 Mac）上。这样它就不会通过 iCloud 钥匙串同步，只存储在该设备上。</li>
+        <li>为了通知你的其他设备有内容发生变化，Cards 会在你 iCloud 账户的 iCloud 键值存储中写入一个随机生成的变更标记。该标记不包含任何卡片或条形码信息。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>身份验证</h2>
+      <ul>
+        <li>在显示、拷贝或填写卡号、持卡人姓名或 CVC 之前，Cards 会要求你验证身份：在 iPhone 上使用面容 ID、触控 ID 或设备密码，在 Mac 上使用触控 ID 或登录密码。</li>
+        <li>昵称、卡组织、卡号后四位和有效期无需验证即可查看。条形码卡也无需验证即可查看。</li>
+        <li>面容 ID 和触控 ID 由系统处理。Cards 只会收到验证是否成功的结果，绝不会收到你的生物识别数据。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>相机与照片</h2>
+      <ul>
+        <li>当你用相机读取卡片或条形码，或选取图片时，Cards 会在设备上识别其中的文字或条形码。</li>
+        <li>相机画面和图片不会被保存，也不会被发送到任何地方。只有你确认过的信息会被保存。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Safari 浏览器扩展</h2>
+      <ul>
+        <li>Cards 扩展的脚本会载入你允许它访问的网站的页面，因此 Safari 浏览器会提示该扩展可以读取网页。但只有当你在某个页面上打开 Cards 时，扩展才会读取该页面的表单栏位。</li>
+        <li>当你在付款页面从 Safari 浏览器打开 Cards 时，扩展会查看该页面的表单栏位（如栏位标签和自动填充提示）以找到卡片栏位，并读取页面地址。</li>
+        <li>扩展只在 https 页面中填写，并且只在你选择卡片并在设备上完成身份验证之后才会填写。</li>
+        <li>卡片信息在你的设备上经由扩展从钥匙串传递到页面。页面或卡片中的任何信息都不会发送给我们或其他任何人，扩展也不会保留任何页面数据。</li>
+        <li>你可以随时在 Safari 浏览器设置中关闭扩展，或更改它可以访问的网站。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>条形码小组件（iPhone）</h2>
+      <ul>
+        <li>小组件会在主屏幕上显示你选择的条形码。条形码从 iPhone 的钥匙串中读取。</li>
+        <li>iPhone 锁定时，小组件会隐藏条形码图像和条形码值，条形码的昵称和格式仍会显示。</li>
+        <li>为了记住上次显示的条形码，小组件只会在 iPhone 上保存该条形码的标识符。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>剪贴板</h2>
+      <ul>
+        <li>从 Cards 拷贝的内容只保留在拷贝时所用的设备上，不会通过通用剪贴板共享到你的其他设备。</li>
+        <li>拷贝的内容会在 60 秒后从剪贴板中清除。在 Mac 上，退出 App 时 Cards 也会清除拷贝的内容。如果你在此期间拷贝了其他内容，Cards 不会清除那些内容。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>我们不做的事</h2>
+      <ul>
+        <li>我们不运营服务器，App 本身也不会发出任何网络请求。</li>
+        <li>App 中不含任何分析、广告或跟踪代码。App 内置的卡号识别模型来自开源项目 stripe-ios，只在你的设备上运行，不会发送任何内容。</li>
+        <li>我们不收集、出售或共享你的个人信息。我们无法访问你保存的卡片和条形码。</li>
+        <li>本政策适用于 Cards App。本网站使用其自身的分析工具和广告，相关说明请参阅<a href="/privacy/">网站隐私政策</a>。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>删除数据</h2>
+      <ul>
+        <li>你可以在 Cards 中卡片或条形码的详细信息界面将其删除。如果它通过 iCloud 钥匙串同步，则会从你所有使用 iCloud 钥匙串的设备上删除。</li>
+        <li>删除 App 不会删除钥匙串中的项目，已同步的项目也会保留在你的 iCloud 钥匙串中。重新安装 Cards 后，之前保存的项目会再次出现。如需删除数据，请在删除 App 之前，在 Cards 中逐一删除卡片和条形码。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>儿童隐私</h2>
+      <p>Cards 并非面向儿童。由于 Cards 不收集任何人的个人信息，因此也不会收集儿童的个人信息。</p>
+    </section>
+
+    <section>
+      <h2>政策变更</h2>
+      <p>如果本政策发生变更，我们会更新本页面及下方的生效日期。</p>
+    </section>
+
+    <section>
+      <h2>联系我们</h2>
+      <p>如有隐私相关问题，请发送电子邮件至 <a href="mailto:oozoofrog@gmail.com">oozoofrog@gmail.com</a>。</p>
+    </section>
+
+    <section>
+      <h2>生效日期</h2>
+      <p>2026 年 11 月 18 日</p>
+    </section>
+
+    <nav class="page-nav">
+      <a href="/cards/support/zh-hans/" class="nav-link">支持</a>
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .privacy-policy {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 22px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+  }
+
+  .locale-switch {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .locale-pill {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85);
+    color: #714855;
+    border: 1px solid rgba(158, 49, 71, 0.08);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .locale-pill.is-active {
+    background: linear-gradient(135deg, #9e3147, #bf4960);
+    color: #fff;
+  }
+
+  .locale-pill:hover {
+    border-bottom: 1px solid transparent;
+    color: #9e3147;
+  }
+
+  .locale-pill.is-active:hover {
+    color: #fff;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: #3f1c27;
+    margin-bottom: 30px;
+    padding-bottom: 14px;
+    border-bottom: 3px solid var(--frog-green);
+  }
+
+  section {
+    margin-bottom: 32px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    color: #3f1c27;
+    margin-bottom: 14px;
+  }
+
+  p,
+  li {
+    color: #5d4650;
+    line-height: 1.8;
+  }
+
+  ul {
+    padding-left: 1.2rem;
+  }
+
+  li + li {
+    margin-top: 8px;
+  }
+
+  .page-nav {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 18px;
+    border-top: 1px solid #eadfe2;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(112, 168, 80, 0.92), rgba(74, 142, 58, 0.92));
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .nav-link:hover {
+    color: #fff;
+    border-bottom: 1px solid transparent;
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 640px) {
+    .privacy-policy {
+      padding: 24px 18px;
+    }
+
+    .locale-switch {
+      justify-content: flex-start;
+    }
+
+    .page-nav {
+      flex-direction: column;
+    }
+  }
+</style>
