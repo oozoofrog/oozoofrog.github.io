@@ -9,6 +9,7 @@ interface Props {
   publishedDate?: string;
   lang?: string;
   ogLocale?: string;
+  alternates?: { hreflang: string; href: string }[];
 }
 const {
   title = 'oozoofrog',
@@ -20,6 +21,7 @@ const {
   publishedDate,
   lang = 'ko',
   ogLocale = lang === 'en' ? 'en_US' : 'ko_KR',
+  alternates,
 } = Astro.props;
 const canonicalUrl = canonical ?? Astro.url?.toString();
 const ogImage = image ?? new URL('/assets/images/og-default.png', Astro.site).toString();
@@ -53,6 +55,7 @@ import CookieConsent from '../components/CookieConsent.astro';
   <meta name="description" content={description} />
   {noindex && <meta name="robots" content="noindex, nofollow" />}
   {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+  {alternates?.map((alternate) => <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />)}
   <link rel="icon" href="/favicon.ico" />
   <Analytics />
   <AdSense />

@@ -1,3 +1,5 @@
+import { cardKeeperAppStoreUrl, cardKeeperRelease } from './cardKeeperPage';
+
 export interface Project {
   name: string;
   slug: string;
@@ -24,6 +26,18 @@ export const projects: Project[] = [
     tags: ["SwiftUI", "HealthKit", "watchOS", "TRIMP"],
     appstore: "https://apps.apple.com/us/app/runners-heart/id6758222219",
     page: "/runners-heart/",
+  },
+  {
+    name: "Card Keeper",
+    slug: "cards",
+    tagline: "Scan a card, fill checkout",
+    description: "Keep payment cards and membership barcodes in iCloud Keychain on iPhone and Mac, fill Safari checkout forms after authentication, and show barcodes in a Home Screen widget.",
+    status: cardKeeperRelease.ios ? "released" : "development",
+    featured: true,
+    icon: "/cards/images/card-keeper-icon.png",
+    tags: ["iPhone", ...(cardKeeperRelease.mac ? ["Mac"] : []), "Safari Extension", "iCloud Keychain", "Widget"],
+    appstore: cardKeeperRelease.ios ? cardKeeperAppStoreUrl : undefined,
+    page: "/cards/",
   },
   {
     name: "RemoteDebug",
