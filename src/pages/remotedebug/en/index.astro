@@ -38,8 +38,29 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       <ul>
         <li><strong>iPhone with RemoteDebug</strong>: scan the Mac’s QR code in the app, then allow on the Mac when both screens show the same confirmation number.</li>
         <li><strong>iPhone without the app yet</strong>: with the Tailscale app connected, open the Mac’s install page in Safari and enter the 8-character code.</li>
+        <li>Point the camera at the QR code, or pick a saved picture of it from Photos.</li>
       </ul>
     </section>
+
+    <section>
+      <h2>Connection</h2>
+      <ul>
+        <li><strong>Same Wi-Fi</strong>: the iPhone talks to the Mac directly, without the VPN.</li>
+        <li><strong>USB cable</strong>: plug the iPhone into the Mac, and the build list, installs, files and logs work without Wi-Fi or the VPN.</li>
+        <li><strong>Anywhere else</strong>: traffic goes through Tailscale.</li>
+        <li>Pairing must be done once over Tailscale.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Crash reports and feedback from your app</h2>
+      <ul>
+        <li>Add the Swift package <code>RemoteDebugFeedback</code> to your app, and crash reports and feedback from Debug builds arrive in the Mac app. Photos and files can be attached.</li>
+        <li>Release builds send nothing to the Mac; the user sends feedback by mail. Diagnostics are recorded only after the user agrees, and are attached encrypted.</li>
+        <li>Claude Code and Codex can read the feedback and leave a list of things to check on the device.</li>
+      </ul>
+    </section>
+
 
     <nav class="links" aria-label="RemoteDebug">
       <a href="https://github.com/oozoofrog/remotedebug/blob/main/docs/setup.md">Setup guide (Korean)</a>
