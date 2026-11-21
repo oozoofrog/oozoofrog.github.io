@@ -48,6 +48,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
         <li><strong>Same Wi-Fi</strong>: the iPhone talks to the Mac directly, without the VPN.</li>
         <li><strong>USB cable</strong>: plug the iPhone into the Mac, and the build list, installs, files and logs work without Wi-Fi or the VPN.</li>
         <li><strong>Anywhere else</strong>: traffic goes through Tailscale.</li>
+        <li><strong>Official Tailscale app’s VPN</strong>: when the official Tailscale app holds the iPhone’s VPN and is signed in to the same Tailscale account as the RemoteDebug app, the RemoteDebug app reaches the Mac over that VPN. You do not need to approve the iPhone again on the Mac. This works after the RemoteDebug app has connected to that Mac once over its own VPN. Both the Mac app and the iPhone app need 0.2.0 (68) or later.</li>
         <li>Pairing must be done once over Tailscale.</li>
       </ul>
     </section>
