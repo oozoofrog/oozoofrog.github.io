@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="HideFaces Support" description="Open media, adjust emoji masks, save an edited copy and restore your ad removal purchase in HideFaces." lang="en">
+  <article>
+    <nav aria-label="Language">
+      <a href="/hidefaces/support/" hreflang="en" lang="en" aria-current="page">English</a>
+      <a href="/hidefaces/support/ko/" hreflang="ko" lang="ko">한국어</a>
+    </nav>
+    <h1>HideFaces Support</h1>
+    <section>
+      <h2>Open a photo or video</h2>
+      <p>Select an item on the home screen. To open media from Files, choose ‘파일에서 가져오기’ in the More menu. To try the editor with a sample, choose ‘예제 사진’ for a photo or ‘예제 영상’ for a video.</p>
+    </section>
+    <section>
+      <h2>Cover a missed face</h2>
+      <p>Tap a missed face to add an emoji. Drag an emoji to adjust its position, or drag it to the trash to remove it. Small faces and faces seen from the side can be missed. Play the entire video and check the result before sharing.</p>
+    </section>
+    <section>
+      <h2>Save or delete a copy</h2>
+      <p>Save the edited result as a new file or share it. Turn on ‘위치 정보 제외’ in Settings to exclude location information from future exports. To delete a project in HideFaces, press and hold its thumbnail and choose ‘편집본 삭제’. Delete exported copies where you saved them.</p>
+    </section>
+    <section>
+      <h2>Remove ads or restore a purchase</h2>
+      <p>Open ‘설정’ in the More menu and choose ‘광고 제거’ for a one-time purchase that removes ads shown after saving or sharing. If you already purchased it, sign in to the App Store with the same Apple Account, then choose ‘구매 복원’ in the app.</p>
+    </section>
+    <section>
+      <h2>Contact support</h2>
+      <p>Choose ‘피드백 보내기’ in Settings or email <a href="mailto:oozoofrog@oozoofrog.dev">oozoofrog@oozoofrog.dev</a>. Include the app version and the step where the issue occurred.</p>
+    </section>
+    <footer><a href="/hidefaces/privacy/">HideFaces Privacy Policy</a></footer>
+  </article>
+</BaseLayout>
+
+<style>
+  article { max-width: 48rem; margin: 0 auto; line-height: 1.65; }
+  nav { display: flex; gap: 1rem; }
+  section, footer { margin-block: 1.5rem; }
+</style>

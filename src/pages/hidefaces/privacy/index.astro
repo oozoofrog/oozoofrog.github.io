@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="HideFaces Privacy Policy" description="How HideFaces handles photos and videos, saved projects, advertising, purchases and support email." lang="en">
+  <article>
+    <nav aria-label="Language">
+      <a href="/hidefaces/privacy/" hreflang="en" lang="en" aria-current="page">English</a>
+      <a href="/hidefaces/privacy/ko/" hreflang="ko" lang="ko">한국어</a>
+    </nav>
+    <h1>HideFaces Privacy Policy</h1>
+    <p>This policy applies to HideFaces 1.0, provided by oozoofrog (우주개구리).</p>
+    <section>
+      <h2>Photos, videos and face masks</h2>
+      <p>HideFaces analyzes photos and videos on your device to locate faces and heads and display masks. The app keeps the media and face positions used in this process on your device. You can change photo access in your device settings.</p>
+      <p>To let you resume an edit, HideFaces stores mask positions, edit settings, a preview and a reference to the source item on your device. A project imported from Files can also contain a copy of the source file. Press and hold a project and choose ‘편집본 삭제’ to delete it. Manage results exported to Photos, Files or another app where you saved or shared them.</p>
+    </section>
+    <section>
+      <h2>Advertising and privacy choices</h2>
+      <p>HideFaces can show a full-screen ad from Google AdMob after you save or share a result. The app disables ad personalization. Google’s advertising and consent software may process device identifiers, approximate location derived from IP address, ad impressions, ad interactions, app usage, performance data and errors for ad delivery, measurement, performance analysis and diagnostics.</p>
+      <p>When Google presents a consent form, use it to choose your ad privacy preferences. If ‘광고 개인정보 옵션’ appears in Settings, open it to change your choices. Read <a href="https://policies.google.com/technologies/partner-sites">how Google uses data from partner apps</a> for details about that processing and your controls.</p>
+    </section>
+    <section>
+      <h2>Ad removal purchases</h2>
+      <p>Apple handles App Store payments and purchase restoration. HideFaces checks your purchase entitlement through Apple and stores the result on your device to determine whether to show ads.</p>
+    </section>
+    <section>
+      <h2>Support email and deletion requests</h2>
+      <p>When you email support, oozoofrog receives your sender address, message and any files you attach to respond to your request. The in-app feedback form includes your app version, build number, operating system and device model in the message. You can review the message and attachments before sending.</p>
+      <p>Support correspondence and attachments stay in the oozoofrog support mailbox. We currently use no scheduled automatic deletion. To request deletion, email <a href="mailto:oozoofrog@oozoofrog.dev">oozoofrog@oozoofrog.dev</a> from the address you used for the inquiry.</p>
+    </section>
+    <footer><a href="/hidefaces/support/">HideFaces Support</a></footer>
+  </article>
+</BaseLayout>
+
+<style>
+  article { max-width: 48rem; margin: 0 auto; line-height: 1.65; }
+  nav { display: flex; gap: 1rem; }
+  section, footer { margin-block: 1.5rem; }
+</style>
