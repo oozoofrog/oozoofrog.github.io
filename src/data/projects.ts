@@ -51,16 +51,6 @@ export const projects: Project[] = [
     page: "/remotedebug/",
   },
   {
-    name: "Tesella",
-    slug: "tesella",
-    tagline: "Photo Mosaic Generator",
-    description: "Reconstruct target photos as tile mosaics using images from your photo library. Built with Swift 6 Strict Concurrency and TDD.",
-    status: "development",
-    featured: true,
-    icon: "/assets/images/projects/tesella-icon.png",
-    tags: ["SwiftUI", "Vision", "Swift 6", "TDD"],
-  },
-  {
     name: "PhotoCleaner",
     slug: "photocleaner",
     tagline: "Photo Library Cleaner",
