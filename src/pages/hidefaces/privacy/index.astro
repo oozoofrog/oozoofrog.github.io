@@ -2,32 +2,87 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="HideFaces Privacy Policy" description="How HideFaces handles photos and videos, saved projects, advertising, purchases and support email." lang="en">
+<BaseLayout title="HideFaces Privacy Policy" description="How HideFaces handles photos and videos, saved projects, advertising, purchases and support email, how long data is kept, where it is transferred and what rights you have." lang="en">
   <article>
     <nav aria-label="Language">
       <a href="/hidefaces/privacy/" hreflang="en" lang="en" aria-current="page">English</a>
       <a href="/hidefaces/privacy/ko/" hreflang="ko" lang="ko">한국어</a>
     </nav>
     <h1>HideFaces Privacy Policy</h1>
-    <p>This policy applies to HideFaces 1.0, provided by oozoofrog (우주개구리).</p>
+    <p>This policy applies to the HideFaces iOS app, provided by oozoofrog (우주개구리). Effective date: November 24, 2026.</p>
     <section>
       <h2>Photos, videos and face masks</h2>
-      <p>HideFaces analyzes photos and videos on your device to locate faces and heads and display masks. The app keeps the media and face positions used in this process on your device. You can change photo access in your device settings.</p>
-      <p>To let you resume an edit, HideFaces stores mask positions, edit settings, a preview and a reference to the source item on your device. A project imported from Files can also contain a copy of the source file. Press and hold a project and choose ‘편집본 삭제’ to delete it. Manage results exported to Photos, Files or another app where you saved or shared them.</p>
+      <p>HideFaces analyzes photos and videos on your device to locate faces and heads and display masks. The app does not send the media or face positions used in this process to the developer or to advertising services. You can change photo access in your device settings.</p>
+      <p>To let you resume an edit, HideFaces stores each project on your device: face and mask positions, edit settings, a preview and a reference to the source item. If the source contains location data, the project also keeps that location data. A project imported from Files also contains a copy of the source file. A project stays on your device until you delete it or delete the app. If the app has full access to your photos and you delete the original from Photos, the app also deletes the project. Press and hold a project and choose ‘Delete Edit’ to delete it.</p>
+      <p>When you open a photo or video, the app keeps a temporary copy of the source in its temporary folder. The app does not delete this copy when you finish editing or delete the project. iOS can delete it when the app is not running, and it is removed when you delete the app. When you save or share a result, a copy of the result file stays in the app’s storage until you delete the app. If you chose to keep location data, this copy keeps it too. When you turn on ‘Faces Only’, the app checks each item in your photo library for faces and stores the result on your device with a hash that identifies the item. This face scan record is removed when you delete the app. The app does not send any of this data to the developer or to other services. If you use iCloud Backup or back up your device to a computer, iOS can include result copies and face scan records in the backup. Manage results exported to Photos, Files or another app where you saved or shared them.</p>
     </section>
     <section>
       <h2>Advertising and privacy choices</h2>
-      <p>HideFaces can show a full-screen ad from Google AdMob after you save or share a result. The app disables ad personalization. Google’s advertising and consent software may process device identifiers, approximate location derived from IP address, ad impressions, ad interactions, app usage, performance data and errors for ad delivery, measurement, performance analysis and diagnostics.</p>
-      <p>When Google presents a consent form, use it to choose your ad privacy preferences. If ‘광고 개인정보 옵션’ appears in Settings, open it to change your choices. Read <a href="https://policies.google.com/technologies/partner-sites">how Google uses data from partner apps</a> for details about that processing and your controls.</p>
+      <p>HideFaces can show a full-screen ad from Google AdMob after you save or share a result. The app disables ad personalization and does not ask for permission to track you across other companies’ apps and websites. Google’s advertising and consent software may process device identifiers, approximate location derived from IP address, ad impressions, ad interactions, app usage, performance data and errors for ad delivery, measurement, performance analysis, diagnostics and fraud prevention. Google keeps this data according to its own policies.</p>
+      <p>Google’s consent software stores your choice on your device. Google’s ad software stores and reads identifiers and other information on your device, and caches ad content there. Google uses this to deliver ads, limit how often the same ad appears, report on ads in aggregate and prevent fraud. In the EEA, the United Kingdom and Switzerland, Google uses device identifiers for these purposes only if you consent. If you do not consent, Google can still show limited ads. Limited ads do not use device identifiers, but Google can still use cookies and local storage that only detect invalid traffic. Outside these regions, Google’s ad software can use this storage without asking for consent. If you do not want this storage, buy Remove Ads. After you buy it, the app no longer checks your ad consent status or requests ads.</p>
+      <p>When Google presents a consent form, use it to choose your ad privacy preferences. If ‘Ad Privacy Options’ appears in Settings, open it to change your choices. After you buy Remove Ads, HideFaces stops requesting ads. Read <a href="https://policies.google.com/technologies/partner-sites">how Google uses data from partner apps</a> for details about that processing and your controls.</p>
     </section>
     <section>
       <h2>Ad removal purchases</h2>
-      <p>Apple handles App Store payments and purchase restoration. HideFaces checks your purchase entitlement through Apple and stores the result on your device to determine whether to show ads.</p>
+      <p>Apple handles App Store payments and purchase restoration. The developer does not receive your payment method or Apple Account details. HideFaces checks your purchase entitlement through Apple and stores the result on your device to determine whether to show ads.</p>
     </section>
     <section>
-      <h2>Support email and deletion requests</h2>
-      <p>When you email support, oozoofrog receives your sender address, message and any files you attach to respond to your request. The in-app feedback form includes your app version, build number, operating system and device model in the message. You can review the message and attachments before sending.</p>
-      <p>Support correspondence and attachments stay in the oozoofrog support mailbox. We currently use no scheduled automatic deletion. To request deletion, email <a href="mailto:oozoofrog@oozoofrog.dev">oozoofrog@oozoofrog.dev</a> from the address you used for the inquiry.</p>
+      <h2>Support email</h2>
+      <p>When you email support, oozoofrog receives your sender address, your name if your email shows it, your message and any files you attach, and uses them to answer your request. The in-app ‘Send Feedback’ form includes your app version, build number, operating system and device model in the message. You can review the message and attachments before sending. Photos, videos or screenshots that you attach can show other people. We use attachments only to look into your request, and we keep and delete them together with the email. Before you attach a file, mask or crop out other people’s faces if the file still shows the problem without them.</p>
+      <p>Support correspondence and attachments are kept in the oozoofrog support mailbox, which runs on Gmail. Each conversation is kept for 60 days after its last message, sent or received. For conversations started with ‘Send Feedback’ in the app, an automatic job runs once a day between 3:00 and 4:00 a.m. Korea time. It moves conversations whose last message is more than 60 days old to Trash, together with our replies. Some inquiries do not pass the job’s checks, such as email sent directly to the support address, messages whose subject or app-information footer was changed or removed, and messages with Cc or Bcc recipients. We move these to Trash by hand, with our replies, after 60 days have passed since the last message. Gmail permanently deletes messages 30 days after they enter Trash, and they cannot be recovered after that.</p>
+    </section>
+    <section>
+      <h2>Recipients and international transfers</h2>
+      <p>The developer does not sell personal data. The developer does not share personal data with, or entrust its processing to, any third party other than those listed below.</p>
+      <ul>
+        <li><strong>Google LLC (United States)</strong> — contact: <a href="https://support.google.com/policies/contact/general_privacy_form">Google privacy inquiry form</a>
+          <ul>
+            <li>Countries: the United States and other countries where Google operates servers. Google maintains servers around the world, so the data may be processed on servers outside the country where you live. See <a href="https://datacenters.google/locations/">Google data center locations</a>.</li>
+            <li>Advertising (provided to a third party): Google’s ad and consent software in the app sends the data listed under ‘Advertising and privacy choices’ directly to Google servers over the network. If you have not bought Remove Ads, this happens each time the app launches and checks your ad consent status, and when the app loads or shows an ad. It also happens when you open ‘Ad Privacy Options’. Google uses this data to deliver, measure and analyze ads, diagnose errors and prevent fraud. Google also uses it for its own purposes, such as providing, maintaining and improving its services, developing new services and protecting against abuse. The developer’s AdMob agreement is with Google Asia Pacific Pte. Ltd. (Singapore), a Google affiliate; the data itself goes to Google servers as described above. For AdMob, Google is an independent controller: it decides these purposes and how long it keeps the data. Google sets a retention period for each type of data, as described in <a href="https://policies.google.com/technologies/retention">how Google retains data it collects</a>. Send requests about this data to Google through the contact link above.</li>
+            <li>Support mailbox (processing entrusted by the developer): support emails and attachments are stored on Gmail servers when they arrive. Purpose: answering inquiries and keeping a record of them. Retention is as described under ‘Support email’.</li>
+          </ul>
+        </li>
+        <li><strong>Cloudflare, Inc. (United States)</strong> — contact: <a href="mailto:privacyquestions@cloudflare.com">privacyquestions@cloudflare.com</a>
+          <ul>
+            <li>Countries: Cloudflare states that it stores information mainly in the United States and the European Economic Area (EEA) and may access it from around the world. See <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare’s privacy policy</a>.</li>
+            <li>Support mail forwarding (processing entrusted by the developer): when you email oozoofrog@oozoofrog.dev, Cloudflare Email Routing receives the message and its attachments over the network and forwards them to the Gmail support mailbox. Purpose: delivering support mail to the support mailbox. Cloudflare states that it does not store or access the content of the mail it forwards. On the developer’s behalf, Cloudflare records the sender, recipient, subject, message ID and delivery result of each message. Cloudflare’s documentation states that it keeps these per-message records for 31 days. See <a href="https://developers.cloudflare.com/email-routing/get-started/email-routing-analytics/">Cloudflare Email Routing analytics</a>.</li>
+          </ul>
+        </li>
+        <li><strong>Apple Inc. (United States)</strong> — payments and purchase restoration take place between you and Apple under Apple’s privacy policy.</li>
+      </ul>
+      <p>If you do not want these transfers, you can buy Remove Ads so that the app stops requesting ads, and you can choose not to email support. You can still use all photo and video editing features; without email, you cannot receive an answer by email.</p>
+    </section>
+    <section>
+      <h2>Deletion</h2>
+      <p>Projects stored on your device are removed when you delete the project or the app, or when the app has full access to your photos and you delete the original from Photos. Result copies and face scan records in the app’s storage are removed when you delete the app. Temporary copies of sources are removed when iOS clears the app’s temporary folder or when you delete the app. Support emails and their attachments move to Trash after the retention period described under ‘Support email’, either automatically or by hand. Gmail permanently deletes them 30 days later. Permanently deleted messages cannot be recovered.</p>
+    </section>
+    <section>
+      <h2>Your rights</h2>
+      <p>You can ask to access, correct or delete the personal data that the developer holds about you, and ask the developer to stop processing it. You can withdraw any consent you gave at any time. Withdrawal does not affect processing that took place before it. If you gave consent to advertising in Google’s consent form, withdraw it in ‘Ad Privacy Options’ in the app’s Settings. The developer cannot change this choice for you. If you are in the European Economic Area (EEA), the United Kingdom or Switzerland, you can also ask to restrict processing, receive your data in a portable format or object to processing. Send your request from the email address you used for your inquiry to <a href="mailto:oozoofrog@oozoofrog.dev">oozoofrog@oozoofrog.dev</a>. A legal representative, or a person you authorize, can make the same requests on your behalf. The representative must send a letter of authorization or proof of legal representation, together with the email address you used for your inquiry. The developer replies within 10 days with the result or the reason the request cannot be met.</p>
+      <p><strong>Right to object:</strong> If you are in the EEA, the United Kingdom or Switzerland, you can object at any time, on grounds relating to your particular situation, to the developer’s processing based on legitimate interest, such as keeping a record of support inquiries. Send your objection to <a href="mailto:oozoofrog@oozoofrog.dev">oozoofrog@oozoofrog.dev</a>. The developer then stops that processing unless it has compelling legitimate grounds that override your interests, rights and freedoms, or needs the data to establish, exercise or defend legal claims. Google relies on its own legitimate interests for some advertising purposes. To object to that processing, open ‘Ad Privacy Options’ and turn off the legitimate interest options if the form shows them. You can also contact Google through the link under ‘Recipients and international transfers’.</p>
+      <p>The developer cannot see projects on your device or advertising data that Google processes. Delete projects in the app, and manage advertising data with ‘Ad Privacy Options’ or the tools Google provides.</p>
+      <p>If you are in the EEA, the United Kingdom or Switzerland, you can lodge a complaint with the data protection authority in your country. In Korea, you can contact the Personal Information Dispute Mediation Committee (1833-6972, kopico.go.kr), the Personal Information Infringement Report Center (118, privacy.kisa.or.kr) or the Korean National Police Agency (182, ecrm.police.go.kr).</p>
+    </section>
+    <section>
+      <h2>Legal bases for users in the EEA, the United Kingdom and Switzerland</h2>
+      <ul>
+        <li>Advertising: storing and reading information on your device, and the non-personalized ads that use it, rely on your consent collected through Google’s consent form (GDPR Article 6(1)(a)). By default, Google relies on its legitimate interests to select basic ads, measure ad performance, carry out market research and develop and improve its products (Article 6(1)(f)). If you refuse or withdraw consent, HideFaces still requests ads, and Google can show limited ads. Google uses the data for limited ads to deliver ads, keep them secure, prevent fraud and fix errors, under the legal basis that Google applies. To stop all ad requests, buy Remove Ads.</li>
+        <li>Checking an ad removal purchase: performance of a contract, to provide the feature you bought (Article 6(1)(b)).</li>
+        <li>Support email: providing the support you asked for (Article 6(1)(b)) and our legitimate interest in keeping a record of inquiries (Article 6(1)(f)).</li>
+      </ul>
+      <p>Google LLC and Cloudflare, Inc. have certified their participation in the EU-U.S. Data Privacy Framework, the UK Extension to it and the Swiss-U.S. Data Privacy Framework. Support mail that Cloudflare forwards and Gmail stores is transferred to the United States on the basis of these certifications. For advertising data, Google describes the mechanisms it uses, including the Data Privacy Framework and standard contractual clauses, on its page about <a href="https://policies.google.com/privacy/frameworks">legal frameworks for data transfers</a>.</p>
+    </section>
+    <section>
+      <h2>Security</h2>
+      <p>Photos, videos and face positions that you edit are processed only on your device. The support mailbox is protected by account authentication, and only the developer has access to it.</p>
+    </section>
+    <section>
+      <h2>Privacy contact</h2>
+      <p>HideFaces is run by a single developer. Privacy officer: oozoofrog (우주개구리), <a href="mailto:oozoofrog@oozoofrog.dev">oozoofrog@oozoofrog.dev</a>.</p>
+    </section>
+    <section>
+      <h2>Changes</h2>
+      <p>If this policy changes, we update this page and its effective date.</p>
     </section>
     <footer><a href="/hidefaces/support/">HideFaces Support</a></footer>
   </article>
