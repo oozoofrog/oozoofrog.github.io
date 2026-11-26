@@ -67,7 +67,7 @@ const years = posts.length
         {featured.map((project) => (
           <details class="project-entry">
             <summary>
-              <ProjectThumbnail screens={project.screens} />
+              <ProjectThumbnail slug={project.slug} screens={project.screens} />
               <span class="identity">
                 <img class="icon" src={project.icon} width="34" height="34" alt="" loading="lazy" />
               <span class="project-name">{project.name}</span>

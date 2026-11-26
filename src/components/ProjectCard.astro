@@ -3,6 +3,7 @@ import type { Project } from "../data/projects";
 import ProjectThumbnail from "./ProjectThumbnail.astro";
 const {
   name,
+  slug,
   screens,
   tagline,
   description,
@@ -21,7 +22,7 @@ const statusLabels = {
 ---
 
 <article class="project-card">
-  <ProjectThumbnail {screens} />
+  <ProjectThumbnail {slug} {screens} />
   <div class="info">
     <div class="identity">
       <img src={icon} alt="" width="34" height="34" loading="lazy" />

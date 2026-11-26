@@ -4,6 +4,7 @@ export interface ProjectScreen {
   device: "iPhone" | "iPad" | "Apple Watch" | "Mac";
   src: string;
   description: string;
+  caption?: string;
 }
 
 export interface Project {
@@ -26,8 +27,8 @@ const catalog: Project[] = [
     name: "RunnersHeart",
     slug: "runners-heart",
     screens: [
-      { device: "Apple Watch", src: "/assets/images/projects/screens/runners-heart-watch.webp", description: "운동 목표 진행률" },
-      { device: "iPhone", src: "/assets/images/projects/screens/runners-heart-route.webp", description: "실시간 러닝 경로" },
+      { device: "Apple Watch", src: "/assets/images/projects/screens/runners-heart-watch-ultra.webp", description: "Apple Watch Ultra 4 49mm에서 확인하는 운동 목표 진행률", caption: "Apple Watch Ultra 4" },
+      { device: "iPhone", src: "/assets/images/projects/screens/runners-heart-iphone.webp", description: "iPhone 18 Pro Max에서 확인하는 실시간 러닝 경로", caption: "iPhone 18 Pro Max" },
     ],
     tagline: "심박 구간 러닝 코치",
     description: "iPhone에서 러닝 목표를 정하고 Apple Watch에서 운동을 시작합니다. 달리는 동안 심박 구간을 확인하고 운동 후 기록을 분석할 수 있습니다.",
@@ -58,8 +59,8 @@ const catalog: Project[] = [
     name: "RemoteDebug",
     slug: "remotedebug",
     screens: [
-      { device: "Mac", src: "/assets/images/projects/screens/remotedebug-publish.webp", description: "개발 빌드 게시 목록" },
-      { device: "iPhone", src: "/assets/images/projects/screens/remotedebug-install.webp", description: "미리보기 Mac에 연결된 빌드 설치 목록" },
+      { device: "Mac", src: "/assets/images/projects/screens/remotedebug-publish.webp", description: "개발 빌드 목록과 빌드해서 게시 버튼", caption: "Mac에서 빌드 게시" },
+      { device: "iPhone", src: "/assets/images/projects/screens/remotedebug-install.webp", description: "페어링된 Mac의 빌드 목록과 설치 버튼", caption: "iPhone에서 설치" },
     ],
     tagline: "Mac에서 iPhone으로 개발 빌드 전송",
     description: "Mac에서 개발 서명한 빌드를 게시하고 페어링한 iPhone에 설치합니다. Tailscale을 통해 다른 네트워크에서도 연결할 수 있습니다.",

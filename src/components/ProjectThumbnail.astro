@@ -1,15 +1,31 @@
 ---
 import type { ProjectScreen } from "../data/projects";
 
-interface Props { screens: ProjectScreen[] }
-const { screens } = Astro.props;
+interface Props { slug: string; screens: ProjectScreen[] }
+const { slug, screens } = Astro.props;
+const remoteInstall = slug === "remotedebug";
 ---
-<span class="project-thumbnail">
-  {screens.map(({ src, description, device }) => (
-    <span class="screen" data-device={device}>
-      <span class="viewport"><img {src} alt={description} loading="lazy" decoding="async" /></span>
-      <span class="device">{device}</span>
-    </span>
+<span class:list={["project-thumbnail", { "remote-install": remoteInstall }]}>
+  {screens.map(({ src, description, device, caption }, index) => (
+    <>
+      {remoteInstall && index === 1 && (
+        <span class="transfer">
+          <svg viewBox="0 0 64 44" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 33h53" stroke-dasharray="2 4" stroke-width="2"/>
+            <path d="m49 26 9 7-9 7" stroke-width="3"/>
+            <g class="package" stroke-width="1.8">
+              <path fill="#fffdf5" d="m16 11 12-7 12 7v13l-12 7-12-7z"/>
+              <path d="m16 11 12 7 12-7m-12 7v13m-6-23 12 7"/>
+            </g>
+          </svg>
+          <span>원격 전송</span>
+        </span>
+      )}
+      <span class="screen" data-device={device}>
+        <span class="viewport"><img {src} alt={description} loading="lazy" decoding="async" /></span>
+        <span class="device">{caption ?? device}</span>
+      </span>
+    </>
   ))}
 </span>
 <style>
@@ -45,5 +61,49 @@ const { screens } = Astro.props;
   .device {
     font: 600 .75rem/1.2 system-ui, sans-serif;
     color: #414340;
+  }
+  .remote-install {
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(38px, .55fr) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 4px;
+    background: #edf0ec;
+  }
+  .remote-install .screen[data-device="Mac"] .viewport {
+    display: grid;
+    align-content: center;
+  }
+  .remote-install .screen[data-device="Mac"] img {
+    position: static;
+    height: auto;
+    border: 3px solid #263437;
+    border-radius: 5px 5px 0 0;
+  }
+  .remote-install .screen[data-device="Mac"] .viewport::after {
+    content: "";
+    height: 4px;
+    margin-inline: -3px;
+    background: #8b999b;
+    border-radius: 0 0 6px 6px;
+  }
+  .transfer {
+    align-self: center;
+    padding-bottom: 1.4rem;
+    color: #176256;
+    text-align: center;
+    font: 650 .66rem/1.4 system-ui, sans-serif;
+    white-space: nowrap;
+  }
+  .transfer svg { display: block; width: 100%; }
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html:not([data-motion="paused"])) .remote-install:is(:hover, :focus-within) .package,
+    :global(html:not([data-motion="paused"]) summary:focus-visible) .package {
+      animation: send-build .95s ease-in-out;
+    }
+  }
+  @keyframes send-build {
+    0% { transform: translateX(-8px); }
+    85% { transform: translateX(12px); }
+    100% { transform: translateX(0); }
   }
 </style>
