@@ -5,7 +5,7 @@ import { projects } from '../data/projects';
 ---
 
 <BaseLayout title="Projects">
-  <h1>Projects</h1>
+  <header class="section-head"><div><p class="eyebrow">PROJECT GALLERY</p><h1 class="catalog-title">프로젝트</h1></div></header>
   <div class="project-grid">
     {projects.map(project => (
       <ProjectCard {...project} />
@@ -14,13 +14,11 @@ import { projects } from '../data/projects';
 </BaseLayout>
 
 <style>
-  h1 {
-    margin-bottom: 1.5rem;
-  }
+
 
   .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
     gap: 1.5rem;
   }
 </style>

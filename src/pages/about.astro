@@ -1,56 +1,79 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import StudyPlate from "../components/StudyPlate.astro";
 ---
 
-<BaseLayout title="About">
-  <div class="about">
-    <img src="/assets/images/avatar.png" alt="oozoofrog" class="avatar" width="200" />
-
-    <h2>oozoofrog</h2>
-    <p>iOS & macOS app developer. Pursuing a better developer and user experience.</p>
-    <p>Building apps and developer tools in the Swift ecosystem.</p>
-
-    <h3>Skills</h3>
-    <ul>
-      <li><strong>Languages</strong>: Swift, Objective-C</li>
-      <li><strong>Frameworks</strong>: SwiftUI, UIKit, Combine, HealthKit, WatchKit</li>
-      <li><strong>Interests</strong>: App Architecture, Developer Tools, Open Source</li>
-    </ul>
-
-    <h3>Contact</h3>
-    <ul>
-      <li>GitHub: <a href="https://github.com/oozoofrog">oozoofrog</a></li>
-      <li>Email: <a href="mailto:oozoofrog@gmail.com">oozoofrog@gmail.com</a></li>
-    </ul>
+<BaseLayout title="소개 · 우주개구리">
+  <header class="section-head">
+    <div>
+      <p class="eyebrow">ABOUT THE DEVELOPER</p>
+      <h1 class="catalog-title">우주개구리</h1>
+    </div>
+  </header>
+  <div class="profile">
+    <div class="portrait">
+      <StudyPlate kind="knot" label="OOZOOFROG" />
+    </div>
+    <section>
+      <h2>oozoofrog</h2>
+      <p>
+        Swift로 iOS와 macOS 앱, 개발 도구를 만듭니다. 앱을 쓰는 사람과 만드는
+        사람의 경험을 함께 고민합니다.
+      </p>
+      <dl>
+        <dt>언어</dt>
+        <dd>Swift, Objective-C</dd>
+        <dt>프레임워크</dt>
+        <dd>SwiftUI, UIKit, Combine, HealthKit, WatchKit</dd>
+        <dt>관심 분야</dt>
+        <dd>앱 아키텍처, 개발 도구, 오픈 소스</dd>
+      </dl>
+      <h3>연락처</h3>
+      <p>
+        <a href="https://github.com/oozoofrog">GitHub ↗</a> ·{" "}
+        <a href="mailto:oozoofrog@gmail.com">oozoofrog@gmail.com</a>
+      </p>
+    </section>
   </div>
 </BaseLayout>
-
 <style>
-  .about {
-    max-width: 640px;
-    background: var(--surface-bg);
-    border: 1px solid var(--surface-border);
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: none;
+  .profile {
+    display: grid;
+    grid-template-columns: minmax(160px, 0.65fr) 1.35fr;
+    gap: 32px;
+    align-items: start;
   }
-
-  .avatar {
-    border-radius: 50%;
-    margin-bottom: 1.5rem;
-    box-shadow: var(--surface-shadow);
-    border: 1px solid var(--surface-border);
-    position: relative;
+  .portrait {
+    height: 230px;
   }
-
-  .about ul li {
-    transition: all 0.2s;
+  h2 {
+    font: 2.6rem var(--serif);
+    letter-spacing: -0.05em;
   }
-
-  .about ul li:hover {
-    background: var(--sky-blue-light);
-    padding: 4px 12px;
-    margin-left: -12px;
-    border-radius: 8px;
+  p {
+    margin: 0.65rem 0 1rem;
+  }
+  dl {
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 16px;
+  }
+  dt {
+    font-weight: 650;
+  }
+  dd {
+    color: var(--muted);
+  }
+  a {
+    text-decoration: underline;
+  }
+  @media (max-width: 620px) {
+    .profile {
+      grid-template-columns: 1fr;
+    }
+    .portrait {
+      height: 155px;
+    }
   }
 </style>

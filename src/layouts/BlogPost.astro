@@ -1,9 +1,13 @@
 ---
-import BaseLayout from './BaseLayout.astro';
-import Comments from '../components/Comments.astro';
-import AdUnit from '../components/AdUnit.astro';
+import BaseLayout from "./BaseLayout.astro";
+import StudyPlate from "../components/StudyPlate.astro";
+import { postPlate } from "../data/plates";
+import Comments from "../components/Comments.astro";
+import AdUnit from "../components/AdUnit.astro";
 
 interface Props {
+  postId: string;
+  headings: { slug: string; text: string }[];
   title: string;
   date: string | Date;
   categories?: string | string[];
@@ -11,15 +15,26 @@ interface Props {
   noindex?: boolean;
   image?: string;
 }
-const { title, date, categories: rawCategories, description, noindex = false, image } = Astro.props;
+const {
+  postId,
+  headings,
+  title,
+  date,
+  categories: rawCategories,
+  description,
+  noindex = false,
+  image,
+} = Astro.props;
 const categories = Array.isArray(rawCategories)
   ? rawCategories
-  : typeof rawCategories === 'string'
+  : typeof rawCategories === "string"
     ? rawCategories.split(/\s+/).filter(Boolean)
     : [];
 
+const plate = postPlate(postId);
 const canonicalUrl = Astro.url?.toString();
-const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://oozoofrog.dev';
+const siteUrl =
+  Astro.site?.toString().replace(/\/$/, "") ?? "https://oozoofrog.dev";
 const ogImage = image ?? `${siteUrl}/assets/images/og-default.png`;
 const publishedDate = new Date(date);
 const publishedDateIso = publishedDate.toISOString();
@@ -27,45 +42,86 @@ const publishedDateIso = publishedDate.toISOString();
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": title,
-  "description": description ?? `${title} - oozoofrog 기술 블로그`,
-  "image": ogImage,
-  "datePublished": publishedDateIso,
-  "dateModified": publishedDateIso,
-  "author": {
+  headline: title,
+  description: description ?? `${title} - oozoofrog 기술 블로그`,
+  image: ogImage,
+  datePublished: publishedDateIso,
+  dateModified: publishedDateIso,
+  author: {
     "@type": "Person",
-    "name": "oozoofrog",
-    "url": `${siteUrl}/about/`
+    name: "oozoofrog",
+    url: `${siteUrl}/about/`,
   },
-  "publisher": {
+  publisher: {
     "@type": "Organization",
-    "name": "oozoofrog",
-    "logo": {
+    name: "oozoofrog",
+    logo: {
       "@type": "ImageObject",
-      "url": `${siteUrl}/assets/images/avatar.png`
-    }
+      url: `${siteUrl}/assets/images/avatar.png`,
+    },
   },
-  "mainEntityOfPage": {
+  mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": canonicalUrl
+    "@id": canonicalUrl,
   },
-  ...(categories.length > 0 && { "keywords": categories.join(', ') })
+  ...(categories.length > 0 && { keywords: categories.join(", ") }),
 };
 ---
-<BaseLayout title={`${title} | 우주개구리`} description={description} noindex={noindex} image={ogImage} type="article" publishedDate={publishedDateIso}>
+
+<BaseLayout
+  title={`${title} | 우주개구리`}
+  description={description}
+  noindex={noindex}
+  image={ogImage}
+  type="article"
+  publishedDate={publishedDateIso}
+>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <article>
-    <h1>{title}</h1>
-    <p class="post-meta">
-      <time datetime={publishedDateIso}>{publishedDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-      {categories.length > 0 && (
-        <span class="post-categories">
-          {categories.map((cat) => (
-            <span class="tag">{cat}</span>
-          ))}
-        </span>
-      )}
-    </p>
+    <a class="back" href="/blog/">
+      ← 글 아카이브
+    </a>
+    <div class="article-intro">
+      <div>
+        <p class="eyebrow">FIELD NOTE</p>
+        <h1>{title}</h1>
+
+        <p class="post-meta">
+          <time datetime={publishedDateIso}>
+            {publishedDate.toLocaleDateString("ko-KR", {
+              timeZone: "Asia/Seoul",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </time>
+          {categories.length > 0 && (
+            <span class="post-categories">
+              {categories.map((cat) => (
+                <span class="tag">{cat}</span>
+              ))}
+            </span>
+          )}
+        </p>
+      </div>
+      <div class="article-plate">
+        <StudyPlate kind={plate.kind} label={plate.label} />
+      </div>
+    </div>
+    {headings.length > 1 && (
+      <details class="toc">
+        <summary>목차 · {headings.length}개 항목</summary>
+        <nav aria-label="글 목차">
+          <ol>
+            {headings.map((heading) => (
+              <li>
+                <a href={`#${heading.slug}`}>{heading.text}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </details>
+    )}
     <!-- 글 상단 광고 -->
     <AdUnit slot="7941837952" format="auto" />
     <div class="post-content">
@@ -77,26 +133,64 @@ const jsonLd = {
 
 <style>
   article {
-    max-width: 760px;
-    background: var(--surface-bg);
-    border: 1px solid var(--surface-border);
-    border-radius: 16px;
-    padding: 28px 26px;
-    box-shadow: none;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 12px 0 30px;
   }
-
-  h1 {
-    color: var(--dark-green);
-    margin-bottom: 8px;
-    font-size: 2rem;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
+  .back {
+    display: inline-block;
+    font-size: 0.85rem;
+    margin-bottom: 25px;
   }
-
+  .article-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 155px;
+    gap: 20px;
+    align-items: center;
+    border-bottom: 1px solid #9da597;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+  }
+  .article-plate {
+    height: 130px;
+  }
+  .article-intro h1 {
+    font-size: clamp(1.7rem, 4vw, 2.7rem);
+    line-height: 1.25;
+    margin: 10px 0;
+    letter-spacing: -0.06em;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    color: var(--ink);
+  }
+  .toc {
+    border-block: 1px solid var(--surface-border);
+    padding: 12px 0;
+    margin-bottom: 22px;
+  }
+  .toc summary {
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-weight: 650;
+  }
+  .toc ol {
+    padding: 10px 0 5px 1.6rem;
+  }
+  .toc li {
+    padding: 2px 0;
+  }
+  @media (max-width: 600px) {
+    .article-intro {
+      grid-template-columns: 1fr;
+    }
+    .article-plate {
+      height: 95px;
+    }
+  }
   .post-meta {
-    color: #8a9a92;
+    color: var(--muted);
     font-size: 0.9em;
-    margin-bottom: 28px;
+    margin-bottom: 0;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -109,7 +203,8 @@ const jsonLd = {
   }
 
   :global(.post-content) {
-    font-size: 1.04rem;
+    font-size: 1.065rem;
+    overflow-wrap: anywhere;
     color: #26332d;
   }
 
@@ -128,10 +223,18 @@ const jsonLd = {
     letter-spacing: -0.01em;
   }
 
-  :global(.post-content h1) { font-size: 1.9rem; }
-  :global(.post-content h2) { font-size: 1.55rem; }
-  :global(.post-content h3) { font-size: 1.25rem; }
-  :global(.post-content h4) { font-size: 1.05rem; }
+  :global(.post-content h1) {
+    font-size: 1.9rem;
+  }
+  :global(.post-content h2) {
+    font-size: 1.55rem;
+  }
+  :global(.post-content h3) {
+    font-size: 1.25rem;
+  }
+  :global(.post-content h4) {
+    font-size: 1.05rem;
+  }
 
   :global(.post-content p),
   :global(.post-content li),
@@ -231,8 +334,7 @@ const jsonLd = {
 
   @media (max-width: 720px) {
     article {
-      padding: 22px 16px;
-      border-radius: 12px;
+      padding: 8px 0;
     }
 
     h1 {

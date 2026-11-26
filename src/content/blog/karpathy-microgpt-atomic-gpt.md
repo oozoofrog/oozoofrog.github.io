@@ -1,6 +1,9 @@
 ---
 title: Karpathy의 microgpt.py 읽기
 summary: 원문 코드를 같이 보면서 GPT 학습/추론 핵심을 단계별로 따라가는 스터디 가이드
+cover:
+  src: /assets/images/posts/microgpt-cover.webp
+  alt: 두 입력의 덧셈과 역전파 방향을 표시한 계산 그래프
 date: 2026-02-14 18:40:00 +0900
 categories: [AI, LLM, Python]
 tags: [karpathy, microgpt, gpt, transformer, autograd, adam]

@@ -1,5 +1,8 @@
 ---
 title: "건강앱 유료 출시하려다 개인사업자까지 — 애플 조직 계정 전환 삽질기"
+cover:
+  src: /assets/images/posts/apple-organization-cover.webp
+  alt: 건강 앱을 띄운 휴대폰과 사업자 등록 서류, 도장
 date: 2026-02-16 00:00:00 +0900
 summary: "유료 건강앱을 앱스토어에 올리려는데 Apple이 사업자 등록과 비즈니스 정보를 요구했다. 개인사업자 등록부터 조직 멤버십 전환까지, 내가 겪은 전 과정을 정리한다."
 categories: ios

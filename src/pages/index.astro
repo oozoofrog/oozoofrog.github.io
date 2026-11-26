@@ -1,131 +1,239 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import { getCollection } from 'astro:content';
-import { projects } from '../data/projects';
-
-const featuredProjects = projects.filter(p => p.featured);
-
-const allPosts = await getCollection('blog', ({ data }) => data.public !== false);
-const recentPosts = allPosts
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 3);
+import "@fontsource/caveat-brush/latin-400.css";
+import "@fontsource/gaegu/korean-700.css";
+import "@fontsource/gowun-batang/korean-400.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import JournalCover from "../components/JournalCover.astro";
+import { getCollection } from "astro:content";
+import { projects } from "../data/projects";
+import { displayDate, postPlate } from "../data/plates";
+const featured = projects.filter((p) => p.featured);
+const posts = (
+  await getCollection("blog", ({ data }) => data.public !== false)
+).sort((a, b) => +b.data.date - +a.data.date);
+const years = posts.length
+  ? [posts[posts.length - 1], posts[0]]
+      .map((p) => displayDate(p.data.date).slice(0, 4))
+      .join(" — ")
+  : "";
 ---
 
-<BaseLayout>
-  <Hero />
-
-  <section class="featured-projects">
-    <div class="section-header">
-      <h2>Featured Projects</h2>
-      <a href="/projects/" class="see-all-pill">See All Projects &rarr;</a>
-    </div>
-    <div class="project-grid">
-      {featuredProjects.map(project => (
-        <ProjectCard {...project} />
-      ))}
-    </div>
-  </section>
-
-  <section class="latest-posts">
-    <div class="section-header">
-      <h2>Latest Posts</h2>
-      <a href="/blog/" class="see-all-pill">See All Posts &rarr;</a>
-    </div>
-    <div class="post-cards">
-      {recentPosts.map(post => (
-        <div class="post-card">
-          <time datetime={post.data.date.toISOString()}>
-            {post.data.date.toISOString().slice(0, 10)}
-          </time>
-          <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+<BaseLayout fullWidth title="Orbital Pond · 우주개구리" description="Swift와 iOS, 그리고 개발 도구를 만드는 우주개구리의 실험과 기록.">
+  <div class="journal-home">
+  <Hero count={posts.length} yearRange={years} />
+  <div class="field-paper"><div class="catalog">
+    <section aria-labelledby="journal">
+      <header class="section-head">
+        <div>
+          <p class="eyebrow">FIELD NOTES</p>
+          <h2 id="journal">최근 기록</h2>
         </div>
-      ))}
-    </div>
-  </section>
+        <a href="/blog/">
+          전체 글 <span aria-hidden="true">↗</span>
+        </a>
+      </header>
+      <div class="cards">
+        {posts.slice(0, 3).map((post) => {
+          const { label } = postPlate(post.id);
+          return (
+            <a class="record" href={`/blog/${post.id}/`}>
+              {post.data.cover && <div class="visual"><JournalCover {...post.data.cover} /></div>}
+              <div class="record-meta">
+                <time datetime={post.data.date.toISOString()}>
+                  {displayDate(post.data.date).replaceAll("-", ".")}
+                </time>
+                <span class="topic">{label}</span>
+              </div>
+              <h3>{post.data.title}</h3>
+              {post.data.summary && <p>{post.data.summary}</p>}
+            </a>
+          );
+        })}
+      </div>
+    </section>
+    <section aria-labelledby="project-title">
+      <header class="section-head">
+        <div>
+          <p class="eyebrow">PROJECT GALLERY</p>
+          <h2 id="project-title">프로젝트</h2>
+        </div>
+        <a href="/projects/">
+          전체 프로젝트 <span aria-hidden="true">↗</span>
+        </a>
+      </header>
+      <div class="project-index">
+        {featured.map((project) => (
+          <details class="project-entry">
+            <summary>
+              <span class="icon" aria-hidden="true">
+                {project.icon ? <img src={project.icon} width="34" height="34" alt="" loading="lazy"/> :
+                  <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                    {project.slug === "remotedebug" ? <path d="m10 30 19-19m-14 0h14v14M8 17a15 15 0 0 1 12-11M6 11q2-5 7-7"/> :
+                    project.slug === "textify" ? <path d="m7 25 8-17 7 18m-11-8 9 1m4 5h9m-9 5h7"/> :
+                    <path d="m7 13 5 15 8-15m0 11q6-14 10-12 4 3-7 10l8 5"/>}
+                  </svg>}
+              </span>
+              <span class="project-name">{project.name}</span>
+              <span class="status">{{released:"출시",development:"개발 중",opensource:"오픈 소스"}[project.status]}</span>
+              <span class="plus" aria-hidden="true"></span>
+            </summary>
+            <div class="project-body">
+              <p lang="en">{project.description}</p>
+              <p class="tags">{project.tags.join(" · ")}</p>
+              <div class="project-links">
+                {project.page && <a href={project.page}>자세히 보기 →</a>}
+                {project.appstore && <a href={project.appstore}>App Store ↗</a>}
+                {project.github && <a href={project.github}>GitHub ↗</a>}
+              </div>
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+  </div></div>
+  </div>
 </BaseLayout>
-
 <style>
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
+  .catalog {
+    max-width: 1320px;
+    margin: auto;
+    padding: 0 var(--gutter);
   }
-
-  .section-header h2 {
-    margin: 0;
-    color: var(--dark-green);
+  section {
+    padding: clamp(34px, 4.5vw, 63px) 0 0;
   }
-
-  .see-all-pill {
-    display: inline-block;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--frog-green);
-    background: var(--surface-bg);
-    border: 1px solid var(--surface-border);
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
-  }
-
-  .see-all-pill:hover {
-    background: var(--frog-green);
-    color: #fff;
-    border-color: var(--frog-green);
-  }
-
-  .featured-projects,
-  .latest-posts {
-    margin-bottom: 4rem;
-  }
-
-  .project-grid {
+  .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(18px, 2.2vw, 32px);
   }
-
-  /* Post mini cards */
-  .post-cards {
+  .visual {
+    border-block: 1px solid #bfb39c;
+  }
+  .record,
+  .record:visited {
+    display: block;
+    color: var(--ink);
+  }
+  .record:hover {
+    text-decoration: none;
+  }
+  .record:hover h3 {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .record-meta {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    gap: 10px;
+    margin: 14px 0 8px;
+    color: var(--muted);
+    font: 11px var(--mono);
+  }
+  .topic {
+    border-left: 1px solid var(--surface-border);
+    padding-left: 10px;
+    font-family: var(--sans);
+  }
+  .record h3 {
+    font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+    line-height: 1.45;
+    letter-spacing: -0.045em;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  .record p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--muted);
+    margin-top: 7px;
+  }
+  @media (max-width: 720px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+
+    .record {
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--surface-border);
+    }
   }
 
-  .post-card {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    padding: 12px 16px;
-    border-radius: 8px;
-    border: 1px solid var(--surface-border);
-    background: var(--surface-bg);
-    box-shadow: none;
-    transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  :global(body:has(.journal-home)) {
+    --paper:#f7ecd7; --ink:#29291f; --muted:#524b3f; --surface-border:#bbab91;
+    --surface-bg:#faf1df; --frog-green:#214973; --frog-green-dark:#203e5c;
+    --reading:"Gowun Batang","AppleMyungjo",Georgia,serif;
+    --hand:"Gaegu","Apple SD Gothic Neo",sans-serif;
+    --brush:"Caveat Brush",var(--hand);
+    font-family:var(--reading);
+    background:var(--paper);
   }
-
-  .post-card:hover {
-    background: var(--surface-bg);
-    transform: translateX(4px);
-    box-shadow: var(--surface-shadow-hover);
+  :global(body:has(.journal-home) .masthead) {
+    background:#f7ecd7 url("/assets/images/lunar-margins.webp") center 40% / 150% auto;
+    border-bottom-color:#aa977a84;
   }
-
-  .post-card time {
-    font-size: 0.85rem;
-    color: #8a9a92;
-    white-space: nowrap;
-    flex-shrink: 0;
+  :global(body:has(.journal-home) .masthead .wordmark) { font:400 2.05rem/1 var(--brush); letter-spacing:-.04em; }
+  :global(body:has(.journal-home) .wordmark svg) { display:none; }
+  :global(body:has(.journal-home) .wordmark::before) {
+    content:""; width:39px; height:39px; border-radius:49% 48% 52% 46%;
+    background:url("/assets/images/lunar-journal.webp") 30% 56% / 275% auto;
+    border:1px solid #68604d;
   }
-
-  .post-card a {
-    color: var(--dark-green);
-    font-weight: 500;
+  :global(body:has(.journal-home) .masthead nav a),
+  :global(body:has(.journal-home) .masthead .rss) { font:700 1.24rem/1.15 var(--hand); }
+  :global(body:has(.journal-home) .site-footer) {
+    margin:0; background:#eee1c6; border-color:#ac9978;
   }
-
-  .post-card a:hover {
-    color: var(--frog-green);
+  :global(body:has(.journal-home) .footer-links) { font:700 1.08rem/1.4 var(--hand); }
+  .field-paper {
+    background-color:#f8efde;
+    background-image:linear-gradient(90deg,transparent 4%,#faf1dfab 14%,#faf1df45 26% 74%,#faf1dfab 86%,transparent 96%),url("/assets/images/lunar-margins.webp");
+    background-position:center;
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+  }
+  .catalog { max-width:1240px; padding-bottom:clamp(96px,11vw,170px); }
+  .section-head { border-color:#9f8d71; }
+  .section-head h2 { font:700 clamp(2.05rem,3.8vw,3.3rem)/1 var(--hand); letter-spacing:-.065em; }
+  .section-head a { font:700 1.18rem/1.1 var(--hand); }
+  .eyebrow { font:400 .96rem/1 var(--brush); letter-spacing:.1em; color:#3d5670; }
+  .visual { border:0; clip-path:polygon(0 2%,21% .8%,53% 1.6%,85% 0,100% 1.4%,99.6% 47%,100% 98.4%,73% 100%,39% 98.7%,1% 100%); }
+  .record-meta { font:700 1.02rem/1.2 var(--hand); }
+  .topic { font:inherit; }
+  .record h3 { font-family:var(--reading); line-height:1.55; }
+  .record p,.project-body { text-wrap:pretty; }
+  .project-index { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:clamp(22px,4vw,68px); align-items:start; }
+  .project-entry { border-bottom:1px solid var(--surface-border); }
+  summary { display:flex; align-items:center; min-height:73px; gap:13px; cursor:pointer; list-style:none; }
+  summary::-webkit-details-marker { display:none; }
+  .icon { width:34px; height:34px; flex:none; color:#345577; }
+  .icon svg { width:100%; height:100%; }
+  .icon img { border-radius:8px; }
+  .project-name { font:400 clamp(1.55rem,2.4vw,1.93rem)/1.1 var(--brush); letter-spacing:-.035em; }
+  .status { margin-left:auto; font:700 1.03rem/1.2 var(--hand); color:var(--muted); }
+  .plus { display:grid; place-items:center; width:17px; height:17px; color:#47627a; }
+  .plus::before,.plus::after { content:""; grid-area:1/1; width:11px; height:1.4px; background:currentColor; }
+  .plus::after { transform:rotate(90deg); }
+  details[open] .plus::after { transform:rotate(0); }
+  summary:hover .project-name,summary:focus-visible .project-name { color:#244d78; }
+  .project-body { padding:0 12px 16px 47px; font-size:.9rem; }
+  .tags { font:700 .98rem/1.5 var(--hand); color:var(--muted); margin-top:7px; }
+  .project-links { display:flex; flex-wrap:wrap; gap:13px; }
+  .project-links a { margin-top:9px; font-size:.81rem; font-weight:650; }
+  @media(prefers-reduced-motion:no-preference) {
+    :global(html[data-motion="playing"]) .plus::after { transition:transform .25s; }
+    :global(html[data-motion="playing"]) details[open] .project-body { animation:unfold .28s ease-out; }
+  }
+  @keyframes unfold { from { opacity:.35; transform:translateY(-5px); } }
+  @media(max-width:720px) {
+    .project-index { grid-template-columns:1fr; }
+    .field-paper {
+      background-image:linear-gradient(90deg,#fbf1dd77,#fbf1dddc 8% 92%,#fbf1dd77),url("/assets/images/lunar-margins.webp");
+      background-size:100% 100%,100% auto;
+      background-position:center top;
+      background-repeat:no-repeat,repeat-y;
+    }
+    .catalog { padding-bottom:98px; }
   }
 </style>

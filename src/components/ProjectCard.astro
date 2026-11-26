@@ -1,208 +1,124 @@
 ---
-interface Props {
-  name: string;
-  slug: string;
-  tagline: string;
-  description: string;
-  status: string;
-  icon?: string;
-  tags: string[];
-  appstore?: string;
-  github?: string;
-  page?: string;
-}
-const { name, slug, tagline, description, status, icon, tags, appstore, github, page } = Astro.props;
-
-const statusIcon = status === 'released' ? '🍎' : status === 'development' ? '🔧' : '📦';
-const statusBarClass = `status-bar-${status.toLowerCase().replace(/\s+/g, '')}`;
+import type { Project } from "../data/projects";
+import { projectStudies } from "../data/plates";
+import StudyPlate from "./StudyPlate.astro";
+const {
+  name,
+  slug,
+  tagline,
+  description,
+  status,
+  icon,
+  tags,
+  appstore,
+  github,
+  page,
+} = Astro.props as Project;
+const statusLabels = {
+  released: "출시",
+  development: "개발 중",
+  opensource: "오픈 소스",
+};
 ---
-<div class="project-card">
-  <div class={`status-bar ${statusBarClass}`}></div>
-  <span class="project-status" title={status}>{statusIcon}</span>
-  <div class="card-header">
-    {icon ? (
-      <img class="project-icon" src={icon} alt={`${name} icon`} />
-    ) : (
-      <div class="project-icon-placeholder">{name.charAt(0)}</div>
-    )}
-    <div class="card-header-text">
-      <h3>{name}</h3>
-      <p class="project-tagline">{tagline}</p>
-    </div>
-  </div>
-  <p class="project-description">{description}</p>
-  <div class="project-tags">
-    {tags.map((tag) => (
-      <span class="tag">{tag}</span>
-    ))}
-  </div>
-  <div class="project-links">
-    {page && (
-      <a class="btn btn-primary" href={page}>Details</a>
-    )}
-    {appstore && (
-      <a class="btn btn-primary" href={appstore} target="_blank" rel="noopener noreferrer">App Store ↗</a>
-    )}
-    {github && (
-      <a class="btn btn-secondary" href={github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-    )}
-  </div>
-</div>
 
+<article class="project-card">
+  <div class="project-plate">
+    <StudyPlate
+      kind={projectStudies[slug] ?? "knot"}
+      label={slug.toUpperCase()}
+    />
+  </div>
+  <div class="info">
+    <div class="identity">
+      {icon && <img src={icon} alt="" width="34" height="34" loading="lazy" />}
+      <h3>{name}</h3>
+      <small>{statusLabels[status]}</small>
+    </div>
+    <p class="tagline">{tagline}</p>
+    <p>{description}</p>
+    <div class="tags">
+      {tags.map((tag) => (
+        <span>{tag}</span>
+      ))}
+    </div>
+    {(page || appstore || github) && (
+      <div class="links">
+        {page && <a href={page}>자세히 보기 →</a>}
+        {appstore && <a href={appstore}>App Store ↗</a>}
+        {github && <a href={github}>GitHub ↗</a>}
+      </div>
+    )}
+  </div>
+</article>
 <style>
   .project-card {
-    position: relative;
-    background: var(--surface-bg);
     border: 1px solid var(--surface-border);
-    border-radius: 12px;
-    padding: 24px;
-    padding-top: 28px;
-    overflow: hidden;
-    box-shadow: none;
-    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
-  }
-
-  .project-card:hover {
-    transform: translateY(-2px) scale(1.01);
     background: var(--surface-bg);
-    box-shadow: var(--surface-shadow-hover);
-  }
-
-  /* Status color bar at top */
-  .status-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    opacity: 0.8;
-  }
-
-  .status-bar-released {
-    background: var(--frog-green);
-  }
-
-  .status-bar-development {
-    background: var(--planet-orange);
-  }
-
-  .status-bar-opensource {
-    background: var(--sky-blue);
-  }
-
-  /* Status icon - top right */
-  .project-status {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.1em;
-    line-height: 1;
-    cursor: default;
-  }
-
-  /* Card header: icon + text side by side */
-  .card-header {
+    min-width: 0;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-    padding-right: 32px;
+    flex-direction: column;
   }
-
-  .project-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 14px;
-    flex-shrink: 0;
+  .project-plate {
+    height: 145px;
+    border-bottom: 1px solid var(--surface-border);
   }
-
-  .project-icon-placeholder {
-    width: 64px;
-    height: 64px;
-    border-radius: 14px;
-    background: var(--sky-blue);
-    color: var(--dark-green);
+  .info {
+    padding: 18px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    flex: 1;
+  }
+  .identity {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 1.5em;
-    font-weight: bold;
-    flex-shrink: 0;
+    gap: 8px;
+    flex-wrap: wrap;
+    width: 100%;
+    line-height: 1.2;
   }
-
-  .card-header-text h3 {
-    margin: 0 0 2px;
-    color: var(--dark-green);
+  .identity img {
+    border-radius: 8px;
   }
-
-  .project-tagline {
-    color: #7a8a82;
-    font-size: 0.9em;
-    margin: 0;
+  .identity h3 {
+    font: 600 1.28rem var(--serif);
   }
-
-  .project-description {
-    color: #556;
-    font-size: 0.95em;
-    margin-bottom: 12px;
+  small {
+    margin-left: auto;
+    color: var(--muted);
+    font-size: 0.75rem;
   }
-
-  /* Tags */
-  .project-tags {
+  p {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+  .tagline {
+    margin: 14px 0 4px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .tags,
+  .links {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin-bottom: 12px;
   }
-
-  .tag {
-    background: var(--sky-blue-light);
-    color: var(--frog-green-dark);
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-size: 0.78em;
-    font-weight: 500;
+  .tags {
+    margin: 12px 0;
+    color: var(--muted);
+    font: 10px/1.5 var(--mono);
   }
-
-  .tag:hover {
-    background: var(--sky-blue);
-  }
-
-  /* Links */
-  .project-links {
-    display: flex;
-    gap: 8px;
-    margin-top: 4px;
-  }
-
-  .project-links .btn {
-    display: inline-block;
-    padding: 10px 22px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 0.9em;
-    font-weight: 600;
-    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
-  }
-
-  .project-links .btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
-  }
-
-  .project-links .btn-primary {
-    background: var(--frog-green);
-    color: #fff;
-  }
-
-  .project-links .btn-secondary {
-    background: var(--surface-bg);
-    color: var(--dark-green);
+  .tags span {
     border: 1px solid var(--surface-border);
+    padding: 1px 5px;
   }
-
-  .project-links .btn-secondary:hover {
-    background: var(--sky-blue-light);
+  .links {
+    margin-top: auto;
+    gap: 12px;
+  }
+  .links a {
+    font-size: 0.82rem;
+    font-weight: 650;
   }
 </style>

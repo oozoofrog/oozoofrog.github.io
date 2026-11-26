@@ -1,162 +1,184 @@
 ---
+interface Props {
+  lang: string;
+}
+const korean = Astro.props.lang.startsWith("ko");
 const pathname = Astro.url.pathname;
-const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'Projects', href: '/projects/' },
-  { label: 'Blog', href: '/blog/' },
-  { label: 'Wiki', href: '/swiftlang-wiki/' },
-  { label: 'News', href: '/news/' },
-  { label: 'About', href: '/about/' },
+const links = [
+  [korean ? "홈" : "Home", "/"],
+  [korean ? "글" : "Blog", "/blog/"],
+  [korean ? "프로젝트" : "Projects", "/projects/"],
+  [korean ? "위키" : "Wiki", "/swiftlang-wiki/"],
+  [korean ? "뉴스" : "News", "/news/"],
+  [korean ? "소개" : "About", "/about/"],
 ];
 ---
-<header class="site-header">
-  <div class="header-inner">
-    <a class="site-title" href="/">
-      <img src="/assets/images/avatar.png" alt="" class="title-avatar" />
-      우주개구리
+
+<header class="masthead">
+  <div class="mast-inner">
+    <a
+      class="wordmark"
+      href="/"
+      aria-label={korean ? "oozoofrog 홈" : "oozoofrog home"}
+    >
+      <svg
+        width="37"
+        height="31"
+        viewBox="-4 -5 51 45"
+        fill="none"
+        aria-hidden="true"
+      >
+        <ellipse
+          cx="21"
+          cy="16"
+          rx="23"
+          ry="19.5"
+          stroke="currentColor"
+          stroke-width="1.5"
+          fill="#ecebd9"
+        />
+        <path
+          d="M4 21c0-4 1-7 4-9-1-5 2-9 7-9 3 0 5 2 6 4 1-2 4-4 7-4 5 0 8 4 7 9 2 2 4 5 4 9 0 7-8 10-18 10S4 28 4 21Z"
+          fill="#b6d979"
+          stroke="currentColor"
+          stroke-width="2"
+        />
+        <ellipse cx="14" cy="11" rx="2.2" ry="3" fill="currentColor" />
+        <ellipse cx="28" cy="11" rx="2.2" ry="3" fill="currentColor" />
+        <path
+          d="M11 21q10 7 21-1"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path
+          d="M9 33q11 5 24-1"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+      </svg>
+      oozoofrog
     </a>
-    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-    <label for="nav-toggle" class="nav-toggle-label">
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>
-    <nav>
-      {navItems.map((item) => (
-        <a
-          href={item.href}
-          class:list={[{ active: pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href)) }]}
-        >
-          {item.label}
-        </a>
-      ))}
+    <nav
+      lang={korean ? "ko" : "en"}
+      aria-label={korean ? "주 메뉴" : "Main navigation"}
+    >
+      {links.map(([label, href]) => {
+        const active =
+          pathname === href || (href !== "/" && pathname.startsWith(href));
+        return (
+          <a
+            href={href}
+            aria-current={
+              active ? (pathname === href ? "page" : "location") : undefined
+            }
+          >
+            {label}
+          </a>
+        );
+      })}
     </nav>
+    <a
+      class="rss"
+      href="/rss.xml"
+      aria-label={korean ? "RSS 피드" : "RSS feed"}
+    >
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 20 20"
+        fill="none"
+        aria-hidden="true"
+      >
+        <circle cx="4" cy="16" r="2" fill="currentColor" />
+        <path
+          d="M3 10a7 7 0 0 1 7 7M3 4a13 13 0 0 1 13 13"
+          stroke="currentColor"
+          stroke-width="2"
+        />
+      </svg>
+      <span>RSS</span>
+    </a>
   </div>
 </header>
-
 <style>
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--surface-bg);
-    border-bottom: 1px solid var(--surface-border);
-    box-shadow: var(--surface-shadow);
-    padding: 0 20px;
+  .masthead {
+    border-bottom: 1px solid #cdd1c2;
+    background: var(--paper);
   }
-
-  .header-inner {
-    max-width: 800px;
-    margin: 0 auto;
+  .mast-inner {
+    max-width: 1320px;
+    margin: auto;
+    padding: 0 var(--gutter);
+    min-height: 68px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 64px;
+    gap: 2rem;
   }
-
-  .site-title {
-    font-size: 1.1em;
-    font-weight: 700;
-    color: var(--dark-green) !important;
+  .wordmark,
+  .wordmark:visited {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--ink);
+    font:
+      700 1.45rem/1 Georgia,
+      serif;
+    letter-spacing: -0.065em;
     text-decoration: none;
-    display: flex;
-    align-items: center;
   }
-
-  .site-title:visited {
-    color: var(--dark-green) !important;
-  }
-
-  .title-avatar {
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
-    margin-right: 8px;
-  }
-
   nav {
     display: flex;
+    align-items: center;
+    gap: clamp(16px, 2.6vw, 34px);
+    margin-left: auto;
+  }
+  nav a,
+  .rss {
+    font-size: 0.82rem;
+    color: var(--ink);
+    padding: 0.55rem 0;
+    font-weight: 600;
+  }
+  nav a[aria-current] {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 7px;
+  }
+  .rss,
+  .rss:visited {
+    display: flex;
+    align-items: center;
     gap: 8px;
+    border-left: 1px solid var(--surface-border);
+    padding-left: 1.4rem;
+    color: var(--ink);
+    font: 12px var(--mono);
   }
-
-  nav a {
-    color: #555;
-    font-size: 0.9em;
-    font-weight: 500;
-    text-decoration: none;
-    padding: 4px 12px;
-    border-radius: 16px;
-    transition: color 0.15s, background 0.2s;
-  }
-
-  nav a:hover {
-    color: var(--frog-green);
-    background: var(--sky-blue-light);
-  }
-
-  nav a.active {
-    color: var(--dark-green);
-    background: var(--sky-blue-light);
-  }
-
-  /* Hamburger menu */
-  .nav-toggle {
-    display: none;
-  }
-
-  .nav-toggle-label {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-  }
-
-  .nav-toggle-label span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--dark-green);
-    transition: transform 0.2s, opacity 0.2s;
-  }
-
-  @media (max-width: 600px) {
-    .header-inner {
+  @media (max-width: 700px) {
+    .mast-inner {
+      gap: 10px;
       flex-wrap: wrap;
+      padding-top: 12px;
     }
-
-    .nav-toggle-label {
-      display: flex;
+    .wordmark {
+      font-size: 1.35rem;
     }
-
+    .rss {
+      margin-left: auto;
+      order: 1;
+    }
     nav {
-      display: none;
+      flex-wrap: wrap;
+      gap: 4px 12px;
       width: 100%;
-      flex-direction: column;
-      gap: 0;
-      padding: 8px 0;
-      background: var(--surface-bg);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      order: 2;
+      justify-content: space-between;
+      margin: 0;
     }
-
     nav a {
-      padding: 10px 12px;
-      border-radius: 8px;
-    }
-
-    .nav-toggle:checked ~ nav {
-      display: flex;
-    }
-
-    .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
+      padding: 0.4rem 0 0.65rem;
     }
   }
 </style>

@@ -1,4 +1,5 @@
 ---
+import StudyPlate from '../../components/StudyPlate.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { readdir } from 'fs/promises';
 import { join } from 'path';
@@ -22,7 +23,8 @@ const newsItems = newsFiles.map(slug => ({
 ---
 
 <BaseLayout title="News">
-  <h1>📰 Daily News</h1>
+  <header class="section-head"><div><p class="eyebrow">DAILY BRIEFING</p><h1 class="catalog-title">뉴스 브리핑</h1></div></header>
+  <div class="news-plate"><StudyPlate kind="antenna" label="DAILY NEWS"/></div>
   <p class="description">
     지난 24시간 세상의 모든 소식 · 카라얀이 선별한 데일리 브리핑
   </p>
@@ -65,9 +67,7 @@ const newsItems = newsFiles.map(slug => ({
 </BaseLayout>
 
 <style>
-  h1 {
-    margin-bottom: 0.5rem;
-  }
+  .news-plate{height:130px;margin-bottom:16px}
 
   .description {
     color: var(--text-secondary);

@@ -1,6 +1,9 @@
 ---
 title: "Astra·Luna 코딩 실험: 계획 분리와 추론 강도"
 summary: "QuixBugs 6문제, 156조합으로 비교한 계획·구현 분리와 단일 세션 구현의 성공률, 토큰, 실행시간."
+cover:
+  src: /assets/images/posts/codex-routing/configurations-tokens.svg
+  alt: Astra·Luna의 계획·구현 조합별 평균 토큰 사용량
 date: 2026-09-12 00:00:00 +0900
 categories: [AI, LLM, Python]
 tags: [codex, astra, luna, benchmark, quixbugs]

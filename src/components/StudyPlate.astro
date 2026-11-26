@@ -1,0 +1,73 @@
+---
+import Plate from "./Plate.astro";
+import type { Study } from "../graphics/studies";
+interface Props {
+  kind: Study;
+  label: string;
+}
+const { kind, label } = Astro.props;
+const palette = ["strata", "pulse"].includes(kind)
+  ? "clay"
+  : ["network", "type", "glyph"].includes(kind)
+    ? "lilac"
+    : "sage";
+---
+
+<div class:list={["study", palette]} aria-hidden="true">
+  <div class="guide"></div>
+  <Plate kind={kind} />
+  <span class="legend">{label}</span>
+  <span class="cross">+</span>
+</div>
+<style>
+  .study {
+    --wash: #d4dec8;
+    --grid: rgba(66, 88, 54, 0.13);
+    background-color: var(--wash);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    height: 100%;
+    min-height: 110px;
+    color: #334834;
+  }
+  .clay {
+    --wash: #e8d3bf;
+    --grid: rgba(120, 79, 48, 0.12);
+    color: #61442c;
+  }
+  .lilac {
+    --wash: #dbd9e5;
+    --grid: rgba(92, 84, 115, 0.13);
+    color: #484356;
+  }
+  .guide {
+    position: absolute;
+    width: 54%;
+    aspect-ratio: 1;
+    left: 23%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px dashed currentColor;
+    opacity: 0.2;
+    border-radius: 50%;
+  }
+  .legend,
+  .cross {
+    position: absolute;
+    bottom: 10px;
+    font: 10px/1 var(--mono);
+    letter-spacing: 0.09em;
+  }
+  .legend {
+    left: 12px;
+  }
+  .cross {
+    right: 12px;
+    font-size: 15px;
+  }
+</style>

@@ -1,150 +1,231 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-import { categories, getCategory } from '../../data/categories';
-
-const posts = (await getCollection('blog', ({ data }) => data.public !== false))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-
-const categoryCounts: Record<string, number> = { all: posts.length };
-for (const post of posts) {
-  const cat = getCategory(post.id);
-  categoryCounts[cat] = (categoryCounts[cat] ?? 0) + 1;
-}
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import StudyPlate from "../../components/StudyPlate.astro";
+import { getCollection } from "astro:content";
+import { categories, getCategory } from "../../data/categories";
+import { displayDate, postPlate } from "../../data/plates";
+const posts = (
+  await getCollection("blog", ({ data }) => data.public !== false)
+).sort((a, b) => +b.data.date - +a.data.date);
+const records = posts.map((post) => ({
+  post,
+  category: getCategory(post.id),
+  ...postPlate(post.id),
+}));
 ---
 
-<BaseLayout title="Blog">
-  <h1>Blog</h1>
-
-  <div class="filter-bar">
-    {categories.map(cat => (
-      <button
-        class={`filter-pill${cat.key === 'all' ? ' active' : ''}`}
-        data-filter={cat.key}
-      >
-        {cat.label} <span class="pill-count">{categoryCounts[cat.key] ?? 0}</span>
-      </button>
-    ))}
+<BaseLayout title="글 아카이브 · 우주개구리">
+  <div class="archive">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow">FIELD ARCHIVE</p>
+        <h1 class="catalog-title">글 아카이브</h1>
+      </div>
+      <span class="total">{posts.length} RECORDS</span>
+    </header>
+    <label class="search">
+      <span>글 찾기</span>
+      <input type="search" placeholder="제목 또는 주제 검색" id="query" />
+    </label>
+    <div class="filters" role="group" aria-label="주제 선택">
+      {categories.map((cat) => (
+        <button
+          type="button"
+          data-filter={cat.key}
+          aria-pressed={cat.key === "all"}
+        >
+          {cat.label}{" "}
+          <small>
+            {cat.key === "all"
+              ? records.length
+              : records.filter((r) => r.category === cat.key).length}
+          </small>
+        </button>
+      ))}
+    </div>
+    <p id="results" role="status" aria-live="polite"></p>
+    <ul>
+      {records.map(({ post, category, kind, label }) => (
+        <li
+          data-category={category}
+          data-text={[
+            post.data.title,
+            label,
+            post.data.categories,
+            post.data.tags,
+          ]
+            .flat()
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase()}
+        >
+          <a href={`/blog/${post.id}/`}>
+            <div class="thumb">
+              <StudyPlate kind={kind} label="" />
+            </div>
+            <div>
+              <span class="metadata">
+                <time datetime={post.data.date.toISOString()}>
+                  {displayDate(post.data.date)}
+                </time>{" "}
+                · {label}
+              </span>
+              <h2>{post.data.title}</h2>
+            </div>
+            <span class="arrow" aria-hidden="true">
+              ↗
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
   </div>
-
-  <ul class="post-list">
-    {posts.map(post => (
-      <li data-category={getCategory(post.id)}>
-        <time datetime={post.data.date.toISOString()}>
-          {post.data.date.toISOString().slice(0, 10)}
-        </time>
-        <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-      </li>
-    ))}
-  </ul>
 </BaseLayout>
-
 <style>
-  h1 {
-    margin-bottom: 1.5rem;
+  .archive {
+    margin: 18px 0 36px;
   }
-
-  .filter-bar {
+  .total,
+  .metadata {
+    font: 11px/1.4 var(--mono);
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  .search {
     display: flex;
-    gap: 8px;
-    margin-bottom: 1.5rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 4px;
-  }
-
-  .filter-bar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .filter-pill {
-    display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    white-space: nowrap;
-    cursor: pointer;
+    gap: 12px;
+    font-size: 0.88rem;
+    font-weight: 650;
+    margin-top: 25px;
+  }
+  input {
+    color: var(--ink);
     border: 1px solid var(--surface-border);
+    border-radius: 3px;
+    padding: 9px 12px;
+    flex: 1;
+    min-width: 0;
     background: var(--surface-bg);
-    color: var(--dark-green);
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
   }
-
-  .filter-pill:hover {
-    background: var(--sky-blue-light);
-    border-color: var(--frog-green);
-  }
-
-  .filter-pill.active {
-    background: var(--frog-green);
-    color: #fff;
-    border-color: var(--frog-green);
-  }
-
-  .pill-count {
-    font-weight: 400;
-    opacity: 0.8;
-    font-size: 0.8rem;
-  }
-
-  .post-list {
-    list-style: none;
-    padding: 0;
-  }
-
-  .post-list li {
+  .filters {
     display: flex;
-    gap: 1rem;
-    align-items: baseline;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 16px 0;
   }
-
-  .post-list li[hidden] {
+  .filters button {
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--surface-border);
+    padding: 6px 12px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  .filters button[aria-pressed="true"] {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  small {
+    font: 10px var(--mono);
+  }
+  #results {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin: 12px 0;
+  }
+  ul {
+    list-style: none;
+  }
+  li {
+    border-top: 1px solid var(--surface-border);
+  }
+  li:last-child {
+    border-bottom: 1px solid var(--surface-border);
+  }
+  li a {
+    display: grid;
+    grid-template-columns: 88px 1fr auto;
+    gap: 18px;
+    align-items: center;
+    padding: 12px 0;
+    color: var(--ink);
+  }
+  .thumb {
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .thumb :global(.study) {
+    min-height: 0;
+  }
+  .thumb :global(.legend),
+  .thumb :global(.cross) {
     display: none;
   }
-
-  .post-list time {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    white-space: nowrap;
+  h2 {
+    font-size: clamp(0.97rem, 2vw, 1.2rem);
+    line-height: 1.5;
+    letter-spacing: -0.04em;
+    overflow-wrap: anywhere;
+  }
+  .arrow {
+    font-size: 20px;
+  }
+  .metadata {
+    font-size: 10px;
+  }
+  @media (max-width: 540px) {
+    li a {
+      grid-template-columns: 60px 1fr;
+      gap: 10px;
+    }
+    .thumb {
+      height: 52px;
+    }
+    .arrow {
+      display: none;
+    }
   }
 </style>
-
 <script>
-  function initFilter() {
-    const pills = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
-    const items = document.querySelectorAll<HTMLLIElement>('.post-list li');
-
-    function applyFilter(key: string) {
-      pills.forEach(p => p.classList.toggle('active', p.dataset.filter === key));
-      items.forEach(li => {
-        li.hidden = key !== 'all' && li.dataset.category !== key;
-      });
+  const filters = Array.from(
+    document.querySelectorAll<HTMLButtonElement>("[data-filter]"),
+  );
+  const records = Array.from(
+    document.querySelectorAll<HTMLLIElement>("[data-category]"),
+  );
+  const search = document.querySelector<HTMLInputElement>("#query")!;
+  const results = document.querySelector<HTMLElement>("#results")!;
+  function apply() {
+    const key =
+      filters.find((button) => button.dataset.filter === location.hash.slice(1))
+        ?.dataset.filter ?? "all";
+    const term = search.value.toLowerCase().trim();
+    let count = 0;
+    for (const record of records) {
+      record.hidden =
+        (key !== "all" && key !== record.dataset.category) ||
+        !record.dataset.text!.includes(term);
+      if (!record.hidden) count++;
     }
-
-    pills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        const key = pill.dataset.filter!;
-        window.location.hash = key === 'all' ? '' : key;
-        applyFilter(key);
-      });
-    });
-
-    // hash에서 초기 필터 적용
-    const hash = window.location.hash.slice(1);
-    if (hash) applyFilter(hash);
-
-    window.addEventListener('hashchange', () => {
-      const h = window.location.hash.slice(1);
-      applyFilter(h || 'all');
-    });
+    filters.forEach((button) =>
+      button.setAttribute(
+        "aria-pressed",
+        String(key === button.dataset.filter),
+      ),
+    );
+    results.textContent = count ? `${count}개의 글` : "검색 결과가 없습니다.";
   }
-
-  initFilter();
-  document.addEventListener('astro:after-swap', initFilter);
+  filters.forEach((button) =>
+    button.addEventListener("click", () => {
+      location.hash =
+        button.dataset.filter === "all" ? "" : button.dataset.filter!;
+      apply();
+    }),
+  );
+  search.addEventListener("input", apply);
+  window.addEventListener("hashchange", apply);
+  apply();
 </script>
