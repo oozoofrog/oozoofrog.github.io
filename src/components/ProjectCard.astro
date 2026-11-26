@@ -1,7 +1,6 @@
 ---
 import type { Project } from "../data/projects";
-import { projectStudies } from "../data/plates";
-import StudyPlate from "./StudyPlate.astro";
+import ProjectThumbnail from "./ProjectThumbnail.astro";
 const {
   name,
   slug,
@@ -22,15 +21,10 @@ const statusLabels = {
 ---
 
 <article class="project-card">
-  <div class="project-plate">
-    <StudyPlate
-      kind={projectStudies[slug] ?? "knot"}
-      label={slug.toUpperCase()}
-    />
-  </div>
+  <ProjectThumbnail {slug} />
   <div class="info">
     <div class="identity">
-      {icon && <img src={icon} alt="" width="34" height="34" loading="lazy" />}
+      <img src={icon} alt="" width="34" height="34" loading="lazy" />
       <h3>{name}</h3>
       <small>{statusLabels[status]}</small>
     </div>
@@ -57,10 +51,6 @@ const statusLabels = {
     min-width: 0;
     display: flex;
     flex-direction: column;
-  }
-  .project-plate {
-    height: 145px;
-    border-bottom: 1px solid var(--surface-border);
   }
   .info {
     padding: 18px;

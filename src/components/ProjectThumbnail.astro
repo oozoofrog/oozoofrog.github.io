@@ -1,0 +1,14 @@
+---
+interface Props { slug: string }
+const { slug } = Astro.props;
+---
+<img class="project-thumbnail" src={`/assets/images/projects/${slug}-cover.webp`} alt="" width="840" height="391" loading="lazy" decoding="async" />
+<style>
+  .project-thumbnail {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2.15;
+    object-fit: cover;
+    background: #f6ebd8;
+  }
+</style>

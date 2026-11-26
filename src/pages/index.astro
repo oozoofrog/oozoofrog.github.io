@@ -4,6 +4,7 @@ import "@fontsource/gaegu/korean-700.css";
 import "@fontsource/gowun-batang/korean-400.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
+import ProjectThumbnail from "../components/ProjectThumbnail.astro";
 import JournalCover from "../components/JournalCover.astro";
 import { getCollection } from "astro:content";
 import { projects } from "../data/projects";
@@ -66,20 +67,16 @@ const years = posts.length
         {featured.map((project) => (
           <details class="project-entry">
             <summary>
-              <span class="icon" aria-hidden="true">
-                {project.icon ? <img src={project.icon} width="34" height="34" alt="" loading="lazy"/> :
-                  <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-                    {project.slug === "remotedebug" ? <path d="m10 30 19-19m-14 0h14v14M8 17a15 15 0 0 1 12-11M6 11q2-5 7-7"/> :
-                    project.slug === "textify" ? <path d="m7 25 8-17 7 18m-11-8 9 1m4 5h9m-9 5h7"/> :
-                    <path d="m7 13 5 15 8-15m0 11q6-14 10-12 4 3-7 10l8 5"/>}
-                  </svg>}
-              </span>
+              <ProjectThumbnail slug={project.slug} />
+              <span class="identity">
+                <img class="icon" src={project.icon} width="34" height="34" alt="" loading="lazy" />
               <span class="project-name">{project.name}</span>
               <span class="status">{{released:"출시",development:"개발 중",opensource:"오픈 소스"}[project.status]}</span>
               <span class="plus" aria-hidden="true"></span>
+              </span>
             </summary>
             <div class="project-body">
-              <p lang="en">{project.description}</p>
+              <p>{project.description}</p>
               <p class="tags">{project.tags.join(" · ")}</p>
               <div class="project-links">
                 {project.page && <a href={project.page}>자세히 보기 →</a>}
@@ -203,13 +200,12 @@ const years = posts.length
   .topic { font:inherit; }
   .record h3 { font-family:var(--reading); line-height:1.55; }
   .record p,.project-body { text-wrap:pretty; }
-  .project-index { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:clamp(22px,4vw,68px); align-items:start; }
+  .project-index { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px 24px; align-items:start; }
   .project-entry { border-bottom:1px solid var(--surface-border); }
-  summary { display:flex; align-items:center; min-height:73px; gap:13px; cursor:pointer; list-style:none; }
+  summary { display:block; cursor:pointer; list-style:none; }
   summary::-webkit-details-marker { display:none; }
-  .icon { width:34px; height:34px; flex:none; color:#345577; }
-  .icon svg { width:100%; height:100%; }
-  .icon img { border-radius:8px; }
+  .identity { display:flex; align-items:center; gap:8px; min-height:61px; }
+  .icon { width:34px; height:34px; border-radius:8px; flex:none; }
   .project-name { font:400 clamp(1.55rem,2.4vw,1.93rem)/1.1 var(--brush); letter-spacing:-.035em; }
   .status { margin-left:auto; font:700 1.03rem/1.2 var(--hand); color:var(--muted); }
   .plus { display:grid; place-items:center; width:17px; height:17px; color:#47627a; }
@@ -217,7 +213,7 @@ const years = posts.length
   .plus::after { transform:rotate(90deg); }
   details[open] .plus::after { transform:rotate(0); }
   summary:hover .project-name,summary:focus-visible .project-name { color:#244d78; }
-  .project-body { padding:0 12px 16px 47px; font-size:.9rem; }
+  .project-body { padding:0 5px 16px; font-size:.9rem; }
   .tags { font:700 .98rem/1.5 var(--hand); color:var(--muted); margin-top:7px; }
   .project-links { display:flex; flex-wrap:wrap; gap:13px; }
   .project-links a { margin-top:9px; font-size:.81rem; font-weight:650; }
@@ -226,6 +222,9 @@ const years = posts.length
     :global(html[data-motion="playing"]) details[open] .project-body { animation:unfold .28s ease-out; }
   }
   @keyframes unfold { from { opacity:.35; transform:translateY(-5px); } }
+  @media(min-width:721px) and (max-width:1000px) {
+    .project-index { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  }
   @media(max-width:720px) {
     .project-index { grid-template-columns:1fr; }
     .field-paper {

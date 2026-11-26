@@ -22,14 +22,5 @@ export function postPlate(id: string) {
   };
 }
 
-export const projectStudies: Record<string, Study> = {
-  "runners-heart": "pulse",
-  cards: "cards",
-  remotedebug: "antenna",
-  photocleaner: "lens",
-  textify: "type",
-  unicody: "glyph",
-};
-
 export const displayDate = (date: Date) =>
   new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Seoul" }).format(date);
