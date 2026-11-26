@@ -1,14 +1,49 @@
 ---
-interface Props { slug: string }
-const { slug } = Astro.props;
+import type { ProjectScreen } from "../data/projects";
+
+interface Props { screens: ProjectScreen[] }
+const { screens } = Astro.props;
 ---
-<img class="project-thumbnail" src={`/assets/images/projects/${slug}-cover.webp`} alt="" width="840" height="391" loading="lazy" decoding="async" />
+<span class="project-thumbnail">
+  {screens.map(({ src, description, device }) => (
+    <span class="screen" data-device={device}>
+      <span class="viewport"><img {src} alt={description} loading="lazy" decoding="async" /></span>
+      <span class="device">{device}</span>
+    </span>
+  ))}
+</span>
 <style>
   .project-thumbnail {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    aspect-ratio: 1.35;
+    gap: clamp(8px, 1.2vw, 18px);
+    padding: 12px;
+    background: #e7e6e1;
+  }
+  .screen {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    text-align: center;
+    gap: 6px;
+  }
+  .screen[data-device="iPad"] { flex: 1.5; }
+  .screen[data-device="Mac"] { flex: 2.1; }
+  .viewport { position: relative; min-height: 0; }
+  .viewport img {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
-    aspect-ratio: 2.15;
-    object-fit: cover;
-    background: #f6ebd8;
+    height: 100%;
+    object-fit: contain;
+  }
+  .device {
+    font: 600 .75rem/1.2 system-ui, sans-serif;
+    color: #414340;
   }
 </style>
