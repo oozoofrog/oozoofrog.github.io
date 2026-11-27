@@ -1,11 +1,10 @@
 ---
-import "../styles/journal-type.css";
 import {projects} from "../data/projects";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PortraitStudio from "../components/PortraitStudio.astro";
 ---
 
-<BaseLayout fullWidth title="소개 · 우주개구리" description="Swift로 iOS와 macOS 앱, 개발 도구를 만드는 우주개구리입니다.">
+<BaseLayout liveSky fullWidth title="소개 · 우주개구리" description="Swift로 iOS와 macOS 앱, 개발 도구를 만드는 우주개구리입니다.">
   <div class="profile">
     <section class="bio" aria-labelledby="profile-title">
     <header>
@@ -37,18 +36,6 @@ import PortraitStudio from "../components/PortraitStudio.astro";
 </BaseLayout>
 
 <style>
-  :global(body:has(.profile)) {
-    --paper: #f8f3e9;
-    --ink: #272c2c;
-    --muted: #555951;
-    --frog-green: #24486a;
-    --surface-border: #c7bdad;
-  }
-  :global(body:has(.profile)) { isolation:isolate; }
-  :global(body:has(.profile) .masthead), :global(body:has(.profile) .site-footer) {
-    position:relative; z-index:2; background:rgb(248 243 233 / .84);
-  }
-  :global(body:has(.profile) .site-footer) { margin-top:0; }
   .profile {
     max-width:1540px; margin:auto; min-height:calc(100svh - 68px);
     padding:clamp(30px,5vh,60px) var(--gutter);

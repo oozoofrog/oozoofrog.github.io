@@ -178,7 +178,7 @@ const jsonLd = {
   :global(.post-content) {
     font-size: 1.065rem;
     overflow-wrap: anywhere;
-    color: #26332d;
+    color: var(--ink);
   }
 
   :global(.post-content > * + *) {
@@ -232,13 +232,13 @@ const jsonLd = {
   }
 
   :global(.post-content strong) {
-    color: #1f2f28;
+    color: var(--ink);
     font-weight: 700;
   }
 
   :global(.post-content code) {
-    background: #edf4f0;
-    border: 1px solid #dde8e2;
+    background: var(--surface-bg);
+    border: 1px solid var(--surface-border);
     padding: 0.14rem 0.4rem;
     border-radius: 6px;
     font-size: 0.9em;
@@ -301,7 +301,7 @@ const jsonLd = {
   }
 
   :global(.post-content th) {
-    background: #edf4f0;
+    background: var(--surface-bg);
     color: #2b3a33;
   }
 

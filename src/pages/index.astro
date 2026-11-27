@@ -1,5 +1,4 @@
 ---
-import "../styles/journal-type.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LunarIllustration from "../components/LunarIllustration.astro";
 import ProjectThumbnail from "../components/ProjectThumbnail.astro";
@@ -104,18 +103,6 @@ const posts = (
   @media (max-width: 600px) {
     .record { align-items: start; flex-direction: column; gap: 10px; }
     .visual { flex: none; width: 100px; }
-  }
-  :global(body:has(.journal-home)) {
-    --paper:#f7ecd7; --ink:#29291f; --muted:#524b3f; --surface-border:#bbab91;
-    --surface-bg:#faf1df; --frog-green:#214973; --frog-green-dark:#203e5c;
-    background:var(--paper);
-  }
-  :global(body:has(.journal-home) .masthead) {
-    background:var(--paper);
-    border-bottom-color:#aa977a84;
-  }
-  :global(body:has(.journal-home) .site-footer) {
-    margin:0; background:#eee1c6; border-color:#ac9978;
   }
   .section-head { border-color: #9f8d71; margin-bottom: 0; padding-bottom: 8px; }
   .section-head h1, .section-head h2 { margin: 0; font: 700 clamp(1.5rem, 2.4vw, 2rem)/1.2 var(--journal-font); }

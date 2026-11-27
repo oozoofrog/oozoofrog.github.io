@@ -1,0 +1,40 @@
+@import "@fontsource/gaegu/korean-400.css";
+@import "@fontsource/gaegu/korean-700.css";
+@import "@fontsource/gaegu/latin-400.css";
+@import "@fontsource/gaegu/latin-700.css";
+
+:root {
+  --journal-font: "Gaegu", sans-serif;
+  --paper: #f8f3e9;
+  --ink: #272c2c;
+  --muted: #555951;
+  --frog-green: #24486a;
+  --frog-green-dark: #203e5c;
+  --surface-border: #c7bdad;
+  --surface-bg: #fcf8f0;
+  --mast-paper: rgb(248 243 233 / .92);
+}
+body {
+  isolation: isolate;
+  font-family: var(--journal-font);
+  background-color: var(--paper);
+  color: var(--ink);
+}
+body:not(.live-lunar-sky)::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url("/assets/images/lunar-reading.webp") center / cover no-repeat;
+  mask-image: linear-gradient(90deg, #0004, #0001 24%, #0002 66%, #0003 84%, #0008);
+}
+@media (max-width: 720px) {
+  body:not(.live-lunar-sky)::before {
+    background-position: 73% center;
+    mask-image: linear-gradient(90deg, #0001, #0002 70%, #0003);
+  }
+}
+@media print, (forced-colors: active) {
+  body:not(.live-lunar-sky)::before { display: none; }
+}
