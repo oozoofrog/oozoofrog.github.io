@@ -5,19 +5,16 @@ import type {DrawnStar} from "./loading-stars";
 import type {ReferencePaints} from "./reference-paints";
 
 export const skyNotes = {
-  landing: ["착륙한 달", "개구리는 달 표면에 앉아 지구를 바라보고 있습니다."],
   sun: ["태양", "태양 가장자리에서 붉은 가스의 고리가 솟아오릅니다."],
   binary: ["쌍성", "푸른 별과 주황색 별이 서로의 둘레를 돕니다."],
   blackHole: ["블랙홀", "검은 중심 주위로 밝은 가스 원반이 회전합니다."],
   constellation: ["별자리", "개구리 모양으로 이어지는 별 여덟 개를 찾아보세요."],
-  moonlet: ["작은 달", "작은 달이 회전하면서 표면의 다른 면이 드러납니다."],
-  satellite: ["인공위성", "태양 전지판을 펼친 위성이 달 위를 지나갑니다."],
   rocket: ["로켓", "로켓이 달 위를 가로지릅니다."],
   visitor: ["외계인", "비행접시 안에서 손을 흔드는 승객이 있습니다."],
 } as const;
 export type SkyPlace = keyof typeof skyNotes;
 
-export function createLunarSky(moon: T.Mesh, satellite: T.Object3D, landing:T.Object3D, paints:ReferencePaints, arrivalStars:readonly DrawnStar[]=[]) {
+export function createLunarSky(paints:ReferencePaints, arrivalStars:readonly DrawnStar[]=[]) {
   const group = new T.Group();
   const paint=(map:T.Texture,color=0xffffff)=>new T.MeshBasicMaterial({map,color,side:T.DoubleSide});
   const ochre=paint(paints.ochre),rust=paint(paints.ochre,0xc77b58);
@@ -94,8 +91,7 @@ export function createLunarSky(moon: T.Mesh, satellite: T.Object3D, landing:T.Ob
   const dome=new T.SphereGeometry(1,36,18,0,Math.PI*2,0,Math.PI/2);
   const canopy=shape(visitor,dome,glass,0,.035,0,.205,.27,.170);
   canopy.userData.clearDome=true;canopy.add(visorOutline(dome));
-  const destinations={landing,sun,binary,blackHole,constellation,moonlet:moon,satellite,rocket,visitor};
-  const spans: Record<SkyPlace,number>={landing:23,sun:3.3,binary:2.0,blackHole:3.0,constellation:2.9,moonlet:2,satellite:3,rocket:2,visitor:1.8};
+  const destinations={sun,binary,blackHole,constellation,rocket,visitor};
   let responding:SkyPlace|null=null, responseAt=0, restingPose=false;
   function react(place:SkyPlace,time:number,animate:boolean){
     responding=place;responseAt=time;restingPose=!animate;
@@ -118,22 +114,6 @@ export function createLunarSky(moon: T.Mesh, satellite: T.Object3D, landing:T.Ob
     visitor.position.copy(paintingPoint(1790+75*Math.sin(time*.16),680+24*Math.sin(time*.38),-2.2));
     visitor.rotation.z=.09*Math.sin(time*.57);arm.rotation.z=-.54+.38*Math.sin(time*2.5)-accent("visitor")*(.85+.4*Math.sin(t*22));
   }
-  let following:SkyPlace|undefined;
-  const previous=new T.Vector3(), movement=new T.Vector3();
-  function follow(camera:T.PerspectiveCamera){
-    if(!following)return;
-    destinations[following].getWorldPosition(movement);
-    camera.position.add(movement.sub(previous));
-    destinations[following].getWorldPosition(previous);
-  }
-  function visit(place:SkyPlace,camera:T.PerspectiveCamera){
-    following=place;
-    const at=destinations[place].getWorldPosition(new T.Vector3());
-    const distance=place==="landing"?spans.landing/Math.min(1,camera.aspect):spans[place];
-    const direction=place==="landing"?new T.Vector3(-.18,.43,1):new T.Vector3(.06,.12,1);
-    camera.position.copy(at).addScaledVector(direction,distance);
-    camera.lookAt(at);previous.copy(at);
-  }
   update(0);
-  return {group,destinations,react,update,visit,follow,release(){following=undefined;responding=null;}};
+  return {group,destinations,react,update};
 }

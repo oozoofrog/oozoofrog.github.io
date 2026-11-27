@@ -3,12 +3,11 @@ import {animateEyelids} from "./portrait-motion";
 import {createSceneInk} from "./scene-ink";
 import { createLunarScene, elevation, groundHeight, paintingPoint } from "./lunar-scene";
 
+import {paintingScale} from "./painting-frame.mjs";
 import {createActivities} from "./lunar-activities";
 import type {DrawnStar} from "./loading-stars";
 
 import {createLunarSky, skyNotes, type SkyPlace} from "./lunar-sky";
-
-type View = "scene" | "flight";
 
 export async function mountPortrait(root: HTMLElement, arrivalStars:readonly DrawnStar[]=[]) {
   const canvas = root.querySelector("canvas")!;
@@ -17,10 +16,10 @@ export async function mountPortrait(root: HTMLElement, arrivalStars:readonly Dra
   const registration=root.querySelector<HTMLElement>("[data-registration]")!;
   const poster = root.querySelector<HTMLImageElement>("[data-registration] > img")!;
   const message = root.querySelector<HTMLElement>('[role="status"]')!;
-  const {scene,frog,moon,earth,lunarCentre,paints} = await createLunarScene();
+  const {scene,frog,moon,earth,starField,paints} = await createLunarScene();
   const blink=animateEyelids(frog);
   const activities=createActivities(paints);
-  const sky=createLunarSky(moon,activities.relay,lunarCentre,paints,arrivalStars);
+  const sky=createLunarSky(paints,arrivalStars);
   scene.add(sky.group);
   scene.add(activities.group);
   const reduced=matchMedia("(prefers-reduced-motion: reduce)");
@@ -30,142 +29,92 @@ export async function mountPortrait(root: HTMLElement, arrivalStars:readonly Dra
   renderer.shadowMap.enabled=true;
   renderer.shadowMap.type=T.PCFShadowMap;
   const drawInk=createSceneInk(scene,renderer);
-  const orbit=new T.OrthographicCamera(-2,2,2,-2,.04,85);
-  const flight=new T.PerspectiveCamera(48,1,.04,86);
-  flight.rotation.order="YXZ";
+  const camera=new T.OrthographicCamera(-2,2,2,-2,.04,85);
   const target=paintingPoint(450,775,0);
-  const moonCentre=moon.getWorldPosition(new T.Vector3());
-  const earthCentre=earth.getWorldPosition(new T.Vector3());
-  const actorCentre=paintingPoint(439,713,0);
-  const delta=new T.Vector3();
-  let view:View="scene", heading=0, pitch=elevation, close=false;
-  let width=1,height=1;
-  const held=new Set<string>();
-  let frame=0, last=0, time=0, earthAngle=0, earthGoal=0, blinkStart=-10;
+  camera.position.set(0,Math.sin(elevation),Math.cos(elevation)).multiplyScalar(8).add(target);
+  camera.lookAt(target);camera.updateMatrixWorld();
+  const screenUp=new T.Vector3(0,1,0).applyQuaternion(camera.quaternion);
+  const earthY=earth.position.y,moonY=moon.position.y;
+  let width=1,height=1,frame=0,last=0,time=0,blinkStart=-10;
   let contextLost=false;
   function draw(){
     if(contextLost)return;
-    const camera=view==="flight"?flight:orbit;
-    camera.updateMatrixWorld();
-    renderer.render(scene,camera);
-    drawInk(camera);
+    renderer.render(scene,camera);drawInk(camera);
   }
-  function positionOrbit(){
-    // Give a completed turn the same camera and shadow coordinates as frame zero.
-    const phase=T.MathUtils.euclideanModulo(heading+Math.PI,2*Math.PI)-Math.PI;
-    const yaw=Math.abs(phase)<1e-10?0:phase;
-    orbit.position.set(Math.sin(yaw)*Math.cos(pitch),Math.sin(pitch),Math.cos(yaw)*Math.cos(pitch))
-      .multiplyScalar(8).add(target);
-    orbit.lookAt(target);
-    const half=(close?423:627)*.0037;
-    // Only the reference angle uses the off-centre composition of the painting.
-    const framing=close?0:1-T.MathUtils.smoothstep(Math.abs(yaw),.02,1.22);
-    const x=framing*(627-450)*.0037, y=framing*(775-627)*.0037;
-    const frame=registration.getBoundingClientRect(),box=stage.getBoundingClientRect();
-    const units=2*half/Math.max(1,frame.height);
-    const px=frame.left-box.left+frame.width/2,py=frame.top-box.top+frame.height/2;
-    orbit.left=x-px*units;orbit.right=x+(width-px)*units;
-    orbit.top=y+py*units;orbit.bottom=y-(height-py)*units;
-    orbit.updateProjectionMatrix();
+  function parallax(){
+    const range=document.documentElement.scrollHeight-window.innerHeight;
+    const progress=automatic&&range>0?T.MathUtils.clamp(window.scrollY/range,0,1):0;
+    // At full scroll the far stars shift by 1.5% of the illustration width.
+    const shift=-progress*1254*paintingScale*.015;
+    starField.position.copy(screenUp).multiplyScalar(shift);
+    sky.group.position.copy(screenUp).multiplyScalar(shift*.8);
+    earth.position.y=earthY+shift*.6;
+    moon.position.y=moonY+shift*.35;
   }
-  function stop(){held.clear();cancelAnimationFrame(frame);frame=0;}
-  function positionFlight(){
-    // Leave the same margin for the text in orbit and on a guided visit.
-    const illustration=registration.getBoundingClientRect();
-    flight.setViewOffset(width,height,width/2-illustration.left-illustration.width/2,
-      height/2-illustration.top-illustration.height/2,width,height);
-  }
-  function frameEarth(){
-    const diameter=registration.getBoundingClientRect().width;
-    const tangent=height/(Math.max(1,diameter)*Math.tan(T.MathUtils.degToRad(flight.fov/2)));
-    const distance=earth.geometry.parameters.radius*Math.hypot(1,tangent);
-    flight.position.set(0,0,1).applyQuaternion(orbit.quaternion).multiplyScalar(distance).add(earthCentre);
-    flight.lookAt(earthCentre);
-  }
-  function alignIllustration(){
-    if(!illustrationSpace?.offsetHeight)return false;
-    const r=illustrationSpace.getBoundingClientRect();
-    const centre=Math.round(T.MathUtils.clamp(r.top+r.height/2,height*.29,height*.80))+"px";
-    if(stage.style.getPropertyValue("--mobile-art-centre")===centre)return false;
-    stage.style.setProperty("--mobile-art-centre",centre);return true;
-  }
+  function stop(){cancelAnimationFrame(frame);frame=0;}
   function resize(){
     const box=stage.getBoundingClientRect();
     width=Math.max(1,box.width);height=Math.max(1,box.height);
-    const ratio=Math.min(devicePixelRatio,2);
-    if(renderer.getPixelRatio()!==ratio)renderer.setPixelRatio(ratio);
+    if(illustrationSpace?.offsetHeight){
+      const r=illustrationSpace.getBoundingClientRect();
+      const centre=Math.round(T.MathUtils.clamp(r.top+window.scrollY+r.height/2,height*.29,height*.8));
+      stage.style.setProperty("--mobile-art-centre",centre+"px");
+    }
+    const rect=registration.getBoundingClientRect();
+    const units=1254*paintingScale/Math.max(1,rect.height);
+    const px=rect.left-box.left+rect.width/2,py=rect.top-box.top+rect.height/2;
+    const x=(627-450)*paintingScale,y=(775-627)*paintingScale;
+    camera.left=x-px*units;camera.right=x+(width-px)*units;
+    camera.top=y+py*units;camera.bottom=y-(height-py)*units;
+    camera.updateProjectionMatrix();
+    renderer.setPixelRatio(Math.min(devicePixelRatio,2));
     renderer.setSize(Math.round(width),Math.round(height),false);
-    flight.aspect=width/height;
-    alignIllustration();
-    positionFlight();
-    positionOrbit();
-    if(visiting==="earth")frameEarth();
-    draw();
+    parallax();draw();
   }
-  type Discovery = SkyPlace | "earth" | "frog" | "comet" | "rover" | "prints" | "star";
+  const names={earth:"지구",moonlet:"작은 달",frog:"우주개구리",comet:"혜성",rover:"월면차",satellite:"인공위성",prints:"달의 흙",star:"별똥별"};
+  type Discovery = SkyPlace | keyof typeof names;
   function label(id:Discovery){
-    const local={earth:"지구",frog:"우주개구리",comet:"혜성",rover:"월면차",prints:"달의 흙",star:"별똥별"};
-    return id in skyNotes?skyNotes[id as SkyPlace][0]:local[id as keyof typeof local];
+    return id in skyNotes?skyNotes[id as SkyPlace][0]:names[id as keyof typeof names];
   }
   const objects=new Map<T.Object3D,Discovery>([
-    [frog,"frog"],[earth,"earth"],[activities.targets.comet,"comet"],[activities.targets.rover,"rover"],
-    [activities.reply,"satellite"],[activities.trail,"landing"],
+    [frog,"frog"],[earth,"earth"],[moon,"moonlet"],[activities.comet,"comet"],[activities.rover.chassis,"rover"],
+    [activities.relay,"satellite"],[activities.reply,"satellite"],[activities.trail,"prints"],
   ]);
   for(const [key,node] of Object.entries(sky.destinations))objects.set(node,key as SkyPlace);
-  const discoveries:Discovery[]=["frog","earth","moonlet","satellite","rover","comet","prints","star","sun","binary","blackHole","constellation","rocket","visitor","landing"];
-  let selected:Discovery="frog", visiting:Discovery|null=null;
-  function home(){
-    held.clear();sky.release();activities.reset();view="scene";visiting=null;
-    blinkStart=-10;blink(0);close=false;heading=0;pitch=elevation;earthAngle=earthGoal=0;earth.rotation.set(0,0,0);
-    positionOrbit();message.textContent="달에 앉은 우주개구리";draw();
-  }
+  const discoveries:Discovery[]=["frog","earth","moonlet","satellite","rover","comet","prints","star","sun","binary","blackHole","constellation","rocket","visitor"];
+  let selected:Discovery="frog";
   function discover(id:Discovery,point?:T.Vector3){
     selected=id;
-    message.textContent=label(id);
-    if(id==="star"){
-      const camera=view==="flight"?flight:orbit;
-      const origin=point??camera.getWorldDirection(new T.Vector3()).multiplyScalar(4).add(camera.position);
-      activities.shoot(origin,camera,automatic);
-      message.textContent="별똥별이 지나갑니다.";
-    }else if(id==="frog"){
-      if(view==="flight")home();
-      close=!close;positionOrbit();blinkStart=time;blink(3.7);
-      message.textContent=close?"개구리가 눈을 깜박입니다.":"달에 앉은 우주개구리";
-    }else if(id==="prints" && point){
-      activities.imprint(point,view==="flight"?flight.rotation.y:heading);
-      message.textContent="달 표면에 발자국이 남았습니다.";
-    }else{
-      const repeat=visiting===id;
-      if(!repeat){sky.release();activities.reset();held.clear();}
-      view="flight";visiting=id;
-      if(id==="earth"){
-        if(!repeat)frameEarth();
-        earthGoal+=Math.PI*.5;
-        if(!automatic){earthAngle=earthGoal;earth.rotation.y=earthAngle;}
-        message.textContent="지구가 돌아갑니다.";
-      }else if(id==="satellite"||id==="rover"||id==="comet"||id==="prints"){
-        const site=id==="satellite"?"relay":id;
-        if(!repeat)activities.visit(site,flight);
-        activities.act(flight,automatic);
-        const reports={
-          satellite:"탐사선이 신호에 응답했습니다.",
-          rover:`월면차가 모은 표본 ${activities.samples}개`,
-          prints:"달 표면에 발자국이 남았습니다.",
-          comet:activities.riding?"혜성과 함께 비행합니다.":"혜성에서 내렸습니다.",
-        };
-        message.textContent=reports[id];
-      }else{
-        if(repeat && (id==="landing" || id==="moonlet")){home();return;}
-        sky.react(id,time,automatic);sky.visit(id,flight);message.textContent=skyNotes[id][1];
+    switch(id){
+      case "frog":
+        blinkStart=time;blink(3.7);message.textContent="개구리가 눈을 깜박입니다.";break;
+      case "prints":
+        activities.imprint(point??new T.Vector3(.9,groundHeight(.9,1),1),0);
+        message.textContent="달 표면에 발자국이 남았습니다.";break;
+      case "satellite":
+        activities.sendSignal(automatic);message.textContent="탐사선이 신호에 응답했습니다.";break;
+      case "rover":
+        activities.rover.collect(automatic);message.textContent=`월면차가 모은 표본 ${activities.rover.samples}개`;break;
+      case "moonlet":
+      case "earth":
+      case "comet":
+      case "star":{
+        const origin=point?.clone()??paintingPoint(790,400,0);
+        if(!point && id==="comet")activities.comet.getWorldPosition(origin);
+        if(!point && id==="moonlet")moon.getWorldPosition(origin);
+        if(!point && id==="earth")origin.copy(paintingPoint(930,230,-5));
+        origin.addScaledVector(camera.getWorldDirection(new T.Vector3()),id==="moonlet"?-.35:-.1);
+        activities.shoot(origin,camera,automatic);message.textContent="별똥별이 지나갑니다.";break;
       }
+      default:
+        sky.react(id,time,automatic);message.textContent=skyNotes[id][1];
     }
-    activities.update(0,view==="flight"?flight:undefined);draw();startTick();
+    activities.update(0);draw();
   }
   const ray=new T.Raycaster();
   ray.params.Line.threshold=.035;
   function pick(x:number,y:number){
     const box=canvas.getBoundingClientRect();
-    const camera=view==="flight"?flight:orbit;
     ray.setFromCamera(new T.Vector2(2*(x-box.left)/width-1,1-2*(y-box.top)/height),camera);
     const hits=ray.intersectObjects(scene.children,true);
     for(const hit of hits){
@@ -182,55 +131,31 @@ export async function mountPortrait(root: HTMLElement, arrivalStars:readonly Dra
     }
     discover("star",ray.ray.at(5,new T.Vector3()));
   }
-  const keys:Record<string,string>={w:"forward",s:"back",a:"left",d:"right",arrowup:"forward",arrowdown:"back",q:"down",e:"up"};
-  function move(dt:number){
-    const signed=(a:string,b:string)=>Number(held.has(a))-Number(held.has(b));
-    delta.set(signed("right","left"),0,signed("back","forward")).applyQuaternion(flight.quaternion);
-    delta.y+=signed("up","down");
-    if(delta.lengthSq()===0)return;
-    flight.position.addScaledVector(delta.normalize(),2.5*dt);
-    flight.position.clampScalar(-20,20);
-    for(const [centre,radius] of [[earthCentre,2.4],[moonCentre,.39],[actorCentre,1.1]] as const){
-      delta.subVectors(flight.position,centre);
-      if(delta.length()<radius)flight.position.copy(centre).addScaledVector(delta.normalize(),radius);
-    }
-    flight.position.y=Math.max(groundHeight(flight.position.x,flight.position.z)+.23,flight.position.y);
-    draw();
-  }
   function tick(now:number){
     frame=0;
     if(!shouldAnimate())return;
     if(now-last>=32){
       const dt=Math.min((now-last)/1000,.10);
-      const flying=view==="flight";
-      const elapsed=automatic?dt:0;
-      time+=elapsed;sky.update(time);
-      blink(time-blinkStart<.5?3.69+time-blinkStart:automatic?time:0);
-      activities.update(elapsed,flying?flight:undefined);
-      if(flying)sky.follow(flight);
-      earthAngle=T.MathUtils.damp(earthAngle,earthGoal,4.2,dt);
-      earth.rotation.y=earthAngle+(flying?0:.012*Math.sin(time*.10));
-      moon.rotation.y=.065*Math.sin(time*.17);
-      if(held.size)move(dt);else draw();
+      time+=dt;sky.update(time);activities.update(dt);
+      blink(time-blinkStart<.5?3.69+time-blinkStart:time);
+      draw();
       last=now;
     }
     frame=requestAnimationFrame(tick);
   }
   function shouldAnimate(){
-    return !contextLost&&inSight&&!document.hidden &&
-      (automatic || (view==="flight" && held.size>0));
+    return automatic&&!contextLost&&inSight&&!document.hidden;
   }
   function startTick(){
     if(!frame&&shouldAnimate()){last=performance.now();frame=requestAnimationFrame(tick);}
   }
   function setMotion(enabled:boolean){
     automatic=enabled;
-    if(!enabled){activities.release();blink(0);earthAngle=earthGoal;earth.rotation.y=earthAngle;}
-    startTick();draw();
+    if(!enabled){stop();blink(0);}
+    parallax();startTick();draw();
   }
   reduced.addEventListener("change",()=>setMotion(!reduced.matches));
   canvas.addEventListener("keydown",e=>{
-    if(e.key==="Escape"){e.preventDefault();home();return;}
     if(e.key===" "){e.preventDefault();if(!e.repeat)setMotion(!automatic);return;}
     if(e.key==="ArrowRight"||e.key==="ArrowLeft"){
       e.preventDefault();
@@ -239,48 +164,22 @@ export async function mountPortrait(root: HTMLElement, arrivalStars:readonly Dra
       message.textContent=label(selected);return;
     }
     if(e.key==="Enter"){e.preventDefault();if(!e.repeat)discover(selected);return;}
-    const action=keys[e.key.toLowerCase()];
-    if(view==="flight" && action){
-      e.preventDefault();
-      if(held.has(action))return;
-      sky.release();activities.release();visiting=null;held.add(action);move(.055);startTick();
-    }
   });
-  window.addEventListener("keyup",e=>held.delete(keys[e.key.toLowerCase()]));
-  canvas.addEventListener("blur",()=>held.clear());
   window.addEventListener("blur",stop);window.addEventListener("focus",startTick);
   document.addEventListener("visibilitychange",()=>{if(document.hidden)stop();else startTick();});
-  let pointer:{id:number;x:number;y:number;startX:number;startY:number;downAt:number;drag:boolean}|undefined;
+  let pointer:{id:number;x:number;y:number}|undefined;
   canvas.onpointerdown=e=>{
-    if(contextLost||!e.isPrimary||e.button!==0)return;
-    pointer={id:e.pointerId,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,downAt:performance.now(),drag:false};
-    canvas.setPointerCapture(e.pointerId);
+    if(e.isPrimary&&e.button===0)pointer={id:e.pointerId,x:e.clientX,y:e.clientY};
   };
   canvas.onpointermove=e=>{
-    if(!pointer||pointer.id!==e.pointerId)return;
-    if(!pointer.drag && Math.hypot(e.clientX-pointer.startX,e.clientY-pointer.startY)<6)return;
-    pointer.drag=true;
-    const dx=e.clientX-pointer.x,dy=e.clientY-pointer.y;
-    pointer.x=e.clientX;pointer.y=e.clientY;
-    if(visiting==="earth"){
-      earthAngle+=dx*.012;earthGoal=earthAngle;earth.rotation.y=earthAngle;
-      earth.rotation.x=T.MathUtils.clamp(earth.rotation.x+dy*.008,-1.5,1.5);
-    }else if(view==="flight"){
-      sky.release();activities.release();visiting=null;
-      flight.rotation.y-=dx*.007;flight.rotation.x=T.MathUtils.clamp(flight.rotation.x-dy*.007,-1.4,1.4);
-    }else{heading-=dx*.012;pitch=T.MathUtils.clamp(pitch+dy*.006,.07,1.12);positionOrbit();}
-    draw();
+    if(pointer?.id===e.pointerId&&Math.hypot(e.clientX-pointer.x,e.clientY-pointer.y)>=6)pointer=undefined;
   };
   canvas.onpointerup=e=>{
-    if(!pointer||pointer.id!==e.pointerId)return;
-    const tap=!pointer.drag&&Math.hypot(e.clientX-pointer.startX,e.clientY-pointer.startY)<6;
-    const goHome=tap&&view==="flight"&&performance.now()-pointer.downAt>=550;
+    const tap=pointer?.id===e.pointerId&&Math.hypot(e.clientX-pointer.x,e.clientY-pointer.y)<6;
     pointer=undefined;
-    if(goHome){home();return;}
     if(tap)pick(e.clientX,e.clientY);
   };
-  canvas.onpointercancel=canvas.onlostpointercapture=()=>{pointer=undefined;};
-  canvas.oncontextmenu=e=>{if(view==="flight")e.preventDefault();};
+  canvas.onpointercancel=canvas.onpointerleave=()=>{pointer=undefined;};
   const visibility=new IntersectionObserver(([entry])=>{
     inSight=entry.isIntersecting;if(inSight)startTick();else stop();
   });
@@ -288,7 +187,7 @@ export async function mountPortrait(root: HTMLElement, arrivalStars:readonly Dra
   const observer=new ResizeObserver(resize);
   if(illustrationSpace?.parentElement)observer.observe(illustrationSpace.parentElement);
   window.addEventListener("scroll",()=>{
-    if(!canvas.hidden && alignIllustration()){positionFlight();positionOrbit();draw();}
+    if(!canvas.hidden&&automatic){parallax();if(!frame)draw();}
   },{passive:true});
   canvas.addEventListener("webglcontextlost",()=>{
     stop();contextLost=true;observer.disconnect();visibility.disconnect();

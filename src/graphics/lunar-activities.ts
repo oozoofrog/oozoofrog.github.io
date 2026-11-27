@@ -4,8 +4,6 @@ import type {ReferencePaints} from "./reference-paints";
 import { groundHeight, paintingPoint } from "./lunar-scene";
 import { createRover } from "./lunar-rover";
 
-export type LandingSite = "relay" | "comet" | "prints" | "rover";
-
 // Keep grains of the underlying soil visible through the compressed parts of the print.
 function footprintMask() {
   const c=document.createElement("canvas");
@@ -193,20 +191,8 @@ export function createActivities(paints:ReferencePaints) {
     alphaMap:footprintMask(),transparent:true,opacity:.91,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
   const trail=new T.InstancedMesh(stampGeo,dustPrint,80);
   trail.count=0;trail.frustumCulled=false;group.add(trail);
-  const lastStamp=new T.Vector3(Infinity,0,Infinity);
   const marker=new T.Object3D(),normal=new T.Vector3(),up=new T.Vector3(0,1,0);
-  let stamps=0,time=0,signal=-10,riding=false;
-  let site:LandingSite|null=null;
-  function stamp(camera:T.PerspectiveCamera){
-    const pos=camera.position;
-    if(Math.hypot(pos.x-lastStamp.x,pos.z-lastStamp.z)<.24)return;
-    const side=stamps%2?1:-1,yaw=camera.rotation.y;
-    const x=pos.x+.10*side*Math.cos(yaw)-.90*Math.sin(yaw),z=pos.z-.10*side*Math.sin(yaw)-.90*Math.cos(yaw);
-    const h=groundHeight(x,z);
-    if(h < -2.8 || pos.y-h>1.55)return;
-    imprint(new T.Vector3(x,h,z),yaw);
-    lastStamp.copy(pos);
-  }
+  let stamps=0,time=0,signal=-10;
   function imprint(point:T.Vector3,yaw:number){
     const {x,z}=point;
     normal.set(groundHeight(x-.01,z)-groundHeight(x+.01,z),.02,groundHeight(x,z-.01)-groundHeight(x,z+.01)).normalize();
@@ -220,29 +206,7 @@ export function createActivities(paints:ReferencePaints) {
     comet.position.set(2.6+2.1*Math.sin(t*.21),4.95+.42*Math.sin(t*.38),-3.6+2*Math.cos(t*.21));
     comet.rotation.y=Math.atan2(2.1*Math.cos(t*.21),-2*Math.sin(t*.21));
   }
-  function visit(next:LandingSite,camera:T.PerspectiveCamera) {
-    riding=false;site=next;
-    if(next==="prints"){
-      camera.position.set(2.3,groundHeight(2.3,1.7)+1,1.7);
-      camera.lookAt(2.3,groundHeight(2.3,.78),.78);
-      lastStamp.set(Infinity,0,Infinity);stamp(camera);
-    }else{
-      const object=next==="relay"?relay:next==="rover"?rover.chassis:comet;
-      camera.position.copy(object.position).add(next==="rover"?new T.Vector3(.88,.71,1.07):new T.Vector3(.35,.32,next==="relay"?2.7:2.05));
-      camera.lookAt(object.position);
-    }
-  }
-  function act(camera:T.PerspectiveCamera,animate:boolean) {
-    if(site==="rover"){rover.collect(animate);return;}
-    if(site==="relay"){signal=time-(animate?0:2.4);return;}
-    if(site==="comet"){riding=!riding;return;}
-    if(site==="prints"){
-      const x=camera.position.x-.30*Math.sin(camera.rotation.y),z=camera.position.z-.30*Math.cos(camera.rotation.y);
-      if(groundHeight(x,z)<-2.8)return;
-      camera.position.set(x,groundHeight(x,z)+1,z);stamp(camera);
-    }
-  }
-  function update(dt:number,camera?:T.PerspectiveCamera){
+  function update(dt:number){
     time+=dt;cometAt(time);emitDust();
     relay.position.set(-2.5+.66*Math.sin(time*.14),4.85+.16*Math.sin(time*.28),-2.2+.54*Math.cos(time*.14));
     reply.position.copy(relay.position);
@@ -278,13 +242,8 @@ export function createActivities(paints:ReferencePaints) {
         (wave.material as T.MeshBasicMaterial).opacity=1-t;
       }
     });
-    if(riding&&camera){
-      camera.position.copy(comet.position).add(new T.Vector3(-.85,.38,1.5).applyQuaternion(comet.quaternion));
-      camera.lookAt(comet.position);
-    }
-    if(site==="prints"&&camera)stamp(camera);
   }
   update(0);
-  return {group,relay,targets:{comet,rover:rover.chassis},reply,trail,shoot,imprint,visit,act,update, get site(){return site;},get riding(){return riding;},get samples(){return rover.samples;},
-    reset(){site=null;riding=false;signal=-10;},release(){riding=false;}};
+  return {group,relay,comet,rover,reply,trail,shoot,imprint,update,
+    sendSignal(animate:boolean){signal=time-(animate?0:2.4);}};
 }

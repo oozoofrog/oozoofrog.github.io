@@ -169,8 +169,8 @@ export async function createLunarScene() {
   paperSky.userData.paperSky=true;scene.add(paperSky);
   soil.wrapS = soil.wrapT = T.MirroredRepeatWrapping;
   scene.add(terrain(soil,orbitalSoil));
-  const lunarCentre=new T.Object3D();
-  lunarCentre.position.set(0,-lunarRadius,terrainCentreZ);scene.add(lunarCentre);
+  const starField=new T.Group();
+  scene.add(starField);
   let state=24951;
   const rand=()=> (state=(Math.imul(state,1664525)+1013904223)>>>0)/4294967296;
   const marker = new T.Object3D();
@@ -220,7 +220,7 @@ export async function createLunarScene() {
     for(let i=0;i<p.count;i++)uv.setXY(i,(index+.5+.499*p.getX(i))/inkStars.length,.5+.499*p.getY(i));
     const stroke=new T.Mesh(geo,originalInk);
     stroke.position.copy(paintingPoint(x,y,-12-index*.3));stroke.rotation.copy(pose);
-    stroke.scale.set(r*scale,r*scale,r*scale*.12);scene.add(stroke);
+    stroke.scale.set(r*scale,r*scale,r*scale*.12);starField.add(stroke);
   }
   for(let i=0;i<stars.count;i++){
     const a=rand()*2*Math.PI, b=rand()*1.45-.30, distance=14+rand()*11;
@@ -229,7 +229,7 @@ export async function createLunarScene() {
     marker.rotateZ((rand()-.5)*.42);
     marker.scale.set(r,r*(1.05+rand()*.3),r); marker.updateMatrix(); stars.setMatrixAt(i,marker.matrix);
   }
-  scene.add(stars);
+  starField.add(stars);
   scene.add(new T.AmbientLight(0xfff9ee,2.28));
   const sun=new T.DirectionalLight(0xfff1df,1.45);
   sun.position.set(-4,7,4);sun.castShadow=true;
@@ -237,5 +237,5 @@ export async function createLunarScene() {
   Object.assign(sun.shadow.camera,{left:-5,right:5,top:5,bottom:-5});
   sun.shadow.normalBias=.009;scene.add(sun);
   scene.updateMatrixWorld(true);
-  return {scene,frog,moon,earth,lunarCentre,paints};
+  return {scene,frog,moon,earth,starField,paints};
 }

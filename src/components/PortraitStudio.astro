@@ -12,7 +12,7 @@ const artwork = "/assets/images/lunar-arrival.webp";
       </button>
     </div>
     <canvas hidden tabindex="0" role="group" aria-label="달에 앉은 우주개구리. 배경 탐험" aria-describedby="sky-keys"></canvas>
-    <span id="sky-keys" class="instructions">좌우 방향키로 천체를 고르고 Enter로 탐험합니다. 비행 중에는 WASD로 이동합니다. Esc로 돌아옵니다. 스페이스바로 움직임을 멈추거나 재개합니다.</span>
+    <span id="sky-keys" class="instructions">좌우 방향키로 사물을 고르고 Enter로 반응을 살펴봅니다. 스페이스바로 움직임을 멈추거나 재개합니다.</span>
     <span class="announcement" role="status"></span>
   </div>
 </figure>
@@ -25,7 +25,7 @@ const artwork = "/assets/images/lunar-arrival.webp";
     const slot=studio.closest(".profile")?.querySelector<HTMLElement>("[data-illustration-space]");
     if(slot?.offsetHeight){
       const rect=slot.getBoundingClientRect(),h=stage.clientHeight;
-      stage.style.setProperty("--mobile-art-centre",Math.round(Math.max(h*.29,Math.min(h*.8,rect.top+rect.height/2)))+"px");
+      stage.style.setProperty("--mobile-art-centre",Math.round(Math.max(h*.29,Math.min(h*.8,rect.top+window.scrollY+rect.height/2)))+"px");
     }
     const drawing=drawLoadingStars(button);
     async function arrive(root:HTMLElement){
@@ -94,8 +94,7 @@ const artwork = "/assets/images/lunar-arrival.webp";
     .meteor,.starlines :global(.spark),.starlines :global(.spark)::before { animation:none; }
     .starlines :global(.spark)::before { display:none; }
   }
-  canvas { width:100%; height:100%; position:absolute; inset:0; touch-action:pan-y; -webkit-touch-callout:none; cursor:grab; }
-  canvas:active { cursor:grabbing; }
+  canvas { width:100%; height:100%; position:absolute; inset:0; touch-action:pan-y pinch-zoom; }
   canvas:focus-visible { outline:2px dashed #745b36; outline-offset:-5px; }
   .instructions,.announcement { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
   canvas:focus-visible ~ span { z-index:2; width:auto; height:auto; max-width:min(89vw,31rem); clip-path:none;
