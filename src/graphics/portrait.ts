@@ -14,7 +14,8 @@ export async function mountPortrait(root: HTMLElement, arrivalStars:readonly Dra
   const stage=root.querySelector<HTMLElement>(".stage")!;
   const illustrationSpace=root.closest(".profile")?.querySelector<HTMLElement>("[data-illustration-space]");
   const registration=root.querySelector<HTMLElement>("[data-registration]")!;
-  const poster = root.querySelector<HTMLImageElement>("[data-registration] > img")!;
+  const disc = registration.querySelector<HTMLElement>(".arrival-disc")!;
+  const poster = disc.querySelector("img")!;
   const message = root.querySelector<HTMLElement>('[role="status"]')!;
   const {scene,frog,moon,earth,starField,paints} = await createLunarScene();
   const blink=animateEyelids(frog);
@@ -191,11 +192,36 @@ export async function mountPortrait(root: HTMLElement, arrivalStars:readonly Dra
   },{passive:true});
   canvas.addEventListener("webglcontextlost",()=>{
     stop();contextLost=true;observer.disconnect();visibility.disconnect();
-    canvas.hidden=true;registration.prepend(poster);
+    canvas.hidden=true;disc.prepend(poster);
   });
   resize();
   if(renderer.getContext().isContextLost())return;
   observer.observe(stage);observer.observe(registration);startTick();
-  poster.remove();
   canvas.hidden=false;
+  if(disc.contains(document.activeElement))canvas.focus({preventScroll:true});
+  stage.dataset.arriving="";
+  if(!reduced.matches && typeof canvas.animate==="function"){
+    const circle=disc.getBoundingClientRect();
+    const box=canvas.getBoundingClientRect();
+    const x=circle.left+circle.width/2-box.left;
+    const y=circle.top+circle.height/2-box.top;
+    const radius=Math.hypot(Math.max(x,box.width-x),Math.max(y,box.height-y))+1;
+    const aperture=(r:number)=>`circle(${r}px at ${x}px ${y}px)`;
+    const timing={duration:780,easing:"cubic-bezier(.32,0,.18,1)"};
+    const reveal=canvas.animate([
+      {clipPath:aperture(circle.width/2)}, {clipPath:aperture(radius)}
+    ],timing);
+    const dissolve=disc.animate([
+      {opacity:1,scale:"1"}, {opacity:0,scale:"1.1"}
+    ],{...timing,duration:440,fill:"forwards"});
+    const finish=()=>{reveal.finish();dissolve.finish();};
+    reduced.addEventListener("change",finish,{once:true});
+    canvas.addEventListener("webglcontextlost",finish,{once:true});
+    await reveal.finished;
+    reduced.removeEventListener("change",finish);
+    canvas.removeEventListener("webglcontextlost",finish);
+    dissolve.cancel();
+  }
+  if(!contextLost)poster.remove();
+  delete stage.dataset.arriving;
 }
