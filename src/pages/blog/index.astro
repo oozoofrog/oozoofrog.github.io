@@ -1,27 +1,21 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import StudyPlate from "../../components/StudyPlate.astro";
 import { getCollection } from "astro:content";
-import { categories, getCategory } from "../../data/categories";
-import { displayDate, postPlate } from "../../data/plates";
+import { categories } from "../../data/categories";
+import { displayDate, postCategory } from "../../data/posts";
 const posts = (
   await getCollection("blog", ({ data }) => data.public !== false)
 ).sort((a, b) => +b.data.date - +a.data.date);
 const records = posts.map((post) => ({
   post,
-  category: getCategory(post.id),
-  ...postPlate(post.id),
+  category: postCategory(post.id),
 }));
 ---
 
-<BaseLayout title="글 아카이브 · 우주개구리">
+<BaseLayout title="전체 글 · 우주개구리">
   <div class="archive">
     <header class="section-head">
-      <div>
-        <p class="eyebrow">FIELD ARCHIVE</p>
-        <h1 class="catalog-title">글 아카이브</h1>
-      </div>
-      <span class="total">{posts.length} RECORDS</span>
+      <h1 class="catalog-title">전체 글</h1>
     </header>
     <label class="search">
       <span>글 찾기</span>
@@ -38,19 +32,19 @@ const records = posts.map((post) => ({
           <small>
             {cat.key === "all"
               ? records.length
-              : records.filter((r) => r.category === cat.key).length}
+              : records.filter((r) => r.category.key === cat.key).length}
           </small>
         </button>
       ))}
     </div>
     <p id="results" role="status" aria-live="polite"></p>
     <ul>
-      {records.map(({ post, category, kind, label }) => (
+      {records.map(({ post, category }) => (
         <li
-          data-category={category}
+          data-category={category.key}
           data-text={[
             post.data.title,
-            label,
+            category.label,
             post.data.categories,
             post.data.tags,
           ]
@@ -60,17 +54,14 @@ const records = posts.map((post) => ({
             .toLowerCase()}
         >
           <a href={`/blog/${post.id}/`}>
-            <div class="thumb">
-              <StudyPlate kind={kind} label="" />
-            </div>
             <div>
+              <h2>{post.data.title}</h2>
               <span class="metadata">
                 <time datetime={post.data.date.toISOString()}>
                   {displayDate(post.data.date)}
                 </time>{" "}
-                · {label}
+                · {category.label}
               </span>
-              <h2>{post.data.title}</h2>
             </div>
             <span class="arrow" aria-hidden="true">
               ↗
@@ -85,7 +76,6 @@ const records = posts.map((post) => ({
   .archive {
     margin: 18px 0 36px;
   }
-  .total,
   .metadata {
     font: 11px/1.4 var(--mono);
     letter-spacing: 0.04em;
@@ -146,23 +136,11 @@ const records = posts.map((post) => ({
   }
   li a {
     display: grid;
-    grid-template-columns: 88px 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 18px;
     align-items: center;
     padding: 12px 0;
     color: var(--ink);
-  }
-  .thumb {
-    height: 60px;
-    position: relative;
-    overflow: hidden;
-  }
-  .thumb :global(.study) {
-    min-height: 0;
-  }
-  .thumb :global(.legend),
-  .thumb :global(.cross) {
-    display: none;
   }
   h2 {
     font-size: clamp(0.97rem, 2vw, 1.2rem);
@@ -178,11 +156,7 @@ const records = posts.map((post) => ({
   }
   @media (max-width: 540px) {
     li a {
-      grid-template-columns: 60px 1fr;
-      gap: 10px;
-    }
-    .thumb {
-      height: 52px;
+      grid-template-columns: 1fr;
     }
     .arrow {
       display: none;

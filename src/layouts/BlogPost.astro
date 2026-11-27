@@ -1,12 +1,9 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import StudyPlate from "../components/StudyPlate.astro";
-import { postPlate } from "../data/plates";
 import Comments from "../components/Comments.astro";
 import AdUnit from "../components/AdUnit.astro";
 
 interface Props {
-  postId: string;
   headings: { slug: string; text: string }[];
   title: string;
   date: string | Date;
@@ -16,7 +13,6 @@ interface Props {
   image?: string;
 }
 const {
-  postId,
   headings,
   title,
   date,
@@ -31,7 +27,6 @@ const categories = Array.isArray(rawCategories)
     ? rawCategories.split(/\s+/).filter(Boolean)
     : [];
 
-const plate = postPlate(postId);
 const canonicalUrl = Astro.url?.toString();
 const siteUrl =
   Astro.site?.toString().replace(/\/$/, "") ?? "https://oozoofrog.dev";
@@ -79,34 +74,28 @@ const jsonLd = {
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <article>
     <a class="back" href="/blog/">
-      ← 글 아카이브
+      전체 글
     </a>
     <div class="article-intro">
-      <div>
-        <p class="eyebrow">FIELD NOTE</p>
-        <h1>{title}</h1>
+      <h1>{title}</h1>
 
-        <p class="post-meta">
-          <time datetime={publishedDateIso}>
-            {publishedDate.toLocaleDateString("ko-KR", {
-              timeZone: "Asia/Seoul",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </time>
-          {categories.length > 0 && (
-            <span class="post-categories">
-              {categories.map((cat) => (
-                <span class="tag">{cat}</span>
-              ))}
-            </span>
-          )}
-        </p>
-      </div>
-      <div class="article-plate">
-        <StudyPlate kind={plate.kind} label={plate.label} />
-      </div>
+      <p class="post-meta">
+        <time datetime={publishedDateIso}>
+          {publishedDate.toLocaleDateString("ko-KR", {
+            timeZone: "Asia/Seoul",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </time>
+        {categories.length > 0 && (
+          <span class="post-categories">
+            {categories.map((cat) => (
+              <span class="tag">{cat}</span>
+            ))}
+          </span>
+        )}
+      </p>
     </div>
     {headings.length > 1 && (
       <details class="toc">
@@ -122,11 +111,10 @@ const jsonLd = {
         </nav>
       </details>
     )}
-    <!-- 글 상단 광고 -->
-    <AdUnit slot="7941837952" format="auto" />
     <div class="post-content">
       <slot />
     </div>
+    <AdUnit slot="7941837952" format="auto" />
     <Comments />
   </article>
 </BaseLayout>
@@ -143,16 +131,9 @@ const jsonLd = {
     margin-bottom: 25px;
   }
   .article-intro {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 155px;
-    gap: 20px;
-    align-items: center;
     border-bottom: 1px solid #9da597;
     padding-bottom: 25px;
     margin-bottom: 25px;
-  }
-  .article-plate {
-    height: 130px;
   }
   .article-intro h1 {
     font-size: clamp(1.7rem, 4vw, 2.7rem);
@@ -178,14 +159,6 @@ const jsonLd = {
   }
   .toc li {
     padding: 2px 0;
-  }
-  @media (max-width: 600px) {
-    .article-intro {
-      grid-template-columns: 1fr;
-    }
-    .article-plate {
-      height: 95px;
-    }
   }
   .post-meta {
     color: var(--muted);
