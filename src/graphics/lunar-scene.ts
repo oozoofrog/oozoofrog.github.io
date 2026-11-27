@@ -38,14 +38,15 @@ function surface(x: number, z: number, ny: number) {
   const soil=T.MathUtils.lerp(-.024, slope, T.MathUtils.smoothstep(distance,.78,1.48))+craterRelief(x,z);
   if(z>-.80 || x< -2.30 || x>3.63)return soil;
   const cap=ridgeTop(x,z)-.085;
-  return T.MathUtils.lerp(soil,Math.min(soil,cap),ridgeWeight(x)*(1-T.MathUtils.smoothstep(z,-1.45,-.80)));
+  const shoulder=ridgeWeight(x);
+  const base=T.MathUtils.lerp(soil,Math.min(soil,cap),shoulder*(1-T.MathUtils.smoothstep(z,-1.45,-.80)));
+  const crest=shoulder*(1-T.MathUtils.smoothstep(Math.abs(z-ridgeZ),0,ridgeWidth));
+  return T.MathUtils.lerp(base,ridgeTop(x,z),crest);
 }
 export function groundHeight(x: number, z: number) {
   const r = 1 - (x / lunarRadius) ** 2 - ((z - terrainCentreZ) / lunarRadius) ** 2;
   if(r<0)return -4;
-  const soil=surface(x,z,Math.sqrt(r));
-  const falloff=1-T.MathUtils.smoothstep(Math.abs(z-ridgeZ),0,ridgeWidth);
-  return falloff>0?T.MathUtils.lerp(soil,ridgeTop(x,z),falloff*ridgeWeight(x)):soil;
+  return surface(x,z,Math.sqrt(r));
 }
 // Ambient light is occluded most strongly where the pack, seat, and boot
 // soles touch the soil. The direct solar shadow is still cast by their meshes.
@@ -74,36 +75,11 @@ function contactMap() {
   map.channel = 1;
   return map;
 }
-// The portrait projects soil onto the landing site from one direction.
-// From the side, use the painting's grain in ground coordinates to keep its
-// texels at the same physical size across the shelf and the ridge.
-function paintGround(material:T.MeshBasicMaterial|T.MeshLambertMaterial, grain:T.CanvasTexture, globe?:T.Texture) {
-  material.onBeforeCompile=shader=>{
-    shader.uniforms.groundGrain={value:grain};
-    shader.uniforms.paintAxis={value:paintingPoint(436,1036,1)};
-    if(globe)shader.uniforms.orbitalMap={value:globe};
-    const varyings="varying vec2 soilUV; varying float grainWeight;"+
-      (globe?"varying vec2 globeUV; varying float landingCoverage;":"");
-    shader.vertexShader=shader.vertexShader.replace("#include <common>",
-      "#include <common>\nuniform vec3 paintAxis; "+varyings+
-      (globe?"attribute vec2 lunarUV; attribute float localCoverage;":""))
-      .replace("#include <uv_vertex>",`#include <uv_vertex>
-        soilUV=position.xz/${grain.image.width*scale};
-        grainWeight=1.0-smoothstep(.08,.34,abs(dot(normalize(normal),paintAxis)));
-        ${globe?"globeUV=lunarUV;landingCoverage=localCoverage;":""}`);
-    shader.fragmentShader=shader.fragmentShader.replace("#include <common>",
-      "#include <common>\nuniform sampler2D groundGrain; "+varyings+
-      (globe?"uniform sampler2D orbitalMap;":""))
-      .replace("#include <map_fragment>",`
-        vec4 soil=texture2D(map,vMapUv);
-        soil=mix(soil,texture2D(groundGrain,soilUV),grainWeight*.93);
-        diffuseColor*=${globe?"mix(texture2D(orbitalMap,globeUV),soil,landingCoverage)":"soil"};`);
-  };
-}
-function terrain(map:T.Texture, orbitalMap:T.Texture, grain:T.CanvasTexture) {
-  const geo = new T.SphereGeometry(1, 192, 112);
-  const p = geo.attributes.position, uv = geo.attributes.uv;
-  geo.setAttribute("lunarUV",uv.clone());
+// Sample pigment at the same physical scale on flats and slopes. Neither the
+// camera direction nor the outline of the source sheet is a texture coordinate.
+function terrain(map:T.Texture<HTMLImageElement>, orbitalMap:T.Texture) {
+  const geo = new T.SphereGeometry(1,256,160);
+  const p = geo.attributes.position;
   const coverage=new Float32Array(p.count);
   const mineralColors = new Float32Array(p.count * 3);
   const contactUV = new Float32Array(p.count * 2);
@@ -117,16 +93,30 @@ function terrain(map:T.Texture, orbitalMap:T.Texture, grain:T.CanvasTexture) {
     mineralColors.set([tone,tone,tone*(1-.15*relief)],3*i);
     contactUV[2*i]=(x+2)/4;
     contactUV[2*i+1]=1-(z+2)/4;
-    const px = 436 + x / scale;
-    const py = 1036 - (y * Math.cos(elevation) - z * Math.sin(elevation)) / scale;
-    uv.setXY(i,(px+650)/2400,1-(py-400)/1150);
   }
   geo.setAttribute("color",new T.BufferAttribute(mineralColors,3));
   geo.setAttribute("uv1",new T.BufferAttribute(contactUV,2));
   geo.computeVertexNormals();
   geo.setAttribute("localCoverage",new T.BufferAttribute(coverage,1));
   const material=new T.MeshLambertMaterial({map,aoMap:contactMap(),vertexColors:true});
-  paintGround(material,grain,orbitalMap);
+  material.onBeforeCompile=shader=>{
+    shader.uniforms.orbitalMap={value:orbitalMap};
+    const varyings="varying vec3 groundPoint; varying vec3 groundNormal; varying float landingCoverage;";
+    shader.vertexShader=shader.vertexShader.replace("#include <common>",
+      "#include <common>\nattribute float localCoverage; "+varyings)
+      .replace("#include <uv_vertex>",`#include <uv_vertex>
+        groundPoint=position;groundNormal=normal;landingCoverage=localCoverage;`);
+    shader.fragmentShader=shader.fragmentShader.replace("#include <common>",
+      "#include <common>\nuniform sampler2D orbitalMap; "+varyings)
+      .replace("#include <map_fragment>",`
+        vec3 w=pow(abs(normalize(groundNormal)),vec3(4.0));
+        w/=dot(w,vec3(1.0));
+        vec2 span=vec2(${map.image.width*scale},${map.image.height*scale});
+        vec4 soil=texture2D(map,groundPoint.zy/span)*w.x
+                 +texture2D(map,groundPoint.xz/span)*w.y
+                 +texture2D(map,groundPoint.xy/span)*w.z;
+        diffuseColor*=mix(texture2D(orbitalMap,vMapUv),soil,landingCoverage);`);
+  };
   const floor = new T.Mesh(geo,material);
   floor.userData.lunarGround=true;
   floor.receiveShadow = true;
@@ -135,14 +125,15 @@ function terrain(map:T.Texture, orbitalMap:T.Texture, grain:T.CanvasTexture) {
 
 export async function createLunarScene() {
   const loader = new T.TextureLoader();
-  async function texture(name: string) {
-    const map = await loader.loadAsync("/assets/models/lunar/"+name+".webp");
+  async function texture(name: string, revision="") {
+    const map = await loader.loadAsync("/assets/models/lunar/"+name+".webp"+revision);
     map.colorSpace = T.SRGBColorSpace;
     map.anisotropy = 4;
     return map;
   }
+  const surfaceRevision="?v=2";
   const [frog,earthMap,moonMap,soil,paper,starMap,orbitalSoil,sheet] = await Promise.all([
-    loadAstronaut(),texture("earth"),texture("moon"),texture("regolith"),texture("paper"),texture("stars"),texture("lunar-surface"),texture("pigments"),
+    loadAstronaut(),texture("earth",surfaceRevision),texture("moon"),texture("regolith",surfaceRevision),texture("paper",surfaceRevision),texture("stars"),texture("lunar-surface",surfaceRevision),texture("pigments"),
   ]);
   const paints=readReferencePaints(sheet);
   const scene = new T.Scene();
@@ -159,35 +150,27 @@ export async function createLunarScene() {
   const moon = globe(moonMap,250,289,-4.6,84);
   paper.wrapS = paper.wrapT = T.MirroredRepeatWrapping;
   const sky=new T.SphereGeometry(48,96,64);
-  const skyPoints=sky.attributes.position, skyUV=sky.attributes.uv;
-  for(let i=0;i<skyPoints.count;i++){
-    const x=436+skyPoints.getX(i)/scale;
-    const y=1036-(skyPoints.getY(i)*Math.cos(elevation)-skyPoints.getZ(i)*Math.sin(elevation))/scale;
-    skyUV.setXY(i,x/1254,1-y/1254);
-  }
-  const paperSky=new T.Mesh(sky,new T.MeshBasicMaterial({map:paper,side:T.BackSide}));
+  // Use three surface projections so the paper grain keeps its scale when
+  // looking sideways or toward a pole.
+  const skyPaint=new T.MeshBasicMaterial({map:paper,side:T.BackSide});
+  skyPaint.onBeforeCompile=shader=>{
+    shader.vertexShader=shader.vertexShader.replace("#include <common>","#include <common>\nvarying vec3 skyPoint;")
+      .replace("#include <begin_vertex>","#include <begin_vertex>\nskyPoint=position;");
+    shader.fragmentShader=shader.fragmentShader.replace("#include <common>","#include <common>\nvarying vec3 skyPoint;")
+      .replace("#include <map_fragment>",`
+        vec3 weights=pow(abs(normalize(skyPoint)),vec3(4.0));
+        weights/=dot(weights,vec3(1.0));
+        vec3 p=skyPoint/${paper.image.width*scale};
+        diffuseColor*=texture2D(map,p.zy)*weights.x
+                    + texture2D(map,p.xz)*weights.y
+                    + texture2D(map,p.xy)*weights.z;`);
+  };
+  const paperSky=new T.Mesh(sky,skyPaint);
   paperSky.userData.paperSky=true;scene.add(paperSky);
   soil.wrapS = soil.wrapT = T.MirroredRepeatWrapping;
-  scene.add(terrain(soil,orbitalSoil,paints.soil));
+  scene.add(terrain(soil,orbitalSoil));
   const lunarCentre=new T.Object3D();
   lunarCentre.position.set(0,-lunarRadius,terrainCentreZ);scene.add(lunarCentre);
-  // A narrow ridge carries the irregular silhouette and the paint on both slopes.
-  const ridge=new T.PlaneGeometry(1,1,420,16);
-  const rp=ridge.attributes.position,ru=ridge.attributes.uv;
-  for(let i=0;i<rp.count;i++){
-    const x=T.MathUtils.lerp(-2.30,3.63,ru.getX(i)),z=ridgeZ+(1-2*ru.getY(i))*ridgeWidth;
-    const y=groundHeight(x,z)-.003;
-    rp.setXYZ(i,x,y,z);
-    const px=436+x/scale,py=1036-(y*Math.cos(elevation)-z*Math.sin(elevation))/scale;
-    ru.setXY(i,(px+650)/2400,1-(py-400)/1150);
-  }
-  ridge.computeVertexNormals();
-  const ridgePaint=new T.MeshBasicMaterial({map:soil});
-  paintGround(ridgePaint,paints.soil);
-  const ridgeMesh=new T.Mesh(ridge,ridgePaint);
-  ridgeMesh.userData.lunarGround=true;
-  scene.add(ridgeMesh);
-
   let state=24951;
   const rand=()=> (state=(Math.imul(state,1664525)+1013904223)>>>0)/4294967296;
   const marker = new T.Object3D();

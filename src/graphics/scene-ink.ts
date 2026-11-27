@@ -12,7 +12,6 @@ export function createSceneInk(scene:T.Scene, renderer:T.WebGLRenderer) {
     figure ||= node.userData.astronaut===true;
     if(node instanceof T.Mesh){
       const mesh=node;
-      // The ridge and the sphere are two meshes of the same lunar surface.
       const id=figure?65535:mesh.userData.lunarGround?65534:mesh.userData.paperSky?0:nextId;
       nextId+=mesh instanceof T.InstancedMesh?mesh.instanceMatrix.count:1;
       function maskFor(original:T.Material) {

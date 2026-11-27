@@ -1,4 +1,4 @@
-// Bake the visible part of each object's texture from the original 1254px painting.
+// Bake surface textures from paint samples inside the original 1254px illustration.
 import sharp from "sharp";
 import { mkdir } from "node:fs/promises";
 import {inkStars} from "../../src/graphics/lunar-marks.mjs";
@@ -13,6 +13,7 @@ function pixel(x,y) {
   const i = (clamp(Math.round(y),0,info.height-1)*info.width + clamp(Math.round(x),0,info.width-1))*3;
   return data.subarray(i,i+3);
 }
+const ease=t=>t*t*(3-2*t);
 function blend(a,b,t) { return Array.from(a,(v,i)=>v+(b[i]-v)*clamp(t,0,1)); }
 async function bake(name,w,h,sample,channels=3) {
   const dst=Buffer.alloc(w*h*channels);
@@ -48,7 +49,7 @@ await bake("stars",starTile*inkStars.length,starTile,(u,v)=>{
   const alpha=clamp((paper[0]-c[0]-9)/(paper[0]-ink[0]-9),0,1);
   return [...ink.map((v,i)=>alpha>.03?clamp((c[i]-(1-alpha)*paper[i])/alpha,0,255):v),Math.round(255*alpha)];
 },4);
-// Stop at the boots and folded seat so their painted contact shadows stay in the soil.
+// Keep the boots and seat out of the soil donors.
 const frogOutline=[[206,779],[258,749],[487,753],[590,742],[642,829],[643,903],
   [677,977],[689,1048],[681,1090],[660,1116],[636,1124],[602,1117],[566,1109],
   [535,1120],[507,1119],[471,1104],[431,1073],[389,1053],[337,1031],[299,1011],
@@ -85,10 +86,10 @@ function extension(centers,step){
     }
     function strip(row){
       const color=swatch(i,row);
-      return fx<.18?blend(swatch(i-1,row),color,fx/.18):color;
+      return fx<.30?blend(swatch(i-1,row),color,ease(fx/.30)):color;
     }
     const color=strip(j);
-    return fy<.18?blend(strip(j-1),color,fy/.18):color;
+    return fy<.30?blend(strip(j-1),color,ease(fy/.30)):color;
   };
 }
 // Orient the full painting by matching the broad colors of the observed hemisphere,
@@ -106,17 +107,25 @@ function paintSample(u,v){
     (1-fy)*((1-fx)*atlas.data[i+k]+fx*atlas.data[i+right+k])+
     fy*((1-fx)*atlas.data[j+k]+fx*atlas.data[j+right+k]));
 }
+const earthStrokes=[
+  [672,126,93,67,.28], [816,192,144,83,.46], [918,311,140,71,.30],
+  [799,349,112,67,.71], [942,451,135,53,.33], [1063,492,98,45,.16],
+];
 await bake("earth",3072,1536,(u,v)=>{
   const phi=u*2*Math.PI,theta=v*Math.PI;
   const nx=-Math.cos(phi)*Math.sin(theta),ny=Math.cos(theta),nz=Math.sin(phi)*Math.sin(theta);
-  const x=1147+611*nx,y=-6-611*ny,r=Math.hypot(x-623,y-623);
-  // Keep the visible brushwork. Use an irregular join just inside the paper edge.
-  const bristle=4*Math.sin(x*.085+y*.13)+2*Math.cos(x*.23-y*.19);
-  // At the limb the reference projects a whole strip of the sphere onto a
-  // few paper pixels. Retire these stretched marks before turning the corner.
-  const warp=.052*Math.sin(nx*14+ny*9)+.038*Math.sin(ny*23-nz*11)+.018*Math.cos(nx*39+ny*27);
-  const coverage=Math.min((616-r+bristle)/54,(nz-.20+warp)/.36);
-  const weight=clamp(coverage,0,1);
+  const x=1147+611*nx,y=-6-611*ny;
+  // Carry individual interior brush passages onto the globe. The edge of the
+  // illustration never defines a transition on the planet.
+  let weight=0;
+  if(nz>.24){
+    for(const [cx,cy,rx,ry,slope] of earthStrokes){
+      const dx=x-cx,dy=y-cy-slope*dx;
+      const edge=1-(dx/rx)**2-(dy/ry)**2;
+      weight=Math.max(weight,clamp(edge*2.2,0,1));
+    }
+    weight*=clamp((nz-.24)/.21,0,1);
+  }
   const observed=weight*weight*(3-2*weight);
   if(observed===1)return pixel(x,y);
   const rx=cr*nx-sr*ny,ry=sr*nx+cr*ny;
@@ -133,42 +142,38 @@ await bake("earth",3072,1536,(u,v)=>{
 // broad plains, with darker stones limited to a few irregular rocky bands.
 const fines=[],scree=[];
 for(let y=908;y<1210;y+=12)for(let x=78;x<1150;x+=14){
-  if(Math.hypot(x-623,y-623)>562 || y<horizonY(x)+52)continue;
-  if([-42,0,42].some(dx=>[-42,0,42].some(dy=>inside(x+dx,y+dy))))continue;
+  if(Math.hypot(x-623,y-623)>531 || y<horizonY(x)+78)continue;
+  if([-68,0,68].some(dx=>[-68,0,68].some(dy=>inside(x+dx,y+dy))))continue;
   let dark=0;
   for(let j=-28;j<=28;j+=4)for(let i=-28;i<=28;i+=4)if(pixel(x+i,y+j)[0]<120)dark++;
   (dark<19?fines:scree).push([x,y]);
 }
+if(!fines.length || !scree.length)throw new Error("No interior lunar soil swatches");
 const soilFines=extension(fines,53),soilRocks=extension(scree,66);
-const paperPaint=pigmentSampler("paper"),soilPaint=pigmentSampler("soil");
+const soilPaint=pigmentSampler("soil");
 await bake("regolith",2400,1150,(u,v)=>{
   const x=u*2400-650, y=v*1150+400;
   // Continue the dry-brush marks across the unobserved ground using clean soil samples.
   const band=.52*Math.sin(x*.008-y*.016)+.33*Math.cos(y*.024+x*.003)+.20*Math.sin(x*.019+y*.010);
   const dust=blend(soilFines(x,y),soilPaint(x,y),.46),rocks=soilRocks(x,y);
-  const soil=blend(dust,rocks,clamp((band-.28)*1.5,0,.85));
-  const mask=clamp((y-horizonY(x)+8)/7,0,1)*clamp((619-Math.hypot(x-623,y-623))/10,0,1);
-  return blend(soil,pixel(x,y),inside(x,y)?0:mask);
-});
-// Keep the paper at the same grain size as the figure. Fill the parts hidden
-// by the model and planets from clean paper for viewpoints around their backs.
-await bake("paper",1254,1254,(u,v)=>{
-  const x=u*1254,y=v*1254;
-  const clean=paperPaint(x,y);
-  const helmet=(Math.hypot((x-430)/227,(y-644)/192)-1)*190;
-  const body=Math.max(190-x,x-705,751-y);
-  const clearance=Math.min(613-Math.hypot(x-624,y-623),Math.hypot(x-1147,y+6)-620,
-    Math.hypot(x-250,y-289)-93,helmet,body,828+.14*x-y);
-  let weight=clamp(clearance/12,0,1);
-  for(const [cx,cy,r] of inkStars){
-    if(Math.abs(x-cx)<r+4 && Math.abs(y-cy)<r+4)
-      weight*=clamp((Math.max(Math.abs(x-cx),Math.abs(y-cy))-r)/4,0,1);
-  }
-  return blend(clean,pixel(x,y),weight);
+  return blend(dust,rocks,clamp((band-.28)*1.5,0,.85));
 });
 
-// The ground under the astronaut is a registered detail. The rest of the
-// lunar sphere needs continuous selenographic color, including both poles.
+// Sample only uninterrupted paper. The donor margin covers a rotated swatch,
+// its overlap and its jitter. The source disk is never used as an output mask.
+const paperCenters=[];
+for(let y=80;y<info.height-80;y+=19)for(let x=80;x<info.width-80;x+=19){
+  if(Math.hypot(x-623,y-623)>515 || Math.hypot(x-1147,y+6)<713 ||
+     Math.hypot(x-250,y-289)<188 || y+96>horizonY(x))continue;
+  if(Math.hypot((x-430)/325,(y-644)/294)<1 || (x>100&&x<785&&y>655))continue;
+  if(inkStars.some(([cx,cy,r])=>Math.hypot(x-cx,y-cy)<r+98))continue;
+  paperCenters.push([x,y]);
+}
+if(!paperCenters.length)throw new Error("No interior paper swatches");
+const skyPaper=extension(paperCenters,76);
+await bake("paper",1254,1254,(u,v)=>skyPaper(u*1254,v*1254));
+
+// The distant lunar surface carries continuous color across both poles.
 let seed=2847;
 function random(){ seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296; }
 const basins=Array.from({length:110},()=>{
