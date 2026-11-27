@@ -219,7 +219,7 @@ export async function createLunarScene() {
       marker.updateMatrix();rocks.setMatrixAt(i,marker.matrix);
       rocks.setColorAt(i,new T.Color().setScalar(.39+.59*rand()));
     }
-    rocks.castShadow=rocks.receiveShadow=true;scene.add(rocks);
+    rocks.userData.lunarRock=true;rocks.castShadow=rocks.receiveShadow=true;scene.add(rocks);
   }
   const starShape = new T.Shape();
   for(let i=0;i<8;i++){

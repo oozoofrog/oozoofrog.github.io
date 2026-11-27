@@ -82,16 +82,27 @@ export function createLunarSky(moon: T.Mesh, satellite: T.Object3D, landing:T.Ob
   canopy.userData.clearDome=true;canopy.add(visorOutline(dome));
   const destinations={landing,sun,binary,blackHole,constellation,moonlet:moon,satellite,rocket,visitor};
   const spans: Record<SkyPlace,number>={landing:23,sun:3.3,binary:2.0,blackHole:3.0,constellation:2.9,moonlet:2,satellite:3,rocket:2,visitor:1.8};
+  let responding:SkyPlace|null=null, responseAt=0, restingPose=false;
+  function react(place:SkyPlace,time:number,animate:boolean){
+    responding=place;responseAt=time;restingPose=!animate;
+    update(time);
+  }
   function update(time:number){
-    for(const [i,loop] of flares.entries())loop.scale.y=.74+.17*Math.sin(time*.61+i);
-    disk.rotation.z=-.45+time*.17;
-    pair.forEach((star,i)=>star.position.set(.33*Math.cos(time*.48+i*Math.PI),.14*Math.sin(time*.48+i*Math.PI),.25*Math.sin(time*.48+i*Math.PI)));
-    knots.forEach((n,i)=>n.scale.setScalar(.032+.009*Math.sin(time*1.22+i*.8)));
+    const t=Math.min(1,(time-responseAt)/1.8);
+    const strength=restingPose?.80:Math.sin(Math.PI*t);
+    const accent=(id:SkyPlace)=>responding===id?strength:0;
+    const orbit=time*.48+accent("binary")*Math.PI;
+    for(const [i,loop] of flares.entries())loop.scale.y=.74+.17*Math.sin(time*.61+i)+accent("sun")*.65;
+    disk.rotation.z=-.45+time*.17+accent("blackHole")*1.6;
+    disk.rotation.x=1.22-accent("blackHole")*.42;
+    pair.forEach((star,i)=>star.position.set(.33*Math.cos(orbit+i*Math.PI),.14*Math.sin(orbit+i*Math.PI),.25*Math.sin(orbit+i*Math.PI)));
+    knots.forEach((n,i)=>n.scale.setScalar(.032+.009*Math.sin(time*1.22+i*.8)+accent("constellation")*.043));
     rocket.position.copy(paintingPoint(55+375*Math.sin(time*.091),75+79*Math.sin(time*.182),-3.9+.45*Math.cos(time*.091)));
     rocket.rotation.z=-Math.atan2(375*Math.cos(time*.091),-158*Math.cos(time*.182));
-    exhaust.scale.y=.82+.16*Math.sin(time*7);
+    exhaust.scale.y=.82+.16*Math.sin(time*7)+accent("rocket")*2.2;
+    exhaust.position.y=-.195-exhaust.scale.y*.10;
     visitor.position.copy(paintingPoint(1790+75*Math.sin(time*.16),680+24*Math.sin(time*.38),-2.2));
-    visitor.rotation.z=.09*Math.sin(time*.57);arm.rotation.z=-.54+.38*Math.sin(time*2.5);
+    visitor.rotation.z=.09*Math.sin(time*.57);arm.rotation.z=-.54+.38*Math.sin(time*2.5)-accent("visitor")*(.85+.4*Math.sin(t*22));
   }
   let following:SkyPlace|undefined;
   const previous=new T.Vector3(), movement=new T.Vector3();
@@ -110,5 +121,5 @@ export function createLunarSky(moon: T.Mesh, satellite: T.Object3D, landing:T.Ob
     camera.lookAt(at);previous.copy(at);
   }
   update(0);
-  return {group,update,visit,follow,release(){following=undefined;}};
+  return {group,destinations,react,update,visit,follow,release(){following=undefined;responding=null;}};
 }

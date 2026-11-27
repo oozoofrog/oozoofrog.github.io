@@ -91,28 +91,42 @@ function extension(centers,step){
     return fy<.18?blend(strip(j-1),color,fy/.18):color;
   };
 }
-// Keep the painted hemisphere registered. Turn its ocean, cloud and land
-// swatches around the globe at their original bristle scale.
-const ocean=pigmentSampler("ocean"),land=pigmentSampler("land"),cloud=pigmentSampler("cloud");
+// Orient the full painting by matching the broad colors of the observed hemisphere,
+// weighting the region near the paper edge where the two paintings meet.
+const atlas=await sharp("scripts/astronaut/art/earth.webp").removeAlpha().raw().toBuffer({resolveWithObject:true});
+const roll=-2.182,tilt=-1.025,longitude=.82983;
+const cr=Math.cos(roll),sr=Math.sin(roll),ct=Math.cos(tilt),st=Math.sin(tilt);
+function paintSample(u,v){
+  const {width,height}=atlas.info;
+  const x=clamp(u*(width-1),0,width-1),y=clamp(v*(height-1),0,height-1);
+  const ix=Math.floor(x),iy=Math.floor(y),fx=x-ix,fy=y-iy;
+  const i=3*(iy*width+ix),j=3*(Math.min(iy+1,height-1)*width+ix);
+  const right=ix+1<width?3:0;
+  return [0,1,2].map(k=>
+    (1-fy)*((1-fx)*atlas.data[i+k]+fx*atlas.data[i+right+k])+
+    fy*((1-fx)*atlas.data[j+k]+fx*atlas.data[j+right+k]));
+}
 await bake("earth",3072,1536,(u,v)=>{
   const phi=u*2*Math.PI,theta=v*Math.PI;
   const nx=-Math.cos(phi)*Math.sin(theta),ny=Math.cos(theta),nz=Math.sin(phi)*Math.sin(theta);
-  const x=1147+611*nx,y=-6-611*ny;
-  const r=Math.hypot(x-623,y-623);
-  const observed=clamp((619-r)/17,0,1)*clamp(nz*16,0,1);
+  const x=1147+611*nx,y=-6-611*ny,r=Math.hypot(x-623,y-623);
+  // Keep the visible brushwork. Use an irregular join just inside the paper edge.
+  const bristle=4*Math.sin(x*.085+y*.13)+2*Math.cos(x*.23-y*.19);
+  // At the limb the reference projects a whole strip of the sphere onto a
+  // few paper pixels. Retire these stretched marks before turning the corner.
+  const warp=.052*Math.sin(nx*14+ny*9)+.038*Math.sin(ny*23-nz*11)+.018*Math.cos(nx*39+ny*27);
+  const coverage=Math.min((616-r+bristle)/54,(nz-.20+warp)/.36);
+  const weight=clamp(coverage,0,1);
+  const observed=weight*weight*(3-2*weight);
   if(observed===1)return pixel(x,y);
-  const sx=611*(nx+.48*nz),sy=611*(-ny+.28*nz);
-  const flow=Math.sin(7*nx+4*nz+2*Math.sin(4*ny))+.53*Math.cos(10*ny-3*nz)+.23*Math.sin(18*nz+6*nx);
-  const vapor=Math.sin(13*ny+5*nx+3*Math.sin(4*nz+nx))+.26*Math.cos(26*nx+7*ny);
-  let fill=blend(ocean(sx,sy),land(sx,sy),clamp((flow-.08)*3.4,0,1));
-  fill=blend(fill,cloud(sx,sy),clamp((vapor-.60)*2,0,1));
-  // Carry the color crossing the circular paper edge into the extension.
-  if(r>598 && r<750 && nz>0){
-    const inward=(608-Math.abs(r-608))/r;
-    const nearby=pixel(623+(x-623)*inward,623+(y-623)*inward);
-    fill=blend(fill,nearby,clamp((748-r)/130,0,1)*clamp(nz*16,0,1));
-  }
-  return blend(fill,pixel(x,y),observed);
+  const rx=cr*nx-sr*ny,ry=sr*nx+cr*ny;
+  const lat=Math.acos(clamp(ct*ry-st*nz,-1,1))/Math.PI;
+  const lon=(longitude+Math.atan2(st*ry+ct*nz,-rx)/(2*Math.PI)+1)%1;
+  // Overlap both ends in the Pacific. The last texel meets the first at the same color.
+  const overlap=.024,offset=lon*(1-overlap);
+  let fill=paintSample(offset,lat);
+  if(offset<overlap)fill=blend(paintSample(1-overlap+offset,lat),fill,offset/overlap);
+  return observed===0?fill:blend(fill,pixel(x,y),observed);
 });
 
 // Pick patches from soil inside the painting. Use pale regolith across the

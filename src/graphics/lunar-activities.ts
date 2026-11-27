@@ -139,6 +139,14 @@ export function createActivities(paints:ReferencePaints) {
   meteor.quaternion.setFromUnitVectors(new T.Vector3(1,0,0),to.clone().sub(from).normalize());
   group.add(meteor);
 
+  let shootingSince=-Infinity;
+  const shootingFrom=new T.Vector3(),shootingTo=new T.Vector3();
+  function shoot(point:T.Vector3,camera:T.Camera,animate:boolean){
+    shootingSince=time-(animate?0:.30);
+    shootingFrom.copy(point);
+    shootingTo.set(1.3,-.46,0).applyQuaternion(camera.quaternion).add(point);
+  }
+
   const comet=new T.Group();group.add(comet);
   const nucleus = new T.IcosahedronGeometry(.17,2);
   const crust=nucleus.attributes.position;
@@ -196,10 +204,17 @@ export function createActivities(paints:ReferencePaints) {
     const x=pos.x+.10*side*Math.cos(yaw)-.90*Math.sin(yaw),z=pos.z-.10*side*Math.sin(yaw)-.90*Math.cos(yaw);
     const h=groundHeight(x,z);
     if(h < -2.8 || pos.y-h>1.55)return;
+    imprint(new T.Vector3(x,h,z),yaw);
+    lastStamp.copy(pos);
+  }
+  function imprint(point:T.Vector3,yaw:number){
+    const {x,z}=point;
     normal.set(groundHeight(x-.01,z)-groundHeight(x+.01,z),.02,groundHeight(x,z-.01)-groundHeight(x,z+.01)).normalize();
-    marker.position.set(x,h+.028,z);marker.quaternion.setFromUnitVectors(up,normal);
-    marker.rotateY(yaw+side*.15);marker.updateMatrix();trail.setMatrixAt(stamps%80,marker.matrix);
-    trail.count=Math.min(80,++stamps);trail.instanceMatrix.needsUpdate=true;lastStamp.copy(pos);
+    marker.position.copy(point).addScaledVector(normal,.028);
+    marker.quaternion.setFromUnitVectors(up,normal);
+    marker.rotateY(yaw+(stamps%2?.15:-.15));marker.updateMatrix();trail.setMatrixAt(stamps%80,marker.matrix);
+    trail.count=Math.min(80,++stamps);trail.instanceMatrix.needsUpdate=true;
+    trail.computeBoundingSphere();
   }
   function cometAt(t:number) {
     comet.position.set(2.6+2.1*Math.sin(t*.21),4.95+.42*Math.sin(t*.38),-3.6+2*Math.cos(t*.21));
@@ -235,10 +250,13 @@ export function createActivities(paints:ReferencePaints) {
     relay.rotation.y=.22*Math.sin(time*.24);
     antenna.rotation.y=.75*Math.sin(time*.46);
     rover.update(dt,time);
-    const crossing=((time+10)%17)/1.8;
+    const triggered=time-shootingSince<1.35;
+    const crossing=triggered?(time-shootingSince)/1.35:((time+10)%17)/1.8;
     meteor.visible=crossing<1;
     if(meteor.visible){
-      meteor.position.lerpVectors(from,to,crossing);
+      const start=triggered?shootingFrom:from,end=triggered?shootingTo:to;
+      meteor.position.lerpVectors(start,end,crossing);
+      meteor.quaternion.setFromUnitVectors(new T.Vector3(1,0,0),new T.Vector3().subVectors(end,start).normalize());
       meteorPaint.opacity=.85*Math.sin(Math.PI*crossing);
     }
     const age=time-signal;
@@ -267,6 +285,6 @@ export function createActivities(paints:ReferencePaints) {
     if(site==="prints"&&camera)stamp(camera);
   }
   update(0);
-  return {group,relay,visit,act,update, get site(){return site;},get riding(){return riding;},get samples(){return rover.samples;},
+  return {group,relay,targets:{comet,rover:rover.chassis},reply,trail,shoot,imprint,visit,act,update, get site(){return site;},get riding(){return riding;},get samples(){return rover.samples;},
     reset(){site=null;riding=false;signal=-10;},release(){riding=false;}};
 }
