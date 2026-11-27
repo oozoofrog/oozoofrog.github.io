@@ -1,9 +1,15 @@
 ---
-const artwork = "/assets/images/lunar-journal.webp";
+const artwork = "/assets/images/lunar-arrival.webp";
 ---
 <figure class="studio" data-portrait-studio>
   <div class="stage">
-    <div class="registration" data-registration><noscript><img src={artwork} width="1254" height="1254" alt="달에 앉아 지구를 보는 우주개구리" /></noscript><img hidden src={artwork} width="1254" height="1254" alt="우주복을 입은 개구리가 달에 앉아 지구를 바라보는 그림" />
+    <div class="registration" data-registration>
+      <img src={artwork} width="720" height="720" fetchpriority="high" alt="달에 앉아 지구를 바라보는 우주개구리" />
+      <button hidden class="loading-sky" type="button" aria-label="달 장면을 불러오는 중. 눌러서 별자리 그리기">
+        <span class="meteor" aria-hidden="true">✦</span>
+        <span class="starlines" aria-hidden="true"></span>
+        <span class="arrival-note" aria-hidden="true">달 장면을 불러오는 중</span>
+      </button>
     </div>
     <canvas hidden tabindex="0" role="group" aria-label="달에 앉은 우주개구리. 배경 탐험" aria-describedby="sky-keys"></canvas>
     <span id="sky-keys" class="instructions">좌우 방향키로 천체를 고르고 Enter로 탐험합니다. 비행 중에는 WASD로 이동합니다. Esc로 돌아옵니다. 스페이스바로 움직임을 멈추거나 재개합니다.</span>
@@ -11,20 +17,39 @@ const artwork = "/assets/images/lunar-journal.webp";
   </div>
 </figure>
 <script>
+  import {drawLoadingStars} from "../graphics/loading-stars";
   const studio = document.querySelector<HTMLElement>("[data-portrait-studio]");
-  if (studio) {
-    const observer = new IntersectionObserver(async ([entry]) => {
-      if (!entry.isIntersecting) return;
-      observer.disconnect();
-      try {
-        const { mountPortrait } = await import("../graphics/portrait");
-        await mountPortrait(studio);
-      } catch {
-        const fallback=studio.querySelector<HTMLImageElement>("[data-registration] > img");
-        if(fallback)fallback.hidden=false;
+  if(studio){
+    const button=studio.querySelector<HTMLButtonElement>(".loading-sky")!;
+    const stage=studio.querySelector<HTMLElement>(".stage")!;
+    const slot=studio.closest(".profile")?.querySelector<HTMLElement>("[data-illustration-space]");
+    if(slot?.offsetHeight){
+      const rect=slot.getBoundingClientRect(),h=stage.clientHeight;
+      stage.style.setProperty("--mobile-art-centre",Math.round(Math.max(h*.29,Math.min(h*.8,rect.top+rect.height/2)))+"px");
+    }
+    const drawing=drawLoadingStars(button);
+    async function arrive(root:HTMLElement){
+      try{
+        // Start the largest asset while the browser fetches and parses Three.js.
+        if("WebGL2RenderingContext" in window){
+          const model=document.createElement("link");
+          model.rel="preload";model.as="fetch";model.crossOrigin="anonymous";
+          model.href="/assets/models/astronaut-frog.glb";document.head.append(model);
+        }
+        const {mountPortrait}=await import("../graphics/portrait");
+        await mountPortrait(root,drawing.stars);
+      }catch{
+        const canvas=root.querySelector("canvas")!;
+        canvas.hidden=true;
+        root.querySelector<HTMLImageElement>("[data-registration] > img")!.hidden=false;
+      }finally{
+        const focused=document.activeElement===button;
+        drawing.finish();
+        const canvas=root.querySelector("canvas")!;
+        if(focused&&!canvas.hidden)canvas.focus({preventScroll:true});
       }
-    });
-    observer.observe(studio.querySelector(".stage")!);
+    }
+    void arrive(studio);
   }
 </script>
 <style>
@@ -35,7 +60,41 @@ const artwork = "/assets/images/lunar-journal.webp";
     right:2vw; top:calc(50% - 12px); transform:translateY(-50%); overflow:hidden; border-radius:50%;
     z-index:1; pointer-events:none;
   }
+  .registration { container-type:inline-size; }
   .registration img { width:100%; height:100%; display:block; }
+  .loading-sky {
+    position:absolute; inset:0; width:100%; height:100%; padding:0; border:0; border-radius:50%;
+    background:transparent; color:#2e3c4a; cursor:crosshair; pointer-events:auto; touch-action:manipulation;
+  }
+  .loading-sky:focus-visible { outline:2px dashed #775b39; outline-offset:-5px; }
+  .arrival-note {
+    position:absolute; left:50%; bottom:4%; transform:translateX(-50%); white-space:nowrap;
+    padding:1px 10px; background:#f7eedc; color:#39434a; border-radius:50% 8% 38% 10%;
+    font:700 clamp(.82rem,3cqw,1.1rem)/1.5 var(--journal-font);
+  }
+  .meteor { position:absolute; left:41%; top:17%; font:700 6cqw/1 var(--journal-font); color:#9a5f21;
+    text-shadow:1px 1px #fff1c6; animation:meteor-pass 3.4s linear infinite; }
+  .meteor::before, .starlines :global(.spark)::before {
+    content:""; position:absolute; width:2.4em; height:.17em; right:55%; top:40%; transform:rotate(20deg);
+    transform-origin:right; background:linear-gradient(90deg,transparent,#b29053 67%,#f3c573);
+    clip-path:polygon(0 60%,75% 0,100% 30%,86% 75%,14% 100%,57% 52%);
+  }
+  @keyframes meteor-pass {
+    0% { opacity:0; transform:translate(-12cqw,-4cqw) scale(.5); }
+    12%,45% { opacity:1; }
+    63%,100% { opacity:0; transform:translate(21cqw,8cqw) scale(.8); }
+  }
+  .starlines { position:absolute; inset:0; }
+  .starlines :global(.thread) { position:absolute; height:0; border-top:1.5px dashed #62513b; opacity:.77; transform-origin:0 50%; }
+  .starlines :global(.spark) { position:absolute; font:700 clamp(15px,4.3cqw,30px)/1 var(--journal-font);
+    color:#344e67; text-shadow:1px 1px #fae0a0; transform:translate(-50%,-50%); animation:star-land .44s ease-out both; }
+  .starlines :global(.spark)::before { animation:trail-end .44s ease-out forwards; }
+  @keyframes star-land { from { transform:translate(calc(-50% - 6cqw),calc(-50% - 2cqw)) scale(.5); } }
+  @keyframes trail-end { to { opacity:0; } }
+  @media(prefers-reduced-motion:reduce){
+    .meteor,.starlines :global(.spark),.starlines :global(.spark)::before { animation:none; }
+    .starlines :global(.spark)::before { display:none; }
+  }
   canvas { width:100%; height:100%; position:absolute; inset:0; touch-action:pan-y; -webkit-touch-callout:none; cursor:grab; }
   canvas:active { cursor:grabbing; }
   canvas:focus-visible { outline:2px dashed #745b36; outline-offset:-5px; }

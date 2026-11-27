@@ -4,12 +4,13 @@ import {createSceneInk} from "./scene-ink";
 import { createLunarScene, elevation, groundHeight, paintingPoint } from "./lunar-scene";
 
 import {createActivities} from "./lunar-activities";
+import type {DrawnStar} from "./loading-stars";
 
 import {createLunarSky, skyNotes, type SkyPlace} from "./lunar-sky";
 
 type View = "scene" | "flight";
 
-export async function mountPortrait(root: HTMLElement) {
+export async function mountPortrait(root: HTMLElement, arrivalStars:readonly DrawnStar[]=[]) {
   const canvas = root.querySelector("canvas")!;
   const stage=root.querySelector<HTMLElement>(".stage")!;
   const illustrationSpace=root.closest(".profile")?.querySelector<HTMLElement>("[data-illustration-space]");
@@ -19,7 +20,7 @@ export async function mountPortrait(root: HTMLElement) {
   const {scene,frog,moon,earth,lunarCentre,paints} = await createLunarScene();
   const blink=animateEyelids(frog);
   const activities=createActivities(paints);
-  const sky=createLunarSky(moon,activities.relay,lunarCentre,paints);
+  const sky=createLunarSky(moon,activities.relay,lunarCentre,paints,arrivalStars);
   scene.add(sky.group);
   scene.add(activities.group);
   const reduced=matchMedia("(prefers-reduced-motion: reduce)");

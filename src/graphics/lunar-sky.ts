@@ -1,6 +1,7 @@
 import * as T from "three";
 import { paintingPoint } from "./painting-frame.mjs";
 import {visorOutline} from "./visor-outline";
+import type {DrawnStar} from "./loading-stars";
 import type {ReferencePaints} from "./reference-paints";
 
 export const skyNotes = {
@@ -16,7 +17,7 @@ export const skyNotes = {
 } as const;
 export type SkyPlace = keyof typeof skyNotes;
 
-export function createLunarSky(moon: T.Mesh, satellite: T.Object3D, landing:T.Object3D, paints:ReferencePaints) {
+export function createLunarSky(moon: T.Mesh, satellite: T.Object3D, landing:T.Object3D, paints:ReferencePaints, arrivalStars:readonly DrawnStar[]=[]) {
   const group = new T.Group();
   const paint=(map:T.Texture,color=0xffffff)=>new T.MeshBasicMaterial({map,color,side:T.DoubleSide});
   const ochre=paint(paints.ochre),rust=paint(paints.ochre,0xc77b58);
@@ -59,6 +60,19 @@ export function createLunarSky(moon: T.Mesh, satellite: T.Object3D, landing:T.Ob
   const line=new T.Line(new T.BufferGeometry().setFromPoints(knots.map(n=>n.position)),
     new T.LineDashedMaterial({color:0x81765c,dashSize:.039,gapSize:.028}));
   line.computeLineDistances();constellation.add(line);
+  if(arrivalStars.length){
+    // The poster and the opening camera share the same 1254-unit painting frame.
+    const positions=arrivalStars.map(({x,y})=>paintingPoint(x*12.54,y*12.54,-11.8));
+    const nib=new T.OctahedronGeometry(.042);
+    for(const p of positions){
+      shape(group,nib,slate,p.x,p.y,p.z,.62,1.2,.55);
+      shape(group,nib,ochre,p.x,p.y,p.z,1.05,.32,.55);
+    }
+    if(positions.length>1){
+      const thread=new T.Line(new T.BufferGeometry().setFromPoints(positions),line.material);
+      thread.computeLineDistances();group.add(thread);
+    }
+  }
   const rocket=body(60,85,-3.9);
   shape(rocket,sphere,linen,0,0,0,.096,.27,.096);
   shape(rocket,new T.ConeGeometry(.089,.16,20),rust,0,.24,0);
