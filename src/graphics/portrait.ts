@@ -7,35 +7,20 @@ import {createActivities, type LandingSite} from "./lunar-activities";
 
 import {createLunarSky, skyNotes, type SkyPlace} from "./lunar-sky";
 
-type View = "scene" | "reference" | "overlay" | "flight";
+type View = "scene" | "flight";
 
 export async function mountPortrait(root: HTMLElement) {
   const canvas = root.querySelector("canvas")!;
   const stage=root.querySelector<HTMLElement>(".stage")!;
   const illustrationSpace=root.closest(".profile")?.querySelector<HTMLElement>("[data-illustration-space]");
   const registration=root.querySelector<HTMLElement>("[data-registration]")!;
-  const rigButton=root.querySelector<HTMLButtonElement>("[data-rig-switch]")!;
-  const rig=root.querySelector<SVGElement>("[data-rig]")!;
-  function showRig(visible:boolean){
-    rig.toggleAttribute("hidden",!visible);rigButton.setAttribute("aria-pressed",String(visible));
-  }
-  rigButton.onclick=()=>showRig(rig.hasAttribute("hidden"));
   const poster = root.querySelector<HTMLImageElement>("[data-registration] > img")!;
   const controls = root.querySelector("figcaption")!;
   const egg = root.querySelector<HTMLButtonElement>("[data-moon]")!;
   const flightControls = controls.querySelector<HTMLElement>("[data-flight]")!;
   const turns = controls.querySelector<HTMLElement>(".turn")!;
-  const views = controls.querySelector<HTMLElement>(".views")!;
   const message = controls.querySelector("p")!;
   const exit = controls.querySelector<HTMLButtonElement>("[data-land]")!;
-  const details=controls.querySelector<HTMLElement>("[data-details]")!;
-  const partButtons=details.querySelectorAll<HTMLButtonElement>("[data-detail]");
-  const compare=controls.querySelector<HTMLElement>("[data-compare]")!;
-  const slider=compare.querySelector("input")!;
-  const output=compare.querySelector("output")!;
-  const framingControls=controls.querySelector<HTMLElement>("[data-compare-framing]")!;
-  const crops={scene:[627,627,627],suit:[449,794,385],face:[433,647,231],mouth:[482,694,128],legs:[476,984,232],wrists:[500,790,125],boots:[559,1049,155]} as const;
-  let crop:keyof typeof crops="scene";
   const interact=controls.querySelector<HTMLButtonElement>("[data-interact]")!;
   const motion=controls.querySelector<HTMLButtonElement>("[data-motion]")!;
   const places=flightControls.querySelectorAll<HTMLButtonElement>("[data-site]");
@@ -51,7 +36,7 @@ export async function mountPortrait(root: HTMLElement) {
     sky.release();
     for(const b of skyButtons)b.setAttribute("aria-pressed","false");
   }
-  scene.add(activities.group);activities.group.visible=false;
+  scene.add(activities.group);
   const reduced=matchMedia("(prefers-reduced-motion: reduce)");
   let automatic=!reduced.matches;
   motion.setAttribute("aria-pressed",String(automatic));
@@ -68,21 +53,14 @@ export async function mountPortrait(root: HTMLElement) {
   const earthCentre=earth.getWorldPosition(new T.Vector3());
   const actorCentre=paintingPoint(439,713,0);
   const screen=new T.Vector3(),delta=new T.Vector3();
-  const parts = {
-    face: {at:paintingPoint(431,650,0),span:280,angle:0},
-    wrists: {at:paintingPoint(485,816,.36),span:198,angle:-.16},
-    legs: {at:paintingPoint(475,984,.20),span:251,angle:0},
-    boots: {at:paintingPoint(552,1022,.43),span:245,angle:.10},
-    pack: {at:paintingPoint(337,866,-.59),span:215,angle:Math.PI+.26},
-  };
-  let detail:keyof typeof parts | undefined;
   let view:View="scene", heading=0, pitch=elevation, close=false;
   let width=1,height=1;
   const held=new Set<string>();
   let frame=0, last=0, skyTime=0;
+  let contextLost=false;
   let turn:{from:number;to:number;startedAt:number}|undefined;
   function draw(){
-    sky.group.visible=view==="flight" || view==="scene";
+    if(contextLost)return;
     const camera=view==="flight"?flight:orbit;
     camera.updateMatrixWorld();
     renderer.render(scene,camera);
@@ -93,23 +71,15 @@ export async function mountPortrait(root: HTMLElement) {
     egg.style.top=(50-screen.y*50)+"%";
   }
   function positionOrbit(){
-    const part=close&&detail?parts[detail]:undefined;
-    const overlay=view==="overlay"||view==="reference", [cx,cy,radius]=crops[view==="reference"?"scene":crop];
-    const at=overlay?paintingPoint(cx,cy,0):part?.at??target;
     // Give a completed turn the same camera and shadow coordinates as frame zero.
     const phase=T.MathUtils.euclideanModulo(heading+Math.PI,2*Math.PI)-Math.PI;
     const yaw=Math.abs(phase)<1e-10?0:phase;
     orbit.position.set(Math.sin(yaw)*Math.cos(pitch),Math.sin(pitch),Math.cos(yaw)*Math.cos(pitch))
-      .multiplyScalar(8).add(at);
-    // In a detail view the orbit can pass behind the rocket or a planet.
-    // Keep a two-unit foreground around the selected part at distance eight.
-    orbit.near=part?6:.04;
-    orbit.lookAt(at);
-    const half=(overlay?radius:part?.span??(close?423:627))*.0037;
-    details.hidden=view!=="scene"||!close;
-    for(const button of partButtons)button.setAttribute("aria-pressed",String(button.dataset.detail===detail));
+      .multiplyScalar(8).add(target);
+    orbit.lookAt(target);
+    const half=(close?423:627)*.0037;
     // Only the reference angle uses the off-centre composition of the painting.
-    const framing=overlay||close?0:1-T.MathUtils.smoothstep(Math.abs(yaw),.02,1.22);
+    const framing=close?0:1-T.MathUtils.smoothstep(Math.abs(yaw),.02,1.22);
     const x=framing*(627-450)*.0037, y=framing*(775-627)*.0037;
     const frame=registration.getBoundingClientRect(),box=stage.getBoundingClientRect();
     const units=2*half/Math.max(1,frame.height);
@@ -118,32 +88,20 @@ export async function mountPortrait(root: HTMLElement) {
     orbit.top=y+py*units;orbit.bottom=y-(height-py)*units;
     egg.style.setProperty("--moon-size",(.63/units)+"px");
     orbit.updateProjectionMatrix();
-    poster.style.transform=overlay?`translate(${(627-cx)*50/radius}%,${(627-cy)*50/radius}%) scale(${627/radius})`:"";
-    rig.style.transform=poster.style.transform;
   }
   function stop(){held.clear();cancelAnimationFrame(frame);frame=0;}
   function setView(next:View){
-    stop();turn=undefined;blink(0); view=next;clearSkySelection();map.hidden=next==="overlay"||next==="reference";
-    rigButton.hidden=next!=="reference" && next!=="overlay";
-    if(rigButton.hidden)showRig(false);
+    stop();turn=undefined;blink(0); view=next;clearSkySelection();
     const flying=next==="flight";
-    const overlay=next==="overlay";
-    compare.hidden=!overlay;poster.classList.toggle("overlay",overlay);
-    canvas.hidden=false;poster.hidden=!overlay&&next!=="reference";
-    poster.style.opacity=overlay?String(Number(slider.value)/100):"";
-    framingControls.hidden=!overlay;
-    root.toggleAttribute("data-comparing",overlay||next==="reference");
-    root.style.setProperty("--controls-height",controls.offsetHeight+"px");
-    if(overlay||next==="reference"){heading=0;pitch=elevation;detail=undefined;close=false;zoom.setAttribute("aria-pressed","false");}
+    map.hidden=!flying;
+    if(!flying)map.open=false;
+    canvas.hidden=false;poster.hidden=true;
     positionOrbit();
-    details.hidden=next!=="scene"||!close;
-    activities.reset();activities.group.visible=flying||next==="scene";interact.hidden=true;
-    motion.hidden=next==="reference"||overlay;
+    activities.reset();interact.hidden=true;
     if(!flying){earth.rotation.y=0;moon.rotation.y=0;skyTime=0;}
     for(const b of places)b.setAttribute("aria-pressed","false");
-    views.hidden=flying; turns.hidden=next!=="scene";flightControls.hidden=!flying;egg.hidden=next!=="scene";
-    for(const b of views.querySelectorAll("button")) b.setAttribute("aria-pressed",String(b.dataset.view===next));
-    message.textContent=flying?"W A S D 또는 방향키로 이동 · 드래그로 둘러보기 · Esc로 복귀":next==="scene"?"그림을 끌어 시점을 바꿔 보세요.":"";
+    turns.hidden=flying;flightControls.hidden=!flying;
+    message.textContent=flying?"방향키로 이동 · 드래그로 둘러보기 · Esc로 복귀":"";
     if(flying){
       flight.position.copy(orbit.position).sub(target).multiplyScalar(.55).add(target);
       flight.lookAt(actorCentre);
@@ -165,7 +123,6 @@ export async function mountPortrait(root: HTMLElement) {
     stage.style.setProperty("--mobile-art-centre",centre);return true;
   }
   function resize(){
-    root.style.setProperty("--controls-height",controls.offsetHeight+"px");
     const box=stage.getBoundingClientRect();
     width=Math.max(1,box.width);height=Math.max(1,box.height);
     const ratio=Math.min(devicePixelRatio,2);
@@ -177,28 +134,14 @@ export async function mountPortrait(root: HTMLElement) {
     positionOrbit();draw();
   }
   function returnToScene(){
-    heading=0;pitch=elevation;detail=undefined;close=false;zoom.setAttribute("aria-pressed","false");
+    heading=0;pitch=elevation;close=false;zoom.setAttribute("aria-pressed","false");
     positionOrbit();setView("scene");egg.focus({preventScroll:true});
   }
   const zoom=controls.querySelector<HTMLButtonElement>("[data-zoom]")!;
   zoom.onclick=()=>{
     turn=undefined;close=!close;
-    if(!close&&detail){detail=undefined;heading=0;pitch=elevation;}
     zoom.setAttribute("aria-pressed",String(close));positionOrbit();draw();
   };
-  for(const button of partButtons)button.onclick=()=>{
-    turn=undefined;detail=button.dataset.detail as keyof typeof parts;
-    heading=parts[detail].angle;pitch=elevation;positionOrbit();draw();
-  };
-  slider.oninput=()=>{poster.style.opacity=String(Number(slider.value)/100);output.value=slider.value+"%";};
-  for(const button of framingControls.querySelectorAll<HTMLButtonElement>("[data-crop]")){
-    button.onclick=()=>{
-      crop=button.dataset.crop as keyof typeof crops;
-      for(const other of framingControls.querySelectorAll("button"))other.setAttribute("aria-pressed",String(other===button));
-      positionOrbit();draw();
-    };
-  }
-  for(const b of views.querySelectorAll("button")) b.onclick=()=>setView(b.dataset.view as View);
   for(const b of turns.querySelectorAll<HTMLButtonElement>("[data-step]")) b.onclick=()=>{
     const destination=(turn?.to??heading)+Number(b.dataset.step)*Math.PI/6;
     if(automatic){
@@ -283,7 +226,7 @@ export async function mountPortrait(root: HTMLElement) {
     frame=requestAnimationFrame(tick);
   }
   function shouldAnimate(){
-    return inSight&&!document.hidden && (view==="scene"||view==="flight") &&
+    return !contextLost&&inSight&&!document.hidden &&
       (automatic || (view==="flight" && (held.size>0 || activities.riding)));
   }
   function startTick(){
@@ -323,7 +266,7 @@ export async function mountPortrait(root: HTMLElement) {
   }
   let pointer:number|undefined, x=0,y=0;
   canvas.onpointerdown=e=>{
-    if(view==="overlay"||view==="reference"||!e.isPrimary||e.button!==0)return;
+    if(!e.isPrimary||e.button!==0)return;
     turn=undefined;pointer=e.pointerId;x=e.clientX;y=e.clientY;canvas.setPointerCapture(pointer);
   };
   canvas.onpointermove=e=>{
@@ -344,6 +287,6 @@ export async function mountPortrait(root: HTMLElement) {
   window.addEventListener("scroll",()=>{
     if(!canvas.hidden && alignIllustration()){positionFlight();positionOrbit();draw();}
   },{passive:true});
-  canvas.addEventListener("webglcontextlost",()=>{stop();view="reference";observer.disconnect();visibility.disconnect();egg.hidden=canvas.hidden=controls.hidden=true;poster.style.transform=poster.style.opacity="";poster.hidden=false;});
+  canvas.addEventListener("webglcontextlost",()=>{stop();contextLost=true;observer.disconnect();visibility.disconnect();egg.hidden=canvas.hidden=controls.hidden=true;poster.hidden=false;});
   resize();controls.hidden=false;setView("scene");observer.observe(stage);observer.observe(registration);observer.observe(controls);
 }

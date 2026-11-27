@@ -1,31 +1,16 @@
 ---
 import {skyNotes} from "../graphics/lunar-sky";
-import {chains,joints} from "../graphics/seated-pose.mjs";
 const artwork = "/assets/images/lunar-journal.webp";
 ---
 <figure class="studio" data-portrait-studio>
   <div class="stage">
     <div class="registration" data-registration><noscript><img src={artwork} width="1254" height="1254" alt="달에 앉아 지구를 보는 우주개구리" /></noscript><img hidden src={artwork} width="1254" height="1254" alt="우주복을 입은 개구리가 달에 앉아 지구를 바라보는 그림" />
-      <svg data-rig hidden viewBox="0 0 1254 1254" role="img" aria-label="앉은 자세의 관절선. 가까운 팔다리는 실선, 먼 팔다리는 점선">
-        {[...chains].reverse().map(chain=>(
-          <g class:list={[{far:chain.some(name=>name.startsWith("far"))}]}>
-            <polyline points={chain.map(name=>joints[name as keyof typeof joints].slice(0,2).join(",")).join(" ")} />
-            {chain.slice(1).map(name=><circle cx={joints[name as keyof typeof joints][0]} cy={joints[name as keyof typeof joints][1]} r="6" />)}
-          </g>
-        ))}
-        <circle cx={joints.pelvis[0]} cy={joints.pelvis[1]} r="8" />
-      </svg>
     </div>
     <canvas hidden tabindex="-1" aria-label="달 표면의 우주개구리와 지구를 담은 3D 장면" role="img"></canvas>
     <button class="moon" data-moon hidden aria-label="작은 달 탐험 시작" title="작은 달 탐험"></button>
   </div>
   <figcaption hidden>
     <div class="toolbar">
-      <div class="views" role="group" aria-label="작품 선택">
-        <button type="button" data-view="scene" aria-pressed="true">3D 장면</button>
-        <button type="button" data-view="reference" aria-pressed="false">원화</button>
-        <button type="button" data-view="overlay" aria-pressed="false">겹쳐 보기</button>
-      </div>
       <div class="turn" role="group" aria-label="회전">
         <button type="button" data-zoom aria-pressed="false">확대</button>
         <button type="button" data-step="-1" aria-label="왼쪽으로 돌리기">‹</button>
@@ -33,26 +18,12 @@ const artwork = "/assets/images/lunar-journal.webp";
       </div>
       <button type="button" class="motion" data-motion aria-pressed="true">자동 움직임</button>
     </div>
-    <details class="sky-index">
+    <details class="sky-index" hidden>
       <summary>하늘 지도</summary>
       <div class="sky-places">
         {Object.entries(skyNotes).map(([place,[name]])=><button type="button" data-sky={place} aria-pressed="false">{name}</button>)}
       </div>
     </details>
-    <div class="details" data-details hidden role="group" aria-label="확대할 부분">
-      {Object.entries({face:"얼굴",wrists:"앞발",legs:"다리",boots:"장화",pack:"배낭"}).map(([key,label])=>(
-        <button type="button" data-detail={key} aria-pressed="false">{label}</button>
-      ))}
-    </div>
-    <label class="compare" data-compare hidden>원화 농도
-      <input type="range" min="0" max="100" value="50" /> <output>50%</output>
-    </label>
-    <div class="details" data-compare-framing hidden role="group" aria-label="원화와 비교할 부분">
-      {Object.entries({scene:"전체",suit:"전신",face:"얼굴",mouth:"입선",wrists:"앞발",legs:"다리",boots:"장화"}).map(([key,label])=>(
-        <button type="button" data-crop={key} aria-pressed={key==="scene"?"true":"false"}>{label}</button>
-      ))}
-    </div>
-    <button type="button" class="rig-switch" data-rig-switch hidden aria-pressed="false">관절선</button>
     <div class="flight" data-flight hidden>
       <div class="sites" role="group" aria-label="탐험 장소">
         {Object.entries({relay:"탐사선",comet:"혜성",prints:"달 표면",rover:"월면차"}).map(([key,label])=><button type="button" data-site={key} aria-pressed="false">{label}</button>)}
@@ -61,7 +32,7 @@ const artwork = "/assets/images/lunar-journal.webp";
       {Object.entries({forward:"전진",back:"후진",left:"왼쪽",right:"오른쪽",up:"상승",down:"하강"}).map(([key,label])=><button type="button" data-move={key}>{label}</button>)}
       <button type="button" data-land>돌아가기</button>
     </div>
-    <p role="status">좌우로 끌어 돌려보세요.</p>
+    <p role="status"></p>
   </figcaption>
 </figure>
 <script>
@@ -89,13 +60,6 @@ const artwork = "/assets/images/lunar-journal.webp";
     right:2vw; top:calc(50% - 12px); transform:translateY(-50%); overflow:hidden; border-radius:50%;
     z-index:1; pointer-events:none;
   }
-  [data-rig] { position:absolute; inset:0; width:100%; height:100%; z-index:2; pointer-events:none; }
-  [data-rig] polyline { fill:none; stroke:#0b585c; stroke-width:4; stroke-linejoin:round; stroke-linecap:round; }
-  [data-rig] circle { fill:#fff4d8; stroke:#16484d; stroke-width:3; }
-  [data-rig] .far polyline { stroke:#8a402c; stroke-dasharray:9 7; }
-  [data-rig] .far circle { stroke:#8a402c; }
-  .rig-switch { font:inherit; padding:4px 9px; margin-top:5px; border-color:#928574; }
-  .rig-switch[aria-pressed="true"] { background:#e7e0d1; }
   .registration img { width:100%; height:100%; display:block; }
   .moon { position:absolute; z-index:2; transform:translate(-50%,-50%); width:var(--moon-size,44px); aspect-ratio:1; min-width:28px; border-radius:50%; border:none; }
   .moon:hover, .moon:focus-visible { outline: 2px dashed #745b36; outline-offset: 2px; }
@@ -115,31 +79,15 @@ const artwork = "/assets/images/lunar-journal.webp";
   .sky-places { display:flex; flex-wrap:wrap; gap:2px 12px; padding-top:5px; }
   .sky-places button { font:inherit; padding:3px 0; }
   .sky-places button[aria-pressed="true"] { text-decoration:underline; color:#214973; }
-  .toolbar, .views, .turn { display: flex; align-items: center; }
-  .stage img.overlay { position:absolute; inset:0; z-index:1; pointer-events:none; }
-  .compare,.sites { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
-  .compare { margin-top:8px; font-size:.85rem; }
-  .compare input { accent-color:#456556; }
-  .details { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
-  .details button { border:1px solid var(--surface-border); border-radius:4px; padding:4px 10px; font:700 1rem/1.4 var(--journal-font); }
-  .details button[aria-pressed="true"] { background:#e7e0d1; }
-  .sites { width:100%; padding-bottom:8px; margin-bottom:4px; border-bottom:1px solid var(--surface-border); }
+  .toolbar, .turn { display: flex; align-items: center; }
+  .sites { display:flex; flex-wrap:wrap; align-items:center; gap:8px; width:100%; padding-bottom:8px; margin-bottom:4px; border-bottom:1px solid var(--surface-border); }
   .sites button[aria-pressed="true"],.sites button[data-interact] { background:#e7e0d1; }
   .toolbar { flex-wrap:wrap; justify-content: space-between; gap: 8px; }
-  .views { gap: 4px; }
   button { color: #404846; border: 1px solid transparent; background: transparent; cursor: pointer; }
-  .views button { font: 700 1.15rem/1 var(--journal-font); padding: 8px 11px; }
-  .views button[aria-pressed="true"] { background: #e7e0d1; color: #253e52; border-radius: 3px; }
   .turn { gap: 4px; }
   .turn button { font: 1.5rem/1 var(--journal-font); width: 36px; height: 34px; border-color: #c5bcab; border-radius: 50%; }
   button:hover { color: #192e44; border-color: #827e72; }
   figcaption p { margin-top: 7px; font: .9rem/1.55 var(--journal-font); color: var(--muted); }
-  @media(min-width:721px){
-    .studio[data-comparing] .registration {
-      --frame:min(59vw,max(140px,calc(100svh - 130px - var(--controls-height))));
-      top:calc(50% + 16px - var(--controls-height) / 2);
-    }
-  }
   @media(max-width:720px){
     .studio { align-self:stretch; }
     .registration { --frame:min(95vw,48svh); right:50%; top:var(--mobile-art-centre,calc(22svh + 214px)); transform:translate(50%,-50%); }
