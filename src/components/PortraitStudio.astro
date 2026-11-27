@@ -41,7 +41,6 @@ const artwork = "/assets/images/lunar-arrival.webp";
       }catch{
         const canvas=root.querySelector("canvas")!;
         canvas.hidden=true;
-        root.querySelector<HTMLImageElement>("[data-registration] > img")!.hidden=false;
       }finally{
         const focused=document.activeElement===button;
         drawing.finish();
@@ -107,5 +106,5 @@ const artwork = "/assets/images/lunar-arrival.webp";
     .studio { align-self:stretch; }
     .registration { --frame:min(95vw,48svh); right:50%; top:var(--mobile-art-centre,calc(22svh + 214px)); transform:translate(50%,-50%); }
   }
-  [hidden],.registration img[hidden] { display:none; }
+  [hidden] { display:none; }
 </style>

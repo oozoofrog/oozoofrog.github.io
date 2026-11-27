@@ -290,6 +290,13 @@ export async function mountPortrait(root: HTMLElement, arrivalStars:readonly Dra
   window.addEventListener("scroll",()=>{
     if(!canvas.hidden && alignIllustration()){positionFlight();positionOrbit();draw();}
   },{passive:true});
-  canvas.addEventListener("webglcontextlost",()=>{stop();contextLost=true;observer.disconnect();visibility.disconnect();canvas.hidden=true;poster.hidden=false;});
-  canvas.hidden=false;poster.hidden=true;resize();startTick();observer.observe(stage);observer.observe(registration);
+  canvas.addEventListener("webglcontextlost",()=>{
+    stop();contextLost=true;observer.disconnect();visibility.disconnect();
+    canvas.hidden=true;registration.prepend(poster);
+  });
+  resize();
+  if(renderer.getContext().isContextLost())return;
+  observer.observe(stage);observer.observe(registration);startTick();
+  poster.remove();
+  canvas.hidden=false;
 }
