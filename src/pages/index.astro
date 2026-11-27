@@ -1,7 +1,5 @@
 ---
-import "@fontsource/caveat-brush/latin-400.css";
-import "@fontsource/gaegu/korean-700.css";
-import "@fontsource/gowun-batang/korean-400.css";
+import "../styles/journal-type.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LunarIllustration from "../components/LunarIllustration.astro";
 import ProjectThumbnail from "../components/ProjectThumbnail.astro";
@@ -90,7 +88,7 @@ const posts = (
     border-bottom: 1px solid var(--surface-border);
   }
   .record h2 {
-    font: 700 clamp(1.18rem, 2.1vw, 1.65rem)/1.45 var(--reading);
+    font: 700 clamp(1.18rem, 2.1vw, 1.65rem)/1.45 var(--journal-font);
     letter-spacing: -.045em;
     word-break: keep-all;
     overflow-wrap: anywhere;
@@ -99,7 +97,7 @@ const posts = (
   .record h2 a { color: var(--ink); }
   .record h2 a::after { content: ""; position: absolute; inset: 0; }
   .record p { margin-top: 6px; font-size: 1rem; line-height: 1.65; text-wrap: pretty; }
-  .record-meta { display: flex; gap: 12px; align-items: center; margin-top: 9px; color: var(--muted); font: .78rem/1.4 var(--sans); }
+  .record-meta { display: flex; gap: 12px; align-items: center; margin-top: 9px; color: var(--muted); font: .78rem/1.4 var(--journal-font); }
   .record-meta span { border-left: 1px solid var(--surface-border); padding-left: 12px; }
   .visual { flex: 0 0 clamp(100px, 14vw, 155px); }
   .projects { margin-top: clamp(40px, 6vw, 72px); }
@@ -110,41 +108,33 @@ const posts = (
   :global(body:has(.journal-home)) {
     --paper:#f7ecd7; --ink:#29291f; --muted:#524b3f; --surface-border:#bbab91;
     --surface-bg:#faf1df; --frog-green:#214973; --frog-green-dark:#203e5c;
-    --reading:"Gowun Batang","AppleMyungjo",Georgia,serif;
-    --hand:"Gaegu","Apple SD Gothic Neo",sans-serif;
-    --brush:"Caveat Brush",var(--hand);
-    font-family:var(--reading);
     background:var(--paper);
   }
   :global(body:has(.journal-home) .masthead) {
     background:var(--paper);
     border-bottom-color:#aa977a84;
   }
-  :global(body:has(.journal-home) .masthead .wordmark) { font:400 2.05rem/1 var(--brush); letter-spacing:-.04em; }
-  :global(body:has(.journal-home) .masthead nav a),
-  :global(body:has(.journal-home) .masthead .rss) { font:700 1.24rem/1.15 var(--hand); }
   :global(body:has(.journal-home) .site-footer) {
     margin:0; background:#eee1c6; border-color:#ac9978;
   }
-  :global(body:has(.journal-home) .footer-links) { font:700 1.08rem/1.4 var(--hand); }
   .section-head { border-color: #9f8d71; margin-bottom: 0; padding-bottom: 8px; }
-  .section-head h1, .section-head h2 { margin: 0; font: 700 clamp(1.5rem, 2.4vw, 2rem)/1.2 var(--hand); }
-  .section-head a { font: 700 1.1rem/1.2 var(--hand); }
+  .section-head h1, .section-head h2 { margin: 0; font: 700 clamp(1.5rem, 2.4vw, 2rem)/1.2 var(--journal-font); }
+  .section-head a { font: 700 1.1rem/1.2 var(--journal-font); }
   .project-index { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px 24px; align-items:start; }
   .project-entry { border-bottom:1px solid var(--surface-border); }
   summary { display:block; cursor:pointer; list-style:none; }
   summary::-webkit-details-marker { display:none; }
   .identity { display:flex; align-items:center; gap:8px; min-height:61px; }
   .icon { width:34px; height:34px; border-radius:8px; flex:none; }
-  .project-name { font:400 clamp(1.55rem,2.4vw,1.93rem)/1.1 var(--brush); letter-spacing:-.035em; }
-  .status { margin-left:auto; font:700 1.03rem/1.2 var(--hand); color:var(--muted); }
+  .project-name { font:400 clamp(1.55rem,2.4vw,1.93rem)/1.1 var(--journal-font); letter-spacing:-.035em; }
+  .status { margin-left:auto; font:700 1.03rem/1.2 var(--journal-font); color:var(--muted); }
   .plus { display:grid; place-items:center; width:17px; height:17px; color:#47627a; }
   .plus::before,.plus::after { content:""; grid-area:1/1; width:11px; height:1.4px; background:currentColor; }
   .plus::after { transform:rotate(90deg); }
   details[open] .plus::after { transform:rotate(0); }
   summary:hover .project-name,summary:focus-visible .project-name { color:#244d78; }
   .project-body { padding:0 5px 16px; font-size:.9rem; }
-  .tags { font:700 .98rem/1.5 var(--hand); color:var(--muted); margin-top:7px; }
+  .tags { font:700 .98rem/1.5 var(--journal-font); color:var(--muted); margin-top:7px; }
   .project-links { display:flex; flex-wrap:wrap; gap:13px; }
   .project-links a { margin-top:9px; font-size:.81rem; font-weight:650; }
   @media(prefers-reduced-motion:no-preference) {

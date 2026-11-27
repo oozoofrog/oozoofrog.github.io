@@ -11,9 +11,6 @@ const { title, date, subtitle = '증시, 정치, 국제, 기술, 과학, 스포�
 ---
 
 <BaseLayout noindex={true} title={title}>
-  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head-extra">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head-extra">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" slot="head-extra">
 
   <div class="news-container">
     <div class="breadcrumb">
@@ -47,7 +44,6 @@ const { title, date, subtitle = '증시, 정치, 국제, 기술, 과학, 스포�
   .news-container {
     max-width: 900px;
     margin: 0 auto;
-    font-family: 'Noto Serif KR', Georgia, serif;
   }
 
   .breadcrumb {
@@ -98,7 +94,6 @@ const { title, date, subtitle = '증시, 정치, 국제, 기술, 과학, 스포�
   }
 
   .dateline {
-    font-family: 'Inter', sans-serif;
     font-size: 12px;
     color: #888888;
     margin-top: 16px;
@@ -141,7 +136,6 @@ const { title, date, subtitle = '증시, 정치, 국제, 기술, 과학, 스포�
   }
 
   .footer-credit {
-    font-family: 'Inter', sans-serif;
     font-size: 11px;
     color: #888888;
     letter-spacing: 0.05em;
@@ -230,7 +224,6 @@ const { title, date, subtitle = '증시, 정치, 국제, 기술, 과학, 스포�
 
   :global(.news-container .tag) {
     display: inline-block;
-    font-family: 'Inter', sans-serif;
     font-size: 10px;
     font-weight: 600;
     padding: 3px 8px;

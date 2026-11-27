@@ -1,14 +1,12 @@
+@import "@fontsource/gaegu/korean-400.css";
+@import "@fontsource/gaegu/korean-700.css";
+
 :root {
   --paper: #f7f7ed;
   --ink: #202c24;
   --muted: #526052;
   --lime: #c8e899;
-  --sans:
-    Inter, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-    "Malgun Gothic", sans-serif;
-  --serif:
-    "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
-  --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --journal-font: "Gaegu", sans-serif;
   --gutter: clamp(20px, 5.7vw, 80px);
   --sky-blue: #b8ceb2;
   --sky-blue-light: #e6eddb;
@@ -32,7 +30,7 @@
   padding: 0;
 }
 body {
-  font: 16px/1.65 var(--sans);
+  font: 16px/1.65 var(--journal-font);
   color: var(--ink);
   background: var(--paper);
 }
@@ -47,7 +45,10 @@ a:hover {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-button,
+code, pre, kbd, samp {
+  font-family: inherit;
+}
+button, select, textarea,
 input {
   font: inherit;
 }
@@ -81,7 +82,7 @@ img {
 }
 .eyebrow {
   color: var(--muted);
-  font: 600 10px/1.3 var(--mono);
+  font: 600 10px/1.3 var(--journal-font);
   letter-spacing: 0.15em;
 }
 .section-head {

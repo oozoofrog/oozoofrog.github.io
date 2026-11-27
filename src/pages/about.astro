@@ -1,79 +1,93 @@
 ---
+import "../styles/journal-type.css";
+import {projects} from "../data/projects";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import StudyPlate from "../components/StudyPlate.astro";
+import PortraitStudio from "../components/PortraitStudio.astro";
 ---
 
-<BaseLayout title="소개 · 우주개구리">
-  <header class="section-head">
-    <div>
-      <p class="eyebrow">ABOUT THE DEVELOPER</p>
-      <h1 class="catalog-title">우주개구리</h1>
-    </div>
-  </header>
+<BaseLayout fullWidth title="소개 · 우주개구리" description="Swift로 iOS와 macOS 앱, 개발 도구를 만드는 우주개구리입니다.">
   <div class="profile">
-    <div class="portrait">
-      <StudyPlate kind="knot" label="OOZOOFROG" />
-    </div>
-    <section>
-      <h2>oozoofrog</h2>
-      <p>
-        Swift로 iOS와 macOS 앱, 개발 도구를 만듭니다. 앱을 쓰는 사람과 만드는
-        사람의 경험을 함께 고민합니다.
-      </p>
+    <section class="bio" aria-labelledby="profile-title">
+    <header>
+      <p class="section-name">소개</p>
+      <h1 id="profile-title">우주개구리</h1>
+      <p class="lead">Swift로 iOS와 macOS 앱, 개발 도구를 만듭니다.</p>
+    </header>
+    <div class="illustration-space" data-illustration-space aria-hidden="true"></div>
+    <nav class="work" aria-label="만든 앱">
+      {projects.filter(p=>p.slug==="runners-heart" || p.slug==="remotedebug").map(p=>(
+        <a href={p.page}>{p.name}<span>{p.tagline}</span></a>
+      ))}
+    </nav>
+    <details class="details"><summary>기술과 연락처</summary>
       <dl>
-        <dt>언어</dt>
-        <dd>Swift, Objective-C</dd>
-        <dt>프레임워크</dt>
-        <dd>SwiftUI, UIKit, Combine, HealthKit, WatchKit</dd>
-        <dt>관심 분야</dt>
-        <dd>앱 아키텍처, 개발 도구, 오픈 소스</dd>
+        <dt>언어</dt><dd>Swift, Objective-C</dd>
+        <dt>프레임워크</dt><dd>SwiftUI, UIKit, Combine, HealthKit, WatchKit</dd>
+        <dt>관심 분야</dt><dd>앱 아키텍처, 개발 도구, 오픈 소스</dd>
       </dl>
-      <h3>연락처</h3>
-      <p>
-        <a href="https://github.com/oozoofrog">GitHub ↗</a> ·{" "}
+      <h2>연락처</h2>
+      <div class="links">
+        <a href="https://github.com/oozoofrog">GitHub</a>
         <a href="mailto:oozoofrog@gmail.com">oozoofrog@gmail.com</a>
-      </p>
+      </div>
+    </details>
     </section>
+    <PortraitStudio />
   </div>
 </BaseLayout>
+
 <style>
+  :global(body:has(.profile)) {
+    --paper: #f8f3e9;
+    --ink: #272c2c;
+    --muted: #555951;
+    --frog-green: #24486a;
+    --surface-border: #c7bdad;
+  }
+  :global(body:has(.profile)) { isolation:isolate; }
+  :global(body:has(.profile) .masthead), :global(body:has(.profile) .site-footer) {
+    position:relative; z-index:2; background:rgb(248 243 233 / .84);
+  }
+  :global(body:has(.profile) .site-footer) { margin-top:0; }
   .profile {
-    display: grid;
-    grid-template-columns: minmax(160px, 0.65fr) 1.35fr;
-    gap: 32px;
-    align-items: start;
+    max-width:1540px; margin:auto; min-height:calc(100svh - 68px);
+    padding:clamp(30px,5vh,60px) var(--gutter);
+    display:grid; grid-template-columns:minmax(270px,.78fr) minmax(0,1.22fr);
+    gap:16px clamp(24px,5vw,84px); align-content:center; align-items:start; pointer-events:none;
   }
-  .portrait {
-    height: 230px;
+  .bio {
+    position:relative; z-index:1; pointer-events:none; max-width:29rem;
+    padding:0;
   }
-  h2 {
-    font: 2.6rem var(--serif);
-    letter-spacing: -0.05em;
+  .bio a, .bio summary, .bio details[open] dl { pointer-events:auto; }
+  .profile::before {
+    content:""; position:fixed; inset:0; z-index:1; pointer-events:none;
+    background:linear-gradient(90deg,rgba(248,243,230,.91) 0%,rgba(248,243,230,.89) 28%,rgba(248,243,230,.67) 40%,transparent 59%);
   }
-  p {
-    margin: 0.65rem 0 1rem;
-  }
-  dl {
-    margin: 20px 0;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 8px 16px;
-  }
-  dt {
-    font-weight: 650;
-  }
-  dd {
-    color: var(--muted);
-  }
-  a {
-    text-decoration: underline;
-  }
-  @media (max-width: 620px) {
-    .profile {
-      grid-template-columns: 1fr;
-    }
-    .portrait {
-      height: 155px;
-    }
+  .illustration-space { display:none; }
+  .work { margin-top:18px; }
+  .work a { display:block; width:fit-content; font-size:1.28rem; font-weight:700; text-decoration:underline; text-underline-offset:4px; }
+  .work a + a {margin-top:5px;}
+  .work span { display:inline-block; padding-left:9px; color:var(--muted); font-weight:400; font-size:1.06rem; }
+  .details summary { width:fit-content; cursor:pointer; font-size:1.12rem; }
+  .section-name { font: 700 1.28rem/1.4 var(--journal-font); color: #655945; }
+  h1 { font: 400 clamp(2.8rem, 5vw, 4.7rem)/1.24 var(--journal-font); letter-spacing: -.035em; }
+  .lead { margin-top: 18px; max-width: 32ch; font: 400 clamp(1.03rem, 1.55vw, 1.24rem)/1.85 var(--journal-font); word-break: keep-all; }
+  .details { margin-top:24px; }
+  dl { display: grid; grid-template-columns: max-content 1fr; gap: 11px 20px; padding-block: 18px; border-block: 1px solid var(--surface-border); }
+  dt, h2 { font: 700 1.12rem/1.55 var(--journal-font); color: #655945; }
+  dd, .links { font-size: 1.06rem; line-height: 1.75; }
+  h2 { margin-top: 20px; }
+  .links { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+  .links a { text-decoration: underline; text-underline-offset: 4px; }
+  @media(max-width: 720px) {
+    .profile { display:flex; flex-direction:column; align-items:stretch; gap:22px; padding:0 var(--gutter) 32px; }
+    .bio { max-width:none; padding:16px 0 0; }
+    .profile::before { position:absolute; background:linear-gradient(180deg,#f8f3e6e8,transparent 17%,transparent 42%,#f8f3e6eb 60%,#f8f3e6 92%); }
+    .profile { position:relative; min-height:100svh; }
+    .illustration-space { display:block; height:min(92vw,44svh); }
+    .work { margin-top:8px; }
+    .details {margin-top:12px;}
+    .lead { max-width: 38ch; margin-top: 10px; }
   }
 </style>

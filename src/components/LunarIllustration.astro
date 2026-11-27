@@ -68,7 +68,7 @@ const scenes = [
 </script>
 <style>
   .cover { max-width: 640px; margin: 32px auto 0; color: var(--muted); }
-  summary { width: fit-content; margin: auto; padding: 8px; font: 700 1.1rem var(--hand); cursor: pointer; }
+  summary { width: fit-content; margin: auto; padding: 8px; font: 700 1.1rem var(--journal-font); cursor: pointer; }
   .spread { position: relative; isolation: isolate; overflow: hidden; aspect-ratio: 1902/827; background: #f2e5ce; }
   .camera,.camera picture,.camera img,.cels { position:absolute; inset:0; width:100%; height:100%; display:block; }
   .camera { z-index:-2; }
@@ -77,7 +77,7 @@ const scenes = [
   .cels.portrait { display:none; }
   .cover[data-view="frog"] .camera { transform-origin:73% 63%; transform:scale(1.6); }
   .cover[data-view="earth"] .camera { transform-origin:96% 0%; transform:scale(1.65); }
-  .colophon { display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; padding:6px 10px; border-bottom:1px solid var(--surface-border); font:700 1.04rem/1.2 var(--hand); }
+  .colophon { display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; padding:6px 10px; border-bottom:1px solid var(--surface-border); font:700 1.04rem/1.2 var(--journal-font); }
   .view-controls,.play { display:flex; align-items:center; }
   button { color:inherit; background:transparent; cursor:pointer; font:inherit; }
   .view-controls { gap:2px; }

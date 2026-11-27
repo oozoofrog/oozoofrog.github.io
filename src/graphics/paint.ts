@@ -49,7 +49,7 @@ function texture(canvas: HTMLCanvasElement) {
   return map;
 }
 
-function earthPaint() {
+export function earthPaint() {
   const canvas = document.createElement("canvas");
   canvas.width = 768;
   canvas.height = 384;
